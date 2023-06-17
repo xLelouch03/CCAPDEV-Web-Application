@@ -1,0 +1,24 @@
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal-content .modal-title span {
+    display: block;
+    border-radius: 50px;
+}
+  
+.modal-content .modal-title span.color-text {
+    color: #3498a7;
+}
+
+.modal-dialog {
+    max-width: 350px; 
+    border-radius: 50px;
+}
+
+.modal-title #loginModalLabel {
+    font-family: 'Poppins Medium', sans-serif;
+    font-size: 40px;
+    margin-top: 30px;
+    text-align: center;   
+}
