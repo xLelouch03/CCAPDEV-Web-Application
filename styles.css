@@ -27,6 +27,14 @@
     padding: auto;
 }
 
+.modal-title-custom {
+    border-top: none;
+}
+  
+.text-center a.forgot-password {
+    border-bottom: none;
+}
+
 #juander {
     color: #3498a7;
     display: inline;

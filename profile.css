@@ -1,0 +1,93 @@
+:root {
+    background-color: #f5f5f5;
+}
+
+.container {
+    border: 5px;
+    border-radius: 5px;
+}
+
+.navbar {
+    padding: 10px;
+}
+  
+.navbar-brand {
+    color: black;
+}
+  
+.navbar-nav .nav-item {
+    list-style: none;
+}
+  
+.navbar-nav .nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+
+#logout {
+    background-color: #ff8a00;
+}
+
+.profile-container {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.nav-link {
+    background-color: transparent;
+    color: black;
+}
+
+.nav-link:hover {
+    color: #ff8a00; 
+}
+  
+.nav-pills .nav-link:hover,
+.nav-pills .nav-link:focus {
+  color: #ff8a00;
+  background-color: transparent;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #ff8a00;
+  color: #ffffff;
+}
+
+#update {
+    background-color: #ff8a00;
+}
+
+.content-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 50px;
+    height: 400px; 
+    overflow-y: auto;
+}
+
+.container-fluid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    align-items: start;
+}
+  
+.left-container {
+    grid-column: 1;
+}
+  
+.right-container {
+    grid-column: 2;
+}
