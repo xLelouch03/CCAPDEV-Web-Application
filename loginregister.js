@@ -21,13 +21,28 @@ $(document).ready(function() {
     });
 
     $('#loginBtn').click(function() {
-        var email = $('#email').val();
+        var username = $('#username').val();
         var password = $('#password').val();
 
-        if (email === 'abc@email.com' && password === '12345') {
+        if (username === 'abc' && password === '12345') {
             window.location.href = 'profile.html';
         } else {
-            alert('Invalid email or password. Please try again.');
+            alert('Invalid username or password. Please try again.');
         }
     });
+
+    $('#signUpBtn').click(function() {
+        var username = $('#registerUsername').val();
+        var password = $('#registerPassword').val();
+        
+        if (username  && password) {
+            alert('Registration successful');
+            
+            $('#registerModal').modal('hide');
+            $('#loginModal').modal('show');
+        } else {
+            alert('Please fill in all required fields.');
+        }
+    });
+
 });

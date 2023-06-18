@@ -1,3 +1,8 @@
+<!-- TO DO:
+    1) This is a user-view of the profile
+    2) Need to have a guest-view of the user's profile
+    3) Real life contents
+    4) consolidated reviews of the user -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +46,13 @@
             <div class="col-lg-3 left-container">
                 <div class="profile-container">
                     <img src="images/junki.jpg" alt="Profile Picture" class="profile-picture">
-                    <h4>Name</h4>
-                    <h6>Description</h6>
-                    <button class="btn btn-primary" id="update">Update User Info</button>
+                    <h4 class="name">Name</h4>
+                    <h6 class="description">Description</h6>
                     
                     <ul class="nav flex-column nav-pills mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
                         </li>
@@ -55,9 +62,6 @@
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#settings">Settings</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -66,24 +70,46 @@
                 <div class="content-container">
                     <div class="tab-content">
                         <div id="juanderlast-points" class="tab-pane fade show active">
-                            <h1> Juanderlast Points</h1>
-                            <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint similique dolorem sed sunt nulla hic voluptatem maxime vero, iste delectus molestiae est aliquam in quaerat, fugit accusantium maiores eaque asperiores quod neque itaque! A ratione quae, autem voluptatibus cumque corporis. Eum voluptatem in delectus minima quia necessitatibus placeat illum quisquam velit quasi, explicabo dicta amet quos eius sunt! Aspernatur impedit a iste ad quidem quasi repudiandae, eaque sint recusandae! Quaerat placeat error totam. Vero saepe sunt consequuntur, perspiciatis obcaecati quos hic pariatur omnis error tempora itaque maiores deserunt illum ab nihil nostrum perferendis beatae quidem dignissimos. Voluptates aut distinctio repudiandae?</div>
+                            <h1>Juanderlast Points</h1>
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint similique dolorem sed sunt nulla hic voluptatem maxime vero, iste delectus molestiae est aliquam in quaerat, fugit accusantium maiores eaque asperiores quod neque itaque! A ratione quae, autem voluptatibus cumque corporis. Eum voluptatem in delectus minima quia necessitatibus placeat illum quisquam velit quasi, explicabo dicta amet quos eius sunt! Aspernatur impedit a iste ad quidem quasi repudiandae, eaque sint recusandae! Quaerat placeat error totam. Vero saepe sunt consequuntur, perspiciatis obcaecati quos hic pariatur omnis error tempora itaque maiores deserunt illum ab nihil nostrum perferendis beatae quidem dignissimos. Voluptates aut distinctio repudiandae?
+                            </div>
                         </div>
                         <div id="promo-codes" class="tab-pane fade">
-                            <h1> Promo Codes</h1>
-                            <div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse minus repudiandae at itaque, aut assumenda sit corrupti quis rerum molestias sunt? Accusamus, eaque? Repellendus explicabo recusandae nobis, libero ex corrupti cumque? Possimus officiis necessitatibus dignissimos voluptas atque facilis mollitia consequuntur impedit obcaecati, omnis nostrum amet ab minus aliquid aspernatur expedita!</div>
+                            <h1>Promo Codes</h1>
+                            <div>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse minus repudiandae at itaque, aut assumenda sit corrupti quis rerum molestias sunt? Accusamus, eaque? Repellendus explicabo recusandae nobis, libero ex corrupti cumque? Possimus officiis necessitatibus dignissimos voluptas atque facilis mollitia consequuntur impedit obcaecati, omnis nostrum amet ab minus aliquid aspernatur expedita!
+                            </div>
                         </div>
                         <div id="reviews" class="tab-pane fade">
-                            <h1> Reviews</h1>
-                            <div> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis corporis at perspiciatis, molestiae neque accusantium eaque. Aspernatur repellendus similique voluptatibus nostrum voluptatum necessitatibus nisi sunt ducimus dolorem quae! Laborum architecto deserunt perspiciatis illo quaerat iusto adipisci nihil quo eveniet exercitationem totam reprehenderit ut, error deleniti sint mollitia nesciunt animi. Voluptatibus.</div>
+                            <h1>Reviews</h1>
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis corporis at perspiciatis, molestiae neque accusantium eaque. Aspernatur repellendus similique voluptatibus nostrum voluptatum necessitatibus nisi sunt ducimus dolorem quae! Laborum architecto deserunt perspiciatis illo quaerat iusto adipisci nihil quo eveniet exercitationem totam reprehenderit ut, error deleniti sint mollitia nesciunt animi. Voluptatibus.
+                            </div>
                         </div>
-                        <div id="settings" class="tab-pane fade">
-                            <h1> Settings</h1>
-                            <section> Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, dolore numquam esse quam ut sequi eligendi error repudiandae nesciunt? Accusamus obcaecati qui fugit, fugiat velit, aliquam, quidem aperiam a nisi tempora totam. Laboriosam necessitatibus doloremque veritatis laborum! Ut nihil cumque voluptatibus fugit dolore id quis aut maxime aperiam assumenda. Repellat.</section>
-                        </div>
+                        <div id="update-user-info" class="tab-pane fade">
+                            <h1>Update User Info</h1>
+                            <form id="updateForm" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="profilePicture" class="form-label">Avatar</label>
+                                    <input type="file" class="form-control" id="profilePicture" accept="image/*">
+                                    <img id="profilePictureDisplay" class="profile-picture" src="images/junki.jpg" alt="Profile Picture">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Enter your name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="userDescription" placeholder="Enter your description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="save">Save</button>
+                                </form>
+                                <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">User info updated successfully.</div>
+                          </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 </body>
