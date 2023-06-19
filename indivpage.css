@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PoppinsBold:wght@500&display=swap');
+
+
+
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
+/*NAVIGATION BAR*/
+
+#logo{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px;
+    margin-top:20px;
+}
+
+.rightalign {
+    float:right;
+}
+
+.rightalign button{
+    height:40px;
+    position: relative;
+    border: none;
+    background: none;
+    vertical-align: top;
+    font-size: 18px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top:10px;
+}
+
+.rightalign button:hover{
+    background-color: #ff8a00;
+    color:white;
+    border-radius: 20px;
+    padding:5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top:10px;
+}
+
+#navbar{
+    height: 60px;
+}
+
+
+#login{
+    background-color: #ff8a00;
+    height: 30px;
+    width: 120px;
+    padding-top: 5px;
+    font-size: 18px;
+    border-radius: 20px;
+    color:white;
+    margin: 0 auto;
+    padding:0;
+    display: inline-block;
+    line-height: 25px;
+    text-align: center;
+    border-color: #ff8a00;
+    float:right;
+    margin-top: 15px;
+    margin-left: -15px;
+    margin-right: 15px;
+}
+
+#navbar .rightalign{
+    font-size: 18px;
+    padding-right: 30px;
+}
+
+/*SECTION 1*/
+
+#section1{
+    height: auto;
+    width:10000px;
+    height:fit-content;
+    position: relative;
+    padding-top:20px;
+}
+
+.container{
+    padding:30px;
+    background-color: #f5f5f5;
+}
+
+#name{
+    font-size: 45px;
+    font-weight: bolder;
+    
+}
+
+#tunnel{
+    margin-top: 10px;
+    float:left;
+}
+
+#two{
+    padding-top: 10px;
+    width: 405px;
+    float:left;
+    vertical-align: top;
+    scale:98%;
+    margin-top: -8px;
+    margin-left: 15px;
+    height: 550px;
+}
+
+#jelly{
+    background-image: url("images/Jelly.png");
+    height: 263px;
+}
+
+#view{
+    background-color: #ff8a00;
+    height: 45px;
+    width: 180px;
+    text-align: center;
+    color:white;
+    font-size: 18px;
+    border-radius: 20px;
+    margin-top:-60px;
+    float:right;
+    margin-right: 10px;
+}
+
+#textbox{
+    margin-top: 563px;
+    background-color: white;
+    width: 1187px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+section2{
+
+}
+
+#book{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'PoppinsBold', sans-serif;
+}
+
