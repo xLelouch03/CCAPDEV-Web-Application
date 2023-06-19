@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    </head>
+
+    <body>
+
+<div class="hero-container">
+    <div class="hero-slider">
+      <img class="mySlides" src="imgs/main bg 1.png">
+      <img class="mySlides" src="imgs/main bg 2.png">
+      <img class="mySlides" src="imgs/main bg 3.png">
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Unleash your Juanderlust.</h1>
+        <p>We help juanderers like you discover Philippines' hidden gems.</p>
+  
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Where to?">
+          <button class="search-button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <script>
+            var myIndex = 0;
+            carousel();
+            
+            function carousel() {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+              }
+              myIndex++;
+              if (myIndex > x.length) {myIndex = 1}    
+              x[myIndex-1].style.display = "block";  
+              setTimeout(carousel, 5000); // Change image every 2 seconds
+            }
+            </script>
+
+<!-- benefits -->
+
+
+        <div class="benefit-container">
+            <div class="benefit">
+                <img src="imgs/discover.png">
+                <h3> Discover the possibilities </h3>
+                <p> With nearly half a million attractions, hotels & more, you're sure to find joy. </p>
+            </div>
+            <div class="benefit">
+                <img src="imgs/deals.png">
+                <h3> Enjoy deals & delights </h3>
+                <p> Quality activities. Great prices. Plus, earn Juanderlust credits to save more. </p>
+            </div>
+            <div class="benefit">
+                <img src="imgs/trust.png">
+                <h3> Travel you can trust </h3>
+                <p> Read reviews & get reliable customer support. We're with you at every step. </p>
+            </div>
+        </div>
+
+
+
+<!-- gallery -->
+
+<h2> Popular Destinations </h2>
+
+<div class="owl-carousel owl-theme">
+
+    <div class="destination-slide">
+      <img src="imgs/boracay.png" class="img-slider">
+    </div>
+
+    <div class="destination-slide">
+      <img src="imgs/siargao.png" class="img-slider">
+    </div>
+
+    <div class="destination-slide">
+      <img src="imgs/cebusafari.png" class="img-slider">
+    </div>
+
+    <div class="destination-slide">
+      <img src="imgs/boracay.png" class="img-slider">
+    </div>
+
+  </div>
+ 
+    <div class="ctr"> 
+   <button class="btn-see"> See More </button>
+</div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        nav: true,
+        dots: false,
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"], // Customize the arrow icons if needed
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 3
+          }
+        }
+      });
+    });
+  </script>
+
+<link rel="stylesheet" href="path/to/owl.carousel.min.css">
+<link rel="stylesheet" href="path/to/owl.theme.default.min.css">
+<script src="path/to/jquery.min.js"></script>
+<script src="path/to/owl.carousel.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- map -->
+
+
+<!-- footer -->
+
+        <footer class="footer">
+
+            <div class="info"> 
+                <div class="contact">
+                    <h3> Contact Us </h3>
+
+                    <p> <a href="tel:+639135425765"> <i class="fa fa-phone" aria-hidden="true"></i> +639135425765</p> </a>
+                    <p> <a href="mailto:info@juanderlust.com"> <i class="fa fa-envelope" aria-hidden="true"></i> info@juanderlust.com</p> </a>
+                </div>
+
+                <div class="follow">
+                    <h3> Follow Us</h3>
+
+                    <a href="facebook.com"> <i class="fa fa-facebook-official" aria-hidden="true"></i> </a>
+                    <a href="instagram.com"> <i class="fa fa-instagram" aria-hidden="true"></i> </a>
+                    <a href="linkedin.com"> <i class="fa fa-linkedin-square" aria-hidden="true"></i> </a>
+
+                </div>
+            </div>
+
+        <div class="copyright">
+            <p> &copy; Copyright 2023 Juanderlust. All Rights Reserved | <a href="google.com">Terms of Use</a> | <a href="google.com">Privacy Policy</a> </p>
+        </div>
+
+        </footer>
+
+    </body>
+</html>
