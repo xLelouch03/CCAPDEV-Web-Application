@@ -25,7 +25,7 @@ $(document).ready(function() {
         var password = $('#password').val();
 
         if (username === 'abc' && password === '12345') {
-            window.location.href = 'profile.html';
+            window.location.href = './userviews/profile.html';
         } else {
             alert('Invalid username or password. Please try again.');
         }
