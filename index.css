@@ -1,7 +1,70 @@
-body, html {
-    height: 100%;
-    font-family: 'Poppins';
-    font-size: 16px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PoppinsBold:wght@500&display=swap');
+
+
+
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  border: 5px;
+  border-radius: 5px;
+}
+
+#logo{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.navbar {
+  padding: 10px;
+}
+
+.navbar-brand {
+  color: black;
+}
+
+.rightalign button:hover{
+  background-color: #ff8a00;
+  color:white;
+  border-radius: 20px;
+}
+
+.nav-link {
+  background-color: transparent;
+  color: black;
+}
+
+.navbar-nav .nav-item {
+  list-style: none;
+  font-size: 18px;
+}
+
+
+.nav-link:hover {
+  background-color: #ff8a00;
+  color:white;
+  border-radius: 20px;
+}
+
+.nav-pills .nav-link:focus {
+  color: #ff8a00;
+  background-color: transparent;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #ff8a00;
+  color: #ffffff;
+}
+
+#loginBtn3 {
+  background-color: #ff8a00;
+} 
+
+.modal-dialog {
+  max-width: 350px; 
+  border-radius: 50px;
 }
 
 .hero-container {
