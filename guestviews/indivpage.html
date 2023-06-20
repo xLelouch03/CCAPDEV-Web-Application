@@ -2,13 +2,10 @@
 <html>
 <head>
     <title>Individual Place Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../guestviews/indivpage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../userviews/indivpage.css">
     <link rel="stylesheet" href="../lightbox2-dev/src/css/lightbox.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lightbox2-dev/src/js/lightbox.js"></script>
-    <script src="../guestviews/indivpage.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -184,14 +181,14 @@
         <div class="options-container">
             <button class="review-filter" id="all">All</button>
             <button class="review-filter" id="photos">With Photos Only</button>
-            <div class="dropdown-review-filter-container">
-                <button class="dropdown-review-filter dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown dropdown-review-filter-container">
+                <button class="dropdown-review-filter btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Top reviews &nbsp;&nbsp;
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Top reviews</a>
-                    <a class="dropdown-item" href="#">Most recent</a>
-                </div>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Top reviews</a></li>
+                    <li><a class="dropdown-item" href="#">Most recent</a></li>
+                </ul>
             </div>
         </div>
         <div class="review-positioner">
@@ -274,26 +271,94 @@
             </div>
             <!-- END OF REVIEW 2 -->
             <div class="pages-container">
-                <div class="page-box">
-                    <span class="page-number">&lt;</span>
-                </div>
-                <div class="page-box">
-                    <span class="page-number">1</span>
-                </div>
-                <div class="page-box">
-                    <span class="page-number">2</span>
-                </div>
-                <div class="page-box">
-                    <span class="page-number">3</span>
-                </div>
-                <div class="page-box" id="advance-page">
-                    <span class="page-number">&gt;</span>
-                </div>
+                <button class="page-button">&lt;</button>
+                <button class="page-button">1</button>
+                <button class="page-button">2</button>
+                <button class="page-button">3</button>
+                <button class="page-button" id="next-page">&gt;</button>
             </div>
             <div class="add-review-container">
                 <button class="add-review">Add Your Review</button>
             </div>
         </div>
     </div>
+
+    <div class="section4-positioner">
+        <div class="section4">
+            <span class="s4-header">FAQs</span>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            What is the validity period of this voucher and where can I find this?
+                        </button>
+                    </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">You may refer to your voucher under the 'How To Use' -> 'Usage Validity' section for the validity period information!</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Are face coverings / face masks mandatory to enter?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">At the moment, yes. Entry of all guests is subject to the most current Inter-Agency Task Force for the Management of Emerging Infectious Diseases (IATF-EID) guidelines; including the wearing of face masks and face shields.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            I have more questions. Who can I talk to?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">You may contact our support using <a href="#">this link</a>.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section5-positioner">
+        <div class="section5">
+            <span class="s5-header">Let us help you find the perfect destination <span style="color: #3498a7">today.</span></span>
+            <span class="s5-body">Lorem ipsum stuff here</span>
+            <div class="s5-options-container">
+                <button class="view-destinations-button">VIEW DESTINATIONS</button>
+                <button class="contact-us-button">CONTACT US</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-positioner">
+        <footer class="footer">
+            <div class="info"> 
+                <div class="contact-container">
+                    <span class="left-align-container"><h3> Contact Us </h3></span>
+                    <span class="left-align-container"><a href="tel:+639135425765"> <i class="fa fa-phone" aria-hidden="true"></i> +639135425765 </a></span>
+                    <span class="left-align-container"><a href="mailto:info@juanderlust.com"> <i class="fa fa-envelope" aria-hidden="true"></i> info@juanderlust.com </a></span>
+                </div>
+                <div class="follow-container">
+                    <h3> Follow Us </h3>
+                    <div class="socmed-icons-container">
+                        <a href="facebook.com" class="logo-spacer"> <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> </a>
+                        <a href="instagram.com" class="logo-spacer"> <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a>
+                        <a href="linkedin.com" class="logo-spacer"> <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p> &copy; Copyright 2023 Juanderlust. All Rights Reserved | <a href="google.com">Terms of Use</a> | <a href="google.com">Privacy Policy</a> </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Importing JQuery, Bootstrap, Lightbox -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="../lightbox2-dev/src/js/lightbox.js"></script>
+    <script src="../userviews/indivpage.js"></script>
 </body>
 </html>

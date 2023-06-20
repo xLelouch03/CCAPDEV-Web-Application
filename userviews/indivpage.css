@@ -269,6 +269,7 @@
     border: 1px solid #737373;
     border-radius: 20px;
     font-size: 16px;
+    color: black;
     letter-spacing: 0.5px;
     background-color: #f5f5f5;
 }
@@ -278,6 +279,7 @@
     border: 1px solid #ff8a00;
     border-radius: 20px;
     font-size: 16px;
+    color: #ff8a00;
     letter-spacing: 0.5px;
     background-color: #fff4e6;
 }
@@ -307,6 +309,7 @@
     border: 1px solid #737373;
     border-radius: 20px;
     font-size: 16px;
+    color: black;
     letter-spacing: 0.5px;
     background-color: #f5f5f5;
 }
@@ -316,6 +319,7 @@
     border: 1px solid #ff8a00;
     border-radius: 20px;
     font-size: 16px;
+    color: #ff8a00;
     letter-spacing: 0.5px;
     background-color: #fff4e6;
 }
@@ -444,29 +448,44 @@
     margin-top: 30px;
 }
 
-.page-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.page-button {
     border: 1px solid #737373;
     border-radius: 5px;
     height: 30px;
     width: 30px;
     margin-left: 10px;
+    font-size: 14px;
+    color: black;
 }
 
-#advance-page.page-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.page-button:hover {
     border: 1px solid #737373;
     border-radius: 5px;
     height: 30px;
     width: 30px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #ff8a00;
 }
 
-.page-number {
+#next-page.page-button {
+    border: 1px solid #737373;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
     font-size: 14px;
+    color: black;
+}
+
+#next-page.page-button:hover {
+    border: 1px solid #737373;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+    color: white;
+    background-color: #ff8a00;
 }
 
 .add-review-container {
@@ -489,4 +508,155 @@
     font-weight: 700;
     border-radius: 20px;
     border-color:rgba(0, 0, 0, 0);
+}
+
+/* SECTION 4 */
+
+.section4-positioner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section4 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    width: 1295px;
+}
+
+.s4-header {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'PoppinsBold', sans-serif;
+    margin-bottom: 20px;
+}
+
+.section5-positioner {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../images/destination_cover.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section5 {
+    display: flex;
+    flex-direction: column;
+    padding: 64px 20px 58px 20px;
+    width: 1295px;
+}
+
+.s5-header {
+    font-weight: 700;
+    font-size: 31px;
+    width: 40%;
+}
+
+.s5-body {
+    margin-top: 16px;
+    font-size: 14px;
+    width: 40%;
+}
+
+.s5-options-container {
+    display: flex;
+    margin-top: 54px;
+}
+
+.view-destinations-button {
+    background-color: #3498a7;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 14px 8px 14px;
+    border-radius: 20px;
+    border-color:rgba(0, 0, 0, 0);
+}
+
+.contact-us-button {
+    background-color: #ff8a00;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 43px 8px 43px;
+    border-radius: 20px;
+    border-color:rgba(0, 0, 0, 0);
+    margin-left: 26px;
+}
+
+/* FOOTER */
+
+.footer-positioner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282A2A;
+}
+
+.footer {
+    width: 1295px;
+    text-align: center;
+    padding: 40px 20px 10px 20px;
+    color: white;
+}
+
+.footer h3 {
+    color: #FF8A00;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 122px;
+}
+
+.left-align-container {
+    text-align: left;
+}
+
+.follow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 122px;
+}
+
+.socmed-icons-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer a.logo-spacer {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+
+.footer a:hover {
+    color: #FF8A00;
+}
+
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
 }
