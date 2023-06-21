@@ -3,7 +3,7 @@
 <head>
     <title>Individual Place Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="../userviews/indivpage.css">
+    <link rel="stylesheet" href="../guestviews/indivpage.css">
     <link rel="stylesheet" href="../lightbox2-dev/src/css/lightbox.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -29,12 +29,87 @@
                         <a class="nav-link" href="#">MAP</a>
                     </li>
                     <li class="nav-item2 ms-3">
-                        <button type="button" class="btn btn-primary" id="login2" data-bs-toggle="modal" data-bs-target="#loginModal2">LOGIN</button>
+                        <button type="button" class="btn btn-primary" id="login2" data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="loginModalLabel">
+                        Ready to <span class="text-color-custom" id="juander-text">juan</span>der?
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="loginUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="loginPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <div class="row">
+                            <div class="col-auto">
+                                <input type="checkbox" class="form-check-input" id="loginRememberMe">
+                                <label class="form-check-label" for="loginRememberMe">Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="loginBtn">LOGIN</button>
+                        <p class="mt-2 mb-0">Don't have an account? <a href="#registerModal" id="registerLink">Sign
+                                up</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="registerModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="registerModalLabel">
+                        Hello, new <span class="text-color-custom" id="juander-text">Juan</span>derer!
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="registerUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="registerPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control custom-input" id="description3" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePicture" class="form-label">Upload your Avatar</label>
+                        <input type="file" class="form-control" id="profilePicture3" accept="image/*">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="signUpBtn" style="background-color: #ff8a00;">SIGN UP</button>
+                        <p class="mt-2 mb-0">Have an account already? <a href="#loginModal" id="loginLink"
+                                style="color: #ff8a00;">Sign in</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="section1">
         <div class="container">
@@ -56,7 +131,7 @@
     </div>
 
     <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-xl photo-gallery">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="galleryModalLabel">Manila Ocean Park Gallery</h5>
@@ -88,79 +163,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="loginModal2" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">    
-                <div class="modal-header">
-                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
-                </div>
-                
-                <div class="modal-body pt-0">
-                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="loginModalLabel2">
-                        Ready to <span class="text-color-custom" id="juander2">juan</span>der?
-                    </h5>
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control custom-input" id="username2" placeholder="Username">
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="password" class="form-control custom-input" id="password2" placeholder="Password">
-                    </div>
-                    <div class="form-group form-check mb-3">
-                        <div class="row">
-                            <div class="col-auto">
-                                <input type="checkbox" class="form-check-input">
-                                <label class="form-check-label" id="rememberMe2">Remember me</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="#" class="forgot-password">Forgot password?</a>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <div>
-                        <button type="button" class="btn btn-primary btn-block w-75" id="loginBtn2">LOGIN</button>
-                        <p class="mt-2 mb-0">Don't have an account? <a href="#registerModal2" id="registerLink2">Sign up</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal fade" id="registerModal2" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body pt-0">
-                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="registerModalLabel2">
-                        Hello, new <span class="text-color-custom" id="juander2">Juan</span>derer!
-                    </h5>
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control custom-input" id="registerUsername2" placeholder="Username">
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="password" class="form-control custom-input" id="registerPassword2" placeholder="Password" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control custom-input" id="description2" placeholder="Description">
-                    </div>
-                    <div class="form group">
-                        <label for="profilePicture" class="form-label">Upload your Avatar</label>
-                        <input type="file" class="form-control" id="profilePicture2" accept="image/*">
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <div>
-                        <button type="button" class="btn btn-primary btn-block w-75" id="signUpBtn2" style="background-color: #ff8a00;">SIGN UP</button>
-                        <p class="mt-2 mb-0">Have an account already? <a href="#loginModal2" id="loginLink2" style="color: #ff8a00;">Sign in</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <div class="section3">
         <div class="s3-header-container">
@@ -179,8 +181,8 @@
             <span class="review-count">5 reviews</span>
         </div>
         <div class="options-container">
-            <button class="review-filter" id="all">All</button>
-            <button class="review-filter" id="photos">With Photos Only</button>
+            <button class="review-filter" id="all" onclick="showAllReviews()">All</button>
+            <button class="review-filter" id="photos" onclick="showPhotoReviews()">With Photos Only</button>
             <div class="dropdown dropdown-review-filter-container">
                 <button class="dropdown-review-filter btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Top reviews &nbsp;&nbsp;
@@ -242,8 +244,8 @@
             </div>
             <!-- END OF REVIEW 1 -->
             <!-- REVIEW 2 -->
-            <br> <br>
-            <div class="review-container">
+            <div class="review-container text-only-review">
+                <br> <br>
                 <div class="profile-container">
                     <img class="profile-picture" src="../images/sample_review_1/pfp.png">
                     <div class="post-details-container">
@@ -278,7 +280,7 @@
                 <button class="page-button" id="next-page">&gt;</button>
             </div>
             <div class="add-review-container">
-                <button class="add-review">Add Your Review</button>
+                <button class="add-review" data-bs-toggle="modal" data-bs-target="#loginModal">Add Your Review</button>
             </div>
         </div>
     </div>
@@ -324,7 +326,7 @@
     <div class="section5-positioner">
         <div class="section5">
             <span class="s5-header">Let us help you find the perfect destination <span style="color: #3498a7">today.</span></span>
-            <span class="s5-body">Lorem ipsum stuff here</span>
+            <span class="s5-body">Let us know if you have questions!</span>
             <div class="s5-options-container">
                 <button class="view-destinations-button">VIEW DESTINATIONS</button>
                 <button class="contact-us-button">CONTACT US</button>
@@ -359,6 +361,6 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="../lightbox2-dev/src/js/lightbox.js"></script>
-    <script src="../userviews/indivpage.js"></script>
+    <script src="../guestviews/indivpage.js"></script>
 </body>
 </html>

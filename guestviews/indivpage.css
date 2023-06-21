@@ -5,7 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/*NAVIGATION BAR*/
+/* NAVIGATION BAR */
 
 .container {
     border: 5px;
@@ -63,12 +63,63 @@
     background-color: #ff8a00;
 }
 
+/* REGISTER & LOGIN MODAL */
+
+.modal-content .modal-title span {
+    display: block;
+    border-radius: 50px;
+}
+  
+.modal-content .modal-title span.color-text {
+    color: #3498a7;
+}
+
 .modal-dialog {
-    max-width: 350px; 
+    max-width: 400px; 
     border-radius: 50px;
 }
 
-/*SECTION 1*/
+.form-spacer {
+    margin-top: 135px;
+}
+
+.custom-input {
+    background-color: #ebebeb;
+}
+
+.modal-title-custom {
+    font-size: 40px;
+    margin-top: -50px;
+    margin-bottom: -10px;
+    padding: auto;
+}
+
+.modal-title-custom {
+    border-top: none;
+}
+  
+.text-center a.forgot-password {
+    border-bottom: none;
+}
+
+#juander-text {
+    color: #3498a7;
+    display: inline;
+}
+
+.forgot-password{
+    color: #737373;
+}
+
+#loginBtn {
+    background-color: #ff8a00;
+}
+
+#registerLink {
+    color:#ff8a00;
+}
+
+/* SECTION 1 */
 
 #section1 {
     display: flex;
@@ -78,22 +129,22 @@
     padding-top: 10px;
 }
 
-.container1{
-    padding:30px;
+.container1 {
+    padding: 30px;
     background-color: #f5f5f5;
 }
 
-#name{
+#name {
     font-size: 45px;
     font-weight: bolder;
 }
 
-#tunnel{
+#tunnel {
     margin-top: 10px;
     float:left;
 }
 
-#two{
+#two {
     padding-top: 10px;
     width: 405px;
     float:left;
@@ -104,12 +155,12 @@
     height: 550px;
 }
 
-#jelly{
+#jelly {
     background-image: url("../images/Jelly.png");
     height: 263px;
 }
 
-#view{
+#view {
     background-color: #ff8a00;
     height: 45px;
     width: 180px;
@@ -122,7 +173,7 @@
     margin-right: 10px;
 }
 
-#textbox1{
+#textbox1 {
     margin-top: 563px;
     background-color: white;
     width: 1187px;
@@ -136,9 +187,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.modal-content {
-    background-color: transparent;
-}
+/* SECTION 2 */
 
 .carousel-inner {
     background-color: transparent;
@@ -158,6 +207,10 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.photo-gallery {
+    max-width: 1000px;
 }
 
 .carousel-control-prev,
@@ -193,7 +246,7 @@
     right: -50px;
 }
 
-#book{
+#book {
     font-size: 30px;
     font-weight: bold;
     font-family: 'PoppinsBold', sans-serif;

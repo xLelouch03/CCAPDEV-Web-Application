@@ -4,49 +4,63 @@ $(document).ready(function() {
         'wrapAround': true
     });
 
-    $('#registerLink2').click(function() {
-        $('#loginModal2').modal('hide');
-        $('#registerModal2').modal('show');
+    // Switch to register form
+    $('#registerLink').click(function() {
+        $('#loginModal').modal('hide');
+        $('#registerModal').modal('show');
     });
 
     // Switch to login form
-    $('#loginLink2').click(function() {
+    $('#loginLink').click(function() {
         $('#registerModal').modal('hide');
-        $('#loginModal2').modal('show');
+        $('#loginModal').modal('show');
     });
 
-    $('#loginModal2').on('hidden.bs.modal', function() {
+    $('#loginModal').on('hidden.bs.modal', function() {
         $(this).find('input').val('');
-        $(this).find('#rememberMe2').prop('checked', false);
+        $(this).find('#loginRememberMe').prop('checked', false);
     });
     
-    $('#registerModal2').on('hidden.bs.modal', function() {
+    $('#registerModal').on('hidden.bs.modal', function() {
         $(this).find('input').val('');
     });
 
-    $('#loginBtn2').click(function() {
-        var username = $('#username2').val();
-        var password = $('#password2').val();
+    $('#loginBtn3').click(function() {
+        var username = $('#loginUsername3').val();
+        var password = $('#loginPassword3').val();
 
         if (username === 'abc' && password === '12345') {
-            window.location.href = '../index.html';
+            window.location.href = './userviews/profile.html';
         } else {
             alert('Invalid username or password. Please try again.');
         }
     });
 
-    $('#signUpBtn2').click(function() {
-        var username = $('#registerUsername2').val();
-        var password = $('#registerPassword2').val();
+    $('#signUpBtn').click(function() {
+        var username = $('#registerUsername3').val();
+        var password = $('#registerPassword3').val();
         
-        if (username  && password) {
+        if (username && password) {
             alert('Registration successful');
             
-            $('#registerModal2').modal('hide');
-            $('#loginModal2').modal('show');
+            $('#registerModal').modal('hide');
+            $('#loginModal').modal('show');
         } else {
             alert('Please fill in all required fields.');
         }
     });
-
 });
+
+function showAllReviews() {
+    var x = document.getElementsByClassName("review-container");
+    for(i = 0; i < x.length; i++) {
+        x[i].style.display = "flex";
+    }
+}
+
+function showPhotoReviews() {
+    var x = document.getElementsByClassName("text-only-review");
+    for(i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+}
