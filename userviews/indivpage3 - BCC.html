@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Individual Place Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../userviews/indivpage.css">
+    <link rel="stylesheet" href="../lightbox2-dev/src/css/lightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" id="logo" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <div class="input-group">
+                            <input type="search" class="form-control" id="searchbar" placeholder="Search" aria-label="Search">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DESTINATIONS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">MAP</a>
+                    </li>
+                    <li class="nav-item2 ms-3">
+                        <button type="button" class="btn btn-primary" id="logout2" data-bs-toggle="modal">LOGOUT</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="section1">
+        <div class="container">
+            <span id="name">Baguio Country Club</span>
+            <br>
+            <img id="photo1" src="../images/bcc1.jpg"><img>
+            <div id="two">
+                <img  id="photo2" src="../images/bcc2.gif"><img>    
+                <div style="background-image: url('../images/bcc3.jpg');" 
+                id="photo3"></div>    
+                <button id="view" data-bs-toggle="modal" data-bs-target="#galleryModal">VIEW GALLERY</button>
+        </div>
+        <div id="textbox1">
+            <p>
+                Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts. Established in 1905, this historic club stands as a testament to Baguio's colonial past and has since become a symbol of refined hospitality in the city. Surrounded by lush pine trees and overlooking a picturesque golf course, the club offers a perfect blend of natural beauty, leisure activities, and world-class amenities.</div>
+        <br>
+        <br>
+        
+        </div>
+
+    </div>
+
+    <div id="section2">
+        <div class="container">
+            <span id="book">Book your Visit Now</span>
+            <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/timothyjoshuatan/bookings" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="galleryModalLabel">Baguio Country Club
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../images/bcc1.jpg" class="d-block mx-auto" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../images/bcc2.gif" class="d-block mx-auto" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../images/bcc3.jpg" class="d-block mx-auto" alt="Image 3">
+                        </div>
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="section3">
+        <div class="s3-header-container">
+            <span class="s3-header">Most Recent Reviews for Baguio Country Club
+            </span>
+        </div>
+        <div class="rating-container">
+            <span class="rating">5.0</span>
+            <span class="rating-divisor">/5</span>
+            <div class="average-star-rating-container">
+                <img class="average-star-icon" src="../images/star.png">
+                <img class="average-star-icon" src="../images/star.png">
+                <img class="average-star-icon" src="../images/star.png">
+                <img class="average-star-icon" src="../images/star.png">
+                <img class="average-star-icon" src="../images/star.png">
+            </div>
+            <span class="review-count">5 reviews</span>
+        </div>
+        <div class="options-container">
+            <button class="review-filter" id="all">All</button>
+            <button class="review-filter" id="photos">With Photos Only</button>
+            <div class="dropdown dropdown-review-filter-container">
+                <button class="dropdown-review-filter btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Top reviews &nbsp;&nbsp;
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Top reviews</a></li>
+                    <li><a class="dropdown-item" href="#">Most recent</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="review-positioner">
+            <!-- REVIEW 1 -->
+            <div class="review-container">
+                <div class="profile-container">
+                    <img class="profile-picture" src="../images/sample_review_1/pfp.png">
+                    <div class="post-details-container">
+                        <span class="profile-name">David</span>
+                        <span class="post-date">29 May</span>
+                    </div>
+                </div>
+                <div class="review-rating-container">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <span class="rating-description">Highly recommended</span>
+                </div>
+                <span class="review-content">
+                    My visit to Baguio Country Club was a tranquil and luxurious escape from the city's hustle and bustle. The elegant accommodations provided a comfortable and cozy retreat, allowing me to relax amidst the cool mountain air.
+                </span>
+                <div class="photo-album">
+                    <img class="photo-album-photo" src="../images/sample_review_1/1.png">
+                    <img class="photo-album-photo" src="../images/sample_review_1/2.png">
+                    <img class="photo-album-photo" src="../images/sample_review_1/3.png">
+                    <img class="photo-album-photo" src="../images/sample_review_1/4.png">
+                    <img class="photo-album-photo" src="../images/sample_review_1/4.png">
+                </div>
+                <div class="helpful-container">
+                    <span class="helpful-icon"></span>
+                    <span class="helpful-text">Helpful</span>
+                </div>
+                <div class="feedback-positioner">
+                    <div class="feedback-container">
+                        <div class="profile-container">
+                            <img class="profile-picture" src="../images/bcc1.jpg">
+                            <div class="post-details-container">
+                                <span class="profile-name">Baguio Country Club
+                                </span>
+                                <span class="post-date">29 May</span>
+                            </div>
+                        </div>
+                        <span class="review-content">
+                            Thank you for your feedback, David!
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF REVIEW 1 -->
+            <!-- REVIEW 2 -->
+            <br> <br>
+            <div class="review-container">
+                <div class="profile-container">
+                    <img class="profile-picture" src="../images/sample_review_1/pfp.png">
+                    <div class="post-details-container">
+                        <span class="profile-name">David</span>
+                        <span class="post-date">29 May</span>
+                    </div>
+                </div>
+                <div class="review-rating-container">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <img class="star-icon" src="../images/star.png">
+                    <span class="rating-description">Highly recommended</span>
+                </div>
+                <span class="review-content">
+                    The picturesque golf course offered stunning views and a delightful challenge for golf enthusiasts like myself. The club's range of leisure activities, from swimming to tennis, kept me entertained throughout my stay. 
+                </span>
+                <div class="helpful-container">
+                    <span class="helpful-icon"></span>
+                    <span class="helpful-text">Helpful</span>
+                </div>
+            </div>
+            <!-- END OF REVIEW 2 -->
+            <div class="pages-container">
+                <button class="page-button">&lt;</button>
+                <button class="page-button">1</button>
+                <button class="page-button">2</button>
+                <button class="page-button">3</button>
+                <button class="page-button" id="next-page">&gt;</button>
+            </div>
+            <div class="add-review-container">
+                <button class="add-review">Add Your Review</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section4-positioner">
+        <div class="section4">
+            <span class="s4-header">FAQs</span>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            What is the validity period of this voucher and where can I find this?
+                        </button>
+                    </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">You may refer to your voucher under the 'How To Use' -> 'Usage Validity' section for the validity period information!</div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Are face coverings / face masks mandatory to enter?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">At the moment, yes. Entry of all guests is subject to the most current Inter-Agency Task Force for the Management of Emerging Infectious Diseases (IATF-EID) guidelines; including the wearing of face masks and face shields.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            I have more questions. Who can I talk to?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">You may contact our support using <a href="#">this link</a>.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section5-positioner">
+        <div class="section5">
+            <span class="s5-header">Let us help you find the perfect destination <span style="color: #3498a7">today.</span></span>
+            <span class="s5-body">Lorem ipsum stuff here</span>
+            <div class="s5-options-container">
+                <button class="view-destinations-button">VIEW DESTINATIONS</button>
+                <button class="contact-us-button">CONTACT US</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-positioner">
+        <footer class="footer">
+            <div class="info"> 
+                <div class="contact-container">
+                    <span class="left-align-container"><h3> Contact Us </h3></span>
+                    <span class="left-align-container"><a href="tel:+639135425765"> <i class="fa fa-phone" aria-hidden="true"></i> +639135425765 </a></span>
+                    <span class="left-align-container"><a href="mailto:info@juanderlust.com"> <i class="fa fa-envelope" aria-hidden="true"></i> info@juanderlust.com </a></span>
+                </div>
+                <div class="follow-container">
+                    <h3> Follow Us </h3>
+                    <div class="socmed-icons-container">
+                        <a href="facebook.com" class="logo-spacer"> <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> </a>
+                        <a href="instagram.com" class="logo-spacer"> <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a>
+                        <a href="linkedin.com" class="logo-spacer"> <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p> &copy; Copyright 2023 Juanderlust. All Rights Reserved | <a href="google.com">Terms of Use</a> | <a href="google.com">Privacy Policy</a> </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Importing JQuery, Bootstrap, Lightbox -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="../lightbox2-dev/src/js/lightbox.js"></script>
+    <script src="../userviews/indivpage.js"></script>
+</body>
+</html>
