@@ -89,10 +89,13 @@
     
 }
 
-#tunnel{
+#photo1{
     margin-top: 10px;
     float:left;
+    width: 803px;
+    height: 553px;
 }
+
 
 #two{
     padding-top: 10px;
@@ -105,10 +108,15 @@
     height: 550px;
 }
 
-#jelly{
-    background-image: url("../images/Jelly.png");
+#photo2{
+    width: 409px;
+    height: 272px;
+}
+
+
+#photo3{
     height: 263px;
-    
+    width: 409px;
 }
 
 #view{
