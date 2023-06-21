@@ -139,12 +139,14 @@
     font-weight: bolder;
 }
 
-#tunnel {
+#photo1 {
     margin-top: 10px;
     float:left;
+    width: 803px;
+    height: 553px;
 }
 
-#two {
+#two{
     padding-top: 10px;
     width: 405px;
     float:left;
@@ -155,9 +157,10 @@
     height: 550px;
 }
 
-#jelly {
+#jelly{
     background-image: url("../images/Jelly.png");
     height: 263px;
+    width: 409px;
 }
 
 #view {
