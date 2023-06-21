@@ -146,7 +146,7 @@
     height: 553px;
 }
 
-#two{
+#photo2 {
     padding-top: 10px;
     width: 405px;
     float:left;
@@ -157,7 +157,7 @@
     height: 550px;
 }
 
-#jelly{
+#photo3 {
     background-image: url("../images/Jelly.png");
     height: 263px;
     width: 409px;
