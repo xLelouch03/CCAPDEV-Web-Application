@@ -76,6 +76,7 @@
 
 body {
 font-family: 'Poppins', sans-serif;
+font-size: 18px;
 }
 
 
@@ -128,8 +129,9 @@ font-family: 'Poppins', sans-serif;
 
 .search-container {
     position: relative;
-    width: 300px;
+    width: 350px;
     display: inline-block;
+    
   
   }
 
@@ -141,9 +143,9 @@ font-family: 'Poppins', sans-serif;
   /* Styling for the search bar input */
   .search-input {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 16px;
   }
 
@@ -155,8 +157,8 @@ font-family: 'Poppins', sans-serif;
   /* Styling for the search button */
   .search-button {
     position: absolute;
-    top: 8px;
-    right: 15px;
+    top: 12px;
+    right: 16px;
     background: none;
     border: none;
     cursor: pointer;
@@ -184,7 +186,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .benefit img {
-    width: 100px;
+    width: 150px;
 }
 
 h3 {
@@ -201,19 +203,47 @@ h3 {
 
   
   /* gallery */
+
+  .image-text {
+    
+    color: gray;
+    font-size: 18px;
+    padding: 15px 20px 10px 20px;
+  }
+
+  .image-text h4 {
+    font-weight: 600;
+    color: black;
+    padding-bottom: 10px;
+  }
+
+  
   .destination-slide {
     display: inline-block;
     margin: 0px 10px;
+    border: 1px solid gray;
+    border-radius: 20px;
 }
 
+.destination-slide:hover {
+  display: inline-block;
+  margin: -20px 10px 0px 10px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.oratings {
+  font-size: 16px;
+}
+
+
   .img-slider {
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     height: 300px;
   }
 
-  .destination-slide {
-    text-align: center;
-  }
 
   .destination-slide img {
     max-width: 100%;
@@ -223,12 +253,16 @@ h3 {
 
 
   .gallery {
-    padding: 10px 20px 50px 20px;
+    padding: 20px 20px 50px 20px;
   }
 
-  .gallery h3 {
+  .gallery h2 {
     padding-left: 20px;
     padding-bottom: 20px;
+  }
+
+  .owl-stage-outer{
+    padding: 20px;
   }
 
 
@@ -251,6 +285,13 @@ h3 {
     cursor: pointer;
   }
 
+  .owl-carousel i {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    border-radius: 1000px;
+  }
+
   .owl-carousel .owl-nav .owl-prev {
     margin-left: 20px;
    
@@ -271,9 +312,9 @@ h3 {
       border: 2px solid #FF8A00;
       border-radius: 30px;
       color: white;
-      margin-top: 20px;
+      margin-top: 30px;
       padding: 10px 70px;
-      font-size: 16px;
+      font-size: 20px;
       cursor: pointer;
       text-transform: uppercase;
       transition: 0.3s;
@@ -284,14 +325,54 @@ h3 {
     border: 2px solid #FF8A00;
     border-radius: 30px;
     color: #FF8A00;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 10px 70px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     text-transform: uppercase;
 }
 
-  
+.owl-carousel .fa-star {
+  color: #ffca00;
+  background-color: transparent;
+  padding: 0px;
+}
+
+
+
+path:hover {
+  fill: #FF8A00;
+}
+
+.map {
+  width: 500px; /* Set the desired constant width */
+  height: 500px; /* Set the desired constant height */
+  position: relative;
+  overflow: hidden;
+}
+
+.map svg{
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  transition: transform 0.3s;
+}
+
+.zoom-in-btn,
+.zoom-out-btn {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  padding: 5px 10px;
+}
+
+.zoom-in-btn {
+  left: 10px;
+}
+
+.zoom-out-btn {
+  right: 10px;
+}
 
   /* footer */
   .footer {
