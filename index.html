@@ -120,9 +120,9 @@
 
         <div class="hero-container">
             <div class="hero-slider">
-            <img class="mySlides" src="images/main bg 1.png">
-            <img class="mySlides" src="images/main bg 2.png">
-            <img class="mySlides" src="images/main bg 3.png">
+            <img class="pic" id="pic3" src="images/main bg 1.png">
+            <img class="pic" id="pic2" src="images/main bg 2.png">
+            <img class="pic" id="pic1" src="images/main bg 3.png">
             </div>
             
             <div class="hero-content">
@@ -144,23 +144,71 @@
             </div>
             </div>
         </div>
-                <script>
-                    var myIndex = 0;
-                    carousel();
-                    
-                    function carousel() {
-                    var i;
-                    var x = document.getElementsByClassName("mySlides");
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";  
-                    }
-                    myIndex++;
-                    if (myIndex > x.length) {myIndex = 1}    
-                    x[myIndex-1].style.display = "block";  
-                    setTimeout(carousel, 5000); // Change image every 2 seconds
-                    }
-                    </script>
 
+        <style>
+
+     
+              .pic {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                -webkit-animation: fade 24s infinite;
+                animation: fade 24s infinite;
+              }
+              #pic1 {
+                animation-delay: 0s;
+                background-image: url('images/main bg 1.png');
+              }
+              #pic2 {
+                background-image: url('images/main bg 2.png');
+                animation-delay: 8s;
+              }
+              #pic3 {
+                background-image: url('images/main bg 3.png');
+                animation-delay: 16s;
+              }
+              @-webkit-keyframes fade {
+                0% {
+                  opacity: 1;
+                }
+                20% {
+                  opacity: 1;
+                }
+                34% {
+                  opacity: 0;
+                }
+                88% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
+              @keyframes fade {
+                0% {
+                  opacity: 1;
+                }
+                20% {
+                  opacity: 1;
+                }
+                34% {
+                  opacity: 0;
+                }
+                88% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
+        </style>
+
+            
         <!-- benefits -->
 
 
