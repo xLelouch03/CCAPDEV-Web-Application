@@ -14,7 +14,6 @@
 #logo{
   font-size: 30px;
   font-weight: bold;
-  
 }
 
 .navbar {
@@ -58,7 +57,7 @@
   color: #ffffff;
 }
 
-#loginBtn, #mainLoginBtn {
+#loginBtn, #logout2 {
   background-color: #ff8a00;
 } 
 

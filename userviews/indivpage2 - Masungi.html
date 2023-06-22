@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" id="logo" href="#">Logo</a>
+            <a class="navbar-brand" id="logo" href="./main.html">Juanderlust</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,8 +22,16 @@
                             <input type="search" class="form-control" id="searchbar" placeholder="Search" aria-label="Search">
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DESTINATIONS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            DESTINATIONS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="destinationsDropdown">
+                            <li><a class="dropdown-item" href="./indivpage1 - Ocean Park.html">Manila Ocean Park</a></li>
+                            <li><a class="dropdown-item" href="./indivpage3 - BCC.html">Baguio Country Club</a></li>
+                            <li><a class="dropdown-item" href="./indivpage4 - The Manila Hotel.html">The Manila Hotel</a></li>
+                            <li><a class="dropdown-item" href="./indivpage5 - Balesin.html">Balesin Island Club</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">MAP</a>
@@ -31,6 +39,20 @@
                     <li class="nav-item2 ms-3">
                         <button type="button" class="btn btn-primary" id="logout2" data-bs-toggle="modal">LOGOUT</button>
                     </li>
+                    <li class="nav-item ms-4">
+                        <div class="profile-dropdown">
+                            <button class="dropdown-toggle" id="profile-dropdown-toggle">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu" id="profile-dropdown-menu">
+                              <li><a href="profile1.html">David</a></li>
+                              <li><a href="profile2.html">Yna</a></li>
+                              <li><a href="profile3.html">Martin</a></li>
+                              <li><a href="profile4.html">Kieffer</a></li>
+                              <li><a href="profile5.html">Timothy</a></li>
+                            </ul>
+                        </div>
+                    </li>  
                 </ul>
             </div>
         </div>
@@ -41,10 +63,10 @@
             <span id="name">Masungi Georeserve</span>
             <br>
             <img id="photo1" src="../images/masungi1.jpeg"><img>
-            <div id="two">
-                <img  id="photo2" src="../images/masungi2.jpg"><img>    
+            <div id="photo2">
+                <img id="second" src="../images/masungi2.jpg"><img>    
                 <div style="background-image: url('../images/masungi3.jpg');" 
-                id="photo3"></div>    
+                id="photo3"></div>  
                 <button id="view" data-bs-toggle="modal" data-bs-target="#galleryModal">VIEW GALLERY</button>
         </div>
         <div id="textbox1">

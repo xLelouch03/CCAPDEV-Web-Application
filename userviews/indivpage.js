@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#logout2').click(function() {
-        window.location.href = '../loginregister.html';
+        window.location.href = '../index.html';
     });
 
     lightbox.option({
@@ -22,3 +22,10 @@ function showPhotoReviews() {
         x[i].style.display = "none";
     }
 }
+
+const dropdownToggle = document.getElementById('profile-dropdown-toggle');
+const dropdownMenu = document.getElementById('profile-dropdown-menu');
+
+dropdownToggle.addEventListener('click', () => {
+  dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+});

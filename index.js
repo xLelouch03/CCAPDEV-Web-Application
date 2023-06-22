@@ -1,45 +1,47 @@
 $(document).ready(function() {
     // Switch to register form
     $('#registerLink').click(function() {
-        $('#loginModal3').modal('hide');
-        $('#registerModal3').modal('show');
+        $('#loginModal').modal('hide');
+        $('#registerModal').modal('show');
     });
 
     // Switch to login form
     $('#loginLink').click(function() {
-        $('#registerModal3').modal('hide');
-        $('#loginModal3').modal('show');
+        $('#registerModal').modal('hide');
+        $('#loginModal').modal('show');
     });
 
-    $('#loginModal3').on('hidden.bs.modal', function() {
+    // Clear input fields and checkboxes on modal close
+    $('#loginModal').on('hidden.bs.modal', function() {
         $(this).find('input').val('');
-        $(this).find('#loginRememberMe').prop('checked', false);
+        $('#loginRememberMe').prop('checked', false);
     });
-    
-    $('#registerModal3').on('hidden.bs.modal', function() {
+
+    $('#registerModal').on('hidden.bs.modal', function() {
         $(this).find('input').val('');
     });
 
-    $('#loginBtn3').click(function() {
-        var username = $('#loginUsername3').val();
-        var password = $('#loginPassword3').val();
+    // Login button click event
+    $('#loginBtn').click(function() {
+        var username = $('#loginUsername').val();
+        var password = $('#loginPassword').val();
 
         if (username === 'abc' && password === '12345') {
-            window.location.href = './userviews/profile.html';
+            window.location.href = './userviews/main.html';
         } else {
             alert('Invalid username or password. Please try again.');
         }
     });
 
+    // Sign up button click event
     $('#signUpBtn').click(function() {
-        var username = $('#registerUsername3').val();
-        var password = $('#registerPassword3').val();
-        
+        var username = $('#registerUsername').val();
+        var password = $('#registerPassword').val();
+
         if (username && password) {
             alert('Registration successful');
-            
-            $('#registerModal3').modal('hide');
-            $('#loginModal3').modal('show');
+            $('#registerModal').modal('hide');
+            $('#loginModal').modal('show');
         } else {
             alert('Please fill in all required fields.');
         }

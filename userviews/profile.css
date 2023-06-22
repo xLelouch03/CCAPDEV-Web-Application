@@ -24,7 +24,7 @@
     list-style: none;
     font-size: 18px;
 }
-  
+
 .navbar-nav .nav-link {
     color: black;
     text-decoration: none;
@@ -35,6 +35,25 @@
     margin-top:2.5px;
 }
 
+.search-input:focus {
+    outline: none;   
+}
+#searchResultsDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-right:10px;
+    margin-top:2.5px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+
 #logout, #save {
     background-color: #ff8a00;
 }
@@ -44,7 +63,7 @@
     border-radius: 50px;
 }
 
-.profile-container {
+.profile-container2 {
     text-align: center;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -53,7 +72,7 @@
     margin-top: 50px;
 }
 
-.profile-picture {
+.profile-picture2 {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -62,12 +81,6 @@
 .nav-link {
     background-color: transparent;
     color: black;
-}
-
-.nav-link:hover {
-    background-color: #ff8a00;
-    color:white;
-    border-radius: 20px;
 }
   
 .nav-pills .nav-link:hover,
@@ -103,4 +116,78 @@
   
 .right-container {
     grid-column: 2;
+}
+
+
+
+/* FOOTER */
+
+.footer-positioner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282A2A;
+}
+
+.footer {
+    width: 1295px;
+    text-align: center;
+    padding: 40px 20px 10px 20px;
+    color: white;
+}
+
+.footer h3 {
+    color: #FF8A00;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 122px;
+}
+
+.left-align-container {
+    text-align: left;
+}
+
+.follow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 122px;
+}
+
+.socmed-icons-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer a.logo-spacer {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+
+.footer a:hover {
+    color: #FF8A00;
+}
+
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
 }
