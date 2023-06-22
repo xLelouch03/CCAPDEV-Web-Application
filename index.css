@@ -60,6 +60,9 @@ color:#FF8A00;
   color: #ff8a00;
 }
 
+#destinationsDropdown:focus {
+  color: #ff8a00;
+}
 
 .nav-link:a {
   color: #ff8a00;
