@@ -59,7 +59,7 @@
     margin-top:2.5px;
 }
 
-#login2, #save {
+#login2, #save, #logout2 {
     background-color: #ff8a00;
 }
 
@@ -119,6 +119,37 @@
     color:#ff8a00;
 }
 
+/* PROFILE DROPDOWN */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    padding: 10px;
+    list-style: none;
+  }
+  
+  .dropdown-menu li {
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-toggle:focus + .dropdown-menu {
+    display: block;
+  }
+  
 /* SECTION 1 */
 
 #section1 {
@@ -146,7 +177,7 @@
     height: 553px;
 }
 
-#photo2 {
+#photo2{
     padding-top: 10px;
     width: 405px;
     float:left;
@@ -157,8 +188,12 @@
     height: 550px;
 }
 
+#second{
+    height: 272px;
+    width: 409px;
+}
+
 #photo3 {
-    background-image: url("../images/Jelly.png");
     height: 263px;
     width: 409px;
 }

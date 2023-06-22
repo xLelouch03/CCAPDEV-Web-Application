@@ -1,0 +1,202 @@
+<!-- TO DO:
+    1) This is a user-view of the profile
+    2) Need to have a guest-view of the user's profile
+    3) Real life contents
+    4) consolidated reviews of the user -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./profile.css">
+    <link rel="stylesheet" type="text/css" href="../userviews/indivpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" id="logo" href="./main.html">Juanderlust</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <div class="input-group">
+                            <input type="search" class="form-control" id="searchbar" placeholder="Search" aria-label="Search">
+                            <ul class="dropdown-menu" aria-labelledby="destinationsDropdown" id="searchResultsDropdown">
+                                <!-- Search results will be dynamically added here -->
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            DESTINATIONS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="destinationsDropdown">
+                            <li><a class="dropdown-item" href="./indivpage1 - Ocean Park.html">Manila Ocean Park</a></li>
+                            <li><a class="dropdown-item" href="./indivpage2 - Masungi.html">Masungi Georeserve</a></li>
+                            <li><a class="dropdown-item" href="./indivpage3 - BCC.html">Baguio Country Club</a></li>
+                            <li><a class="dropdown-item" href="./indivpage4 - The Manila Hotel.html">The Manila Hotel</a></li>
+                            <li><a class="dropdown-item" href="./indivpage5 - Balesin.html">Balesin Island Club</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">MAP</a>
+                    </li>
+                    <li class="nav-item2 ms-3">
+                        <button type="button" class="btn btn-primary" id="logout" data-bs-toggle="modal">LOGOUT</button>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <div class="profile-dropdown">
+                            <button class="dropdown-toggle" id="profile-dropdown-toggle">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu" id="profile-dropdown-menu">
+                              <li><a href="profile2.html">Yna</a></li>
+                              <li><a href="profile3.html">Martin</a></li>
+                              <li><a href="profile4.html">Kieffer</a></li>
+                              <li><a href="profile5.html">Timothy</a></li>
+                            </ul>
+                        </div>
+                    </li>       
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 left-container">
+                <div class="profile-container2">
+                    <img src="../images/sample_review_1/pfp.png" alt="Profile Picture" class="profile-picture2">
+                    <h4 class="name">David</h4>
+                    <h6 class="description">Business is all what it takes to succeed</h6>
+                    
+                    <ul class="nav flex-column nav-pills mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9 right-container">
+                <div class="content-container">
+                    <div class="tab-content">
+                        <div id="juanderlast-points" class="tab-pane fade show active">
+                            <h1>Juanderlast Points</h1>
+                            <div>
+                                Currently, you have 10 Juanderlast Points!
+                            </div>
+                        </div>
+                        <div id="promo-codes" class="tab-pane fade">
+                            <h1>Promo Codes</h1>
+                            <div>
+                                No promo codes at the moment. Watch out for it!
+                            </div>
+                        </div>
+                        <div id="reviews" class="tab-pane fade">
+                            <h1>Reviews</h1>
+                            <div>
+                                <div class="review-positioner">
+                                    <!-- REVIEW 1 -->
+                                    <div class="review-container">
+                                        <div class="profile-container">
+                                            <img class="profile-picture" src="../images/sample_review_1/pfp.png">
+                                            <div class="post-details-container">
+                                                <span class="profile-name">David</span>
+                                                <span class="post-date">29 May</span>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating-container">
+                                            <img class="star-icon" src="../images/star.png">
+                                            <img class="star-icon" src="../images/star.png">
+                                            <img class="star-icon" src="../images/star.png">
+                                            <img class="star-icon" src="../images/star.png">
+                                            <img class="star-icon" src="../images/star.png">
+                                            <span class="rating-description">Highly recommended</span>
+                                        </div>
+                                        <span class="review-content">
+                                            Very convenient as you no longer have to go in line to buy tickets although it was not crowded
+                                            when we visited the place. It's still the same Ocean Park but someone animals were gone already.
+                                            Nevertheless we still enjoyed it!
+                                        </span>
+                                        <div class="photo-album">
+                                            <img class="photo-album-photo" src="../images/sample_review_1/1.png">
+                                            <img class="photo-album-photo" src="../images/sample_review_1/2.png">
+                                            <img class="photo-album-photo" src="../images/sample_review_1/3.png">
+                                            <img class="photo-album-photo" src="../images/sample_review_1/4.png">
+                                            <img class="photo-album-photo" src="../images/sample_review_1/4.png">
+                                        </div>
+                                        <div class="helpful-container">
+                                            <span class="helpful-icon"></span>
+                                            <span class="helpful-text">Helpful</span>
+                                        </div>                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="update-user-info" class="tab-pane fade">
+                            <h1>Update User Info</h1>
+                            <form id="updateForm" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="profilePicture" class="form-label">Avatar</label>
+                                    <input type="file" class="form-control" id="profilePicture" accept="image/*"> <br>
+                                    <img id="profilePictureDisplay" class="profile-picture" src="../images/sample_review_1/pfp.png" alt="Profile Picture">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Enter your name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="userDescription" placeholder="Enter your description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="save">Save</button>
+                                </form>
+                                <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">User info updated successfully.</div>
+                          </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+
+    <div class="footer-positioner">
+        <footer class="footer">
+            <div class="info"> 
+                <div class="contact-container">
+                    <span class="left-align-container"><h3> Contact Us </h3></span>
+                    <span class="left-align-container"><a href="tel:+639135425765"> <i class="fa fa-phone" aria-hidden="true"></i> +639135425765 </a></span>
+                    <span class="left-align-container"><a href="mailto:info@juanderlust.com"> <i class="fa fa-envelope" aria-hidden="true"></i> info@juanderlust.com </a></span>
+                </div>
+                <div class="follow-container">
+                    <h3> Follow Us </h3>
+                    <div class="socmed-icons-container">
+                        <a href="facebook.com" class="logo-spacer"> <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> </a>
+                        <a href="instagram.com" class="logo-spacer"> <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a>
+                        <a href="linkedin.com" class="logo-spacer"> <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p> &copy; Copyright 2023 Juanderlust. All Rights Reserved | <a href="google.com">Terms of Use</a> | <a href="google.com">Privacy Policy</a> </p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../nav.js"></script>
+</body>
+</html>
