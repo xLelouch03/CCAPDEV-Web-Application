@@ -40,9 +40,18 @@
                             <button type="button" class="btn btn-primary" id="logout2" data-bs-toggle="modal">LOGOUT</button>
                         </li>
                         <li class="nav-item ms-4">
-                            <a class="nav-link" href="../profile1.html">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                            </a>
+                            <div class="profile-dropdown">
+                                <button class="dropdown-toggle" id="profile-dropdown-toggle">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                </button>
+                                <ul class="dropdown-menu" id="profile-dropdown-menu">
+                                  <li><a href="profile1.html">David</a></li>
+                                  <li><a href="profile2.html">Yna</a></li>
+                                  <li><a href="profile3.html">Martin</a></li>
+                                  <li><a href="profile4.html">Kieffer</a></li>
+                                  <li><a href="profile5.html">Timothy</a></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -272,6 +281,6 @@
             </footer>
         </div>
         <script src="./main.js"></script>
-        <script src="./nav.js"></script>
+        <script src="../nav.js"></script>
     </body>
 </html>
