@@ -139,16 +139,21 @@ font-size: 18px;
   .search-input {
     width: 100%;
     padding: 15px;
+    margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 30px;
     font-size: 16px;
+  }
+
+  .search-input:focus{
+    outline: none;
   }
   
   /* Styling for the search button */
   .search-button {
     position: absolute;
-    top: 12px;
-    right: 16px;
+    top: 32px;
+    right: 20px;
     background: none;
     border: none;
     cursor: pointer;
@@ -165,13 +170,14 @@ font-size: 18px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 0px 80px;
 }
 
 .benefit {
     flex-basis: 30%;
     text-align: center;
     margin-bottom: 20px;
-    padding: 50px 20px 0px 20px;
+    padding: 80px 10px 50px 10px;
 }
 
 .benefit img {
@@ -212,6 +218,7 @@ h3 {
     margin: 0px 10px;
     border: 1px solid gray;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .destination-slide:hover {
@@ -297,15 +304,16 @@ h3 {
 
   .btn-see {
       background-color: #FF8A00;
-      border: none;
-      border-radius: 20px;
+      border: 2px solid #FF8A00;
+      border-radius: 30px;
       color: white;
       margin-top: 30px;
       padding: 10px 70px;
       font-size: 20px;
       cursor: pointer;
       text-transform: uppercase;
-      font-family: 'Poppins';
+      
+      transition: 0.3s;
   }
 
   .btn-see:hover {
