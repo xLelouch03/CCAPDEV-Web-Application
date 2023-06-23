@@ -1,0 +1,76 @@
+.container-fluid {
+    padding: 0px 20px;
+}
+  
+#logo{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.navbar.navbar-expand-lg {
+    display: flex !important;
+}
+
+.navbar {
+    padding: 10px;
+}
+
+.navbar-brand:hover {
+    color: #ff8a00;
+}
+
+.dropdown-item:hover {
+    color:#FF8A00;
+}
+
+.navbar-brand {
+    color: black;
+}
+
+
+.nav-link {
+    background-color: transparent;
+    color: white;
+}
+
+.navbar-nav .nav-item {
+    list-style: none;
+    font-size: 18px;
+}
+
+
+.nav-link:hover {
+    color: #ff8a00;
+}
+
+#destinationsDropdown:focus {
+    color: #ff8a00;
+}
+
+.nav-link {
+    color: black;
+}
+
+
+.nav-pills .nav-link:focus {
+    color: #ff8a00;
+    background-color: transparent;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #ff8a00;
+    color: #ffffff;
+}
+
+#loginBtn, #mainLoginBtn, #logout {
+    background-color: #ff8a00;
+    padding: 8px 30px;
+    border-radius: 30px;
+    border: 1px solid;
+} 
+
+#logout.hover, #logout.focus {
+    background-color: transparent;
+    color: none;
+    transition: 0.3s ease;
+}
