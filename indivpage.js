@@ -64,3 +64,45 @@ function showPhotoReviews() {
         x[i].style.display = "none";
     }
 }
+
+const arrStars = document.querySelectorAll(".reviewer-rating-star");
+arrStars.forEach((star, index1) => {
+    star.addEventListener("click", () => {
+        arrStars.forEach((star, index2) => {
+            if(index1 >= index2) {
+                star.classList.add("reviewer-rating-selected");
+                star.classList.remove("reviewer-rating-unselected");
+            } else {
+                star.classList.remove("reviewer-rating-selected");
+                star.classList.add("reviewer-rating-unselected");
+            }
+        });
+    });
+});
+
+const arrReviews = document.querySelectorAll(".review-container");
+const arrPageButtons = document.querySelectorAll(".page-button");
+
+arrPageButtons.forEach((pageButton, index) => {
+    pageButton.addEventListener("click", () => {
+
+        var selectedPage = document.querySelector(".page-button-selected");
+        selectedPage.classList.add("page-button");
+        selectedPage.classList.remove("page-button-selected");
+
+        pageButton.classList.add("page-button-selected");
+        pageButton.classList.remove("page-button");
+
+        const reviewsPerPage = 2;
+        for(i = (index * 2); i < (reviewsPerPage * (index + 1)); i++) {
+            if(i < arrReviews.length) {
+                arrReviews[i].style.display = "flex";
+            }
+        }
+        arrReviews.forEach((review, reviewIndex) => {
+            if((reviewIndex < index) || (reviewIndex >= (index + reviewsPerPage))) {
+                review.style.display = "none";
+            }
+        });
+    });
+});
