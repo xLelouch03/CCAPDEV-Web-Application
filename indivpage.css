@@ -375,12 +375,33 @@
     background-color: #fff4e6;
 }
 
+.review-filter-selected {
+    padding: 10px;
+    border: 1px solid #ff8a00;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #ff8a00;
+    letter-spacing: 0.5px;
+    background-color: #fff4e6;
+}
+
 #all.review-filter {
     padding-left: 34px;
     padding-right: 34px;
 }
 
 #photos.review-filter {
+    padding-left: 18px;
+    padding-right: 18px;
+    margin-left: 10px;
+}
+
+#all.review-filter-selected {
+    padding-left: 34px;
+    padding-right: 34px;
+}
+
+#photos.review-filter-selected {
     padding-left: 18px;
     padding-right: 18px;
     margin-left: 10px;

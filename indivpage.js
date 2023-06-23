@@ -120,3 +120,20 @@ arrReviewFilters.forEach(reviewFilter => {
         selectedPage.classList.add("page-button");
     });
 });
+
+const showAllReviewsButton = document.querySelector("#all.review-filter");
+const showPhotosOnlyButton = document.querySelector("#photos.review-filter");
+
+showAllReviewsButton.addEventListener("click", () => {
+    showPhotosOnlyButton.classList.remove("review-filter-selected");
+    showPhotosOnlyButton.classList.add("review-filter");
+    showAllReviewsButton.classList.remove("review-filter");
+    showAllReviewsButton.classList.add("review-filter-selected");
+});
+
+showPhotosOnlyButton.addEventListener("click", () => {
+    showAllReviewsButton.classList.remove("review-filter-selected");
+    showAllReviewsButton.classList.add("review-filter");
+    showPhotosOnlyButton.classList.remove("review-filter");
+    showPhotosOnlyButton.classList.add("review-filter-selected");
+});
