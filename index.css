@@ -79,7 +79,7 @@ color:#FF8A00;
   color: #ffffff;
 }
 
-#loginBtn, #mainLoginBtn {
+#loginBtn, #mainLoginBtn, #logout {
   background-color: #ff8a00;
   padding: 8px 30px;
   border-radius: 30px;
