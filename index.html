@@ -8,20 +8,11 @@
         <link rel="stylesheet" href="styles.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-        <style>
-            #customNavbar {
-                background-color: transparent;
-                border-color: transparent;
-              }
-          </style>
-
-
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg" id="customNavbar">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
                 <a class="navbar-brand" id="logo" href="./index.html">Juanderlust</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +25,14 @@
                                 DESTINATIONS
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="destinationsDropdown">
-                                <li><a class="dropdown-item" href="../guestviews/indivpage1 - Ocean Park.html">Manila Ocean Park</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage2 - Masungi.html">Masungi Georeserve</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage3 - BCC.html">Baguio Country Club</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage4 - The Manila Hotel.html">The Manila Hotel</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage5 - Balesin.html">Balesin Island Club</a></li>
+                                <li><a class="dropdown-item" href="../guestviews/indivpage1 - Ocean Park.html">Beach</a></li>
+                                <li><a class="dropdown-item" href="../guestviews/indivpage2 - Masungi.html">Nature</a></li>
+                                <li><a class="dropdown-item" href="../guestviews/indivpage3 - BCC.html">Cultural Sites</a></li>
+                               
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">MAP</a>
+                            <a class="nav-link" href="#map">MAP</a>
                         </li>
                         <li class="nav-item2 ms-3">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -130,9 +120,10 @@
 
         <div class="hero-container">
             <div class="hero-slider">
-            <img class="mySlides" src="images/main bg 1.png">
-            <img class="mySlides" src="images/main bg 2.png">
-            <img class="mySlides" src="images/main bg 3.png">
+            <img class="pic" id="pic4" src="images/main bg 4.png">
+            <img class="pic" id="pic3" src="images/main bg 1.png">
+            <img class="pic" id="pic2" src="images/main bg 2.png">
+            <img class="pic" id="pic1" src="images/main bg 3.png">
             </div>
             
             <div class="hero-content">
@@ -154,23 +145,77 @@
             </div>
             </div>
         </div>
-                <script>
-                    var myIndex = 0;
-                    carousel();
-                    
-                    function carousel() {
-                    var i;
-                    var x = document.getElementsByClassName("mySlides");
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";  
-                    }
-                    myIndex++;
-                    if (myIndex > x.length) {myIndex = 1}    
-                    x[myIndex-1].style.display = "block";  
-                    setTimeout(carousel, 5000); // Change image every 2 seconds
-                    }
-                    </script>
 
+        <style>
+
+     
+              .pic {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                -webkit-animation: fade 40s infinite;
+                animation: fade 40s infinite;
+              }
+              #pic1 {
+                animation-delay: 0s;
+                background-image: url('images/main bg 1.png');
+              }
+              #pic2 {
+                background-image: url('images/main bg 2.png');
+                animation-delay: 10s;
+              }
+              #pic3 {
+                background-image: url('images/main bg 3.png');
+                animation-delay: 20s;
+              }
+
+              #pic4 {
+                background-image: url('images/main bg 4.png');
+                animation-delay: 30s;
+              }
+
+              @-webkit-keyframes fade {
+                0% {
+                  opacity: 1;
+                }
+                20% {
+                  opacity: 1;
+                }
+                34% {
+                  opacity: 0;
+                }
+                88% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
+              @keyframes fade {
+                0% {
+                  opacity: 1;
+                }
+                20% {
+                  opacity: 1;
+                }
+                34% {
+                  opacity: 0;
+                }
+                88% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
+        </style>
+
+            
         <!-- benefits -->
 
 
@@ -307,7 +352,8 @@
 
                     
         <!-- map -->
-    <div class="map">
+        
+    <div class="map" id="map">
         <button class="zoom-in-btn">Zoom In</button>
         <button class="zoom-out-btn">Zoom Out</button>
 
@@ -549,6 +595,7 @@ viewBox="0 0 36070 59220"
     </script>
 
     </div>
+
 
         <!-- footer -->
 
