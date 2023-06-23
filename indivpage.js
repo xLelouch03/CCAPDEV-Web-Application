@@ -52,16 +52,19 @@ $(document).ready(function() {
 });
 
 function showAllReviews() {
-    var x = document.getElementsByClassName("review-container");
-    for(i = 0; i < x.length; i++) {
-        x[i].style.display = "flex";
+    const arrReviews = document.getElementsByClassName("review-container");
+    for(i = 0; i < arrReviews.length; i++) {
+        arrReviews[i].style.display = "flex";
     }
 }
 
 function showPhotoReviews() {
-    var x = document.getElementsByClassName("text-only-review");
-    for(i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
+    const arrReviews = document.getElementsByClassName("review-container");
+    for(i = 0; i < arrReviews.length; i++) {
+        arrReviews[i].style.display = "flex";
+        if(arrReviews[i].classList.contains("text-only-review")) {
+            arrReviews[i].style.display = "none";
+        }
     }
 }
 
@@ -80,29 +83,40 @@ arrStars.forEach((star, index1) => {
     });
 });
 
-const arrReviews = document.querySelectorAll(".review-container");
 const arrPageButtons = document.querySelectorAll(".page-button");
-
 arrPageButtons.forEach((pageButton, index) => {
+
+    const arrReviews = document.querySelectorAll(".review-container");
     pageButton.addEventListener("click", () => {
 
-        var selectedPage = document.querySelector(".page-button-selected");
-        selectedPage.classList.add("page-button");
-        selectedPage.classList.remove("page-button-selected");
+        const selectedPage = document.querySelector(".page-button-selected");
+        if(selectedPage) {
+            selectedPage.classList.add("page-button");
+            selectedPage.classList.remove("page-button-selected");
+        }
 
         pageButton.classList.add("page-button-selected");
         pageButton.classList.remove("page-button");
 
         const reviewsPerPage = 2;
-        for(i = (index * 2); i < (reviewsPerPage * (index + 1)); i++) {
-            if(i < arrReviews.length) {
-                arrReviews[i].style.display = "flex";
-            }
-        }
+        const start = index * reviewsPerPage;
+        const end = start + reviewsPerPage;
+
         arrReviews.forEach((review, reviewIndex) => {
-            if((reviewIndex < index) || (reviewIndex >= (index + reviewsPerPage))) {
+            if (reviewIndex >= start && reviewIndex < end) {
+                review.style.display = "flex";
+            } else {
                 review.style.display = "none";
             }
         });
+    });
+});
+
+const arrReviewFilters = document.querySelectorAll(".review-filter");
+arrReviewFilters.forEach(reviewFilter => {
+    reviewFilter.addEventListener("click", () => {
+        const selectedPage = document.querySelector(".page-button-selected");
+        selectedPage.classList.remove("page-button-selected");
+        selectedPage.classList.add("page-button");
     });
 });
