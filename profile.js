@@ -113,6 +113,8 @@ function fetchReviewFile(file) {
   
       reviews.forEach(function (review) {
         var reviewItem = document.createElement("div");
+        var lineBreak = document.createElement("br");
+        reviewElement.appendChild(lineBreak);
         reviewItem.innerHTML = review;
         reviewElement.appendChild(reviewItem);
       });
