@@ -2,7 +2,7 @@
     padding: 0px 20px;
 }
   
-#logo{
+#logo {
     font-size: 30px;
     font-weight: bold;
 }
@@ -27,6 +27,11 @@
     color: black;
 }
 
+#searchbar {
+    margin-right: 10px;
+    margin-top: 2.5px;
+    border-radius: 16px;
+}
 
 .nav-link {
     background-color: transparent;
@@ -37,7 +42,6 @@
     list-style: none;
     font-size: 18px;
 }
-
 
 .nav-link:hover {
     color: #ff8a00;
@@ -51,7 +55,6 @@
     color: black;
 }
 
-
 .nav-pills .nav-link:focus {
     color: #ff8a00;
     background-color: transparent;
@@ -60,6 +63,11 @@
 .nav-pills .nav-link.active {
     background-color: #ff8a00;
     color: #ffffff;
+}
+
+.navbar-profile-icon {
+    color: black;
+    font-size: 40px;
 }
 
 #loginBtn, #mainLoginBtn, #logout {

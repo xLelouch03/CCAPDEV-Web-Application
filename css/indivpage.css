@@ -5,28 +5,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* NAVIGATION BAR */
-
-.container {
-    border: 5px;
-    border-radius: 5px;
-}
-
-#searchbar {
-    margin-right: 10px;
-    margin-top: 2.5px;
-    border-radius: 16px;
-}
-
-#login2, #save, #logout2 {
-    background-color: #ff8a00;
-}
-
-.navbar-profile-icon {
-    color: black;
-    font-size: 36px;
-}
-
 /* REGISTER & LOGIN MODAL */
 
 .modal-content .modal-title span {
@@ -479,7 +457,7 @@
 }
 
 .helpful-icon {
-    background-image: url('images/thumbs_up.png');
+    background-image: url('../images/thumbs_up.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -488,7 +466,7 @@
 }
 
 .helpful-icon:hover {
-    background-image: url('images/thumbs_up_clicked.png');
+    background-image: url('../images/thumbs_up_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -497,7 +475,7 @@
 }
 
 .unhelpful-icon {
-    background-image: url('images/thumbs_down.png');
+    background-image: url('../images/thumbs_down.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -506,7 +484,7 @@
 }
 
 .unhelpful-icon:hover {
-    background-image: url('images/thumbs_down_clicked.png');
+    background-image: url('../images/thumbs_down_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -515,7 +493,7 @@
 }
 
 .helpful-icon-selected {
-    background-image: url('images/thumbs_up_clicked.png');
+    background-image: url('../images/thumbs_up_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -524,7 +502,7 @@
 }
 
 .unhelpful-icon-selected {
-    background-image: url('images/thumbs_down_clicked.png');
+    background-image: url('../images/thumbs_down_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -533,7 +511,7 @@
 }
 
 .helpful-icon-unselectable {
-    background-image: url('images/thumbs_up.png');
+    background-image: url('../images/thumbs_up.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -542,7 +520,7 @@
 }
 
 .unhelpful-icon-unselectable {
-    background-image: url('images/thumbs_down.png');
+    background-image: url('../images/thumbs_down.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -551,7 +529,7 @@
 }
 
 .helpful-icon-unselectable:hover {
-    background-image: url('images/thumbs_up_clicked.png');
+    background-image: url('../images/thumbs_up_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -560,7 +538,7 @@
 }
 
 .unhelpful-icon-unselectable:hover {
-    background-image: url('images/thumbs_down_clicked.png');
+    background-image: url('../images/thumbs_down_clicked.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -778,7 +756,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('images/destination_cover.png');
+    background-image: url('../images/destination_cover.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

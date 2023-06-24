@@ -25,12 +25,12 @@ $(document).ready(function() {
         $(this).find('input').val('');
     });
 
-    $('#loginBtn').click(function() {
+    $('#loginBtn3').click(function() {
         var username = $('#loginUsername3').val();
         var password = $('#loginPassword3').val();
 
         if (username === 'abc' && password === '12345') {
-            window.location.href = '../userviews/main.html';
+            window.location.href = './userviews/profile.html';
         } else {
             alert('Invalid username or password. Please try again.');
         }
