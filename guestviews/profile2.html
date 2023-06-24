@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/profile.css">
     <link rel="stylesheet" type="text/css" href="../css/indivpage.css">
     <link rel="stylesheet" type="text/css" href="../css/nav.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -21,7 +22,7 @@
                         <div class="input-group">
                             <input type="search" class="form-control" id="searchbar" placeholder="Search" aria-label="Search">
                             <ul class="dropdown-menu" aria-labelledby="destinationsDropdown" id="searchResultsDropdown">
-                                <!-- Search results will be added here -->
+                                <!-- Search results will be dynamically added here -->
                             </ul>
                         </div>
                     </li>
@@ -41,44 +42,24 @@
                         <a class="nav-link" href="#">MAP</a>
                     </li>
                     <li class="nav-item2 ms-3">
-                        <button type="button" class="btn btn-primary" id="logout" data-bs-toggle="modal">LOGOUT</button>
-                    </li>
-                    <li class="nav-item ms-4">
-                        <div class="profile-dropdown">
-                            <button class="dropdown-toggle" id="profile-dropdown-toggle">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                            </button>
-                            <ul class="dropdown-menu" id="profile-dropdown-menu">
-                              <li><a href="profile2.html">Yna</a></li>
-                              <li><a href="profile3.html">Martin</a></li>
-                              <li><a href="profile4.html">Kieffer</a></li>
-                              <li><a href="profile5.html">Timothy</a></li>
-                            </ul>
-                        </div>
-                    </li>       
+                        <button type="button" class="btn btn-primary" id="login2" data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</button>
+                    </li>   
                 </ul>
             </div>
         </div>
     </nav>
 
+
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-3 left-container">
                 <div class="profile-container2">
-                    <img src="../images/sample_review_1/pfp.png" alt="Profile Picture" class="profile-picture2">
-                    <h4 class="name">David</h4>
-                    <h6 class="description">Business is all what it takes to succeed</h6>
+                    <img src="../images/yna.jpg" alt="Profile Picture" class="profile-picture2">
+                    <h4 class="name">Yna</h4>
+                    <h6 class="description">I'm aiming to travel the world</h6>
                     
                     <ul class="nav flex-column nav-pills mt-3">
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
                         </li>
@@ -89,48 +70,90 @@
             <div class="col-lg-9 right-container">
                 <div class="content-container">
                     <div class="tab-content">
-                        <div id="juanderlast-points" class="tab-pane fade show active">
-                            <h1>Juanderlast Points</h1>
-                            <div>
-                                Currently, you have 10 Juanderlast Points!
-                            </div>
-                        </div>
-                        <div id="promo-codes" class="tab-pane fade">
-                            <h1>Promo Codes</h1>
-                            <div>
-                                No promo codes at the moment. Watch out for it!
-                            </div>
-                        </div>
-                        <div id="reviews" class="tab-pane fade">
+                        <div id="reviews" class="tab-pane fade show active">
                             <h1>Reviews</h1>
                             <div class="reviews-container">
-                              <!-- Review containers will be added here -->
+                              <!-- Review containers will be dynamically appended here -->
                             </div>
                         </div>
-                        
-                        <div id="update-user-info" class="tab-pane fade">
-                            <h1>Update User Info</h1>
-                            <form id="updateForm" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="profilePicture" class="form-label">Avatar</label>
-                                    <input type="file" class="form-control" id="profilePicture" accept="image/*"> <br>
-                                    <img id="profilePictureDisplay" class="profile-picture" src="../images/sample_review_1/pfp.png" alt="Profile Picture">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="userName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="userName" placeholder="Enter your name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="userDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="userDescription" placeholder="Enter your description"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary" id="save">Save</button>
-                                </form>
-                                <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">User info updated successfully.</div>
-                          </div>
                     </div>
                 </div>
             </div>            
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="loginModalLabel">
+                        Ready to <span class="text-color-custom" id="juander-text">juan</span>der?
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="loginUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="loginPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <div class="row">
+                            <div class="col-auto">
+                                <input type="checkbox" class="form-check-input" id="loginRememberMe">
+                                <label class="form-check-label" for="loginRememberMe">Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="loginBtn">LOGIN</button>
+                        <p class="mt-2 mb-0">Don't have an account? <a href="#registerModal" id="registerLink">Sign
+                                up</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="registerModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="registerModalLabel">
+                        Hello, new <span class="text-color-custom" id="juander-text">Juan</span>derer!
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="registerUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="registerPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control custom-input" id="description3" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePicture" class="form-label">Upload your Avatar</label>
+                        <input type="file" class="form-control" id="profilePicture3" accept="image/*">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="signUpBtn" style="background-color: #ff8a00;">SIGN UP</button>
+                        <p class="mt-2 mb-0">Have an account already? <a href="#loginModal" id="loginLink"
+                                style="color: #ff8a00;">Sign in</a>.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -156,9 +179,10 @@
             </div>
         </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/profile.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 </html>

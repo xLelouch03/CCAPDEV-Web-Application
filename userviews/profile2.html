@@ -1,16 +1,11 @@
-<!-- TO DO:
-    1) This is a user-view of the profile
-    2) Need to have a guest-view of the user's profile
-    3) Real life contents
-    4) consolidated reviews of the user -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Profile Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./profile.css">
-    <link rel="stylesheet" type="text/css" href="../indivpage.css">
-    <link rel="stylesheet" type="text/css" href="../nav.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../css/indivpage.css">
+    <link rel="stylesheet" type="text/css" href="../css/nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -70,7 +65,7 @@
         <div class="row">
             <div class="col-lg-3 left-container">
                 <div class="profile-container2">
-                    <img src="../images/profilepic2.jpg" alt="Profile Picture" class="profile-picture2">
+                    <img src="../images/yna.jpg" alt="Profile Picture" class="profile-picture2">
                     <h4 class="name">Yna</h4>
                     <h6 class="description">I'm aiming to travel the world</h6>
                     
@@ -108,46 +103,18 @@
                         </div>
                         <div id="reviews" class="tab-pane fade">
                             <h1>Reviews</h1>
-                            <div>
-                                <div class="review-positioner">
-                                    <!-- REVIEW 1 -->
-                                    <div class="review-container">
-                                        
-                                        <div class="profile-container">
-                                            <img class="profile-picture" src="../images/profilepic2.jpg">
-                                            <div class="post-details-container">
-                                                <span class="profile-name">Yna</span>
-                                                <span class="post-date">12 August</span>
-                                            </div>
-                                        </div>
-                                        <div class="review-rating-container">
-                                            <img class="star-icon" src="../images/star.png">
-                                            <img class="star-icon" src="../images/star.png">
-                                            <img class="star-icon" src="../images/star.png">
-                                            <img class="star-icon" src="../images/star.png">
-                                            <span class="rating-description">Recommended</span>
-                                        </div>
-                                        <span class="review-content">
-                                            <h5> Manila Ocean Park</h5>
-                                            While the park offers a delightful experience overall, some areas could benefit 
-                                            from better crowd management, especially during peak hours. Additionally, 
-                                            the pricing of certain activities and merchandise might be a bit steep for some visitors.
-                                        </span>
-                                        <div class="helpful-container">
-                                            <span class="helpful-icon"></span>
-                                            <span class="helpful-text">Helpful</span>
-                                        </div>                     
-                                    </div>
-                                </div>
+                            <div class="reviews-container">
+                              <!-- Review containers will be dynamically appended here -->
                             </div>
                         </div>
+
                         <div id="update-user-info" class="tab-pane fade">
                             <h1>Update User Info</h1>
                             <form id="updateForm" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="profilePicture" class="form-label">Avatar</label>
                                     <input type="file" class="form-control" id="profilePicture" accept="image/*"> <br>
-                                    <img id="profilePictureDisplay" class="profile-picture" src="../images/sample_review_1/pfp.png" alt="Profile Picture">
+                                    <img id="profilePictureDisplay" class="profile-picture" src="../images/yna.jpg" alt="Profile Picture">
                                 </div>
                                 <div class="mb-3">
                                     <label for="userName" class="form-label">Name</label>
@@ -192,6 +159,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../nav.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/profile.js"></script>
 </body>
 </html>
