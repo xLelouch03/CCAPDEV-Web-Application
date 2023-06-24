@@ -692,6 +692,28 @@
     border-color:rgba(0, 0, 0, 0);
 }
 
+.guestview, button[disabled=disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor:not-allowed;
+    pointer-events: none;
+}
+
+.login-to-review{
+    text-align: center;
+    width: 350px;
+    background-color: #ff8a00;
+    padding:10px;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 20px;
+    margin:auto;
+    margin-top: 20px;
+    color:white;
+}
+
 /* REVIEW/REPLY MODALS */
 
 .review-modal-sizer {
