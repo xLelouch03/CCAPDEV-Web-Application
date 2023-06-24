@@ -137,3 +137,28 @@ showPhotosOnlyButton.addEventListener("click", () => {
     showPhotosOnlyButton.classList.remove("review-filter");
     showPhotosOnlyButton.classList.add("review-filter-selected");
 });
+
+const arrHelpfulButtons = document.querySelectorAll(".helpful-icon");
+const arrUnhelpfulButtons = document.querySelectorAll(".unhelpful-icon");
+
+if(arrHelpfulButtons) {
+    arrHelpfulButtons.forEach(helpfulButton => {
+        helpfulButton.addEventListener("click", () => {
+            helpfulButton.classList.remove("helpful-icon");
+            helpfulButton.classList.add("helpful-icon-selected");
+            helpfulButton.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove("unhelpful-icon-selected");
+            helpfulButton.nextElementSibling.nextElementSibling.nextElementSibling.classList.add("unhelpful-icon");
+        });
+    });
+}
+
+if(arrUnhelpfulButtons) {
+    arrUnhelpfulButtons.forEach(unhelpfulButton => {
+        unhelpfulButton.addEventListener("click", () => {
+            unhelpfulButton.classList.remove("unhelpful-icon");
+            unhelpfulButton.classList.add("unhelpful-icon-selected");
+            unhelpfulButton.previousElementSibling.previousElementSibling.previousElementSibling.classList.remove("helpful-icon-selected");
+            unhelpfulButton.previousElementSibling.previousElementSibling.previousElementSibling.classList.add("helpful-icon");
+        });
+    });
+}

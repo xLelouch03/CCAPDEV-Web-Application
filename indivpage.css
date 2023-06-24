@@ -22,6 +22,11 @@
     background-color: #ff8a00;
 }
 
+.navbar-profile-icon {
+    color: black;
+    font-size: 36px;
+}
+
 /* REGISTER & LOGIN MODAL */
 
 .modal-content .modal-title span {
@@ -398,7 +403,7 @@
     display: flex;
     flex-direction: column;
     width: 85%;
-    margin-top: 40px;
+    margin-top: 55px;
 }
 
 .profile-container {
@@ -444,6 +449,12 @@
     margin-left: 16px;
 }
 
+.review-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 .review-content {
     font-size: 16px;
     font-weight: 450;
@@ -464,7 +475,7 @@
 
 .helpful-container {
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .helpful-icon {
@@ -485,11 +496,107 @@
     height: 25px;
 }
 
+.unhelpful-icon {
+    background-image: url('images/thumbs_down.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.unhelpful-icon:hover {
+    background-image: url('images/thumbs_down_clicked.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.helpful-icon-selected {
+    background-image: url('images/thumbs_up_clicked.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.unhelpful-icon-selected {
+    background-image: url('images/thumbs_down_clicked.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.helpful-icon-unselectable {
+    background-image: url('images/thumbs_up.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.unhelpful-icon-unselectable {
+    background-image: url('images/thumbs_down.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.helpful-icon-unselectable:hover {
+    background-image: url('images/thumbs_up_clicked.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.unhelpful-icon-unselectable:hover {
+    background-image: url('images/thumbs_down_clicked.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
 .helpful-text {
     margin-top: 4px;
     margin-left: 6px;
     font-size: 14px;
     color: #737373;
+}
+
+.reply-icon {
+    font-size: 20px;
+    color: #737373;
+}
+
+.reply-button {
+    background-color:rgba(0, 0, 0, 0);
+    border-width: 0px;
+}
+
+.edit-button-container {
+    margin-top: 20px;
+}
+
+.edit-icon {
+    font-size: 20px;
+    color: #737373;
+}
+
+.edit-button {
+    background-color:rgba(0, 0, 0, 0);
+    border-width: 0px;
 }
 
 .feedback-positioner {
@@ -607,8 +714,14 @@
     border-color:rgba(0, 0, 0, 0);
 }
 
+/* REVIEW/REPLY MODALS */
+
 .review-modal-sizer {
     max-width: 600px;
+}
+
+.review-delete-button {
+    float: left;
 }
 
 .review-cancel-button {
