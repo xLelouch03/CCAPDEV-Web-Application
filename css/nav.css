@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 body {
 
     text-decoration: none;
 }
-=======
->>>>>>> b526c5dc57096116face9e5921e8b73d796ba8cf
 .container-fluid {
     padding: 0px 20px;
 }
@@ -132,18 +129,9 @@ nav .dropdown-menu {
     padding-left: 30px;
 }
 
-<<<<<<< HEAD
 .profile-dropdown a {
     color: black!important;
     text-decoration: none;
-=======
-nav .dropdown-menu li {
-    margin-bottom: 5px;
-}
-
-nav .profile-dropdown a {
-    color: black !important;
->>>>>>> b526c5dc57096116face9e5921e8b73d796ba8cf
 }
 
 
