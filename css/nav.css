@@ -17,15 +17,16 @@
 }
 
 .navbar-brand:hover {
-    color:black;
+    color:black !important;
 }
 
 .dropdown-item:hover {
-    color:#FF8A00;
+    color:#FF8A00 !important;
+    background-color: transparent !important;
 }
 
 .navbar-brand {
-    color: #ff8a00;
+    color: #ff8a00 !important;
 }
 
 #searchbar {
@@ -39,9 +40,14 @@
     color: white;
 }
 
-.navbar-nav .nav-item {
+.navbar-nav .nav-item  {
     list-style: none;
     font-size: 18px;
+    padding: 0px 10px;
+}
+
+.nav-item2 {
+    padding: 0px 10px;
 }
 
 .nav-link:hover {
@@ -82,4 +88,70 @@
     background-color: white;
     color: none;
     transition: 0.3s ;
+}
+
+/* profile dropdown */
+
+.fa-user-circle-o {
+    padding-top: 8px !important;
+    font-size: 26px !important;
+    color:#282A2A !important; 
+    
+}
+
+.fa-user-circle-o:hover{
+
+    color:#ff8a00 !important; 
+}
+
+.profile-dropdown {
+    position: absolute;
+     
+}
+  
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    padding: 10px;
+    list-style: none;
+
+}
+  
+.dropdown-menu-right li {
+    margin:10px 0px;
+    padding-left: 30px;
+}
+
+.profile-dropdown a {
+    color: black!important;
+}
+
+a.dropdown-item {
+    padding-left: 0px !important;
+}
+
+.profile-dropdown a:hover  {
+    color: #FF8A00 !important;
+    text-decoration: none !important;
+}
+  
+.dropdown-toggle:focus + .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle:focus {
+
+    outline: none;
 }
