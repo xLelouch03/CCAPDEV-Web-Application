@@ -135,7 +135,17 @@
 
                 <div class = "box">
                     <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Where to?">
+                    <input type="text" class="search-input" placeholder="Looking for?">
+                    
+
+                    <div class="dropdown">
+                        <select class="search-category">
+                          <option value="destination">Destination</option>
+                          <option value="review">Review</option>
+                        </select>
+                      </div>        
+
+
                     <button class="search-button">
                         <i class="fa fa-search"></i>
                     </button>
@@ -352,8 +362,8 @@
 
                     
         <!-- map -->
-        
-    <div class="map" id="map">
+
+        <!-- custom interactive map 
         <button class="zoom-in-btn">Zoom In</button>
         <button class="zoom-out-btn">Zoom Out</button>
 
@@ -594,6 +604,16 @@ viewBox="0 0 36070 59220"
 
     </script>
 
+    -->
+
+    <div class="map">
+    <h2> Confused where exactly your destination is?</h2> 
+    <p>Click <i class="fa fa-map-marker" aria-hidden="true"></i> marker to see more details.</p>
+
+    </div>
+
+    <div class="google-map">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1yvR2FFo_-1kXbTSCC65VL8yURh1ZFss&ehbc=2E312F" width="640" height="480"></iframe>
     </div>
 
 

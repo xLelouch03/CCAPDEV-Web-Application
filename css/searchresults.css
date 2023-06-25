@@ -5,20 +5,32 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
 }
 
-.container {
+
+.ctr {
     width: 100%;
-    padding: 20px;
+    padding: 3% 0% 0% 12%;
+}
+
+.col-sm-6 {
+  padding-top: 2%;
+}
+
+.col-12 h3 {
+  color: gray;
+  font-style: italic;
+  font-size: 22px;
 }
 
 .slide-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px 60px 0px;
 }
 
 .image-text {
@@ -40,13 +52,13 @@ body {
 
   
   .destination-slide {
-    display: inline-block;
+    flex-basis: calc(25%); 
     margin: 20px 10px;
     border: 1px solid gray;
     border-radius: 20px;
     cursor: pointer;
-    width: 250px;
-    height:420px;
+    
+    max-height: 100%;
 }
 
 .oratings {

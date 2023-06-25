@@ -156,36 +156,50 @@ font-size: 18px;
   
   }
   
-  /* Styling for the search bar input */
+  
+  .box {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px 0px 0px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 20px;
+    padding: 8px 12px; /* Adjust the desired padding */
+  }
+  
   .search-input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    width: 300px; /* Adjust the desired width */
+    padding: 6px; /* Adjust the desired padding */
+    border-right: 1px solid gray;
+  }
+  
+  .dropdown {
+ /* Adjust the desired margin */
+    margin-left: 10px;
+  }
+  
+  .search-category {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 2px; /* Adjust the desired padding */
+  }
+  
+  .search-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 10px; /* Adjust the desired margin */
   }
 
-  .search-input:focus{
-    outline: none;
-  }
   
-  /* Styling for the search button */
-  .search-button {
-    position: absolute;
-    top: 32px;
-    right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Styling for the search icon */
-  .search-icon {
-    width: 20px;
-    height: 20px;
-    fill: #999;
-  }
 
   .benefit-container {
     display: flex;
@@ -198,7 +212,7 @@ font-size: 18px;
     flex-basis: 30%;
     text-align: center;
     margin-bottom: 20px;
-    padding: 80px 10px 50px 10px;
+    padding: 50px 10px 50px 10px;
 }
 
 .benefit img {
@@ -270,7 +284,7 @@ h3 {
 
 
   .gallery {
-    padding: 20px 20px 50px 20px;
+    padding: 0px 20px 50px 20px;
   }
 
   .gallery h2 {
@@ -362,8 +376,32 @@ path:hover {
 }
 
 .map {
-  width: 500px; /* Set the desired constant width */
-  height: 500px; /* Set the desired constant height */
+  padding: 20px 0px 20px 20px;
+}
+
+.map i {
+  font-size: 30px;
+  color: #FF8A00;
+}
+
+
+.google-map {
+  padding-bottom: 50%;
+  position: relative;
+}
+
+.google-map iframe {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+/*
+.map {
+  width: 500px; /
+  height: 500px; 
   position: relative;
   overflow: hidden;
 }
@@ -390,6 +428,8 @@ path:hover {
 .zoom-out-btn {
   right: 10px;
 }
+
+*/
 
   /* footer */
   .footer {

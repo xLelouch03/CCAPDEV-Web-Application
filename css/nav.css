@@ -1,3 +1,4 @@
+
 .container-fluid {
     padding: 0px 20px;
 }
@@ -16,7 +17,7 @@
 }
 
 .navbar-brand:hover {
-    color: #ff8a00;
+    color:black;
 }
 
 .dropdown-item:hover {
@@ -24,7 +25,7 @@
 }
 
 .navbar-brand {
-    color: black;
+    color: #ff8a00;
 }
 
 #searchbar {
