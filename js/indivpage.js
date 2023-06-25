@@ -30,7 +30,7 @@ $(document).ready(function() {
         var password = $('#loginPassword3').val();
 
         if (username === 'abc' && password === '12345') {
-            window.location.href = './userviews/profile.html';
+            window.location.href = './userviews/main.html';
         } else {
             alert('Invalid username or password. Please try again.');
         }

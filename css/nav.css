@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 body {
 
     text-decoration: none;
 }
+=======
+>>>>>>> b526c5dc57096116face9e5921e8b73d796ba8cf
 .container-fluid {
     padding: 0px 20px;
 }
@@ -25,7 +28,7 @@ body {
     color:black !important;
 }
 
-.dropdown-item:hover {
+nav .dropdown-item:hover {
     color:#FF8A00 !important;
     background-color: transparent !important;
 }
@@ -97,28 +100,23 @@ body {
     padding-top: 8px !important;
     font-size: 26px !important;
     color:#282A2A !important; 
-    
 }
 
-.fa-user-circle-o:hover{
-
+.fa-user-circle-o:hover {
     color:#ff8a00 !important; 
 }
 
-.profile-dropdown {
+nav .profile-dropdown {
     position: absolute;
-     
 }
   
-.dropdown-toggle {
+nav .dropdown-toggle {
     background: none;
     border: none;
     cursor: pointer;
-
-    
 }
 
-.dropdown-menu {
+nav .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
@@ -127,7 +125,6 @@ body {
     background-color: #fff;
     padding: 10px;
     list-style: none;
-
 }
   
 #profile-dropdown-menu li {
@@ -135,24 +132,32 @@ body {
     padding-left: 30px;
 }
 
+<<<<<<< HEAD
 .profile-dropdown a {
     color: black!important;
     text-decoration: none;
+=======
+nav .dropdown-menu li {
+    margin-bottom: 5px;
+}
+
+nav .profile-dropdown a {
+    color: black !important;
+>>>>>>> b526c5dc57096116face9e5921e8b73d796ba8cf
 }
 
 
 
-.profile-dropdown a:hover  {
+nav .profile-dropdown a:hover  {
     color: #FF8A00 !important;
     text-decoration: none !important;
 }
   
-.dropdown-toggle:focus + .dropdown-menu {
+nav .dropdown-toggle:focus + .dropdown-menu {
     display: block;
 }
 
-.dropdown-toggle:focus {
-
+nav .dropdown-toggle:focus {
     outline: none;
 }
 
