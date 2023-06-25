@@ -60,50 +60,6 @@
 #registerLink {
     color:#ff8a00;
 }
-
-/* PROFILE DROPDOWN */
-
-.fa-user-circle-o {
-    padding-top: 6px;
-    font-size: 26px !important;
-    color:#282A2A !important; 
-}
-
-.fa-user-circle-o:hover{
-
-    color:#ff8a00 !important; 
-}
-
-
-.profile-dropdown {
-    position: relative;
-    display: inline-block;
-}
-  
-.dropdown-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-  
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1;
-    background-color: #fff;
-    padding: 10px;
-    list-style: none;
-}
-  
-.dropdown-menu li {
-    margin-bottom: 5px;
-}
-  
-.dropdown-toggle:focus + .dropdown-menu {
-    display: block;
-}
   
 /* SECTION 1 */
 
@@ -282,18 +238,17 @@
 }
 
 .fa-star {
-    font-size: 22px !important;
     padding-right: 5px;
 }
 
 .average-star-rating-container {
     display: flex;
     margin-top: 16px;
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 .average-star-icon {
-    font-size: 36px;
+    font-size: 36px !important;
     color: #f4c01e;
 }
 
@@ -306,7 +261,7 @@
 .options-container {
     display: inline-block;
     width: 1295px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .review-filter {
@@ -380,7 +335,7 @@
     background-color: #f5f5f5;
 }
 
-.dropdown-review-filter:hover {
+.dropdown-review-filter:hover, .dropdown-review-filter:focus {
     padding: 10px 10px 10px 14px;
     border: 1px solid #ff8a00;
     border-radius: 20px;
@@ -434,14 +389,14 @@
 }
 
 .review-star-icon {
-    font-size: 22px;
+    font-size: 22px !important;
     color: #f4c01e;
 }
 
 .rating-description {
     font-size: 16px;
     font-weight: 450;
-    margin-left: 16px;
+    margin-left: 12px;
 }
 
 .review-title {
@@ -470,7 +425,7 @@
 
 .helpful-container {
     display: flex;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .helpful-icon {
@@ -733,6 +688,10 @@
 
 /* REVIEW/REPLY MODALS */
 
+.fa-xl {
+    font-size: 24px !important;
+}
+
 .review-modal-sizer {
     max-width: 600px;
 }
@@ -755,7 +714,6 @@
 
 .reviewer-rating-container {
     display: flex;
-    margin-top: 10px;
     margin-bottom: 28px;
 }
 
