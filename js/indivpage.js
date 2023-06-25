@@ -51,6 +51,8 @@ $(document).ready(function() {
     });
 });
 
+/* REVIEW FILTERS */
+
 function showAllReviews() {
     const arrReviews = document.getElementsByClassName("review-container");
     for(i = 0; i < arrReviews.length; i++) {
@@ -68,20 +70,42 @@ function showPhotoReviews() {
     }
 }
 
-const arrStars = document.querySelectorAll(".reviewer-rating-star");
-arrStars.forEach((star, index1) => {
-    star.addEventListener("click", () => {
-        arrStars.forEach((star, index2) => {
-            if(index1 >= index2) {
-                star.classList.add("reviewer-rating-selected");
-                star.classList.remove("reviewer-rating-unselected");
-            } else {
-                star.classList.remove("reviewer-rating-selected");
-                star.classList.add("reviewer-rating-unselected");
-            }
-        });
+const showAllReviewsButton = document.querySelector("#all.review-filter");
+const showPhotosOnlyButton = document.querySelector("#photos.review-filter");
+
+showAllReviewsButton.addEventListener("click", () => {
+    showPhotosOnlyButton.classList.remove("review-filter-selected");
+    showPhotosOnlyButton.classList.add("review-filter");
+    showAllReviewsButton.classList.remove("review-filter");
+    showAllReviewsButton.classList.add("review-filter-selected");
+});
+
+showPhotosOnlyButton.addEventListener("click", () => {
+    showAllReviewsButton.classList.remove("review-filter-selected");
+    showAllReviewsButton.classList.add("review-filter");
+    showPhotosOnlyButton.classList.remove("review-filter");
+    showPhotosOnlyButton.classList.add("review-filter-selected");
+});
+
+/* TRUNCATE/UNTRUNCATE REVIEW */
+
+const arrUntruncateButtons = document.querySelectorAll(".untruncate-button");
+arrUntruncateButtons.forEach(untruncateButton => {
+    untruncateButton.addEventListener("click", () => {
+        untruncateButton.parentElement.style.display = "none";
+        untruncateButton.parentElement.nextElementSibling.style.display = "block";
     });
 });
+
+const arrTruncateButtons = document.querySelectorAll(".truncate-button");
+arrTruncateButtons.forEach(truncateButton => {
+    truncateButton.addEventListener("click", () => {
+        truncateButton.parentElement.style.display = "none";
+        truncateButton.parentElement.previousElementSibling.style.display = "block";
+    });
+});
+
+/* PAGE BUTTONS */
 
 const arrPageButtons = document.querySelectorAll(".page-button");
 arrPageButtons.forEach((pageButton, index) => {
@@ -121,22 +145,7 @@ arrReviewFilters.forEach(reviewFilter => {
     });
 });
 
-const showAllReviewsButton = document.querySelector("#all.review-filter");
-const showPhotosOnlyButton = document.querySelector("#photos.review-filter");
-
-showAllReviewsButton.addEventListener("click", () => {
-    showPhotosOnlyButton.classList.remove("review-filter-selected");
-    showPhotosOnlyButton.classList.add("review-filter");
-    showAllReviewsButton.classList.remove("review-filter");
-    showAllReviewsButton.classList.add("review-filter-selected");
-});
-
-showPhotosOnlyButton.addEventListener("click", () => {
-    showAllReviewsButton.classList.remove("review-filter-selected");
-    showAllReviewsButton.classList.add("review-filter");
-    showPhotosOnlyButton.classList.remove("review-filter");
-    showPhotosOnlyButton.classList.add("review-filter-selected");
-});
+/* HELPFUL BUTTONS */
 
 const arrHelpfulButtons = document.querySelectorAll(".helpful-icon");
 const arrUnhelpfulButtons = document.querySelectorAll(".unhelpful-icon");
@@ -162,3 +171,20 @@ if(arrUnhelpfulButtons) {
         });
     });
 }
+
+/* REVIEW MODAL */
+
+const arrStars = document.querySelectorAll(".reviewer-rating-star");
+arrStars.forEach((star, index1) => {
+    star.addEventListener("click", () => {
+        arrStars.forEach((star, index2) => {
+            if(index1 >= index2) {
+                star.classList.add("reviewer-rating-selected");
+                star.classList.remove("reviewer-rating-unselected");
+            } else {
+                star.classList.remove("reviewer-rating-selected");
+                star.classList.add("reviewer-rating-unselected");
+            }
+        });
+    });
+});
