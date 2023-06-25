@@ -25,12 +25,12 @@ $(document).ready(function() {
     $('#loginBtn').click(function() {
         var username = $('#loginUsername').val();
         var password = $('#loginPassword').val();
-
-        if (username === 'abc' && password === '12345') {
-            window.location.href = './userviews/main.html';
-        } else {
-            alert('Invalid username or password. Please try again.');
-        }
+        window.location.href = './userviews/main.html';
+        // if (username === 'abc' && password === '12345') {
+          //  window.location.href = './userviews/main.html';
+        //} else {
+          //  alert('Invalid username or password. Please try again.');
+        //}
     });
 
     // Sign up button click event
