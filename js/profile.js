@@ -34,15 +34,6 @@ var users = [
   }
 ];
 
-// Object containing owner profile URLs
-var ownerProfileURLs = {
-  "Baguio Country Club Owner": "ownerprofile1.html",
-  "Balesin Island Club Owner": "ownerprofile2.html",
-  "Manila Ocean Park Owner": "ownerprofile3.html",
-  "Masungi Georeserve Owner": "ownerprofile4.html",
-  "The Manila Hotel Owner": "ownerprofile5.html"
-};
-
 // Fetch a review file and process it
 function fetchReviewFile(file) {
   return new Promise(function (resolve, reject) {
@@ -136,27 +127,6 @@ function displayReviewsForUser(user) {
   });
 }
 
-// Function to handle profile dropdown item click
-function handleProfileDropdownItemClick(event) {
-  event.preventDefault();
-
-  // Get the selected profile name
-  var profileName = event.target.textContent;
-
-  // Find the selected user based on the profile name
-  var selectedUser = users.find(function (user) {
-    return user.name === profileName;
-  });
-
-  // Redirect to the selected profile HTML page
-  var ownerProfileURL = ownerProfileURLs[profileName];
-  if (ownerProfileURL) {
-    window.location.href = ownerProfileURL;
-  } else {
-    console.error("Owner profile URL not found for:", profileName);
-  }
-}
-
 // Find the current user based on the profile index
 var profileIndex = parseInt(window.location.href.match(/profile(\d+)\.html/)[1]) - 1;
 console.log(profileIndex);
@@ -165,9 +135,3 @@ var currentUser = users[profileIndex];
 // Fetch and display reviews for the current user
 fetchReviewsForUser(currentUser);
 displayReviewsForUser(currentUser);
-
-// Add click event listener to profile dropdown items
-var profileDropdownItems = document.querySelectorAll("#profile-dropdown-menu a");
-profileDropdownItems.forEach(function (item) {
-  item.addEventListener("click", handleProfileDropdownItemClick);
-});
