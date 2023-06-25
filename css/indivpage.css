@@ -5,62 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* REGISTER & LOGIN MODAL */
 
-.modal-content .modal-title span {
-    display: block;
-    border-radius: 50px;
-}
-  
-.modal-content .modal-title span.color-text {
-    color: #3498a7;
-}
-
-.modal-dialog {
-    max-width: 400px; 
-    border-radius: 50px;
-}
-
-.form-spacer {
-    margin-top: 135px;
-}
-
-.custom-input {
-    background-color: #ebebeb;
-}
-
-.modal-title-custom {
-    font-size: 40px;
-    margin-top: -50px;
-    margin-bottom: -10px;
-    padding: auto;
-}
-
-.modal-title-custom {
-    border-top: none;
-}
-  
-.text-center a.forgot-password {
-    border-bottom: none;
-}
-
-#juander-text {
-    color: #3498a7;
-    display: inline;
-}
-
-.forgot-password{
-    color: #737373;
-}
-
-#loginBtn {
-    background-color: #ff8a00;
-}
-
-#registerLink {
-    color:#ff8a00;
-}
-  
 /* SECTION 1 */
 
 #section1 {

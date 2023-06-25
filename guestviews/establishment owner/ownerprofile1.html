@@ -49,6 +49,81 @@
         </div>
     </nav>
 
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="loginModalLabel">
+                        Ready to <span class="text-color-custom" id="juander-text">juan</span>der?
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="loginUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="loginPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <div class="row">
+                            <div class="col-auto">
+                                <input type="checkbox" class="form-check-input" id="loginRememberMe">
+                                <label class="form-check-label" for="loginRememberMe">Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="loginBtn">LOGIN</button>
+                        <p class="mt-2 mb-0">Don't have an account? <a href="#registerModal" id="registerLink">Sign
+                                up</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="registerModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="btn-close ms-auto me-0" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <h5 class="modal-title text-center mt-0 mb-3 modal-title-custom" id="registerModalLabel">
+                        Hello, new <span class="text-color-custom" id="juander-text">Juan</span>derer!
+                    </h5>
+                    <div class="form-group mb-3 form-spacer">
+                        <input type="text" class="form-control custom-input" id="registerUsername3" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control custom-input" id="registerPassword3" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control custom-input" id="description3" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePicture" class="form-label">Upload your Avatar</label>
+                        <input type="file" class="form-control" id="profilePicture3" accept="image/*">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block w-75" id="signUpBtn" style="background-color: #ff8a00;">SIGN UP</button>
+                        <p class="mt-2 mb-0">Have an account already? <a href="#loginModal" id="loginLink"
+                                style="color: #ff8a00;">Sign in</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-3 left-container">
@@ -68,10 +143,101 @@
             <div class="col-lg-9 right-container">
                 <div class="content-container">
                     <div class="tab-content">
-                        <div id="reviews" class="tab-pane fade show active">
+                        <div id="reviews" class="tab-pane fade">
                             <h1>Reviews</h1>
-                            <div class="reviews-container">
-                              <!-- Review containers will be dynamically appended here -->
+                            <div class="review-container">
+                                <div class="profile-container">
+                                    <img class="profile-picture" src="/images/sample_review_1/pfp.png">
+                                    <div class="post-details-container">
+                                        <span class="profile-name">David</span>
+                                        <span class="post-date">29 May</span>
+                                    </div>
+                                </div>
+                                <div class="review-rating-container">
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <span class="rating-description">Highly recommended</span>
+                                </div>
+                                <span class="review-title">
+                                    A Golfer's Dream
+                                </span>
+                                <span class="review-content">
+                                    My visit to Baguio Country Club was a tranquil and luxurious escape from the city's hustle and bustle. 
+                                    The elegant accommodations provided a comfortable and cozy retreat, allowing me to relax amidst the cool 
+                                    mountain air.
+                                </span>
+                                <div class="photo-album">
+                                    <img class="photo-album-photo" src="/images/sample_review_1/bccreview1.jpg">
+                                    <img class="photo-album-photo" src="/images/sample_review_1/bccreview2.jpg">
+                                </div>
+                                <div class="helpful-container">
+                                    <span class="helpful-icon"></span>
+                                    <span class="helpful-text">Helpful</span>
+                                </div>
+                                <div class="feedback-positioner">
+                                    <div class="feedback-container">
+                                        <div class="profile-container">
+                                            <img class="profile-picture" src="/images/bcc1.jpg">
+                                            <div class="post-details-container">
+                                                <span class="profile-name"><a href="./ownerprofile1.html">Baguio Country Club</a></span>
+                                                <span class="post-date">29 May</span>
+                                            </div>
+                                        </div>
+                                        <span class="review-content">
+                                            Thank you for your feedback, David!
+                                        </span>
+                                    </div>
+                                </div>
+                            <!-- END OF REVIEW 1 -->
+                            <!-- REVIEW 5 -->
+                                <br><br>
+                                <div class="profile-container">
+                                    <img class="profile-picture" src="/images/tim.jpg">
+                                    <div class="post-details-container">
+                                        <span class="profile-name">Timothy</span>
+                                        <span class="post-date">October 5</span>
+                                    </div>
+                                </div>
+                                <div class="review-rating-container">
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <i class="fa fa-star review-star-icon"></i>
+                                    <span class="rating-description">Highly recommended</span>
+                                </div>
+                                <span class="review-title">
+                                    YUM!!!!
+                                </span>
+                                <span class="review-content">
+                                    The culinary offerings were exceptional, with a diverse selection of international and local cuisine 
+                                    that satisfied my taste buds. Baguio Country Club's serene ambiance and impeccable service 
+                                    created a truly memorable experience.                </span>
+                                <div class="photo-album">
+                                    <img class="photo-album-photo" src="/images/sample_review_1/bccreview3.jpg">
+                                    <img class="photo-album-photo" src="/images/sample_review_1/bccreview4.jpg">
+                                </div>
+                                <div class="helpful-container">
+                                    <span class="helpful-icon"></span>
+                                    <span class="helpful-text">Helpful</span>
+                                </div>
+                                <div class="feedback-positioner">
+                                    <div class="feedback-container">
+                                        <div class="profile-container">
+                                            <img class="profile-picture" src="/images/bcc1.jpg">
+                                            <div class="post-details-container">
+                                                <span class="profile-name"><a href="./ownerprofile1.html">Baguio Country Club</a></span>
+                                                <span class="post-date">October 6</span>
+                                            </div>
+                                        </div>
+                                        <span class="review-content">
+                                            Thank you for your feedback, Timothy!
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
