@@ -1,4 +1,7 @@
+body {
 
+    text-decoration: none;
+}
 .container-fluid {
     padding: 0px 20px;
 }
@@ -37,10 +40,7 @@
     border-radius: 16px;
 }
 
-.nav-link {
-    background-color: transparent;
-    color: white;
-}
+
 
 .navbar-nav .nav-item  {
     list-style: none;
@@ -60,7 +60,7 @@
 }
 
 .nav-link {
-    color: black;
+    color: black !important;
 }
 
 .nav-pills .nav-link:focus {
@@ -137,6 +137,7 @@
 
 .profile-dropdown a {
     color: black!important;
+    text-decoration: none;
 }
 
 

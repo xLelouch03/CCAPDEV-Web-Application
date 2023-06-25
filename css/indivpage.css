@@ -6,6 +6,61 @@
 }
 
 /* SECTION 1 */
+.img1 {
+border-top-left-radius: 20px;
+border-bottom-left-radius: 20px;
+}
+
+
+.img2 {
+    border-top-right-radius: 20px;
+    
+}
+
+.img3 {
+    border-bottom-right-radius: 20px;
+}
+
+.gallery-item {
+    padding: 10px;
+}
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+.gallery-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    
+
+}
+.gallery-item + .gallery-item {
+    margin-top: -8px;
+    height: 51% !important;
+}
+
+.custom {
+
+    position: absolute !important;
+    bottom: 30px!important;
+    right: 30px!important;
+    background-color: #FF8A00!important;
+    border: 2px solid #FF8A00!important;
+    text-transform: uppercase;
+    font-size: 18px !important;
+    padding: 10px 30px !important;
+    border-radius: 30px !important;
+
+}
+
+
 
 #section1 {
     display: flex;
@@ -23,6 +78,7 @@
 #page-header {
     font-size: 45px;
     font-weight: bolder;
+    padding-left: 20px;
 }
 
 #photo1 {
@@ -66,15 +122,11 @@
 }
 
 #textbox1 {
-    margin-top: 615px;
-    margin-bottom: 20px;
+    
+    margin: 20px;
     background-color: white;
-    width: 1190px;
-    margin-left: 30px;
-    padding-top: 15px;
-    padding-bottom: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 85%;
+    padding: 25px 25px 10px 25px;
     font-size: 20px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -82,6 +134,10 @@
 
 /* SECTION 2 */
 
+.section2 {
+
+    padding-top: 50px;
+}
 .carousel-inner {
     background-color: transparent;
     border-radius: 5px;
@@ -95,6 +151,12 @@
     background-color: white;
 }
 
+
+.modal-dialog {
+    width: 1200px; /* Change this value to the width you want */
+    height: 800px; /* Change this value to the height you want */
+}
+
 .modal-title {
     margin: 0;
     position: absolute;
@@ -102,8 +164,20 @@
     transform: translateX(-50%);
 }
 
+.modal-body {
+    height: 100%;
+}
+
+.modal-dialog.modal-xl {
+    max-height: 90vh; 
+}
+
+.modal-dialog.modal-xl .modal-content {
+    height: 100%; }
+
+
 .photo-gallery {
-    max-width: 1000px;
+    width: 100%;
 }
 
 .carousel-control-prev,
@@ -115,10 +189,11 @@
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     opacity: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5)  !important;
+    border-radius: 8px!important;
+    width: 20px;
+    height: 20px;
+    padding: 20px;
 }
   
 .carousel-control-prev:hover,
@@ -132,20 +207,38 @@
 }
   
 .carousel-control-prev {
-    left: -50px;
+    left: -25px!important;
 }
   
 .carousel-control-next {
-    right: -50px;
+    right: -25px!important;
 }
 
 #book {
     font-size: 30px;
     font-weight: bold;
-    font-family: 'PoppinsBold', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.carousel-inner img {
+    width: 100%;
+    height: 82vh; /* Change this to the height you want. */
+    object-fit: cover; /* This will make the image scale and crop to fit the size. */
 }
 
 /* SECTION 3 */
+
+.profile-name a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-name a:hover {
+    text-decoration: none;
+    color: black;
+
+}
 
 .section3 {
     display: flex;
@@ -160,9 +253,9 @@
 }
 
 .s3-header {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
-    font-family: 'PoppinsBold', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .rating-container {
@@ -194,12 +287,13 @@
 
 .average-star-icon {
     font-size: 36px;
+    margin-top: 10px;
     color: #f4c01e;
 }
 
 .review-count {
-    font-size: 20px;
-    margin-top: 20px;
+    font-size: 18px;
+    margin-top: 23px;
     margin-left: 20px;
 }
 
@@ -212,7 +306,7 @@
 .review-filter {
     padding: 10px;
     border: 1px solid #737373;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 16px;
     color: black;
     letter-spacing: 0.5px;
@@ -271,9 +365,9 @@
 }
 
 .dropdown-review-filter {
-    padding: 10px 10px 10px 14px;
+    padding: 10px 10px 10px 14px!important;
     border: 1px solid #737373;
-    border-radius: 20px;
+    border-radius: 30px!important;
     font-size: 16px;
     color: black;
     letter-spacing: 0.5px;
@@ -283,7 +377,7 @@
 .dropdown-review-filter:hover {
     padding: 10px 10px 10px 14px;
     border: 1px solid #ff8a00;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 16px;
     color: #ff8a00;
     letter-spacing: 0.5px;
@@ -306,8 +400,8 @@
 }
 
 .profile-picture {
-    width: 79px;
-    height: 79px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
 }
 
@@ -336,6 +430,7 @@
 .review-star-icon {
     font-size: 22px;
     color: #f4c01e;
+    
 }
 
 .rating-description {
@@ -505,7 +600,7 @@
     flex-direction: column;
     width: 85%;
     float: right;
-    border: 2px solid black;
+    border: 2px solid rgb(226, 226, 226);
     border-radius: 30px;
     padding: 25px;
 }
@@ -547,7 +642,7 @@
 }
 
 .page-button:hover {
-    border: 1px solid #737373;
+    border: 1px solid #ff8a00;
     border-radius: 5px;
     height: 30px;
     width: 30px;
@@ -558,7 +653,7 @@
 }
 
 .page-button-selected {
-    border: 1px solid #737373;
+    border: 1px solid #ff8a00;
     border-radius: 5px;
     height: 30px;
     width: 30px;
@@ -605,8 +700,15 @@
     color: white;
     font-size: 20px;
     font-weight: 700;
-    border-radius: 20px;
-    border-color:rgba(0, 0, 0, 0);
+    border-radius: 30px;
+    border: 2px solid #ff8a00;
+}
+
+.add-review:hover {
+
+    color: #ff8a00;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
 }
 
 .guestview, button[disabled=disabled]{
@@ -669,6 +771,15 @@
 
 /* SECTION 4 */
 
+.accordion-button {
+    font-size: 18px!important;
+}
+
+.accordion-body {
+    font-size: 16px;
+    font-style: italic;
+}
+
 .section4-positioner {
     display: flex;
     flex-direction: column;
@@ -684,9 +795,9 @@
 }
 
 .s4-header {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
-    font-family: 'PoppinsBold', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     margin-bottom: 20px;
 }
 
@@ -699,121 +810,64 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    width: 100%;
 }
 
 .section5 {
     display: flex;
     flex-direction: column;
-    padding: 64px 20px 58px 20px;
-    width: 1295px;
+    padding:  150px 50px;
+    width: 90%;
 }
 
 .s5-header {
     font-weight: 700;
-    font-size: 31px;
-    width: 40%;
+    font-size: 40px;
+    width: 60%;
 }
 
 .s5-body {
     margin-top: 16px;
-    font-size: 14px;
-    width: 40%;
+    font-size: 20px;
+    width: 100%;
 }
 
 .s5-options-container {
     display: flex;
     margin-top: 54px;
+    width: 100%;
 }
 
 .view-destinations-button {
     background-color: #3498a7;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
-    padding: 8px 14px 8px 14px;
-    border-radius: 20px;
-    border-color:rgba(0, 0, 0, 0);
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: 2px solid #3498a7;
+}
+
+.view-destinations-button:hover {
+    color:#3498a7;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
 }
 
 .contact-us-button {
     background-color: #ff8a00;
     color: white;
-    font-size: 16px;
+    font-size:  18px;
     font-weight: 500;
-    padding: 8px 43px 8px 43px;
-    border-radius: 20px;
-    border-color:rgba(0, 0, 0, 0);
-    margin-left: 26px;
+    padding: 10px 45px;
+    border-radius: 30px;
+    margin-left: 20px;
+    border: 2px solid #ff8a00;
 }
 
-/* FOOTER */
-
-.footer-positioner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #282A2A;
+.contact-us-button:hover {
+    color: #ff8a00;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
 }
 
-.footer {
-    width: 1295px;
-    text-align: center;
-    padding: 40px 20px 10px 20px;
-    color: white;
-}
-
-.footer h3 {
-    color: #FF8A00;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.contact-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 122px;
-}
-
-.left-align-container {
-    text-align: left;
-}
-
-.follow-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 122px;
-}
-
-.socmed-icons-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.footer a {
-    text-decoration: none;
-    color: white;
-}
-
-.footer a.logo-spacer {
-    text-decoration: none;
-    color: white;
-    margin-left: 10px;
-}
-
-.footer a:hover {
-    color: #FF8A00;
-}
-
-.copyright {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 12px;
-}
