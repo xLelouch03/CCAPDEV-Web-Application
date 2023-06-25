@@ -163,10 +163,10 @@
             var searchInput = document.querySelector('.search-input').value;
           
             if (selectedCategory === 'destination') {
-              window.location.href = './searchresults.html';
+              window.location.href = './searchresults.html' + encodeURIComponent(searchInput);
             } else if (selectedCategory === 'review') {
               // Redirect to the review search results page
-              window.location.href = './searchreviews.html';
+              window.location.href = './searchreviews.html' + encodeURIComponent(searchInput);
             }
           }
         </script>
