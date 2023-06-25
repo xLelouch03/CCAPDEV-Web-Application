@@ -63,6 +63,18 @@
 
 /* PROFILE DROPDOWN */
 
+.fa-user-circle-o {
+    padding-top: 6px;
+    font-size: 26px !important;
+    color:#282A2A !important; 
+}
+
+.fa-user-circle-o:hover{
+
+    color:#ff8a00 !important; 
+}
+
+
 .profile-dropdown {
     position: relative;
     display: inline-block;
