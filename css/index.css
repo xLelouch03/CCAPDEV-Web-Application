@@ -338,6 +338,12 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+}
+
+.ctr a {
+  text-decoration: none;
+
 }
 
 .ctrtext h2 {
@@ -358,6 +364,7 @@ h3 {
       text-transform: uppercase;
       color: white;
       transition: 0.3s;
+      text-decoration: none;
   }
 
   .btn-see:hover {
@@ -371,7 +378,6 @@ h3 {
     text-transform: uppercase;
     color:#FF8A00
 }
-
 
 
 
