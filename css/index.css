@@ -256,6 +256,10 @@ h3 {
     cursor: pointer;
 }
 
+.destination-slide a {
+  text-decoration: none;
+}
+
 .destination-slide:hover {
   display: inline-block;
   margin: -20px 10px 0px 10px;
@@ -337,17 +341,19 @@ h3 {
 }
 
 
+
+
+
   .btn-see {
       background-color: #FF8A00;
       border: 2px solid #FF8A00;
       border-radius: 30px;
-      color: white;
       margin-top: 30px;
       padding: 10px 70px;
       font-size: 20px;
       cursor: pointer;
       text-transform: uppercase;
-      
+      color: white;
       transition: 0.3s;
   }
 
@@ -355,22 +361,15 @@ h3 {
     background-color: white;
     border: 2px solid #FF8A00;
     border-radius: 30px;
-    color: #FF8A00;
     margin-top: 30px;
     padding: 10px 70px;
     font-size: 20px;
     cursor: pointer;
     text-transform: uppercase;
+    color:#FF8A00
 }
 
-.btn-see a {
-  color: white;
-  text-decoration: none;
-}
 
-.btn-see a:hover {
-  color: #FF8A00;
-}
 
 .owl-carousel .fa-star {
   color: #ffca00;
