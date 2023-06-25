@@ -363,6 +363,15 @@ h3 {
     text-transform: uppercase;
 }
 
+.btn-see a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-see a:hover {
+  color: #FF8A00;
+}
+
 .owl-carousel .fa-star {
   color: #ffca00;
   background-color: transparent;
