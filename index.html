@@ -25,14 +25,14 @@
                                 DESTINATIONS
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="destinationsDropdown">
-                                <li><a class="dropdown-item" href="../guestviews/indivpage1 - Ocean Park.html">Beach</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage2 - Masungi.html">Nature</a></li>
-                                <li><a class="dropdown-item" href="../guestviews/indivpage3 - BCC.html">Cultural Sites</a></li>
+                                <li><a class="dropdown-item" href="searchresults.html">Beach</a></li>
+                                <li><a class="dropdown-item" href="searchresults.html">Nature</a></li>
+                                <li><a class="dropdown-item" href="searchresults.html">Cultural Sites</a></li>
                                
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#map">MAP</a>
+                            <a class="nav-link" href="index.html#map">MAP</a>
                         </li>
                         <li class="nav-item2 ms-3">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -146,7 +146,7 @@
                       </div>        
 
 
-                    <button class="search-button">
+                    <button class="search-button" onclick="handleSearch()">
                         <i class="fa fa-search"></i>
                     </button>
                     </div>
@@ -155,6 +155,21 @@
             </div>
             </div>
         </div>
+
+        <script>
+            function handleSearch() {
+            var categorySelect = document.querySelector('.search-category');
+            var selectedCategory = categorySelect.value;
+            var searchInput = document.querySelector('.search-input').value;
+          
+            if (selectedCategory === 'destination') {
+              window.location.href = './searchresults.html' + encodeURIComponent(searchInput);
+            } else if (selectedCategory === 'review') {
+              // Redirect to the review search results page
+              window.location.href = './searchreviews.html' + encodeURIComponent(searchInput);
+            }
+          }
+        </script>
 
         <style>
 
@@ -606,7 +621,7 @@ viewBox="0 0 36070 59220"
 
     -->
 
-    <div class="map">
+    <div class="map" id="map">
     <h2> Confused where exactly your destination is?</h2> 
     <p>Click <i class="fa fa-map-marker" aria-hidden="true"></i> marker to see more details.</p>
 

@@ -269,6 +269,11 @@
     margin-left: 5px;
 }
 
+.fa-star {
+    font-size: 22px !important;
+    padding-right: 5px;
+}
+
 .average-star-rating-container {
     display: flex;
     margin-top: 16px;
