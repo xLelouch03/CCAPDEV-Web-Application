@@ -68,11 +68,9 @@ border-bottom-left-radius: 20px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 10px;
 }
 
 .s1-container {
-    padding-top: 30px;
     width: 1295px;
 }
 
@@ -135,9 +133,11 @@ border-bottom-left-radius: 20px;
 
 /* SECTION 2 */
 
-.section2 {
 
-    padding-top: 50px;
+#section2 {
+background-color: #fbfcfd;
+margin-top: 30px;
+    padding-bottom: 20px;
 }
 .carousel-inner {
     background-color: transparent;
@@ -248,7 +248,7 @@ border-bottom-left-radius: 20px;
 }
 
 .s3-header-container {
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 30px;
     width: 1295px;
 }
@@ -286,12 +286,8 @@ border-bottom-left-radius: 20px;
 }
 
 .average-star-icon {
-<<<<<<< HEAD
     font-size: 36px;
     margin-top: 10px;
-=======
-    font-size: 36px !important;
->>>>>>> b526c5dc57096116face9e5921e8b73d796ba8cf
     color: #f4c01e;
 }
 

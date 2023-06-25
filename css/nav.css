@@ -145,7 +145,7 @@ body {
     display: block;
 }
 
- .dropdown-toggle:focus {
+nav .dropdown-toggle:focus {
     outline: none;
 }
 
