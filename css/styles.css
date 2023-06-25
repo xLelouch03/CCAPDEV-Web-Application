@@ -5,6 +5,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+#loginBtn, #mainLoginBtn, #logout {
+    background-color: #ff8a00;
+    padding: 8px 30px;
+    border-radius: 30px;
+    border: none;
+  } 
+  
+
 .modal-content .modal-title span {
     display: block;
     border-radius: 50px;
