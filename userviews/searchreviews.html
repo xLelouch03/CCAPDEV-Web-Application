@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="./css/nav.css">
+<link rel="stylesheet" href="./css/footer.css">
+<link rel="stylesheet" href="./css/searchresults.css">
+<link rel="stylesheet" href="./css/indivpage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        <a class="navbar-brand" id="logo" href="./index.html">Juanderlust</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="destinationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        DESTINATIONS
+                    </a>
+                  
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#map">MAP</a>
+                </li>
+                <li class="nav-item2 ms-3">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#loginModal" id="mainLoginBtn">LOGIN</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="ctr">
+    <div class="row">
+        <div class="col-12">
+            <h2>Results for "relaxing destination"</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3>332 results found</h3>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="dropdownMenu2">Sort by:</label>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Helpful
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button">Helpful</button>
+                      <button class="dropdown-item" type="button">Recently added</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="slide-container reviews-container">
+
+    <div class="review-container text-only-review">
+        <div class="profile-container">
+            <img class="profile-picture" src="./images/kieffer.jpg">
+            <div class="post-details-container">
+                <span class="profile-name">Kieffer</span>
+                <span class="post-date">25 June</span>
+            </div>
+        </div>
+        <div class="review-rating-container">
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <span class="rating-description">Highly recommended</span>
+        </div>
+        <span class="review-title">
+            Great Variety
+        </span>
+        <span class="review-content">
+            The club's range of leisure activities, from swimming to tennis, 
+            kept me entertained throughout my stay.
+        </span>
+        <div class="helpful-container">
+            <span class="helpful-icon"></span>
+            <span class="helpful-text">Helpful</span>
+        </div>
+    </div>
+
+    <div class="review-container text-only-review">
+        <div class="profile-container">
+            <img class="profile-picture" src="./images/martin.jpg">
+            <div class="post-details-container">
+                <span class="profile-name">Martin</span>
+                <span class="post-date">25 June</span>
+            </div>
+        </div>
+        <div class="review-rating-container">
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <span class="rating-description">Highly recommended</span>
+        </div>
+        <span class="review-title">
+            Perfect for Vacations
+
+        </span>
+        <span class="review-content">
+            I highly recommend this destination for anyone seeking a peaceful and indulgent getaway in Baguio City.
+        </span>
+        <div class="helpful-container">
+            <span class="helpful-icon"></span>
+            <span class="helpful-text">Helpful</span>
+        </div>
+    </div>
+
+    <div class="review-container text-only-review">
+        <div class="profile-container">
+            <img class="profile-picture" src="./images/tim.jpg">
+            <div class="post-details-container">
+                <span class="profile-name">Tim</span>
+                <span class="post-date">25 June</span>
+            </div>
+        </div>
+        <div class="review-rating-container">
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <i class="fa fa-star review-star-icon"></i>
+            <span class="rating-description">Highly recommended</span>
+        </div>
+        <span class="review-title">
+            YUM!!!!
+        </span>
+        <span class="review-content">
+            The culinary offerings were exceptional, with a diverse selection of international and local cuisine that satisfied my taste buds. Baguio Country Club's serene ambiance and impeccable service created a truly memorable experience.
+        </span>
+        <div class="helpful-container">
+            <span class="helpful-icon"></span>
+            <span class="helpful-text">Helpful</span>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+<div class="footer-positioner">
+    <footer class="footer">
+        <div class="info"> 
+            <div class="contact-container">
+                <span class="left-align-container"><h3> Contact Us </h3></span>
+                <span class="left-align-container"><a href="tel:+639135425765"> <i class="fa fa-phone" aria-hidden="true"></i> +639135425765 </a></span>
+                <span class="left-align-container"><a href="mailto:info@juanderlust.com"> <i class="fa fa-envelope" aria-hidden="true"></i> info@juanderlust.com </a></span>
+            </div>
+            <div class="follow-container">
+                <h3> Follow Us </h3>
+                <div class="socmed-icons-container">
+                    <a href="facebook.com" class="logo-spacer"> <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> </a>
+                    <a href="instagram.com" class="logo-spacer"> <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a>
+                    <a href="linkedin.com" class="logo-spacer"> <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p> &copy; Copyright 2023 Juanderlust. All Rights Reserved | <a href="google.com">Terms of Use</a> | <a href="google.com">Privacy Policy</a> </p>
+        </div>
+    </footer>
+</div>
+<script src="./js/index.js"></script>
+</body>
+
+
+</html>
