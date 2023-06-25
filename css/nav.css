@@ -71,7 +71,7 @@
     font-size: 40px;
 }
 
-#loginBtn, #mainLoginBtn, #logout {
+#loginBtn, #mainLoginBtn, #logout, #login2 {
     background-color: #ff8a00;
     padding: 8px 30px;
     border-radius: 30px;
@@ -79,7 +79,7 @@
 } 
 
 #logout.hover, #logout.focus {
-    background-color: transparent;
+    background-color: white;
     color: none;
-    transition: 0.3s ease;
+    transition: 0.3s ;
 }
