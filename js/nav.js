@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#logout').click(function() {
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
     });
     
     $("#searchbar").on("input", function() {
