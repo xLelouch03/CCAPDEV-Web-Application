@@ -1,3 +1,7 @@
+body {
+
+    text-decoration: none;
+}
 .container-fluid {
     padding: 0px 20px;
 }
@@ -21,7 +25,7 @@
     color:black !important;
 }
 
-nav .dropdown-item:hover {
+ .dropdown-item:hover {
     color:#FF8A00 !important;
     background-color: transparent !important;
 }
@@ -36,10 +40,7 @@ nav .dropdown-item:hover {
     border-radius: 16px;
 }
 
-.nav-link {
-    background-color: transparent;
-    color: white;
-}
+
 
 .navbar-nav .nav-item  {
     list-style: none;
@@ -59,7 +60,7 @@ nav .dropdown-item:hover {
 }
 
 .nav-link {
-    color: black;
+    color: black !important;
 }
 
 .nav-pills .nav-link:focus {
@@ -102,17 +103,17 @@ nav .dropdown-item:hover {
     color:#ff8a00 !important; 
 }
 
-nav .profile-dropdown {
+.profile-dropdown {
     position: absolute;
 }
   
-nav .dropdown-toggle {
+ .dropdown-toggle {
     background: none;
     border: none;
     cursor: pointer;
 }
 
-nav .dropdown-menu {
+ .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
@@ -128,22 +129,19 @@ nav .dropdown-menu {
     padding-left: 30px;
 }
 
-nav .dropdown-menu li {
-    margin-bottom: 5px;
-}
-
-nav .profile-dropdown a {
-    color: black !important;
+.profile-dropdown a {
+    color: black!important;
+    text-decoration: none;
 }
 
 
 
-nav .profile-dropdown a:hover  {
+ .profile-dropdown a:hover  {
     color: #FF8A00 !important;
     text-decoration: none !important;
 }
   
-nav .dropdown-toggle:focus + .dropdown-menu {
+.dropdown-toggle:focus + .dropdown-menu {
     display: block;
 }
 
