@@ -24,9 +24,9 @@
                                 DESTINATIONS
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="destinationsDropdown">
-                                <li><a class="dropdown-item" href="searchresults.html">Beach</a></li>
-                                <li><a class="dropdown-item" href="searchresults.html">Nature</a></li>
-                                <li><a class="dropdown-item" href="searchresults.html">Cultural Sites</a></li>
+                                <li><a class="dropdown-item" href="./guestviews/searchresults.html">Beach</a></li>
+                                <li><a class="dropdown-item" href="./guestviews/searchresults.html">Nature</a></li>
+                                <li><a class="dropdown-item" href="./guestviews/searchresults.html">Cultural Sites</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -159,10 +159,10 @@
             var searchInput = document.querySelector('.search-input').value;
           
             if (selectedCategory === 'destination') {
-              window.location.href = './searchresults.html';
+              window.location.href = './guestviews/searchresults.html';
             } else if (selectedCategory === 'review') {
               // Redirect to the review search results page
-              window.location.href = './searchreviews.html';
+              window.location.href = './guestviews/searchreviews.html';
             }
           }
         </script>
