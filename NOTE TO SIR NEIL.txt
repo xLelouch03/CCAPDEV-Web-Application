@@ -1,0 +1,8 @@
+CCAPDEV S19
+
+JAWALI, Armina
+RECATO DY, John Kieffer
+REJANO, Hans Martin 
+TAN, Timothy Joshua
+
+*It is advisable to run the index.html using VSCode Live Server
