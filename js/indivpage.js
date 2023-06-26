@@ -25,20 +25,21 @@ $(document).ready(function() {
         $(this).find('input').val('');
     });
 
-    $('#loginBtn3').click(function() {
-        var username = $('#loginUsername3').val();
-        var password = $('#loginPassword3').val();
-
-        if (username === 'abc' && password === '12345') {
-            window.location.href = './userviews/main.html';
-        } else {
-            alert('Invalid username or password. Please try again.');
-        }
+    // Login button click event
+    $('#loginBtn').click(function() {
+        var username = $('#loginUsername').val();
+        var password = $('#loginPassword').val();
+        window.location.href = '/userviews/main.html';
+        // if (username === 'abc' && password === '12345') {
+          //  window.location.href = './userviews/main.html';
+        //} else {
+          //  alert('Invalid username or password. Please try again.');
+        //}
     });
 
     $('#signUpBtn').click(function() {
-        var username = $('#registerUsername3').val();
-        var password = $('#registerPassword3').val();
+        var username = $('#registerUsername').val();
+        var password = $('#registerPassword').val();
         
         if (username && password) {
             alert('Registration successful');

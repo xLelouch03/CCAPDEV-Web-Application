@@ -6,12 +6,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="./css/index.css">
         <link rel="stylesheet" href="./css/styles.css">
-
         <link rel="stylesheet" href="./css/footer.css">
-
-        
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </head>
 
     <body>
@@ -32,7 +27,6 @@
                                 <li><a class="dropdown-item" href="searchresults.html">Beach</a></li>
                                 <li><a class="dropdown-item" href="searchresults.html">Nature</a></li>
                                 <li><a class="dropdown-item" href="searchresults.html">Cultural Sites</a></li>
-                               
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -131,32 +125,30 @@
             </div>
             
             <div class="hero-content">
-            <div class="hero-text">
-                <h1>Unleash your inner Juanderlust.</h1>
-                <p>We help juanderers like you discover Philippines' hidden gems.</p>
-        
+                <div class="hero-text">
+                    <h1>Unleash your inner Juanderlust.</h1>
+                    <p>We help juanderers like you discover Philippines' hidden gems.</p>
+
+                    <div class = "box">
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Looking for?">
+                            
+
+                            <div class="dropdown">
+                                <select class="search-category">
+                                <option value="destination">Destination</option>
+                                <option value="review">Review</option>
+                                </select>
+                            </div>        
 
 
-                <div class = "box">
-                    <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Looking for?">
-                    
-
-                    <div class="dropdown">
-                        <select class="search-category">
-                          <option value="destination">Destination</option>
-                          <option value="review">Review</option>
-                        </select>
-                      </div>        
-
-
-                    <button class="search-button" onclick="handleSearch()">
-                        <i class="fa fa-search"></i>
-                    </button>
+                            <button class="search-button" onclick="handleSearch()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
+                
                 </div>
-            
-            </div>
             </div>
         </div>
 
@@ -176,8 +168,6 @@
         </script>
 
         <style>
-
-     
               .pic {
                 position: absolute;
                 top: 0;
@@ -246,119 +236,124 @@
 
             
         <!-- benefits -->
-
-
-                <div class="benefit-container">
-                    <div class="benefit">
-                        <img src="images/discover.png">
-                        <h3> Discover the possibilities </h3>
-                        <p> With nearly half a million attractions, hotels & more, you're sure to find joy. </p>
-                    </div>
-                    <div class="benefit">
-                        <img src="images/deals.png">
-                        <h3> Enjoy deals & delights </h3>
-                        <p> Quality activities. Great prices. Plus, earn Juanderlust credits to save more. </p>
-                    </div>
-                    <div class="benefit">
-                        <img src="images/trust.png">
-                        <h3> Travel you can trust </h3>
-                        <p> Read reviews & get reliable customer support. We're with you at every step. </p>
-                    </div>
-                </div>
+        <div class="benefit-container">
+            <div class="benefit">
+                <img src="images/discover.png">
+                <h3> Discover the possibilities </h3>
+                <p> With nearly half a million attractions, hotels & more, you're sure to find joy. </p>
+            </div>
+            <div class="benefit">
+                <img src="images/deals.png">
+                <h3> Enjoy deals & delights </h3>
+                <p> Quality activities. Great prices. Plus, earn Juanderlust credits to save more. </p>
+            </div>
+            <div class="benefit">
+                <img src="images/trust.png">
+                <h3> Travel you can trust </h3>
+                <p> Read reviews & get reliable customer support. We're with you at every step. </p>
+            </div>
+        </div>
 
 
 
         <!-- gallery -->
 
         <div class="gallery"> 
-        <h2> Popular Destinations </h2>
+            <h2> Popular Destinations </h2>
 
-        <div class="owl-carousel owl-theme">
+            <div class="owl-carousel owl-theme">
 
-            <div class="destination-slide"> 
-            <a href="./guestviews/balesin-island-club.html">
-                <img src="images/balesin.png" class="img-slider">
-                <div class="image-text">
-                    <p> Private beach resort · Quezon</p> <h4> Balesin </h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                <div class="destination-slide"> 
+                    <a href="./guestviews/balesin-island-club.html">
+                        <img src="images/balesin.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Private beach resort · Quezon</p> <h4> Balesin </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-            </div>
 
-            <div class="destination-slide">
-                <a href="./guestviews/masungi-georeserve.html">
-                <img src="images/masungi.png" class="img-slider">
-                <div class="image-text">
-                    <p> Geological park · Rizal</p> <h4> Masungi Georeserve </h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                <div class="destination-slide">
+                    <a href="./guestviews/masungi-georeserve.html">
+                        <img src="images/masungi.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Geological park · Rizal</p> <h4> Masungi Georeserve </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
                 </div>
-            </a></div>
 
-            <div class="destination-slide">
-                <a href="./guestviews/manila-ocean-park.html">
-                <img src="images/ocean park.png" class="img-slider">
-                <div class="image-text">
-                    <p> Oceanarium · Manila</p> <h4> Manila Ocean Park </h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                <div class="destination-slide">
+                    <a href="./guestviews/manila-ocean-park.html">
+                        <img src="images/ocean park.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Oceanarium · Manila</p> <h4> Manila Ocean Park </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                    
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-slide">
+                    <a href="./guestviews/baguio-country-club.html">
+                        <img src="images/baguio country club.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Retreat and historical landmark  · Baguio</p> <h4> Baguio Country Club </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="destination-slide">
+                    <a href="./guestviews/the-manila-hotel.html">
+                        <img src="images/manila hotel.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Private hotel · Manila</p> <h4> Manila Hotel</h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="destination-slide">
+                    <a href="./comingsoon.html">
+                        <img src="images/siargao.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Island · Siargao</p> <h4> Maasin River Palm Tree Swing </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-slide">
+                    <a href="./comingsoon.html">
+                        <img src="images/boracay.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Beach island · Aklan</p> <h4> Boracay</h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
+                </div>
                 
+
+                <div class="destination-slide">
+                    <a href="./comingsoon.html">
+                        <img src="images/cebusafari.png" class="img-slider">
+                        <div class="image-text">
+                            <p> Adventure and safari park · Cebu</p> <h4> Cebu Safari and Adventure Park  </h4>
+                            <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                        </div>
+                    </a>
+                </div>
+
             </div>
-            </a></div>
-
-            <div class="destination-slide">
-                <a href="./guestviews/baguio-country-club.html">
-                <img src="images/baguio country club.png" class="img-slider">
-                <div class="image-text">
-                    <p> Retreat and historical landmark  · Baguio</p> <h4> Baguio Country Club </h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-                </div>
-            </a></div>
-
-
-            <div class="destination-slide">
-                <a href="./guestviews/the-manila-hotel.html">
-                <img src="images/manila hotel.png" class="img-slider">
-                <div class="image-text">
-                    <p> Private hotel · Manila</p> <h4> Manila Hotel</h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-                </div>
-            </a></div>
-
-
-            <div class="destination-slide">
-                <a href="./comingsoon.html">
-            <img src="images/siargao.png" class="img-slider">
-            <div class="image-text">
-                <p> Island · Siargao</p> <h4> Maasin River Palm Tree Swing </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            </div>
-            </a></div>
-
-            <div class="destination-slide">
-                <a href="./comingsoon.html">
-                <img src="images/boracay.png" class="img-slider">
-                <div class="image-text">
-                    <p> Beach island · Aklan</p> <h4> Boracay</h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-                </div>
-            </a></div>
             
-
-            <div class="destination-slide">
-                <a href="./comingsoon.html">
-            <img src="images/cebusafari.png" class="img-slider">
-            <div class="image-text">
-                <p> Adventure and safari park · Cebu</p> <h4> Cebu Safari and Adventure Park  </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            </div>
-            </a></div>
-
-        </div>
-        
             <div class="ctr"> 
-                <a href="searchresults.html"><div class="btn-see">   See More </div></a> 
-        </div>
+                    <a href="searchresults.html"><div class="btn-see">   See More </div></a> 
+            </div>
 
-    </div> 
+        </div> 
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -671,6 +666,8 @@ viewBox="0 0 36070 59220"
                 </div>
             </footer>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="./js/index.js"></script>
     </body>
 </html>
