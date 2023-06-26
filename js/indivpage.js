@@ -88,6 +88,15 @@ showPhotosOnlyButton.addEventListener("click", () => {
     showPhotosOnlyButton.classList.add("review-filter-selected");
 });
 
+const arrReviewFilters = document.querySelectorAll(".review-filter");
+arrReviewFilters.forEach(reviewFilter => {
+    reviewFilter.addEventListener("click", () => {
+        const selectedPage = document.querySelector(".page-button-selected");
+        selectedPage.classList.remove("page-button-selected");
+        selectedPage.classList.add("page-button");
+    });
+});
+
 /* TRUNCATE/UNTRUNCATE REVIEW */
 
 const arrUntruncateButtons = document.querySelectorAll(".untruncate-button");
@@ -137,13 +146,64 @@ arrPageButtons.forEach((pageButton, index) => {
     });
 });
 
-const arrReviewFilters = document.querySelectorAll(".review-filter");
-arrReviewFilters.forEach(reviewFilter => {
-    reviewFilter.addEventListener("click", () => {
-        const selectedPage = document.querySelector(".page-button-selected");
+const previousPageButton = document.querySelector(".page-previous-button");
+previousPageButton.addEventListener("click", () => {
+    const selectedPage = document.querySelector(".page-button-selected");
+    const previousPage = selectedPage.previousElementSibling;
+
+    if(previousPage.classList.contains("page-button")) {
         selectedPage.classList.remove("page-button-selected");
         selectedPage.classList.add("page-button");
-    });
+        previousPage.classList.remove("page-button");
+        previousPage.classList.add("page-button-selected");
+
+        const arrReviews = document.querySelectorAll(".review-container");
+        arrPageButtons.forEach((pageButton, index) => {
+            if(pageButton === previousPage) {
+                const reviewsPerPage = 2;
+                const start = index * reviewsPerPage;
+                const end = start + reviewsPerPage;
+
+                arrReviews.forEach((review, reviewIndex) => {
+                    if (reviewIndex >= start && reviewIndex < end) {
+                        review.style.display = "flex";
+                    } else {
+                        review.style.display = "none";
+                    }
+                });
+            }
+        });
+    }
+});
+
+const nextPageButton = document.querySelector(".page-next-button");
+nextPageButton.addEventListener("click", () => {
+    const selectedPage = document.querySelector(".page-button-selected");
+    const nextPage = selectedPage.nextElementSibling;
+
+    if(nextPage.classList.contains("page-button")) {
+        selectedPage.classList.remove("page-button-selected");
+        selectedPage.classList.add("page-button");
+        nextPage.classList.remove("page-button");
+        nextPage.classList.add("page-button-selected");
+
+        const arrReviews = document.querySelectorAll(".review-container");
+        arrPageButtons.forEach((pageButton, index) => {
+            if(pageButton === nextPage) {
+                const reviewsPerPage = 2;
+                const start = index * reviewsPerPage;
+                const end = start + reviewsPerPage;
+
+                arrReviews.forEach((review, reviewIndex) => {
+                    if (reviewIndex >= start && reviewIndex < end) {
+                        review.style.display = "flex";
+                    } else {
+                        review.style.display = "none";
+                    }
+                });
+            }
+        });
+    }
 });
 
 /* HELPFUL BUTTONS */
