@@ -2,7 +2,7 @@
 var reviewsContainer = document.querySelector(".reviews-container");
 
 // Array of review file URLs
-var reviewFiles = [
+var reviewSource = [
   "baguio-country-club.html",
   "balesin-island-club.html",
   "manila-ocean-park.html",
@@ -34,11 +34,11 @@ var users = [
   }
 ];
 
-// Fetch a review file and process it
-function fetchReviewFile(file) {
+// Fetch a review and process it
+function fetchReviewSource(source) {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", file, true);
+    xhr.open("GET", source, true);
     xhr.onload = function () {
       if (xhr.status === 200) {
         var tempContainer = document.createElement("div");
@@ -59,8 +59,8 @@ function fetchReviewFile(file) {
 
 // Fetch and process reviews for the current user
 function fetchReviewsForUser(user) {
-  var fetchPromises = reviewFiles.map(function (file) {
-    return fetchReviewFile(file);
+  var fetchPromises = reviewSource.map(function (source) {
+    return fetchReviewSource(source);
   });
 
   Promise.all(fetchPromises)
