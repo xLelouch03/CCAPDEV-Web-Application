@@ -25,7 +25,7 @@ $(document).ready(function() {
     $('#loginBtn').click(function() {
         var username = $('#loginUsername').val();
         var password = $('#loginPassword').val();
-        window.location.href = './userviews/main.html';
+        window.location.href = '../userviews/main.html';
         // if (username === 'abc' && password === '12345') {
           //  window.location.href = './userviews/main.html';
         //} else {
