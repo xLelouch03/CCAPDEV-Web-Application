@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PoppinsBold:wght@500&display=swap');
+
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
+#loginBtn, #mainLoginBtn, #logout {
+    background-color: #ff8a00;
+    padding: 8px 30px;
+    border-radius: 30px;
+    border: none;
+  } 
+  
+
+.modal-content .modal-title span {
+    display: block;
+    border-radius: 50px;
+}
+  
+.modal-content .modal-title span.color-text {
+    color: #3498a7;
+}
+
+
+.modal-dialog {
+    border-radius: 50px;
+}
+
+.custom-input {
+    background-color: #ebebeb;
+}
+
+.modal-title-custom {
+    font-size: 40px;
+    margin-top: -50px;
+    margin-bottom: -10px;
+    padding: auto;
+}
+
+.modal-title-custom {
+    border-top: none;
+}
+  
+.text-center a.forgot-password {
+    border-bottom: none;
+}
+
+#juander {
+    color: #3498a7;
+    display: inline;
+}
+
+.forgot-password{
+    color: #737373;
+}
+
+#loginBtn {
+    background-color: #ff8a00;
+}
+
+#registerLink {
+    color:#ff8a00;
+}
