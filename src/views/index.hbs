@@ -1,0 +1,137 @@
+<div class="hero-container">
+    <div class="hero-slider">
+    <img class="pic" id="pic4" src="static/images/main bg 4.png">
+    <img class="pic" id="pic3" src="static/images/main bg 1.png">
+    <img class="pic" id="pic2" src="static/images/main bg 2.png">
+    <img class="pic" id="pic1" src="static/images/main bg 3.png">
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Unleash your inner Juanderlust.</h1>
+            <p>We help juanderers like you discover Philippines' hidden gems.</p>
+
+            <div class = "box">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Looking for?">
+                    
+
+                    <div class="dropdown">
+                        <select class="search-category">
+                        <option value="destination">Destination</option>
+                        <option value="review">Review</option>
+                        </select>
+                    </div>        
+
+
+                    <button class="search-button" onclick="handleSearch()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleSearch() {
+    var categorySelect = document.querySelector('.search-category');
+    var selectedCategory = categorySelect.value;
+    var searchInput = document.querySelector('.search-input').value;
+    
+    if (selectedCategory === 'destination') {
+        window.location.href = 'static/guestviews/searchresults.html';
+    } else if (selectedCategory === 'review') {
+        // Redirect to the review search results page
+        window.location.href = 'static/guestviews/searchreviews.html';
+    }
+    }
+</script>
+
+<style>
+        .pic {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-animation: fade 40s infinite;
+        animation: fade 40s infinite;
+        }
+        #pic1 {
+        animation-delay: 0s;
+        background-image: url('static/images/main bg 1.png');
+        }
+        #pic2 {
+        background-image: url('static/images/main bg 2.png');
+        animation-delay: 10s;
+        }
+        #pic3 {
+        background-image: url('static/images/main bg 3.png');
+        animation-delay: 20s;
+        }
+
+        #pic4 {
+        background-image: url('static/images/main bg 4.png');
+        animation-delay: 30s;
+        }
+
+        @-webkit-keyframes fade {
+        0% {
+            opacity: 1;
+        }
+        20% {
+            opacity: 1;
+        }
+        34% {
+            opacity: 0;
+        }
+        88% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+        @keyframes fade {
+        0% {
+            opacity: 1;
+        }
+        20% {
+            opacity: 1;
+        }
+        34% {
+            opacity: 0;
+        }
+        88% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+</style>
+
+    
+<!-- benefits -->
+<div class="benefit-container">
+    <div class="benefit">
+        <img src="static/images/discover.png">
+        <h3> Discover the possibilities </h3>
+        <p> With nearly half a million attractions, hotels & more, you're sure to find joy. </p>
+    </div>
+    <div class="benefit">
+        <img src="static/images/deals.png">
+        <h3> Enjoy deals & delights </h3>
+        <p> Quality activities. Great prices. Plus, earn Juanderlust credits to save more. </p>
+    </div>
+    <div class="benefit">
+        <img src="static/images/trust.png">
+        <h3> Travel you can trust </h3>
+        <p> Read reviews & get reliable customer support. We're with you at every step. </p>
+    </div>
+</div>

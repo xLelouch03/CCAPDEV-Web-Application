@@ -18,6 +18,7 @@ export function getDb(dbName = process.env.DB_NAME) {
 function signalHandler() {
     console.log("Closing MongoDB connection...");
     client.close();
+    process.exit();
 }
 
 process.on("SIGINT", signalHandler);

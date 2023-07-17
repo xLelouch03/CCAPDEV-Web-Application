@@ -6,9 +6,9 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import exphbs from 'express-handlebars';
 // Routes modules
-//import router from "./src/routes/index.js";
+import router from "./src/routes/index.js";
 //DB modules
-import { connectToMongo } from "./src/db/conn.js";
+import { connectToMongo, getDb } from "./src/db/conn.js";
 
 async function main () {
     const __dirname = dirname(fileURLToPath(import.meta.url)); // directory URL
@@ -28,7 +28,8 @@ async function main () {
     // from this point onwards, we are going to receive json format data
     app.use(express.json());
 
-    // TODO: define routes
+    app.use(router);
+
 
     app.listen(process.env.SERVER_PORT, () => {
         console.log("Express app now listening...");
