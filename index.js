@@ -41,10 +41,32 @@ async function main () {
                 return;
             }
             console.log("Connected to MongoDB")
-        })
-        // TODO: connect to MongoDB server
-        
+        })        
     });
+
+    async function insertSampleUsers() {
+        try {
+          const db = getDb(process.env.DB_NAME); // Get the default database
+          const usersCollection = db.collection('users'); // Replace 'users' with your desired collection name
+      
+          const sampleUsers = [
+            { username: 'user1', password: 'password1' },
+            { username: 'user2', password: 'password2' },
+            { username: 'user3', password: 'password3' },
+            { username: 'user4', password: 'password4' },
+            { username: 'user5', password: 'password5' },
+          ];
+      
+          // Insert the sample users into the 'users' collection
+          const result = await usersCollection.insertMany(sampleUsers);
+          console.log(`${result.insertedCount} sample users inserted successfully!`);
+        } catch (err) {
+          console.error('Error inserting sample users:', err);
+        }
+      }
+      
+      // Call the function to insert the sample users
+      //insertSampleUsers();
 }
 
 main();

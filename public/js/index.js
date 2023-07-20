@@ -1,3 +1,5 @@
+//import { connectToMongo, getDb } from "./src/db/conn.js";
+
 $(document).ready(function() {
     // Switch to register form
     $('#registerLink').click(function() {
@@ -25,6 +27,8 @@ $(document).ready(function() {
     $('#loginBtn').click(function() {
         var username = $('#loginUsername').val();
         var password = $('#loginPassword').val();
+
+        
         window.location.href = '/loggedInMain'; // Redirect to the main view
         // if (username === 'abc' && password === '12345') {
           //  window.location.href = './userviews/main.html';
@@ -49,6 +53,6 @@ $(document).ready(function() {
 
     $('#logout').click(function() {
         // Redirect the user to the index page when the logout button is clicked
-        window.location.href = '/';
+       // window.location.href = '/';
     });
 });
