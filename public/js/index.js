@@ -46,4 +46,9 @@ $(document).ready(function() {
             alert('Please fill in all required fields.');
         }
     });
+
+    $('#logout').click(function() {
+        // Redirect the user to the index page when the logout button is clicked
+        window.location.href = '/';
+    });
 });

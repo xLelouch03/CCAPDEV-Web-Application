@@ -4,7 +4,13 @@ const router = Router();
 
 router.get("/", (req,res) => {
     res.render("index", {
-        
+        title: "Juanlast Home Page"
+    });
+});
+
+router.get("/logout", (req,res) => {
+    res.render("index", {
+        title: "Juanlast Home Page"
     });
 });
 
@@ -14,10 +20,9 @@ router.get("/home", (req,res) => {
 
 router.get("/loggedInMain", (req,res) => {
     res.render("loggedInMain", {
-        title: "Main Page"
+        title: "Juanderlast Main Page"
     });
 });
-
 
 router.use((req,res) => {
     res.render("error", {

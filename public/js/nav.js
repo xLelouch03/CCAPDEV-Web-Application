@@ -1,7 +1,8 @@
 $(document).ready(function() {
-    $('#logout').click(function() {
-        window.location.href = '../index.html';
-    });            
+  $('#logout').click(function() {
+    // Redirect the user to the index page when the logout button is clicked
+    window.location.href = '/index';
+  });
 });
     
 const dropdownToggle = document.getElementById('profile-dropdown-toggle');
