@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
       mainLayout = 'main';
       mainTemplate = 'index';
     }
-  
     // Render the appropriate Handlebars template with the chosen layout
     res.render(mainTemplate, {
       layout: mainLayout,
@@ -33,7 +32,57 @@ router.get('/', (req, res) => {
       // Other data that the template might need
       // ...
     });
-  });
+});
+
+router.get('/establishment', (req, res) => {
+    // Render the Handlebars template for the establishment page without specifying a layout
+    const isAuthenticated = req.user ? true : false;
+  
+    // Determine which layout and template to use based on authentication status
+    let mainLayout, mainTemplate;
+  
+    if (isAuthenticated) {
+      mainLayout = 'establishment';
+      mainTemplate = 'establishmentLogged'; 
+    } else {
+        mainLayout = 'establishment';
+        mainTemplate = 'establishments';
+    }
+  
+    // Render the appropriate Handlebars template with the chosen layout
+    res.render(mainTemplate, {
+      layout: mainLayout,
+      title: "Juanderlast Establishment Page",
+      user: req.user,
+      // Other data that the template might need
+      // ...
+    });
+});
+
+router.get('/profile', (req, res) => {
+    // Render the Handlebars template for the establishment page without specifying a layout
+    const isAuthenticated = req.user ? true : false;
+  
+    // Determine which layout and template to use based on authentication status
+    let mainLayout, mainTemplate;
+  
+    if (isAuthenticated) {
+      mainLayout = 'profile';
+      mainTemplate = 'profilesLogged'; 
+    } else {
+        mainLayout = 'profile';
+        mainTemplate = 'profiles';
+    }
+  
+    // Render the appropriate Handlebars template with the chosen layout
+    res.render(mainTemplate, {
+      layout: mainLayout,
+      title: "Juanderlast Profile Page",
+      user: req.user,
+      // Other data that the template might need
+      // ...
+    });
+});
 
 router.get("/logout", (req,res) => {
     res.render("index", {
@@ -51,25 +100,10 @@ router.get("/loggedInMain", (req,res) => {
     });
 });
 
-router.get('/establishment', (req, res) => {
-    // Render the Handlebars template for the establishment page without specifying a layout
-    res.render('establishment', {
-      // Pass any required data to the template for this page
-      // ...
-    });
-});
-
-// Route for the profile page
-router.get('/profile', (req, res) => {
-    // Render the Handlebars template for the profile page without specifying a layout
-    res.render('profile', {
-    // Pass any required data to the template for this page
-    // ...
-    });
-});
 
 router.use((req,res) => {
     res.render("error", {
+        layout:'main',
         title: "Page not found."
     });
 })
