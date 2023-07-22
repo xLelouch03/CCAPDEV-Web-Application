@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
     let mainLayout, mainTemplate;
   
     if (isAuthenticated) {
-      mainLayout = 'loggedInMain';
-      mainTemplate = 'reviews'; // Replace 'reviews' with the appropriate template for the logged-in page
+      mainLayout = 'main';
+      mainTemplate = 'loggedInMain'; // Replace 'reviews' with the appropriate template for the logged-in page
     } else {
       mainLayout = 'main';
       mainTemplate = 'index';
