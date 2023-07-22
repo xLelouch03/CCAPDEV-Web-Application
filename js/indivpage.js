@@ -120,7 +120,6 @@ arrTruncateButtons.forEach(truncateButton => {
 const arrPageButtons = document.querySelectorAll(".page-button");
 arrPageButtons.forEach((pageButton, index) => {
 
-    const arrReviews = document.querySelectorAll(".review-container");
     pageButton.addEventListener("click", () => {
 
         const selectedPage = document.querySelector(".page-button-selected");
@@ -136,6 +135,7 @@ arrPageButtons.forEach((pageButton, index) => {
         const start = index * reviewsPerPage;
         const end = start + reviewsPerPage;
 
+        const arrReviews = document.querySelectorAll(".review-container");
         arrReviews.forEach((review, reviewIndex) => {
             if (reviewIndex >= start && reviewIndex < end) {
                 review.style.display = "flex";

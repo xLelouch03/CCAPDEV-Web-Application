@@ -1,0 +1,43 @@
+<div class="review-positioner">
+            <div class="review-container">
+                <div class="profile-container">
+                    <img class="profile-picture" src="{{review-pfp}}">
+                    <div class="post-details-container">
+                        <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
+                        <span class="post-date">Last edited: {{review-date}}</span>
+                    </div>
+                </div>
+                <div class="review-rating-container">
+                    <i class="fa fa-star review-star-icon"></i>
+                    <i class="fa fa-star review-star-icon"></i>
+                    <i class="fa fa-star review-star-icon"></i>
+                    <i class="fa fa-star review-star-icon"></i>
+                    <i class="fa fa-star review-star-icon"></i>
+                    <span class="rating-description">{{review-description}}</span>
+                </div>
+                <span class="review-title">
+                    {{review-title}}
+                </span>
+                <span class="review-content">
+                    {{review-content-truncated}}
+
+                    <span class="untruncate-button">Read more</span>
+                </span>
+                <span class="review-content untruncated-review">
+                    {{review-content}}
+
+                    <span class="truncate-button">Read less</span>
+                </span>
+                <div class="photo-album">
+                    <img class="photo-album-photo" src="{{review-photo1}}">
+                    <img class="photo-album-photo" src="{{review-photo2}}">
+                </div>
+                <div class="helpful-container">
+                    <span class="helpful-icon"></span>
+                    <span class="helpful-text">Helpful {{helpful-count}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="unhelpful-icon"></span>
+                    <span class="helpful-text">Unhelpful {{unhelpful-count}}</span>
+                </div>
+        </div>
+    </div>
