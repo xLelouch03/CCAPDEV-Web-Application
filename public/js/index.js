@@ -28,8 +28,8 @@ $(document).ready(function() {
       
         var username = $('#loginUsername').val();
         var password = $('#loginPassword').val();
-      
-        if (!username || !password) {
+        window.location.href = '/loggedInMain';
+        /*if (!username || !password) {
           alert('Please enter a valid username and password.');
           return;
         }
@@ -52,7 +52,7 @@ $(document).ready(function() {
             console.error(xhr.responseText); // Handle login errors here
             alert('An error occurred. Please try again.');
           },
-        });
+        });*/
       });
       
       
