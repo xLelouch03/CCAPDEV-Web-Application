@@ -16,9 +16,19 @@
 <body>
     {{>navbar}}
     {{>establishmentbody}}
+
+    {{{reviews}}}
+    <!--
+    If logged out:
+    {{>establishmentreview}}
+    {{>reviewreview}}
+
+    If logged in: 
     {{>establishmentreview}}
     {{>reviewreview}}
     {{>addreview}}
+    -->
+
     {{>FAQs}}
     {{>graphic}}
     {{>footer}}
