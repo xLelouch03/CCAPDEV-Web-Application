@@ -95,10 +95,10 @@ async function main () {
       }
 
      
-     //deleteAllUsers();
+     deleteAllUsers();
       
       // Call the function to insert the sample users
-      insertSampleUsers();
+      //insertSampleUsers();
 
       app.post('/login', express.json(), async (req, res) => {
         const { username, password } = req.body;
