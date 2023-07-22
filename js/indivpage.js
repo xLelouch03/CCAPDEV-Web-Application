@@ -120,7 +120,6 @@ arrTruncateButtons.forEach(truncateButton => {
 const arrPageButtons = document.querySelectorAll(".page-button");
 arrPageButtons.forEach((pageButton, index) => {
 
-    const arrReviews = document.querySelectorAll(".review-container");
     pageButton.addEventListener("click", () => {
 
         const selectedPage = document.querySelector(".page-button-selected");
@@ -136,6 +135,7 @@ arrPageButtons.forEach((pageButton, index) => {
         const start = index * reviewsPerPage;
         const end = start + reviewsPerPage;
 
+        const arrReviews = document.querySelectorAll(".review-container");
         arrReviews.forEach((review, reviewIndex) => {
             if (reviewIndex >= start && reviewIndex < end) {
                 review.style.display = "flex";
@@ -249,3 +249,118 @@ arrStars.forEach((star, index1) => {
         });
     });
 });
+
+
+/* REVIEWS - RELATED */
+
+function addReview(reviewData) {
+        // review container div
+        const reviewContainer = document.createElement("div");
+        reviewContainer.classList.add("review-container");
+      
+        // profile container div
+        const profileContainer = document.createElement("div");
+        profileContainer.classList.add("profile-container");
+      
+        // profile picture img element
+        const profilePicture = document.createElement("img");
+        profilePicture.classList.add("profile-picture");
+        profilePicture.src = reviewData.profilePictureSrc;
+        profileContainer.appendChild(profilePicture);
+      
+        // post details container div
+        const postDetailsContainer = document.createElement("div");
+        postDetailsContainer.classList.add("post-details-container");
+      
+        // profile name link
+        const profileNameLink = document.createElement("a");
+        profileNameLink.href = reviewData.profileLink;
+        profileNameLink.style.color = "black";
+        profileNameLink.style.textDecoration = "none";
+        profileNameLink.textContent = reviewData.profileName;
+      
+        // profile name link to the post details container
+        postDetailsContainer.appendChild(profileNameLink);
+      
+        // post date span
+        const postDateSpan = document.createElement("span");
+        postDateSpan.classList.add("post-date");
+        postDateSpan.textContent = "Last edited: " + reviewData.postDate;
+      
+        // post date span to the post details container
+        postDetailsContainer.appendChild(postDateSpan);
+      
+        // profile container to the review container
+        reviewContainer.appendChild(profileContainer);
+      
+        // review rating container div
+        const reviewRatingContainer = document.createElement("div");
+        reviewRatingContainer.classList.add("review-rating-container");
+      
+        // star icons based on the rating value
+        for (let i = 0; i < reviewData.rating; i++) {
+          const starIcon = document.createElement("i");
+          starIcon.classList.add("fa", "fa-star", "review-star-icon");
+          reviewRatingContainer.appendChild(starIcon);
+        }
+      
+        // rating description span
+        const ratingDescriptionSpan = document.createElement("span");
+        ratingDescriptionSpan.classList.add("rating-description");
+        ratingDescriptionSpan.textContent = reviewData.ratingDescription;
+      
+        // rating description span to the review rating container
+        reviewRatingContainer.appendChild(ratingDescriptionSpan);
+      
+        // review rating container to the review container
+        reviewContainer.appendChild(reviewRatingContainer);
+      
+        // review title span
+        const reviewTitleSpan = document.createElement("span");
+        reviewTitleSpan.classList.add("review-title");
+        reviewTitleSpan.textContent = reviewData.reviewTitle;
+      
+        // eview title span to the review container
+        reviewContainer.appendChild(reviewTitleSpan);
+      
+        // review content span
+        const reviewContentSpan = document.createElement("span");
+        reviewContentSpan.classList.add("review-content");
+        reviewContentSpan.textContent = reviewData.reviewContent;
+      
+        // review content span to the review container
+        reviewContainer.appendChild(reviewContentSpan);
+      
+        // review container to the all reviews container
+        const reviewsContainer = document.getElementsByClassName("reviews-cont")[0];
+        reviewsContainer.appendChild(reviewContainer);
+      }
+
+document.getElementById("reviewForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    submitReview();
+});
+
+function submitReview() {
+    const reviewForm = document.getElementById("reviewForm");
+  
+    const profileName = document.querySelector(".profile-name a").textContent;
+    const rating = Array.from(reviewForm.querySelectorAll(".reviewer-rating-star")).filter(star => star.classList.contains("reviewer-rating-unselected")).length;
+    const reviewTitle = reviewForm.querySelector("#reviewTitle").value;
+    const reviewContent = reviewForm.querySelector("#reviewContent").value;
+  
+    const reviewData = {
+      profileName,
+      rating,
+      reviewTitle,
+      reviewContent
+    };
+  
+    addReview(reviewData);
+  
+    // Optionally, you can submit the review data to a server using fetch or AJAX  
+
+    reviewForm.reset();
+    //closeModal();
+  }
+  
