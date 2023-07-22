@@ -172,6 +172,8 @@
             </div>
         </div>
         <div class="review-positioner">
+        
+            <div class="reviews-cont">
             <!-- REVIEW 1 -->
             <div class="review-container">
                 <div class="profile-container">
@@ -392,16 +394,14 @@
                 </div>
             </div>
             <!-- END OF REVIEW 5 -->
-
+            </div>
+            
             <div class="pages-container">
                 <button class="page-previous-button">&lt;</button>
                 <button class="page-button page-button-selected">1</button>
                 <button class="page-button">2</button>
                 <button class="page-button">3</button>
                 <button class="page-next-button" id="next-page">&gt;</button>
-            </div>
-            <div class="add-review-container">
-                <button class="add-review" data-bs-toggle="modal" data-bs-target="#reviewModal">Add Your Review</button>
             </div>
   
             <!-- Add Your Review Form -->
@@ -413,7 +413,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <form>
+                            <form id="reviewForm">
                             <div class="mb-3">
                                 <label for="reviewTitle" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="reviewTitle" required>
@@ -436,12 +436,13 @@
                                 <label for="reviewPhoto" class="form-label">Upload Photo</label>
                                 <input type="file" class="form-control" id="reviewPhoto">
                             </div>
-                        </form>
+                        
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary review-cancel-button" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary review-submit-button" onclick="location.href='./baguio-country-club-reviewed.html';">Submit</button>
+                            <button type="submit" class="btn btn-primary review-submit-button">Submit</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -489,6 +490,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="add-review-container">
+            <button class="add-review" data-bs-toggle="modal" data-bs-target="#reviewModal">Add Your Review</button>
+        </div>
+
     </div>
 
     <div class="section4-positioner">
