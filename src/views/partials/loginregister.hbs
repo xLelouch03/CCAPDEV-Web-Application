@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="registerModal" role="dialog">
+<div class="modal fade" id="registerModal" role="dialog" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center">
             <div class="modal-header">
@@ -64,7 +64,7 @@
                             <option value="owner">Owner</option>
                         </select>
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group owner-only" style="display: none;">
                         <label for="profilePicture" class="form-label">Upload your Avatar</label>
                         <input type="file" class="form-control" id="profilePicture" accept="image/*">
                     </div>

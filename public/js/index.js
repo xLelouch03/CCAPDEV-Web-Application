@@ -3,15 +3,20 @@
 $(document).ready(function() {
     // Switch to register form
     $('#registerLink').click(function() {
-        $('#loginModal').modal('hide');
-        $('#registerModal').modal('show');
+      $('#loginModal').modal('hide');
+      $('#registerModal').modal('show');
+      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
+      $('.modal-backdrop').remove(); // Remove the modal backdrop
     });
 
     // Switch to login form
     $('#loginLink').click(function() {
-        $('#registerModal').modal('hide');
-        $('#loginModal').modal('show');
+      $('#registerModal').modal('hide');
+      $('#loginModal').modal('show');
+      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
+      $('.modal-backdrop').remove(); // Remove the modal backdrop
     });
+
 
     // Clear input fields and checkboxes on modal close
     $('#loginModal').on('hidden.bs.modal', function() {
