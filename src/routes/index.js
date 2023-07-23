@@ -84,10 +84,10 @@ router.get('/profile', (req, res) => {
     });
 });
 
-router.get("/searchresults", (req, res) => {
+router.get("/searchresult", (req, res) => {
   let mainLayout, mainTemplate;
   
-    mainLayout = 'searchresults';
+    mainLayout = 'searchresult';
     mainTemplate = 'searchresults';
 
   res.render(mainTemplate, {
