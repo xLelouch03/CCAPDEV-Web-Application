@@ -8,21 +8,11 @@ import exphbs from 'express-handlebars';
 // Routes modules
 import router from "./src/routes/index.js";
 //DB modules
-import { connectToMongo, getDb } from "./src/db/conn.js";
+import { connectToMongo, getDb } from "./src/models/conn.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const collectionName = "users"; // Your collection name
-
-// ... (other code)
-
-// Mongoose Schema and Model
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-const User = mongoose.model("User", userSchema);
 
 const db = getDb(process.env.DB_NAME);
 async function main () {
