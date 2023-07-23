@@ -601,10 +601,31 @@ margin-top: 30px;
     border-width: 0px;
 }
 
+.delete-button-container {
+    margin-top: 20px;
+}
+
+.delete-icon {
+    font-size: 20px;
+    color: #737373;
+}
+
+.delete-button {
+    background-color:rgba(0, 0, 0, 0);
+    border-width: 0px;
+}
+
+.feedback-buttons-container {
+display: flex;
+}
+
 .feedback-positioner {
     display: inline-block;
     width: 100%;
     margin-top: 35px;
+}
+.feedback-content {
+    margin-top: 20px;
 }
 
 .feedback-container {
