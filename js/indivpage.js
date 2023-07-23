@@ -115,9 +115,7 @@ arrTruncateButtons.forEach(truncateButton => {
     });
 });
 
-/* PAGE BUTTONS */
-
-const arrPageButtons = document.querySelectorAll(".page-button");
+/*const arrPageButtons = document.querySelectorAll(".page-button");
 arrPageButtons.forEach((pageButton, index) => {
 
     pageButton.addEventListener("click", () => {
@@ -144,35 +142,80 @@ arrPageButtons.forEach((pageButton, index) => {
             }
         });
     });
-});
+});*/
+/* PAGE BUTTONS */
+
+function updateReviewDisplay(start, end) {
+    const arrReviews = document.querySelectorAll(".review-container");
+    arrReviews.forEach((review, reviewIndex) => {
+        if (reviewIndex >= start && reviewIndex < end) {
+            review.style.display = "flex";
+        } else {
+            review.style.display = "none";
+        }
+    });
+}
+
+function updatePageNumbers() {
+    const arrReviews = document.querySelectorAll(".review-container");
+    const reviewsPerPage = 2;
+    const totalPages = Math.ceil(arrReviews.length / reviewsPerPage);
+
+    const pageNumbersContainer = document.querySelector(".page-numbers-container");
+    pageNumbersContainer.innerHTML = ""; // Clear existing page numbers
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement("button");
+        pageButton.classList.add("page-button");
+        pageButton.textContent = i;
+        pageNumbersContainer.appendChild(pageButton);
+
+        pageButton.addEventListener("click", () => {
+            const selectedPage = document.querySelector(".page-button-selected");
+            if (selectedPage) {
+                selectedPage.classList.add("page-button");
+                selectedPage.classList.remove("page-button-selected");
+            }
+
+            pageButton.classList.add("page-button-selected");
+            pageButton.classList.remove("page-button");
+
+            const start = (i - 1) * reviewsPerPage;
+            const end = start + reviewsPerPage;
+
+            updateReviewDisplay(start, end);
+        });
+    }
+
+    // Select page 1 by default
+    if (totalPages > 0) {
+        const firstPageButton = document.querySelector(".page-button");
+        firstPageButton.click();
+    }
+}
+
+// Call this function whenever you add new reviews, for example, after fetching them from an API or adding them dynamically.
+// You can also call it once at the beginning if you have some reviews already loaded.
+updatePageNumbers();
 
 const previousPageButton = document.querySelector(".page-previous-button");
 previousPageButton.addEventListener("click", () => {
     const selectedPage = document.querySelector(".page-button-selected");
     const previousPage = selectedPage.previousElementSibling;
 
-    if(previousPage.classList.contains("page-button")) {
+    if (previousPage && previousPage.classList.contains("page-button")) {
         selectedPage.classList.remove("page-button-selected");
         selectedPage.classList.add("page-button");
         previousPage.classList.remove("page-button");
         previousPage.classList.add("page-button-selected");
 
         const arrReviews = document.querySelectorAll(".review-container");
-        arrPageButtons.forEach((pageButton, index) => {
-            if(pageButton === previousPage) {
-                const reviewsPerPage = 2;
-                const start = index * reviewsPerPage;
-                const end = start + reviewsPerPage;
+        const index = parseInt(previousPage.textContent) - 1;
+        const reviewsPerPage = 2;
+        const start = index * reviewsPerPage;
+        const end = start + reviewsPerPage;
 
-                arrReviews.forEach((review, reviewIndex) => {
-                    if (reviewIndex >= start && reviewIndex < end) {
-                        review.style.display = "flex";
-                    } else {
-                        review.style.display = "none";
-                    }
-                });
-            }
-        });
+        updateReviewDisplay(start, end);
     }
 });
 
@@ -181,30 +224,23 @@ nextPageButton.addEventListener("click", () => {
     const selectedPage = document.querySelector(".page-button-selected");
     const nextPage = selectedPage.nextElementSibling;
 
-    if(nextPage.classList.contains("page-button")) {
+    if (nextPage && nextPage.classList.contains("page-button")) {
         selectedPage.classList.remove("page-button-selected");
         selectedPage.classList.add("page-button");
         nextPage.classList.remove("page-button");
         nextPage.classList.add("page-button-selected");
 
         const arrReviews = document.querySelectorAll(".review-container");
-        arrPageButtons.forEach((pageButton, index) => {
-            if(pageButton === nextPage) {
-                const reviewsPerPage = 2;
-                const start = index * reviewsPerPage;
-                const end = start + reviewsPerPage;
+        const index = parseInt(nextPage.textContent) - 1;
+        const reviewsPerPage = 2;
+        const start = index * reviewsPerPage;
+        const end = start + reviewsPerPage;
 
-                arrReviews.forEach((review, reviewIndex) => {
-                    if (reviewIndex >= start && reviewIndex < end) {
-                        review.style.display = "flex";
-                    } else {
-                        review.style.display = "none";
-                    }
-                });
-            }
-        });
+        updateReviewDisplay(start, end);
     }
 });
+
+
 
 /* HELPFUL BUTTONS */
 
@@ -444,6 +480,6 @@ function submitReview() {
         fileInput.value = "";
         reviewForm.reset();
     }
-
+    updatePageNumbers();
     //closeModal();
   }
