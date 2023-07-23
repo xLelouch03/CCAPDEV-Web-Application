@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{establishment-name}}</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="static/css/nav.css">
     <link rel="stylesheet" href="static/css/footer.css">
     <link rel="stylesheet" href="static/css/searchresults.css">
@@ -14,8 +14,11 @@
 </head>
 
 <body>
-    {{>loginregister}}
-    {{{body}}}
+
+    <div id="main-content">
+        {{>loginregister}}
+        {{{body}}}
+        </div>
     {{>footer}}
 
     <script src="static/js/index.js"></script>

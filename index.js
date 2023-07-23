@@ -2,29 +2,26 @@
 import "dotenv/config";
 import { dirname } from "path";
 import { fileURLToPath } from 'url';
+
 // Web-app related packages
 import express from 'express';
 import exphbs from 'express-handlebars';
+
 // Routes modules
 import router from "./src/routes/index.js";
-//DB modules
-import { connectToMongo, getDb } from "./src/db/conn.js";
-import mongoose from "mongoose";
+
+// DB modules
+import { connectToMongo } from "./src/models/conn.js";
 import bcrypt from "bcrypt";
+import UserController from './src/controllers/user.controller.js';
 
-const collectionName = "users"; // Your collection name
+// Importing Mongoose schemas
+import mongoose from 'mongoose';
+import User from './src/models/user.model.js';
+import Establishment from './src/models/establishment.model.js';
+import Review from './src/models/review.model.js';
+import Reply from './src/models/reply.model.js';
 
-// ... (other code)
-
-// Mongoose Schema and Model
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-const User = mongoose.model("User", userSchema);
-
-const db = getDb(process.env.DB_NAME);
 async function main () {
     const __dirname = dirname(fileURLToPath(import.meta.url)); // directory URL
     const app = express();
@@ -45,25 +42,35 @@ async function main () {
 
     app.use(router);
 
-
     app.listen(process.env.SERVER_PORT, () => {
-        console.log("Express app now listening...");
-        connectToMongo((err)=> {
-            if(err) {
-                console.error("An error has occured.");
-                console.error(err);
-                process.exit();
-                return;
-            }
-            console.log("Connected to MongoDB")
-        })        
+      console.log("Express app now listening...");
+      connectToMongo((err) => {
+        if(err) {
+            console.error("An error has occured.");
+            console.error(err);
+            process.exit();
+            return;
+        }
+        console.log("Connected to MongoDB");
+
+        // Resets the database
+        dropDatabase();
+      });
     });
+
+    async function dropDatabase() {
+      // Deletes the entire database
+      mongoose.connection.db.dropDatabase(function(err) {
+        if (err) {
+            console.error('Error dropping database:', err);
+        } else {
+            console.log('Database dropped successfully.');
+        }
+      });    
+    }
 
     async function insertSampleUsers() {
       try {
-        const db = getDb(process.env.DB_NAME); // Get the default database
-        const usersCollection = db.collection('users');
-    
         const sampleUsers = [
           { username: 'David', password: 'password1' },
           { username: 'Yna', password: 'password2' },
@@ -73,30 +80,15 @@ async function main () {
         ];
     
         // Insert the sample users into the 'users' collection
-        const result = await usersCollection.insertMany(sampleUsers);
-        console.log(`${result.insertedCount} sample users inserted successfully!`);
+        const result = await User.insertMany(sampleUsers);
+        console.log(`${result.length} sample users inserted successfully!`);
       } catch (err) {
           console.error('Error inserting sample users: ', err);
-        }
-      }
-
-    async function deleteAllUsers() {
-      try {
-        const db = getDb(process.env.DB_NAME); // Get the default database
-        const usersCollection = db.collection('User');
-    
-        // Delete all documents from the 'users' collection
-        const result = await usersCollection.deleteMany({});
-    
-        console.log(`${result.deletedCount} documents deleted from the 'users' collection.`);
-      } catch (err) {
-        console.error('Error deleting documents: ', err);
       }
     }
 
     async function fetchUserIds() {
       try {
-        const User = mongoose.model('User');
         const ids = await User.find({}, '_id');
         console.log('Successfully fetched list of sample users.')
         return ids;
@@ -107,9 +99,6 @@ async function main () {
 
     async function insertSampleEstablishments() {
       try {
-        const db = getDb(process.env.DB_NAME);
-        const establishmentsCollection = db.collection('establishments');
-
         const sampleEstablishments = [
           { 
             name: "Manila Ocean Park",
@@ -149,8 +138,8 @@ async function main () {
         ];
 
         // Insert the sample users into the 'users' collection
-        const result = await establishmentsCollection.insertMany(sampleEstablishments);
-        console.log(`${result.insertedCount} sample establishments inserted successfully!`);
+        const result = await Establishment.insertMany(sampleEstablishments);
+        console.log(`${result.length} sample establishments inserted successfully!`);
       } catch (err) {
         console.error('Error inserting sample establishments: ', err);
       }
@@ -158,9 +147,8 @@ async function main () {
 
     async function fetchEstablishmentIds() {
       try {
-        const Establishment = mongoose.model('Establishment');
         const ids = await Establishment.find({}, '_id');
-        console.log('Successfully fetched list of sample establishments.')
+        console.log('Successfully fetched list of sample establishments.');
         return ids;
       } catch(err) {
         console.error('Error fetching list of sample establishments: ', err);
@@ -169,9 +157,6 @@ async function main () {
 
     async function insertSampleReviews(userIds, establishmentIds) {
       try {
-        const db = getDb(process.env.DB_NAME);
-        const reviewsCollection = db.collection('reviews');
-
         const sampleReviews = [
           {
             user: userIds[0],
@@ -244,9 +229,10 @@ async function main () {
             body: "This place certainly offers a high quality dining experience. The staff was professional, the environment was clean and stylish, and the food was out of this world. We tried a variety of dishes and all of them were excellent, with high-quality ingredients and delightful flavors. Prices were a bit high, but for a special occasion, it is definitely worth it. We will be back!"
           }
         ];
+
         // Insert the sample reviews into the 'reviews' collection
-        const result = await establishmentsCollection.insertMany(sampleReviews);
-        console.log(`${result.insertedCount} sample reviews inserted successfully!`);
+        const result = await Review.insertMany(sampleReviews);
+        console.log(`${result.length} sample reviews inserted successfully!`);
       } catch(err) {
         console.error('Error inserting sample reviews: ', err);
       }
@@ -254,7 +240,6 @@ async function main () {
 
     async function fetchReviewIds() {
       try {
-        const Review = mongoose.model('Review');
         const ids = await Review.find({}, '_id');
         console.log('Successfully fetched list of sample reviews.')
         return ids;
@@ -265,9 +250,6 @@ async function main () {
 
     async function insertSampleReplies(reviewIds) {
       try {
-        const db = getDb(process.env.DB_NAME);
-        const repliesCollection = db.collection('replies');
-
         const sampleReplies = [
           {
             review: reviewIds[0],
@@ -290,16 +272,16 @@ async function main () {
             body: "It was a pleasure serving you!"
           }
         ];
+
         // Insert the sample replies into the 'replies' collection
-        const result = await repliesCollection.insertMany(sampleReplies);
-        console.log(`${result.insertedCount} sample replies inserted successfully!`);
+        const result = await Reply.insertMany(sampleReplies);
+        console.log(`${result.length} sample replies inserted successfully!`);
       } catch(err) {
         console.error('Error inserting sample replies: ', err);
       }
     }
 
     // Inserting sample data to database
-    await deleteAllUsers();
     await insertSampleUsers();
     await insertSampleEstablishments();
 
@@ -310,33 +292,44 @@ async function main () {
     const reviewIds = await fetchReviewIds();
     await insertSampleReplies(reviewIds);
 
-    app.post('/login', express.json(), async (req, res) => {
-      const { username, password } = req.body;
-    
-      console.log('Received login request:', { username, password });
-    
+    app.get('/:username', async (req, res) => {
+      const { username } = req.params;
+  
       try {
+          // Fetch the user data from the database using the UserController or the User model directly
+          const profileData = await User.findOne({ username }); // Assuming you use the User model
+          // Alternatively, you can use UserController.getUser(username) if the function accepts the username as a parameter
+  
+          // Render the profile.hbs template with the profileData as the context
+          res.render('profile', { title: 'User Profile', profileData });
+      } catch (error) {
+          console.error('Error fetching user data:', error);
+          res.status(500).json({ message: 'Internal server error' });
+      }
+  });
+
+  app.post('/login', express.json(), async (req, res) => {
+    const { username, password } = req.body;
+
+    console.log('Received login request:', { username, password });
+
+    try {
         // Find the user in the database with the provided username
-        const user = await db.collection(collectionName).findOne({ username: username });
+        const user = await User.findOne({ username: username });
     
         if (user) {
-          // Compare the provided password with the stored password (plain text)
-          if (user.password === password) {
-            // Login successful, you can create a session or generate a JWT here
-            res.status(200).json({ message: 'Login successful', user: user });
-          } else {
-            // Incorrect password
-            res.status(401).json({ message: 'Invalid password' });
-          }
-        } else {
-          // User does not exist
+          // Login successful
+          res.status(200).json({ message: 'Login successful', user: user });
+      } else {
+          // User does not exist or incorrect password
           res.status(401).json({ message: 'Invalid username or password' });
-        }
-      } catch (error) {
-        console.error('Error while logging in:', error);
-        res.status(500).json({ message: 'Internal server error' });
       }
-    });
+  } catch (error) {
+      console.error('Error while logging in:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
       
         
     // Signup endpoint
