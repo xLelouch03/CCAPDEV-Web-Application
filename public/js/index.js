@@ -52,7 +52,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/login", // Your login route URL
-      data: { username, password },
+      data: { username: username, password: password }, // Make sure both username and password are provided
       success: function(response) {
         // Handle successful login
         console.log("Login successful:", response);
@@ -65,10 +65,7 @@ $(document).ready(function() {
         alert("Login failed. Please check your username and password.");
       }
     });
-  });
-  
-      
-      
+  });  
 
     // Sign up button click event
     $('#signUpBtn').click(function(event) {

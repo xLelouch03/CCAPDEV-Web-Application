@@ -9,7 +9,7 @@ import exphbs from 'express-handlebars';
 
 // Routes modules
 import router from "./src/routes/index.js";
-
+import cors from 'cors';
 // DB modules
 import { connectToMongo } from "./src/models/conn.js";
 import bcrypt from "bcrypt";
@@ -39,7 +39,7 @@ async function main () {
 
     // from this point onwards, we are going to receive json format data
     app.use(express.json());
-
+    app.use(cors());
     app.use(router);
 
     app.listen(process.env.SERVER_PORT, () => {

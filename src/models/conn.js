@@ -12,7 +12,6 @@ export function connectToMongo(callback) {
 
 function signalHandler() {
     console.log("Closing MongoDB connection...");
-    client.close();
     process.exit();
 }
 
