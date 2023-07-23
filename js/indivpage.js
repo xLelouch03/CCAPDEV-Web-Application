@@ -247,65 +247,27 @@ nextPageButton.addEventListener("click", () => {
 const arrHelpfulButtons = document.querySelectorAll(".helpful-icon");
 const arrUnhelpfulButtons = document.querySelectorAll(".unhelpful-icon");
 
-arrHelpfulButtons.forEach(helpfulButton => {
-  helpfulButton.addEventListener("click", () => {
-    const unhelpfulButton = helpfulButton.nextElementSibling.nextElementSibling.nextElementSibling;
-    const helpfulCountElement = helpfulButton.nextElementSibling.querySelector('.helpful-count');
-    const unhelpfulCountElement = unhelpfulButton.nextElementSibling.querySelector('.unhelpful-count');
-    
-    if (helpfulButton.classList.contains("helpful-icon-selected")) {
-      helpfulButton.classList.remove("helpful-icon-selected");
-      updateCount(helpfulCountElement, -1);
-    } else {
-      if (unhelpfulButton.classList.contains("unhelpful-icon-selected")) {
-        unhelpfulButton.classList.remove("unhelpful-icon-selected");
-        updateCount(unhelpfulCountElement, -1);
-      }
-      helpfulButton.classList.add("helpful-icon-selected");
-      updateCount(helpfulCountElement, 1);
-    }
-  });
-});
-
-arrUnhelpfulButtons.forEach(unhelpfulButton => {
-  unhelpfulButton.addEventListener("click", () => {
-    const helpfulButton = unhelpfulButton.previousElementSibling.previousElementSibling.previousElementSibling;
-    const helpfulCountElement = helpfulButton.nextElementSibling.querySelector('.helpful-count');
-    const unhelpfulCountElement = unhelpfulButton.nextElementSibling.querySelector('.unhelpful-count');
-    
-    if (unhelpfulButton.classList.contains("unhelpful-icon-selected")) {
-      unhelpfulButton.classList.remove("unhelpful-icon-selected");
-      updateCount(unhelpfulCountElement, -1);
-    } else {
-      if (helpfulButton.classList.contains("helpful-icon-selected")) {
-        helpfulButton.classList.remove("helpful-icon-selected");
-        updateCount(helpfulCountElement, -1);
-      }
-      unhelpfulButton.classList.add("unhelpful-icon-selected");
-      updateCount(unhelpfulCountElement, 1);
-    }
-  });
-});
-
-function updateCount(countElement, value) {
-  const currentValue = parseInt(countElement.textContent);
-  countElement.textContent = currentValue + value;
+if(arrHelpfulButtons) {
+    arrHelpfulButtons.forEach(helpfulButton => {
+        helpfulButton.addEventListener("click", () => {
+            helpfulButton.classList.remove("helpful-icon");
+            helpfulButton.classList.add("helpful-icon-selected");
+            helpfulButton.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove("unhelpful-icon-selected");
+            helpfulButton.nextElementSibling.nextElementSibling.nextElementSibling.classList.add("unhelpful-icon");
+        });
+    });
 }
 
-
-
-
-function updateCount(countElement, increment) {
-  let count = parseInt(countElement.textContent);
-  count += increment;
-  countElement.textContent = count;
+if(arrUnhelpfulButtons) {
+    arrUnhelpfulButtons.forEach(unhelpfulButton => {
+        unhelpfulButton.addEventListener("click", () => {
+            unhelpfulButton.classList.remove("unhelpful-icon");
+            unhelpfulButton.classList.add("unhelpful-icon-selected");
+            unhelpfulButton.previousElementSibling.previousElementSibling.previousElementSibling.classList.remove("helpful-icon-selected");
+            unhelpfulButton.previousElementSibling.previousElementSibling.previousElementSibling.classList.add("helpful-icon");
+        });
+    });
 }
-
-
-
-
-
-
 
 /* REVIEW MODAL */
 
