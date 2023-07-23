@@ -16,10 +16,10 @@ const establishmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reviews: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Review',
-  }],
+  location: {
+    type: String,
+    required: true
+  }
 });
 
 const Establishment = mongoose.model('Establishment', establishmentSchema);
