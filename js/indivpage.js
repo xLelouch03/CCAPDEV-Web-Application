@@ -296,148 +296,187 @@ function getCurrentDate() {
 
 /* REVIEWS - RELATED */
 
-
 function addReview(reviewData) {
-        // review container div
-        const reviewContainer = document.createElement("div");
-        reviewContainer.classList.add("review-container");
-      
-        // profile container
-        const profileContainer = document.createElement("div");
-        profileContainer.classList.add("profile-container");
+    // review container div
+    const reviewContainer = document.createElement("div");
+    reviewContainer.classList.add("review-container");
 
-        // profile picture img
-        const profilePictureImg = document.createElement("img");
-        profilePictureImg.classList.add("profile-picture");
-        profilePictureImg.src = reviewData.profilePictureSrc;
-        profileContainer.appendChild(profilePictureImg);
+    // profile container div
+    const profileContainer = document.createElement("div");
+    profileContainer.classList.add("profile-container");
 
-        // post details container div
-        const postDetailsContainer = document.createElement("div");
-        postDetailsContainer.classList.add("post-details-container");
+    // profile picture img
+    const profilePictureImg = document.createElement("img");
+    profilePictureImg.classList.add("profile-picture");
+    profilePictureImg.src = reviewData.profilePictureSrc;
+    profileContainer.appendChild(profilePictureImg);
 
-        // profile name container
-        const profileNameSpan = document.createElement("span");
-        profileNameSpan.classList.add("profile-name");
+    // post details container div
+    const postDetailsContainer = document.createElement("div");
+    postDetailsContainer.classList.add("post-details-container");
 
-        // profile name link
-        const profileNameLink = document.createElement("a");
-        profileNameLink.href = reviewData.profileLink;
-        profileNameLink.style.color = "black";
-        profileNameLink.style.textDecoration = "none";
-        profileNameLink.textContent = reviewData.profileName;
+    // profile name span
+    const profileNameSpan = document.createElement("span");
+    profileNameSpan.classList.add("profile-name");
 
-        // Add the link to the profileNameSpan
-        profileNameSpan.appendChild(profileNameLink);
+    // profile name link
+    const profileNameLink = document.createElement("a");
+    profileNameLink.href = reviewData.profileLink;
+    profileNameLink.style.color = "black";
+    profileNameLink.style.textDecoration = "none";
+    profileNameLink.textContent = reviewData.profileName;
 
-        // postDateSpan
+    // Add the link to the profileNameSpan
+    profileNameSpan.appendChild(profileNameLink);
 
-        
-        const postDateSpan = document.createElement("span");
-        postDateSpan.classList.add("post-date");
-        postDateSpan.textContent = reviewData.postDate; 
+    // postDateSpan
+    const postDateSpan = document.createElement("span");
+    postDateSpan.classList.add("post-date");
+    postDateSpan.textContent = reviewData.postDate;
 
-        // Add postDateSpan to the profileNameSpan
-        profileNameSpan.appendChild(postDateSpan);
+    // Add postDateSpan to the profileNameSpan
+    profileNameSpan.appendChild(postDateSpan);
 
-        // Add profileNameSpan to the postDetailsContainer
-        postDetailsContainer.appendChild(profileNameSpan);
+    // Add profileNameSpan to the postDetailsContainer
+    postDetailsContainer.appendChild(profileNameSpan);
 
-        // Add postDetailsContainer to the review container
-        profileContainer.appendChild(postDetailsContainer);
+    // Add postDetailsContainer to the review container
+    profileContainer.appendChild(postDetailsContainer);
 
-        reviewContainer.appendChild(profileContainer);
+    // Adding profileContainer to the reviewContainer
+    reviewContainer.appendChild(profileContainer);
 
-      
-        // review rating container div
-        const reviewRatingContainer = document.createElement("div");
-        reviewRatingContainer.classList.add("review-rating-container");
-      
-        // star icons based on the rating value
-        for (let i = 0; i < reviewData.rating; i++) {
-          const starIcon = document.createElement("i");
-          starIcon.classList.add("fa", "fa-star", "review-star-icon");
-          reviewRatingContainer.appendChild(starIcon);
-        }
-      
-        // review rating container to the review container
-        reviewContainer.appendChild(reviewRatingContainer);
-      
-        // review title span
-        const reviewTitleSpan = document.createElement("span");
-        reviewTitleSpan.classList.add("review-title");
-        reviewTitleSpan.textContent = reviewData.reviewTitle;
-      
-        // eview title span to the review container
-        reviewContainer.appendChild(reviewTitleSpan);
-      
-        
-        // review content span
+    // review rating container div
+    const reviewRatingContainer = document.createElement("div");
+    reviewRatingContainer.classList.add("review-rating-container");
+
+    // star icons based on the rating value
+    for (let i = 0; i < reviewData.rating; i++) {
+      const starIcon = document.createElement("i");
+      starIcon.classList.add("fa", "fa-star", "review-star-icon");
+      reviewRatingContainer.appendChild(starIcon);
+    }
+
+    // rating description
+    const ratingDescription = document.createElement("span");
+    ratingDescription.classList.add("rating-description");
+    ratingDescription.textContent = reviewData.ratingDescription;
+    reviewRatingContainer.appendChild(ratingDescription);
+
+    // review rating container to the review container
+    reviewContainer.appendChild(reviewRatingContainer);
+
+    // review title span
+    const reviewTitleSpan = document.createElement("span");
+    reviewTitleSpan.classList.add("review-title");
+    reviewTitleSpan.textContent = reviewData.reviewTitle;
+
+    // review title span to the review container
+    reviewContainer.appendChild(reviewTitleSpan);
+
+    // truncated and untruncated review content
+    for(const content of reviewData.reviewContent) {
         const reviewContentSpan = document.createElement("span");
-        reviewContentSpan.classList.add("review-content");
-        reviewContentSpan.textContent = reviewData.reviewContent;
-      
-        // review content span to the review container
+        reviewContentSpan.classList.add(content.className);
+        reviewContentSpan.textContent = content.text;
         reviewContainer.appendChild(reviewContentSpan);
+    }
 
-        // photo album container div
-        const photoAlbumContainer = document.createElement("div");
-        photoAlbumContainer.classList.add("photo-album");
+    // photo album container div
+    const photoAlbumContainer = document.createElement("div");
+    photoAlbumContainer.classList.add("photo-album");
 
-        // Add images from the reviewData.photoAlbum array (assuming it contains image URLs)
-        for (const imageUrl of reviewData.photoAlbum) {
-            const imageElement = document.createElement("img");
-            imageElement.classList.add("photo-album-photo");
-            imageElement.src = imageUrl;
-            photoAlbumContainer.appendChild(imageElement);
-        }
+    // Add images from the reviewData.photoAlbum array (assuming it contains image URLs)
+    for (const imageUrl of reviewData.photoAlbum) {
+        const imageElement = document.createElement("img");
+        imageElement.classList.add("photo-album-photo");
+        imageElement.src = imageUrl;
+        photoAlbumContainer.appendChild(imageElement);
+    }
 
-        // append photo album to the review container
-        reviewContainer.appendChild(photoAlbumContainer);
+    // append photo album to the review container
+    reviewContainer.appendChild(photoAlbumContainer);
 
+    // userbuttons-container
+    const userButtonsContainer = document.createElement("div");
+    userButtonsContainer.classList.add("userbuttons-container");
 
+    // helpful container div
+    const helpfulContainer = document.createElement("div");
+    helpfulContainer.classList.add("helpful-container");
 
-        // helpful container div
-        const helpfulContainer = document.createElement("div");
-        helpfulContainer.classList.add("helpful-container");
+    // helpful icon span
+    const helpfulIcon = document.createElement("span");
+    helpfulIcon.classList.add("helpful-icon");
+    helpfulContainer.appendChild(helpfulIcon);
 
-        // helpful icon span
-        const helpfulIcon = document.createElement("span");
-        helpfulIcon.classList.add("helpful-icon");
-        helpfulContainer.appendChild(helpfulIcon);
+    // helpful text span
+    const helpfulText = document.createElement("span");
+    helpfulText.classList.add("helpful-text");
+    helpfulText.textContent = `Helpful ${reviewData.helpfulCount}`;
+    helpfulContainer.appendChild(helpfulText);
 
-        // helpful text span
-        const helpfulText = document.createElement("span");
-        helpfulText.classList.add("helpful-text");
-        helpfulText.textContent = `Helpful ${reviewData.helpfulCount}`;
-        helpfulContainer.appendChild(helpfulText);
+    // Add some space between helpful and unhelpful elements
+    helpfulContainer.appendChild(document.createTextNode("\u00A0\u00A0\u00A0\u00A0\u00A0"));
 
-        // Add some space between helpful and unhelpful elements
-        helpfulContainer.appendChild(document.createTextNode("\u00A0\u00A0\u00A0\u00A0\u00A0"));
+    // unhelpful icon span
+    const unhelpfulIcon = document.createElement("span");
+    unhelpfulIcon.classList.add("unhelpful-icon");
+    helpfulContainer.appendChild(unhelpfulIcon);
 
-        // unhelpful icon span
-        const unhelpfulIcon = document.createElement("span");
-        unhelpfulIcon.classList.add("unhelpful-icon");
-        helpfulContainer.appendChild(unhelpfulIcon);
+    // unhelpful text span
+    const unhelpfulText = document.createElement("span");
+    unhelpfulText.classList.add("helpful-text");
+    unhelpfulText.textContent = `Unhelpful ${reviewData.unhelpfulCount}`;
+    helpfulContainer.appendChild(unhelpfulText);
 
-        // unhelpful text span
-        const unhelpfulText = document.createElement("span");
-        unhelpfulText.classList.add("helpful-text");
-        unhelpfulText.textContent = `Unhelpful ${reviewData.unhelpfulCount}`;
-        helpfulContainer.appendChild(unhelpfulText);
+    // helpful container to the review container
+    userButtonsContainer.appendChild(helpfulContainer);
 
-        // helpful container to the review container
-        reviewContainer.appendChild(helpfulContainer);
+    // userreview-buttons-container
+    const userReviewButtonsContainer = document.createElement("div");
+    userReviewButtonsContainer.classList.add("userreview-buttons-container");
 
-        // review container to the all reviews container
-        const reviewsContainer = document.getElementsByClassName("reviews-cont")[0];
-        reviewsContainer.appendChild(reviewContainer);
-      }
+    // edit-button-container
+    const editButtonContainer = document.createElement("div");
+    editButtonContainer.classList.add("edit-button-container");
+
+    // edit button
+    const editButton = document.createElement("button");
+    editButton.classList.add("edit-button");
+    editButton.dataset.bsToggle = "modal";
+    editButton.dataset.bsTarget = "#editReviewModal";
+    editButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+    editButtonContainer.appendChild(editButton);
+
+    userReviewButtonsContainer.appendChild(editButtonContainer);
+
+    // delete-button-container
+    const deleteButtonContainer = document.createElement("div");
+    deleteButtonContainer.classList.add("delete-button-container");
+
+    // delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+    deleteButtonContainer.appendChild(deleteButton);
+
+    userReviewButtonsContainer.appendChild(deleteButtonContainer);
+
+    userButtonsContainer.appendChild(userReviewButtonsContainer);
+
+    reviewContainer.appendChild(userButtonsContainer);
+
+    // review container to the all reviews container
+    const reviewsContainer = document.getElementsByClassName("reviews-cont")[0];
+    reviewsContainer.appendChild(reviewContainer);
+}
 
 document.getElementById("reviewForm").addEventListener("submit", function(event) {
     event.preventDefault();
     submitReview();
 });
+
 
 function submitReview() {
     const reviewForm = document.getElementById("reviewForm");
@@ -470,13 +509,17 @@ function submitReview() {
                     // Reset the file input field (optional)
                     fileInput.value = "";
                     reviewForm.reset();
+
+                    updatePageNumbers();
                 }
             };
             reader.readAsDataURL(file);
+            
         });
     } else {
         addReview(reviewData);
         // Reset the file input field (optional)
+        console.log("No files present");
         fileInput.value = "";
         reviewForm.reset();
     }

@@ -475,9 +475,14 @@ margin-top: 30px;
     margin-right: 16px;
 }
 
-.helpful-container {
+.userbuttons-container {
     display: flex;
     margin-top: 20px;
+    justify-content: space-between;
+}
+
+.helpful-container {
+    display: flex;
 }
 
 .helpful-icon {
@@ -587,10 +592,6 @@ margin-top: 30px;
     border-width: 0px;
 }
 
-.edit-button-container {
-    margin-top: 20px;
-}
-
 .edit-icon {
     font-size: 20px;
     color: #737373;
@@ -599,10 +600,6 @@ margin-top: 30px;
 .edit-button {
     background-color:rgba(0, 0, 0, 0);
     border-width: 0px;
-}
-
-.delete-button-container {
-    margin-top: 20px;
 }
 
 .delete-icon {
@@ -615,8 +612,16 @@ margin-top: 30px;
     border-width: 0px;
 }
 
-.feedback-buttons-container {
+.feedback-buttons-container, .userreview-buttons-container {
 display: flex;
+}
+
+.feedback-buttons-container {
+    margin-top: 20px;
+}
+
+.userreview-buttons-container {
+    align-self: flex-end;
 }
 
 .feedback-positioner {
