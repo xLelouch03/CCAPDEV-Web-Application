@@ -58,7 +58,27 @@ const UserController = {
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
-    }
+    },
+
+        // Login user with plain text password
+        loginUser: async (req, res) => {
+            const { username, password } = req.body;
+        
+            try {
+              const user = await User.findOne({ username });
+              if (!user) {
+                return res.status(404).send({ message: "User not found" });
+              }
+        
+              if (user.password !== password) {
+                return res.status(401).send({ message: "Invalid password" });
+              }
+        
+              res.send({ message: "Login successful", user });
+            } catch (err) {
+              res.status(500).send({ message: err.message });
+            }
+          },
 };
 
 export default UserController;

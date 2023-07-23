@@ -38,39 +38,35 @@ $(document).ready(function() {
       }
   });
 
-    $('#loginBtn').click(function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-      
-        var username = $('#loginUsername').val();
-        var password = $('#loginPassword').val();
-        console.log('Username:', username);
-        console.log('Password:', password); 
-        //window.location.href = '/loggedInMain';
-        if (!username || !password) {
-          alert('Please enter a valid username and password.');
-          return;
-        }
-      
-        $.ajax({
-          url: '/login',
-          method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ username: username, password: password }),
-          success: function(response) {
-          console.log('Login Success:', response); // Handle the login response here
-            if (response.message === 'Login successful') {
-              // Redirect to the main view if login is successful
-              window.location.href = '/loggedInMain';
-            } else {
-              alert('Invalid username or password. Please try again.');
-            }
-          },
-          error: function(xhr, status, error) {
-            console.error('Login Error:', xhr.responseText); // Handle login errors here
-            alert('An error occurred. Please try again.');
-          },
-        });
-      });
+  $('#loginBtn').click(function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
+    var username = $('#loginUsername').val();
+    var password = $('#loginPassword').val();
+  
+    if (!username || !password) {
+      alert('Please enter a valid username and password.');
+      return;
+    }
+  
+    $.ajax({
+      type: "POST",
+      url: "/login", // Your login route URL
+      data: { username, password },
+      success: function(response) {
+        // Handle successful login
+        console.log("Login successful:", response);
+        // Redirect the user to the logged-in main page
+        window.location.href = '/loggedInMain';
+      },
+      error: function(error) {
+        // Handle login error
+        console.error("Login failed:", error.responseJSON.message);
+        alert("Login failed. Please check your username and password.");
+      }
+    });
+  });
+  
       
       
 

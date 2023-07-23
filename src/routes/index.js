@@ -1,5 +1,5 @@
 import { Router } from 'express';
-
+import UserController from '../controllers/user.controller.js';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -33,6 +33,9 @@ router.get('/', (req, res) => {
       // ...
     });
 });
+
+router.post('/login', UserController.loginUser);
+
 
 router.get('/establishment', (req, res) => {
     // Render the Handlebars template for the establishment page without specifying a layout
