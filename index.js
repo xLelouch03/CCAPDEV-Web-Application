@@ -18,10 +18,10 @@ const collectionName = "users"; // Your collection name
 // ... (other code)
 
 // Import Mongoose Schemas
-const User = require('./models/user.model.js');
-const Establishment = require('./models/establishment.model.js');
-const Review = require('./models/review.model.js');
-const Reply = require('./models/review.model.js');
+// const User = require('./models/user.model.js');
+// const Establishment = require('./models/establishment.model.js');
+// const Review = require('./models/review.model.js');
+// const Reply = require('./models/review.model.js');
 
 const db = getDb(process.env.DB_NAME);
 async function main () {
