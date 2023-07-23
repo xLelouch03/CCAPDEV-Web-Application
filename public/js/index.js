@@ -23,6 +23,16 @@ $(document).ready(function() {
         $(this).find('input').val('');
     });
 
+    // Show/hide the image upload field based on the selected role
+    $('#role').on('change', function () {
+      const selectedRole = $(this).val();
+      if (selectedRole === 'owner') {
+          $('.owner-only').show();
+      } else {
+          $('.owner-only').hide();
+      }
+  });
+
     $('#loginBtn').click(function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
       
