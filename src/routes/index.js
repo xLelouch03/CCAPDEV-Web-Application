@@ -84,6 +84,21 @@ router.get('/profile', (req, res) => {
     });
 });
 
+router.get("/searchresult", (req, res) => {
+  let mainLayout, mainTemplate;
+  
+    mainLayout = 'searchresult';
+    mainTemplate = 'searchresults';
+
+  res.render(mainTemplate, {
+      layout: mainLayout,
+      title: "Search Results",
+      user: req.user,
+      // Other data that the template might need
+      // ...
+  });
+});
+
 router.get("/logout", (req,res) => {
     res.redirect("/");
 });
