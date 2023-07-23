@@ -46,7 +46,7 @@ router.get('/establishment', (req, res) => {
       mainTemplate = 'establishmentLogged'; 
     } else {
         mainLayout = 'establishment';
-        mainTemplate = 'establishments';
+        mainTemplate = 'establishmentLogged';
     }
   
     // Render the appropriate Handlebars template with the chosen layout

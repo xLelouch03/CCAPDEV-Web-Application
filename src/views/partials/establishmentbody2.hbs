@@ -1,0 +1,115 @@
+<div id="section1">
+    <div class="s1-container">
+        <span id="page-header">{{establishment-name}}</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gallery-item">
+                    <img src="../images/bcc1.png" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                </div>
+                <div class="col-md-4">
+                    <div class="right-column">
+                        <div class="row no-gutters">
+                            <div class="col-12 gallery-item" style="height: 50%;">
+                                <img src="../images/bcc2.png" alt="Image 2" class="img-fluid img2" style="height: 100%;">
+                            </div>
+                            <div class="col-12 gallery-item" style="height: 50%;">
+                                <img src="../images/bcc3.png" alt="Image 3" class="img-fluid img3" style="height: 100%;">
+                                <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="textbox1">
+        <p>
+            {{establishment-info}}
+        </p>
+    </div>
+</div>
+
+<div id="section2">
+    <div class="container">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/timothyjoshuatan/bookings" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+    </div>
+</div>
+
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl photo-gallery">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="galleryModalLabel">{{establishment-name}} Gallery</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{establishment-photo1}}" class="d-block mx-auto" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{establishment-photo2}}" class="d-block mx-auto" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{establishment-photo3}}" class="d-block mx-auto" alt="Image 3">
+                        </div>
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section3">
+    <div class="s3-header-container">
+        <span class="s3-header">Most Recent Reviews for {{establishment-name}}</span>
+    </div>
+    <div class="rating-container">
+        <span class="rating">{{establishment-rating}}</span>
+        <span class="rating-divisor">/5</span>
+        <div class="average-star-rating-container">
+                <i class="fa fa-star average-star-icon"></i>
+                <i class="fa fa-star average-star-icon"></i>
+                <i class="fa fa-star average-star-icon"></i>
+                <i class="fa fa-star average-star-icon"></i>
+                <i class="fa fa-star average-star-icon"></i>
+        </div>
+        <span class="review-count">{{review-count}} reviews</span>
+    </div>
+    <div class="options-container">
+        <button class="review-filter" id="all" onclick="showAllReviews()">All</button>
+        <button class="review-filter" id="photos" onclick="showPhotoReviews()">With Photos Only</button>
+        <div class="dropdown dropdown-review-filter-container">
+            <button class="dropdown-review-filter btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Top reviews &nbsp;&nbsp;
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Top reviews</a></li>
+                <li><a class="dropdown-item" href="#">Most recent</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="pages-container">
+        <button class="page-previous-button">&lt;</button>
+        <div class="page-numbers-container">
+            <!-- Page buttons will be dynamically added here -->
+        </div>
+        <button class="page-next-button" id="next-page">&gt;</button>
+    </div>         
+</div>
