@@ -43,8 +43,10 @@ $(document).ready(function() {
       
         var username = $('#loginUsername').val();
         var password = $('#loginPassword').val();
-        window.location.href = '/loggedInMain';
-        /*if (!username || !password) {
+        console.log('Username:', username);
+        console.log('Password:', password); 
+        //window.location.href = '/loggedInMain';
+        if (!username || !password) {
           alert('Please enter a valid username and password.');
           return;
         }
@@ -55,7 +57,7 @@ $(document).ready(function() {
           contentType: 'application/json',
           data: JSON.stringify({ username: username, password: password }),
           success: function(response) {
-            console.log(response); // Handle the login response here
+          console.log('Login Success:', response); // Handle the login response here
             if (response.message === 'Login successful') {
               // Redirect to the main view if login is successful
               window.location.href = '/loggedInMain';
@@ -64,10 +66,10 @@ $(document).ready(function() {
             }
           },
           error: function(xhr, status, error) {
-            console.error(xhr.responseText); // Handle login errors here
+            console.error('Login Error:', xhr.responseText); // Handle login errors here
             alert('An error occurred. Please try again.');
           },
-        });*/
+        });
       });
       
       

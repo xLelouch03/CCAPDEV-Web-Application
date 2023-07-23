@@ -46,7 +46,7 @@ router.get('/establishment', (req, res) => {
       mainTemplate = 'establishmentLogged'; 
     } else {
         mainLayout = 'establishment';
-        mainTemplate = 'establishmentLogged';
+        mainTemplate = 'establishments';
     }
   
     // Render the appropriate Handlebars template with the chosen layout
@@ -84,20 +84,31 @@ router.get('/profile', (req, res) => {
     });
 });
 
-router.get("/searchresult", (req, res) => {
-  let mainLayout, mainTemplate;
-  
-    mainLayout = 'searchresult';
-    mainTemplate = 'searchresults';
+router.get('/searchresult', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
 
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+  if (isAuthenticated) {
+    mainLayout = 'searchresult';
+    mainTemplate = 'searchresultsLogged'; 
+  } else {
+      mainLayout = 'searchresult';
+      mainTemplate = 'searchresults';
+  }
+
+  // Render the appropriate Handlebars template with the chosen layout
   res.render(mainTemplate, {
-      layout: mainLayout,
-      title: "Search Results",
-      user: req.user,
-      // Other data that the template might need
-      // ...
+    layout: mainLayout,
+    title: "Search Results",
+    user: req.user,
+    // Other data that the template might need
+    // ...
   });
 });
+
 
 router.get("/logout", (req,res) => {
     res.redirect("/");

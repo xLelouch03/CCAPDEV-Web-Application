@@ -42,10 +42,10 @@
     var searchInput = document.querySelector('.search-input').value;
     
     if (selectedCategory === 'destination') {
-        window.location.href = 'static/guestviews/searchresults.html';
+        window.location.href = '/searchresult';
     } else if (selectedCategory === 'review') {
         // Redirect to the review search results page
-        window.location.href = 'static/guestviews/searchreviews.html';
+        window.location.href = '/searchresult';
     }
     }
 </script>
@@ -143,7 +143,7 @@
         <div class="owl-carousel owl-theme">
 
             <div class="destination-slide"> 
-            <a href="balesin-island-club.html">
+            <a href="/establishment">
                 <img src="static/images/balesin.png" class="img-slider">
                 <div class="image-text">
                     <p> Private beach resort · Quezon</p> <h4> Balesin </h4>
@@ -153,7 +153,7 @@
             </div>
 
             <div class="destination-slide">
-                <a href="masungi-georeserve.html">
+                <a href="/establishment">
                 <img src="static/images/masungi.png" class="img-slider">
                 <div class="image-text">
                     <p> Geological park · Rizal</p> <h4> Masungi Georeserve </h4>
@@ -162,7 +162,7 @@
             </a></div>
 
             <div class="destination-slide">
-                <a href="manila-ocean-park.html">
+                <a href="/establishment">
                 <img src="static/images/ocean park.png" class="img-slider">
                 <div class="image-text">
                     <p> Oceanarium · Manila</p> <h4> Manila Ocean Park </h4>
@@ -172,7 +172,7 @@
             </a></div>
 
             <div class="destination-slide">
-                <a href="baguio-country-club.html">
+                <a href="/establishment">
                 <img src="static/images/baguio country club.png" class="img-slider">
                 <div class="image-text">
                     <p> Retreat and historical landmark  · Baguio</p> <h4> Baguio Country Club </h4>
@@ -182,7 +182,7 @@
 
 
             <div class="destination-slide">
-                <a href="the-manila-hotel.html">
+                <a href="/establishment">
                 <img src="static/images/manila hotel.png" class="img-slider">
                 <div class="image-text">
                     <p> Private hotel · Manila</p> <h4> Manila Hotel</h4>
@@ -222,7 +222,7 @@
         </div>
         
             <div class="ctr"> 
-                <a href="/establishment"><div class="btn-see">   See More </div></a> 
+                <a href="/searchresult"><div class="btn-see">   See More </div></a> 
         </div>
 
     </div> 
