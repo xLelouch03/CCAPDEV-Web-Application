@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('#logout').click(function() {
     // Redirect the user to the index page when the logout button is clicked
-    window.location.href = '/';
+    window.location.href = '/index';
   });
 });
     

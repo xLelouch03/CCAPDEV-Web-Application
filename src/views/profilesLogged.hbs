@@ -1,2 +1,73 @@
-{{>navbarLogged}}
-{{>profileContent}}
+<div class="container">
+        <div class="row">
+            <div class="col-lg-3 left-container">
+                <div class="profile-container2">
+                    <img src="../images/sample_review_1/pfp.png" alt="Profile Picture" class="profile-picture2">
+                    <h4 class="name">{{profile-name}}</h4>
+                    <h6 class="description">{{profile-desc}}</h6>
+                    
+                    <ul class="nav flex-column nav-pills mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9 right-container">
+                <div class="content-container">
+                    <div class="tab-content">
+                        <div id="juanderlast-points" class="tab-pane fade show active">
+                            <h1>Juanderlast Points</h1>
+                            <div>
+                                Currently, you have {{points}} Juanderlast Points!
+                            </div>
+                        </div>
+                        <div id="promo-codes" class="tab-pane fade">
+                            <h1>Promo Codes</h1>
+                            <div>
+                                No promo codes at the moment. Watch out for it!
+                            </div>
+                        </div>
+                        <div id="reviews" class="tab-pane fade">
+                            <h1>Reviews</h1>
+                            <div class="reviews-container">
+                              <!-- Review containers will be added here -->
+                            </div>
+                        </div>
+                        
+                        <div id="update-user-info" class="tab-pane fade">
+                            <h1>Update User Info</h1>
+                            <form id="updateForm" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="profilePicture" class="form-label">Avatar</label>
+                                    <input type="file" class="form-control" id="profilePicture" accept="image/*"> <br>
+                                    <img id="profilePictureDisplay" class="profile-picture" src="{{pfp}}" alt="Profile Picture">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Enter your name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="userDescription" placeholder="Enter your description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="save">Save</button>
+                                </form>
+                                <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">User info updated successfully.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    

@@ -3,20 +3,15 @@
 $(document).ready(function() {
     // Switch to register form
     $('#registerLink').click(function() {
-      $('#loginModal').modal('hide');
-      $('#registerModal').modal('show');
-      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
-      $('.modal-backdrop').remove(); // Remove the modal backdrop
+        $('#loginModal').modal('hide');
+        $('#registerModal').modal('show');
     });
 
     // Switch to login form
     $('#loginLink').click(function() {
-      $('#registerModal').modal('hide');
-      $('#loginModal').modal('show');
-      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
-      $('.modal-backdrop').remove(); // Remove the modal backdrop
+        $('#registerModal').modal('hide');
+        $('#loginModal').modal('show');
     });
-
 
     // Clear input fields and checkboxes on modal close
     $('#loginModal').on('hidden.bs.modal', function() {
@@ -27,16 +22,6 @@ $(document).ready(function() {
     $('#registerModal').on('hidden.bs.modal', function() {
         $(this).find('input').val('');
     });
-
-    // Show/hide the image upload field based on the selected role
-    $('#role').on('change', function () {
-      const selectedRole = $(this).val();
-      if (selectedRole === 'owner') {
-          $('.owner-only').show();
-      } else {
-          $('.owner-only').hide();
-      }
-  });
 
     $('#loginBtn').click(function(event) {
         event.preventDefault(); // Prevent the default form submission behavior

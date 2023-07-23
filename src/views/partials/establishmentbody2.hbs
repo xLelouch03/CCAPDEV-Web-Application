@@ -104,51 +104,6 @@
         </div>
     </div>
 
-    <div class="review-positioner">
-        <div class="review-container">
-                <div class="profile-container">
-                    <img class="profile-picture" src="{{review-pfp}}">
-                    <div class="post-details-container">
-                        <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
-                        <span class="post-date">Last edited: {{review-date}}</span>
-                    </div>
-                </div>
-                <div class="review-rating-container">
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                </div>
-                <span class="review-title">
-                    {{review-title}}
-                </span>
-                <span class="review-content">
-                    {{review-content-truncated}}
-
-                    <span class="untruncate-button">Read more</span>
-                </span>
-                <span class="review-content untruncated-review">
-                    {{review-content}}
-
-                    <span class="truncate-button">Read less</span>
-                </span>
-                <span class="edit-review-icon-container">
-                <i class="fa fa-edit edit-review-icon" data-bs-toggle="modal" data-bs-target="#editReviewModal"></i>
-                </span>
-                <div class="photo-album">
-                    <img class="photo-album-photo" src="{{review-photo1}}">
-                    <img class="photo-album-photo" src="{{review-photo2}}">
-                </div>
-                <div class="helpful-container">
-                    <span class="helpful-icon" data-count={{helpful-count}}></span>
-                    <span class="helpful-text">Helpful <span class="helpful-count">{{helpful-count}}</span></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="unhelpful-icon" data-count={{unhelpful-count}}></span>
-                    <span class="helpful-text">Unhelpful <span class="unhelpful-count">{{unhelpful-count}}</span></span>
-                </div>
-        </div>
-    </div>
 
     <div class="pages-container">
         <button class="page-previous-button">&lt;</button>
@@ -158,4 +113,3 @@
         <button class="page-next-button" id="next-page">&gt;</button>
     </div>         
 </div>
-<script src="static/js/indivpage.js"></script>
