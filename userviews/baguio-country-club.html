@@ -261,14 +261,110 @@
                                 <span class="post-date">29 May</span>
                             </div>
                         </div>
-                        <span class="review-content">
+                        <span class="feedback-content">
                             Thank you for your feedback, David!
                         </span>
                     </div>
                 </div>
             
             <!-- END OF REVIEW 1 -->
-            
+
+                        <!-- REVIEW 1 -->
+                        <div class="review-container">
+                            <div class="profile-container">
+                                <img class="profile-picture" src="../images/sample_review_1/pfp.png">
+                                <div class="post-details-container">
+                                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">David</a></span>
+                                    <span class="post-date"> 29 May</span>
+                                </div>
+                            </div>
+                            <div class="review-rating-container">
+                                <i class="fa fa-star review-star-icon"></i>
+                                <i class="fa fa-star review-star-icon"></i>
+                                <i class="fa fa-star review-star-icon"></i>
+                                <i class="fa fa-star review-star-icon"></i>
+                                <i class="fa fa-star review-star-icon"></i>
+                                <span class="rating-description">Highly recommended</span>
+                            </div>
+                            <span class="review-title">
+                            Second
+                            </span>
+                            <span class="review-content">
+                            Baguio Country Club exceeded all my expectations and provided an unforgettable experience. Nestled amidst the picturesque landscapes of Baguio, this enchanting retreat offers a perfect blend of natural beauty, luxury, and warm hospitality.
+        
+                            From the moment I arrived, I was greeted with genuine smiles and impeccable service. The staff went above and beyond to ensure my comfort and satisfaction throughout my stay. The rooms were spacious, elegantly furnished, and offered breathtaking views of the surrounding mountains.
+        
+                            One of the highlights of my visit was the golf course. As an avid golfer, I was thrilled to play on the...
+        
+                            <span class="untruncate-button">Read more</span>
+                            </span>
+                            <span class="review-content untruncated-review">
+                            Baguio Country Club exceeded all my expectations and provided an unforgettable experience. Nestled amidst the picturesque landscapes of Baguio, this enchanting retreat offers a perfect blend of natural beauty, luxury, and warm hospitality.
+        
+                            From the moment I arrived, I was greeted with genuine smiles and impeccable service. The staff went above and beyond to ensure my comfort and satisfaction throughout my stay. The rooms were spacious, elegantly furnished, and offered breathtaking views of the surrounding mountains.
+        
+                            One of the highlights of my visit was the golf course. As an avid golfer, I was thrilled to play on the beautifully maintained fairways and greens. The challenging layout, coupled with the fresh mountain air, made each round an absolute pleasure.
+        
+                            The dining options at Baguio Country Club were equally impressive. The culinary team crafted exquisite dishes that tantalized my taste buds. From sumptuous local delicacies to international cuisines, there was something to satisfy every palate. The cozy ambiance of the restaurants added to the overall dining experience.
+        
+                            The club's amenities were top-notch. I took advantage of the fitness center, which was well-equipped with modern equipment, allowing me to maintain my workout routine even while on vacation. The swimming pool provided a refreshing escape, and the spa offered rejuvenating treatments that left me feeling relaxed and pampered.
+        
+                            Baguio Country Club is truly a haven for relaxation and recreation. Whether you're seeking a peaceful getaway, a memorable golfing experience, or simply a place to unwind, this exceptional resort delivers on every front. I can't wait to return and create more wonderful memories in this idyllic setting.
+                        
+                            <span class="truncate-button">Read less</span>
+                            </span>
+                            <div class="photo-album">
+                                <img class="photo-album-photo" src="../images/sample_review_1/bccreview1.jpg">
+                                <img class="photo-album-photo" src="../images/sample_review_1/bccreview2.jpg">
+                            </div>
+        
+                            <div class="userbuttons-container">
+                                <div class="helpful-container">
+                                <span class="helpful-icon"></span>
+                                <span class="helpful-text">Helpful 999</span>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span class="unhelpful-icon"></span>
+                                <span class="helpful-text">Unhelpful 0</span>
+                                </div>
+        
+                                <div class="userreview-buttons-container">
+        
+                                    <div class="edit-button-container">
+                                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="delete-button-container" data-bs-toggle="modal">
+                                        <button class="delete-button">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+        
+                                </div>
+        
+                            </div>
+        
+                        </div>
+        
+                        <div class="feedback-positioner">
+                            <div class="feedback-container">
+                                <div class="profile-container">
+                                    <img class="profile-picture" src="../images/bcc1.jpg">
+                                    <div class="post-details-container">
+                                        <span class="profile-name"><a href="./ownerprofile1.html">Baguio Country Club</a></span>
+                                        <span class="post-date">29 May</span>
+                                    </div>
+                                </div>
+                                <span class="feedback-content">
+                                    Thank you for your feedback, David!
+                                </span>
+                            </div>
+                        </div>
+                    
+                    <!-- END OF REVIEW 1 -->
+
+           
             </div>
 
           <!--  <div class="pages-container">
@@ -339,35 +435,25 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <form>
+                        <form id="reviewEditForm">
                             <div class="mb-3">
                                 <label for="reviewTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="reviewTitle" required>
+                                <input type="text" class="form-control" id="editReviewTitle" required>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Rating</label>
-                                <div class="reviewer-rating-container">
-                                    <i class="fa fa-star fa-xl reviewer-rating-unselected reviewer-rating-star"></i>
-                                    <i class="fa fa-star fa-xl reviewer-rating-unselected reviewer-rating-star"></i>
-                                    <i class="fa fa-star fa-xl reviewer-rating-unselected reviewer-rating-star"></i>
-                                    <i class="fa fa-star fa-xl reviewer-rating-unselected reviewer-rating-star"></i>
-                                    <i class="fa fa-star fa-xl reviewer-rating-unselected reviewer-rating-star"></i>
-                                </div>
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="reviewContent" class="form-label">Review</label>
-                                <textarea class="form-control" id="reviewContent" rows="5" required></textarea>
+                                <textarea class="form-control" id="editReviewContent" rows="5" required></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="reviewPhoto" class="form-label">Upload Photo</label>
-                                <input type="file" class="form-control" id="reviewPhoto">
-                            </div>
-                        </form>
+                            
+                        
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary review-cancel-button" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary review-submit-button">Apply</button>
                         </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
