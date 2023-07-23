@@ -11,6 +11,7 @@ import router from "./src/routes/index.js";
 import { connectToMongo, getDb } from "./src/models/conn.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import UserController from './src/controllers/user.controller.js';
 
 const collectionName = "users"; // Your collection name
 
@@ -308,33 +309,44 @@ async function main () {
     const reviewIds = await fetchReviewIds();
     await insertSampleReplies(reviewIds);
 
-    app.post('/login', express.json(), async (req, res) => {
-      const { username, password } = req.body;
-    
-      console.log('Received login request:', { username, password });
-    
+    app.get('/:username', async (req, res) => {
+      const { username } = req.params;
+  
       try {
-        // Find the user in the database with the provided username
-        const user = await db.collection(collectionName).findOne({ username: username });
-    
-        if (user) {
-          // Compare the provided password with the stored password (plain text)
-          if (user.password === password) {
-            // Login successful, you can create a session or generate a JWT here
-            res.status(200).json({ message: 'Login successful', user: user });
-          } else {
-            // Incorrect password
-            res.status(401).json({ message: 'Invalid password' });
-          }
-        } else {
-          // User does not exist
-          res.status(401).json({ message: 'Invalid username or password' });
-        }
+          // Fetch the user data from the database using the UserController or the User model directly
+          const profileData = await User.findOne({ username }); // Assuming you use the User model
+          // Alternatively, you can use UserController.getUser(username) if the function accepts the username as a parameter
+  
+          // Render the profile.hbs template with the profileData as the context
+          res.render('profile', { title: 'User Profile', profileData });
       } catch (error) {
-        console.error('Error while logging in:', error);
-        res.status(500).json({ message: 'Internal server error' });
+          console.error('Error fetching user data:', error);
+          res.status(500).json({ message: 'Internal server error' });
       }
-    });
+  });
+
+  app.post('/login', express.json(), async (req, res) => {
+    const { username, password } = req.body;
+
+    console.log('Received login request:', { username, password });
+
+    try {
+        // Find the user in the database with the provided username
+        const user = await UserController.getUserByUsername(username);
+
+        if (user) {
+          // Login successful
+          res.status(200).json({ message: 'Login successful', user: user });
+      } else {
+          // User does not exist or incorrect password
+          res.status(401).json({ message: 'Invalid username or password' });
+      }
+  } catch (error) {
+      console.error('Error while logging in:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
       
         
     // Signup endpoint
