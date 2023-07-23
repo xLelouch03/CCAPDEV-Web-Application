@@ -32,11 +32,11 @@
                     <img class="photo-album-photo" src="{{review-photo2}}">
                 </div>
                 <div class="helpful-container">
-                    <span class="helpful-icon"></span>
-                    <span class="helpful-text">Helpful {{helpful-count}}</span>
+                    <span class="helpful-icon" data-count={{helpfulFeedback}}></span>
+                    <span class="helpful-text">Helpful <span class="helpful-count">{{helpfulFeedback}}</span></span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="unhelpful-icon"></span>
-                    <span class="helpful-text">Unhelpful {{unhelpful-count}}</span>
+                    <span class="unhelpful-icon" data-count={{helpfulFeedback}}></span>
+                    <span class="helpful-text">Unhelpful <span class="unhelpful-count">{{unhelpfulFeedback}}</span></span>
                 </div>
         </div>
     </div>

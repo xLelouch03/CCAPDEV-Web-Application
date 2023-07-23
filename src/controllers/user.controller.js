@@ -25,11 +25,22 @@ const UserController = {
         }
     },
 
-    // Update a user by their username
+    // Update a user's username
     updateUser: async (req, res) => {
         const { username } = req.params;
+        const { newUsername } = req.body;
+        const { avatar } = req.body;
+        const { profileDescription } = req.body;
         try {
-            const user = await User.findOneAndUpdate({ username }, req.body, { new: true });
+            const user = await User.findOneAndUpdate(
+                                    { username: username },
+                                    {
+                                        username: newUsername,
+                                        avatar: avatar,
+                                        profileDescription: profileDescription
+                                    },
+                                    { new: true }
+                               );
             if (!user) return res.status(404).send({ message: "User not found" });
             res.send(user);
         } catch (err) {
