@@ -8,7 +8,7 @@ import exphbs from 'express-handlebars';
 // Routes modules
 import router from "./src/routes/index.js";
 //DB modules
-import { connectToMongo, getDb } from "./src/db/conn.js";
+import { connectToMongo, getDb } from "./src/models/conn.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
