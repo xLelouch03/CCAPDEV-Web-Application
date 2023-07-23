@@ -7,7 +7,7 @@ import express from 'express';
 import exphbs from 'express-handlebars';
 // Routes modules
 import router from "./src/routes/index.js";
-//DB modules
+// DB modules
 import { connectToMongo, getDb } from "./src/models/conn.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
@@ -16,13 +16,11 @@ const collectionName = "users"; // Your collection name
 
 // ... (other code)
 
-// Mongoose Schema and Model
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-const User = mongoose.model("User", userSchema);
+// Import Mongoose Schemas
+const User = require('./models/user.model.js');
+const Establishment = require('./models/establishment.model.js');
+const Review = require('./models/review.model.js');
+const Reply = require('./models/review.model.js');
 
 const db = getDb(process.env.DB_NAME);
 async function main () {
