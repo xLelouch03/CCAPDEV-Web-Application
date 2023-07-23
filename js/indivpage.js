@@ -294,8 +294,6 @@ function getCurrentDate() {
     return currentDate;
 }
 
-/* REVIEWS - RELATED */
-
 function addReview(reviewData) {
     // review container div
     const reviewContainer = document.createElement("div");
@@ -312,36 +310,37 @@ function addReview(reviewData) {
     profileContainer.appendChild(profilePictureImg);
 
     // post details container div
-    const postDetailsContainer = document.createElement("div");
-    postDetailsContainer.classList.add("post-details-container");
+const postDetailsContainer = document.createElement("div");
+postDetailsContainer.classList.add("post-details-container");
 
-    // profile name span
-    const profileNameSpan = document.createElement("span");
-    profileNameSpan.classList.add("profile-name");
+// profile name span
+const profileNameSpan = document.createElement("span");
+profileNameSpan.classList.add("profile-name");
 
-    // profile name link
-    const profileNameLink = document.createElement("a");
-    profileNameLink.href = reviewData.profileLink;
-    profileNameLink.style.color = "black";
-    profileNameLink.style.textDecoration = "none";
-    profileNameLink.textContent = reviewData.profileName;
+// profile name link
+const profileNameLink = document.createElement("a");
+profileNameLink.href = reviewData.profileLink;
+profileNameLink.style.color = "black";
+profileNameLink.style.textDecoration = "none";
+profileNameLink.textContent = reviewData.profileName;
 
-    // Add the link to the profileNameSpan
-    profileNameSpan.appendChild(profileNameLink);
+// Add the link to the profileNameSpan
+profileNameSpan.appendChild(profileNameLink);
 
-    // postDateSpan
-    const postDateSpan = document.createElement("span");
-    postDateSpan.classList.add("post-date");
-    postDateSpan.textContent = reviewData.postDate;
+// Add profileNameSpan to the postDetailsContainer
+postDetailsContainer.appendChild(profileNameSpan);
 
-    // Add postDateSpan to the profileNameSpan
-    profileNameSpan.appendChild(postDateSpan);
+// postDateSpan
+const postDateSpan = document.createElement("span");
+postDateSpan.classList.add("post-date");
+postDateSpan.textContent = reviewData.postDate;
 
-    // Add profileNameSpan to the postDetailsContainer
-    postDetailsContainer.appendChild(profileNameSpan);
+// Add postDateSpan to the postDetailsContainer
+postDetailsContainer.appendChild(postDateSpan);
 
-    // Add postDetailsContainer to the review container
-    profileContainer.appendChild(postDetailsContainer);
+// Add postDetailsContainer to the review container
+profileContainer.appendChild(postDetailsContainer);
+
 
     // Adding profileContainer to the reviewContainer
     reviewContainer.appendChild(profileContainer);
@@ -374,14 +373,14 @@ function addReview(reviewData) {
     // review title span to the review container
     reviewContainer.appendChild(reviewTitleSpan);
 
-    // truncated and untruncated review content
-    for(const content of reviewData.reviewContent) {
-        const reviewContentSpan = document.createElement("span");
-        reviewContentSpan.classList.add(content.className);
-        reviewContentSpan.textContent = content.text;
-        reviewContainer.appendChild(reviewContentSpan);
-    }
+    // review title span
+    const reviewContentSpan = document.createElement("span");
+    reviewContentSpan.classList.add("review-content");
+    reviewContentSpan.textContent = reviewData.reviewContent;
 
+    // review title span to the review container
+    reviewContainer.appendChild(reviewContentSpan);
+    
     // photo album container div
     const photoAlbumContainer = document.createElement("div");
     photoAlbumContainer.classList.add("photo-album");
@@ -447,6 +446,7 @@ function addReview(reviewData) {
     editButton.dataset.bsToggle = "modal";
     editButton.dataset.bsTarget = "#editReviewModal";
     editButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+
     editButtonContainer.appendChild(editButton);
 
     userReviewButtonsContainer.appendChild(editButtonContainer);
@@ -475,6 +475,9 @@ function addReview(reviewData) {
 document.getElementById("reviewForm").addEventListener("submit", function(event) {
     event.preventDefault();
     submitReview();
+    var modal = document.getElementById('reviewModal');
+    var bootstrapModal = bootstrap.Modal.getInstance(modal);
+    bootstrapModal.hide();
 });
 
 
@@ -508,9 +511,7 @@ function submitReview() {
                     addReview(reviewData);
                     // Reset the file input field (optional)
                     fileInput.value = "";
-                    reviewForm.reset();
 
-                    updatePageNumbers();
                 }
             };
             reader.readAsDataURL(file);
@@ -521,8 +522,110 @@ function submitReview() {
         // Reset the file input field (optional)
         console.log("No files present");
         fileInput.value = "";
-        reviewForm.reset();
     }
+
+    fileInput.value = "";
+    reviewForm.reset();
+
     updatePageNumbers();
-    //closeModal();
+    
   }
+
+ 
+
+// Function to handle editing feedback
+function editReview(e) {
+    // Prevent form from submitting normally
+    e.preventDefault();
+  
+    // Get new feedback from textarea
+    var newReview = document.getElementById('editReviewContent').value;
+    var newTitle = document.getElementById('editReviewTitle').value;
+  
+    if (newReview.trim() && newTitle.trim() !== '') {
+      // Update the feedback of the activeFeedback element
+      activeReview.textContent = newReview;
+      activeTitle.textContent = newTitle;
+  
+      // Dismiss the modal
+      var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
+      editReviewModal.hide();
+    } else {
+      alert("Review title and content can't be empty");
+    }
+  }
+  
+  // Attach submit event to feedback edit form
+  document.getElementById('reviewEditForm').addEventListener('submit', editReview);
+  
+  // Reset the textarea when the modal hides
+  document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('editReviewContent').value = '';
+  });
+  
+ 
+// Initialize activeFeedback variable
+let activeReview;
+let activeTitle;
+
+// Attach click event to the reviews container instead of individual buttons
+document.querySelector(".reviews-cont").addEventListener('click', function(event) {
+    // Check whether the clicked element is an edit button
+    if (event.target.closest('.edit-button')) {
+      activeReview = event.target.closest('.review-container').querySelector('.review-content');
+      activeTitle= event.target.closest('.review-container').querySelector('.review-title');
+      document.getElementById('editReviewContent').value = activeReview.textContent;
+      document.getElementById('editReviewTitle').value = activeTitle.textContent;
+    }
+  });
+  
+
+
+// Function to handle editing feedback
+function editReview(e) {
+  // Prevent form from submitting normally
+  e.preventDefault();
+
+  // Get new feedback from textarea
+  var newReview = document.getElementById('editReviewContent').value;
+  var newTitle = document.getElementById('editReviewTitle').value;
+
+  if (newReview.trim() && newTitle.trim() !== '') {
+    // Update the feedback of the activeFeedback element
+    activeReview.textContent = newReview;
+    activeTitle.textContent = newTitle;
+
+    // Dismiss the modal
+    var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
+    editReviewModal.hide();
+  } else {
+    alert("Review title and content can't be empty");
+  }
+}
+
+// Attach submit event to feedback edit form
+document.getElementById('reviewEditForm').addEventListener('submit', editReview);
+
+// Reset the textarea when the modal hides
+document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
+  document.getElementById('editReviewContent').value = '';
+});
+
+
+// Attach click event to the reviews container to handle delete buttons
+document.querySelector(".reviews-cont").addEventListener('click', function(event) {
+    // Check whether the clicked element is a delete button
+    if (event.target.closest('.delete-button')) {
+      // Find the closest review-container to the button that was clicked
+      const reviewContainer = event.target.closest('.review-container');
+      // Check if the next sibling is a feedback-positioner
+    const nextElement = reviewContainer.nextElementSibling;
+    if (nextElement && nextElement.classList.contains('feedback-positioner')) {
+        nextElement.remove();
+    }
+
+    // Remove the review-container element from the DOM
+    reviewContainer.remove();
+    }
+  });
+  
