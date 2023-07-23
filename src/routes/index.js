@@ -71,7 +71,7 @@ router.get('/profile', (req, res) => {
       mainTemplate = 'profilesLogged'; 
     } else {
         mainLayout = 'profile';
-        mainTemplate = 'profiles';
+        mainTemplate = 'profilesLogged';
     }
   
     // Render the appropriate Handlebars template with the chosen layout
@@ -85,9 +85,7 @@ router.get('/profile', (req, res) => {
 });
 
 router.get("/logout", (req,res) => {
-    res.render("index", {
-        title: "Juanlast Home Page"
-    });
+    res.redirect("/");
 });
 
 router.get("/home", (req,res) => {
