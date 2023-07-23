@@ -12,11 +12,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String, // You can store the URL of the image
-<<<<<<< HEAD
-    default: '../../images/default-avatar' // Replace this with the URL of your default avatar image
-=======
     default: 'default-avatar-url' // Replace this with the URL of your default avatar image
->>>>>>> parent of 8393d12 (Commit)
   },
   profileDescription: {
     type: String,
