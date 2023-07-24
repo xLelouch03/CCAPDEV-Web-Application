@@ -10,9 +10,10 @@ import exphbs from 'express-handlebars';
 // Routes modules
 import router from "./src/routes/index.js";
 import cors from 'cors';
+
 // DB modules
 import { connectToMongo } from "./src/models/conn.js";
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import UserController from './src/controllers/user.controller.js';
 import userRouter from './src/routes/user.router.js';
 // Importing Mongoose schemas
@@ -261,6 +262,11 @@ async function main () {
             review: reviewIds[1],
             establishment: establishmentIds[0],
             body: "We're glad you enjoyed your visit!"
+          },
+          {
+            review: reviewIds[4],
+            establishment: establishmentIds[0],
+            body: "Thanks for the feedback. We will do our best to improve!"
           },
           {
             review: reviewIds[6],

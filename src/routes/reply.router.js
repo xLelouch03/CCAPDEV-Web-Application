@@ -4,15 +4,12 @@ import ReplyController from '../controllers/reply.controller.js';
 const router = express.Router();
 
 // Create new reply
-router.post('/', ReplyController.createReply);
-
-// Get reply details
-router.get('/:id', ReplyController.getReply);
+router.post('/establishments/:establishment/reply', ReplyController.createReply);
 
 // Update reply details
-router.put('/:id', ReplyController.updateReply);
+router.put('/establishments/:establishment/reply', ReplyController.updateReply);
 
 // Delete a reply
-router.delete('/:id', ReplyController.deleteReply);
+router.delete('/establishments/:establishment/reply', ReplyController.deleteReply);
 
 export default router;
