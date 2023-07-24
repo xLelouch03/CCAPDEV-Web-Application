@@ -1,10 +1,11 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3 left-container">
-            <div class="profile-container2">
-                <img src="{{profileData.avatar}}" alt="Profile Picture" class="profile-picture2">
-                <h4 class="name">{{profileData.username}}</h4>
-                <h6 class="description">{{profileData.profileDescription}}</h6>
+<div id="profile-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 left-container">
+                <div class="profile-container2">
+                    <img src="{{avatar}}" alt="Profile Picture" class="profile-picture2">
+                    <h4 class="name">{{username}}</h4>
+                    <h6 class="description">{{profileDescription}}</h6>
                 
                 <ul class="nav flex-column nav-pills mt-3">
                     <li class="nav-item">
@@ -42,17 +43,64 @@
                         <h1>Reviews</h1>
                         <div class="reviews-container">
                             <!-- Review containers will be added here -->
-                            {{#each profileData.reviews}}
-                                <div class="review">
-                                    <h3>{{this.title}}</h3>
-                                    <p>{{this.body}}</p>
-                                    <p>Rating: {{this.rating}}</p>
-                                    <!-- Add other review properties as needed -->
+                            {{#each reviews}}
+                                <div class="review-positioner">
+                                    <div class="review-container">
+                                        <div class="profile-container">
+                                            <img class="profile-picture" src="{{review-pfp}}">
+                                            <div class="post-details-container">
+                                                <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
+                                                <span class="post-date">Last edited: {{review-date}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating-container">
+                                            <!-- Render the review rating stars based on the 'rating' value -->
+                                            {{#each (range rating)}}
+                                                <i class="fa fa-star review-star-icon"></i>
+                                            {{/each}}
+                                        </div>
+                                        <span class="review-title">
+                                            {{review-title}}
+                                        </span>
+                                        <span class="review-content">
+                                            {{review-content-truncated}}
+                                            <span class="untruncate-button">Read more</span>
+                                        </span>
+                                        <span class="review-content untruncated-review">
+                                            {{review-content}}
+                                            <span class="truncate-button">Read less</span>
+                                        </span>
+                                        <div class="photo-album">
+                                            <img class="photo-album-photo" src="{{review-photo1}}">
+                                            <img class="photo-album-photo" src="{{review-photo2}}">
+                                        </div>
+                                        <div class="userbuttons-container">
+                                            <div class="helpful-container">
+                                                <span class="helpful-icon"></span>
+                                                <span class="helpful-text">Helpful {{helpfulFeedback}}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span class="unhelpful-icon"></span>
+                                                <span class="helpful-text">Unhelpful {{unhelpfulFeedback}}</span>
+                                            </div>
+                                            <div class="userreview-buttons-container">
+                                                <div class="edit-button-container">
+                                                    <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="delete-button-container" data-bs-toggle="modal">
+                                                    <button class="delete-button">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             {{/each}}
                         </div>
                     </div>
-                    
+
                     <div id="update-user-info" class="tab-pane fade">
                         <h1>Update User Info</h1>
                         <form id="updateForm" enctype="multipart/form-data">
@@ -78,3 +126,8 @@
         </div>            
     </div>
 </div>
+</div>
+<script src="static/js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="static/js/nav.js"></script>

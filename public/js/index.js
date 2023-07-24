@@ -56,11 +56,17 @@ $(document).ready(function() {
     };
 
     // Add additional fields based on the role
-    if (role === 'owner') {
-        requestData.establishmentPhotos = $('#establishmentPhotos').val();
-    } else {
-        requestData.avatar = $('#avatar').val();
-    }
+  if (role === 'owner') {
+    // Extract the file name from the establishmentPhotos input field
+    const establishmentPhotosInput = $('#establishmentPhotos')[0];
+    const establishmentPhotosFileName = establishmentPhotosInput.files[0].name;
+    requestData.establishmentPhotos = `static/images/${establishmentPhotosFileName}`;
+  } else {
+    // Extract the file name from the avatar input field
+    const avatarInput = $('#avatar')[0];
+    const avatarFileName = avatarInput.files[0].name;
+    requestData.avatar = `static/images/${avatarFileName}`;
+  }
     // Make the AJAX request
     $.ajax({
         type: 'POST',
@@ -120,4 +126,119 @@ $(document).ready(function() {
        window.location.href = '/';
     });
 
+
+    // Update the profile dropdown options with fetched usernames
+  function updateProfileDropdownOptions(users) {
+    const userDropdownList = $("#userDropdownList");
+    userDropdownList.empty();
+
+    users.forEach((user) => {
+      const userOption = $(`<li class="dropdown-item user-option" data-user-id="${user._id}">${user.username}</li>`);
+      userDropdownList.append(userOption);
+    });
+  }
+
+  // Fetch usernames from the server
+  async function fetchUsernames() {
+    try {
+      const response = await fetch('/users'); // Make a GET request to your /users endpoint
+      if (!response.ok) {
+        throw new Error(`Error fetching usernames (Status: ${response.status})`);
+      }
+      const data = await response.json();
+      return data.users; // Assuming the response contains the 'users' array with usernames
+    } catch (error) {
+      console.error('Error fetching usernames:', error);
+      return []; // Return an empty array or handle the error accordingly
+    }
+  }
+
+  // Fetch usernames and update the profile dropdown when the page loads
+  fetchUsernames()
+    .then((users) => {
+      updateProfileDropdownOptions(users);
+    })
+    .catch((error) => {
+      console.error("Error fetching usernames:", error);
+      // Handle error if needed
+    });
+    async function fetchUserDataFromServer(userId) {
+      try {
+        const response = await fetch(`/api/user/${userId}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching user data (Status: ${response.status})`);
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error; // Re-throw the error to handle it in the event handler
+      }
+    }
+
+    async function fetchUserData(userId) {
+      try {
+        const response = await fetch(`/api/user/${userId}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching user data (Status: ${response.status})`);
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error;
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+    console.log('userId:', userId);
+    
+    // Fetch the user data based on the userId
+    fetchUserData(userId)
+      .then((userData) => {
+        console.log('userData:', userData);
+    
+        // Create a Handlebars template (replace with your actual template)
+        const templateSource = `
+          <div class="profile-container2">
+              <img src="${userData.avatar}" alt="Profile Picture" class="profile-picture2">
+              <h4 class="name">${userData.username}</h4>
+              <h6 class="description">${userData.profileDescription}</h6>
+              <!-- Add more HTML elements to display user data as needed -->
+              <ul class="nav flex-column nav-pills mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        `;
+    
+        // Compile the Handlebars template
+        const template = Handlebars.compile(templateSource);
+    
+        // Render the template with the userData and place it in the 'profile-container2' element
+        const profileHtml = template(userData);
+        $('.profile-container2').html(profileHtml);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+        // Handle error if needed
+      });
+   
+    const userDropdownList = $("#userDropdownList");
+    userDropdownList.on("click", ".user-option", function () {
+      const userId = $(this).data("user-id");
+    
+      // Redirect to the profile page with the selected user ID
+      window.location.href = `/profile?userId=${userId}`;
+    });
 });

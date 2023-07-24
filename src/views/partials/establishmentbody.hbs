@@ -3,25 +3,31 @@
         <span id="page-header">{{establishment-name}}</span>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 gallery-item">
-                    <img src="{{establishment-photo1}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                {{#each establishment-photo}}
+                {{#if @first}}
+                    <img src="{{this}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                {{/if}}
+                {{/each}}
                 </div>
                 <div class="col-md-4">
                     <div class="right-column">
                         <div class="row no-gutters">
-                            <div class="col-12 gallery-item" style="height: 50%;">
-                                <img src="{{establishment-photo2}}" alt="Image 2" class="img-fluid img2" style="height: 100%;">
-                            </div>
-                            <div class="col-12 gallery-item" style="height: 50%;">
-                                <img src="{{establishment-photo3}}" alt="Image 3" class="img-fluid img3" style="height: 100%;">
-                                <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
-                            </div>
+                            {{#each establishment-photo}}
+                                {{#unless @first}}
+                                    <div class="col-12 gallery-item" style="height: 50%;">
+                                        <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img{{@index}}" style="height: 100%;">
+                                        {{#if @last}}
+                                            <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
+                                        {{/if}}
+                                    </div>
+                                {{/unless}}
+                            {{/each}}
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
+
 
         <div id="textbox1">
             <p>
@@ -49,16 +55,17 @@
                 <div class="modal-body">
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{establishment-photo1}}" class="d-block mx-auto" alt="Image 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{establishment-photo2}}" class="d-block mx-auto" alt="Image 2">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{establishment-photo3}}" class="d-block mx-auto" alt="Image 3">
-                            </div>
-
+                        {{#each establishment-photo}}
+                        {{#if @first}}
+                        <div class="carousel-item active">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image 1">
+                        </div>
+                        {{else}}
+                        <div class="carousel-item">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image">
+                        </div>
+                            {{/if}}
+                        {{/each}}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

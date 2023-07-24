@@ -22,11 +22,9 @@ import User from './src/models/user.model.js';
 import Establishment from './src/models/establishment.model.js';
 import Review from './src/models/review.model.js';
 import Reply from './src/models/reply.model.js';
-
 async function main () {
     const __dirname = dirname(fileURLToPath(import.meta.url)); // directory URL
     const app = express();
-
     app.use("/static", express.static(__dirname + "/public"));
     // Set handlebars as the express app's default view engine
     app.engine("hbs", exphbs.engine({
@@ -43,7 +41,6 @@ async function main () {
     app.use(cors());
     app.use(router);
     app.use(userRouter);  
-
     app.listen(process.env.SERVER_PORT, () => {
       console.log("Express app now listening...");
       connectToMongo((err) => {
@@ -331,7 +328,6 @@ async function main () {
     await insertSampleReviews(userIds, establishmentIds);
     const reviewIds = await fetchReviewIds();
     await insertSampleReplies(reviewIds);
-    
 
 }
 
