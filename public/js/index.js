@@ -43,7 +43,7 @@ $(document).ready(function() {
     const password = document.querySelector("#loginPassword");
     const login = document.querySelector("#loginBtn");
 
-    login.addEventListener("click", async (e) => {
+    login?.addEventListener("click", async (e) => {
       e.preventDefault();
 
       const myObj = {
@@ -76,7 +76,8 @@ $(document).ready(function() {
       }
     });
 });
-
+  
+  
     $('#logout').click(function() {
         // Redirect the user to the index page when the logout button is clicked
        window.location.href = '/';
