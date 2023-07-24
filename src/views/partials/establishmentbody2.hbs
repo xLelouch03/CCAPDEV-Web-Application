@@ -1,18 +1,18 @@
 <div id="section1">
     <div class="s1-container">
-        <span id="page-header">{{establishment-name}}</span>
+        <span id="page-header">{{establishment.name}}</span>
         <div class="container">
             <div class="row">
-                {{#each establishment-photo}}
+                {{#each establishment.images}}
                 {{#if @first}}
-                    <img src="{{this}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                    <img src="{{establishment.avatar}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
                 {{/if}}
                 {{/each}}
                 </div>
                 <div class="col-md-4">
                     <div class="right-column">
                         <div class="row no-gutters">
-                            {{#each establishment-photo}}
+                            {{#each establishment.images}}
                                 {{#unless @first}}
                                     <div class="col-12 gallery-item" style="height: 50%;">
                                         <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img{{@index}}" style="height: 100%;">
@@ -30,7 +30,7 @@
 
     <div id="textbox1">
         <p>
-            {{establishment-info}}
+            {{establishment.description}}
         </p>
     </div>
 </div>
@@ -48,20 +48,20 @@
     <div class="modal-dialog modal-dialog-centered modal-xl photo-gallery">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="galleryModalLabel">{{establishment-name}} Gallery</h5>
+            <h5 class="modal-title" id="galleryModalLabel">{{establishment.name}} Gallery</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        {{#each establishment-photo}}
+                        {{#each establishment.images}}
                         {{#if @first}}
                         <div class="carousel-item active">
-                            <img src="{{this}}" class="d-block mx-auto" alt="Image 1">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image {{@index}}">
                         </div>
                         {{else}}
                         <div class="carousel-item">
-                            <img src="{{this}}" class="d-block mx-auto" alt="Image">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image {{@index}}">
                         </div>
                             {{/if}}
                         {{/each}}
@@ -82,10 +82,10 @@
 
 <div class="section3">
     <div class="s3-header-container">
-        <span class="s3-header">Most Recent Reviews for {{establishment-name}}</span>
+        <span class="s3-header">Most Recent Reviews for {{establishment.name}}</span>
     </div>
     <div class="rating-container">
-        <span class="rating">{{establishment-rating}}</span>
+        <span class="rating">{{establishment.rating}}</span>
         <span class="rating-divisor">/5</span>
         <div class="average-star-rating-container">
                 <i class="fa fa-star average-star-icon"></i>
@@ -94,7 +94,7 @@
                 <i class="fa fa-star average-star-icon"></i>
                 <i class="fa fa-star average-star-icon"></i>
         </div>
-        <span class="review-count">{{review-count}} reviews</span>
+        <span class="review-count">{{review/count}} reviews</span> <!--WIP-->
     </div>
     <div class="options-container">
         <button class="review-filter" id="all" onclick="showAllReviews()">All</button>
@@ -114,10 +114,10 @@
     <div class="review-positioner">
         <div class="review-container">
             <div class="profile-container">
-                <img class="profile-picture" src="{{review-pfp}}">
+                <img class="profile-picture" src="{{review.user.avatar}}">
                 <div class="post-details-container">
-                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
-                    <span class="post-date">Last edited: {{review-date}}</span>
+                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review.user.username}}</a></span>
+                    <span class="post-date">Last edited: {{review-datePosted}}</span>
                 </div>
             </div>
             <div class="review-rating-container">
@@ -127,28 +127,28 @@
                 {{/each}}
             </div>
             <span class="review-title">
-                {{review-title}}
+                {{review.title}}
             </span>
             <span class="review-content">
-                {{review-content-truncated}}
+                {{review.body}}
                 <span class="untruncate-button">Read more</span>
             </span>
             <span class="review-content untruncated-review">
-                {{review-content}}
+                {{review.body}}
                 <span class="truncate-button">Read less</span>
             </span>
             <div class="photo-album">
-                {{#each review-photo}}
+                {{#each review.images}}
                 <img class="photo-album-photo" src="{{this}}">
                 {{/each}}
             </div>
             <div class="userbuttons-container">
                 <div class="helpful-container">
                     <span class="helpful-icon"></span>
-                    <span class="helpful-text">Helpful {{helpfulFeedback}}</span>
+                    <span class="helpful-text">Helpful {{review.helpfulFeedback}}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="unhelpful-icon"></span>
-                    <span class="helpful-text">Unhelpful {{unhelpfulFeedback}}</span>
+                    <span class="helpful-text">Unhelpful {{review.unhelpfulFeedback}}</span>
                 </div>
                 <div class="userreview-buttons-container">
                     <div class="edit-button-container">

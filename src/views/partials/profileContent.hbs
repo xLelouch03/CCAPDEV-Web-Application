@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-lg-3 left-container">
                 <div class="profile-container2">
-                    <img src="{{avatar}}" alt="Profile Picture" class="profile-picture2">
-                    <h4 class="name">{{username}}</h4>
-                    <h6 class="description">{{profileDescription}}</h6>
+                    <img src="{{user.avatar}}" alt="Profile Picture" class="profile-picture2">
+                    <h4 class="name">{{user.username}}</h4>
+                    <h6 class="description">{{user.profileDescription}}</h6>
                 
                 <ul class="nav flex-column nav-pills mt-3">
                     <li class="nav-item">
@@ -60,27 +60,28 @@
                                             {{/each}}
                                         </div>
                                         <span class="review-title">
-                                            {{review-title}}
+                                            {{review.title}}
                                         </span>
                                         <span class="review-content">
-                                            {{review-content-truncated}}
+                                            {{review.body}}
                                             <span class="untruncate-button">Read more</span>
                                         </span>
                                         <span class="review-content untruncated-review">
-                                            {{review-content}}
+                                            {{review.body}}
                                             <span class="truncate-button">Read less</span>
                                         </span>
                                         <div class="photo-album">
-                                            <img class="photo-album-photo" src="{{review-photo1}}">
-                                            <img class="photo-album-photo" src="{{review-photo2}}">
+                                            {{#each review.images}}
+                                                <img class="photo-album-photo" src="{{this}}">
+                                            {{/each}}
                                         </div>
                                         <div class="userbuttons-container">
                                             <div class="helpful-container">
                                                 <span class="helpful-icon"></span>
-                                                <span class="helpful-text">Helpful {{helpfulFeedback}}</span>
+                                                <span class="helpful-text">Helpful {{review.helpfulFeedback}}</span>
                                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                 <span class="unhelpful-icon"></span>
-                                                <span class="helpful-text">Unhelpful {{unhelpfulFeedback}}</span>
+                                                <span class="helpful-text">Unhelpful {{review.unhelpfulFeedback}}</span>
                                             </div>
                                             <div class="userreview-buttons-container">
                                                 <div class="edit-button-container">
