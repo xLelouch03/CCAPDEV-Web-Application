@@ -3,22 +3,27 @@
         <span id="page-header">{{establishment-name}}</span>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 gallery-item">
-                    <img src="../images/bcc1.png" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                {{#each establishment-photo}}
+                {{#if @first}}
+                    <img src="{{this}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                {{/if}}
+                {{/each}}
                 </div>
                 <div class="col-md-4">
                     <div class="right-column">
                         <div class="row no-gutters">
-                            <div class="col-12 gallery-item" style="height: 50%;">
-                                <img src="../images/bcc2.png" alt="Image 2" class="img-fluid img2" style="height: 100%;">
-                            </div>
-                            <div class="col-12 gallery-item" style="height: 50%;">
-                                <img src="../images/bcc3.png" alt="Image 3" class="img-fluid img3" style="height: 100%;">
-                                <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
-                            </div>
+                            {{#each establishment-photo}}
+                                {{#unless @first}}
+                                    <div class="col-12 gallery-item" style="height: 50%;">
+                                        <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img{{@index}}" style="height: 100%;">
+                                        {{#if @last}}
+                                            <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
+                                        {{/if}}
+                                    </div>
+                                {{/unless}}
+                            {{/each}}
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -49,16 +54,17 @@
             <div class="modal-body">
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
+                        {{#each establishment-photo}}
+                        {{#if @first}}
                         <div class="carousel-item active">
-                            <img src="{{establishment-photo1}}" class="d-block mx-auto" alt="Image 1">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image 1">
                         </div>
+                        {{else}}
                         <div class="carousel-item">
-                            <img src="{{establishment-photo2}}" class="d-block mx-auto" alt="Image 2">
+                            <img src="{{this}}" class="d-block mx-auto" alt="Image">
                         </div>
-                        <div class="carousel-item">
-                            <img src="{{establishment-photo3}}" class="d-block mx-auto" alt="Image 3">
-                        </div>
-
+                            {{/if}}
+                        {{/each}}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -104,51 +110,62 @@
         </div>
     </div>
 
+{{#each reviews}}
     <div class="review-positioner">
         <div class="review-container">
-                <div class="profile-container">
-                    <img class="profile-picture" src="{{review-pfp}}">
-                    <div class="post-details-container">
-                        <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
-                        <span class="post-date">Last edited: {{review-date}}</span>
+            <div class="profile-container">
+                <img class="profile-picture" src="{{review-pfp}}">
+                <div class="post-details-container">
+                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
+                    <span class="post-date">Last edited: {{review-date}}</span>
+                </div>
+            </div>
+            <div class="review-rating-container">
+                <!-- Render the review rating stars based on the 'rating' value -->
+                {{#each (range rating)}}
+                    <i class="fa fa-star review-star-icon"></i>
+                {{/each}}
+            </div>
+            <span class="review-title">
+                {{review-title}}
+            </span>
+            <span class="review-content">
+                {{review-content-truncated}}
+                <span class="untruncate-button">Read more</span>
+            </span>
+            <span class="review-content untruncated-review">
+                {{review-content}}
+                <span class="truncate-button">Read less</span>
+            </span>
+            <div class="photo-album">
+                {{#each review-photo}}
+                <img class="photo-album-photo" src="{{this}}">
+                {{/each}}
+            </div>
+            <div class="userbuttons-container">
+                <div class="helpful-container">
+                    <span class="helpful-icon"></span>
+                    <span class="helpful-text">Helpful {{helpfulFeedback}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="unhelpful-icon"></span>
+                    <span class="helpful-text">Unhelpful {{unhelpfulFeedback}}</span>
+                </div>
+                <div class="userreview-buttons-container">
+                    <div class="edit-button-container">
+                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="delete-button-container" data-bs-toggle="modal">
+                        <button class="delete-button">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="review-rating-container">
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                    <i class="fa fa-star review-star-icon"></i>
-                </div>
-                <span class="review-title">
-                    {{review-title}}
-                </span>
-                <span class="review-content">
-                    {{review-content-truncated}}
-
-                    <span class="untruncate-button">Read more</span>
-                </span>
-                <span class="review-content untruncated-review">
-                    {{review-content}}
-
-                    <span class="truncate-button">Read less</span>
-                </span>
-                <span class="edit-review-icon-container">
-                <i class="fa fa-edit edit-review-icon" data-bs-toggle="modal" data-bs-target="#editReviewModal"></i>
-                </span>
-                <div class="photo-album">
-                    <img class="photo-album-photo" src="{{review-photo1}}">
-                    <img class="photo-album-photo" src="{{review-photo2}}">
-                </div>
-                <div class="helpful-container">
-                    <span class="helpful-icon" data-count={{helpful-count}}></span>
-                    <span class="helpful-text">Helpful <span class="helpful-count">{{helpful-count}}</span></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="unhelpful-icon" data-count={{unhelpful-count}}></span>
-                    <span class="helpful-text">Unhelpful <span class="unhelpful-count">{{unhelpful-count}}</span></span>
-                </div>
+            </div>
         </div>
     </div>
+{{/each}}
 
     <div class="pages-container">
         <button class="page-previous-button">&lt;</button>
