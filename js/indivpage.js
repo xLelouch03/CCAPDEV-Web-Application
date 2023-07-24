@@ -484,52 +484,58 @@ document.getElementById("reviewForm").addEventListener("submit", function(event)
 function submitReview() {
     const reviewForm = document.getElementById("reviewForm");
   
-    const profileName = document.querySelector(".profile-name a").textContent;
     const rating = Array.from(reviewForm.querySelectorAll(".reviewer-rating-star")).filter(star => star.classList.contains("reviewer-rating-selected")).length;
     const reviewTitle = reviewForm.querySelector("#reviewTitle").value;
     const reviewContent = reviewForm.querySelector("#reviewContent").value;
-    const postDate = getCurrentDate();
 
     const fileInput = document.getElementById("reviewPhoto");
 
     const reviewData = {
-      profileName,
-      rating,
-      reviewTitle,
-      reviewContent,
-      postDate,
-      photoAlbum: [],
+        rating: rating,
+        title: reviewTitle,
+        body: reviewContent,
+        images: [],
     };
-  
-    if (fileInput.files && fileInput.files.length > 0) {
-        // Process each selected file (image)
-        Array.from(fileInput.files).forEach(file => {
+
+    const files = fileInput.files && fileInput.files.length > 0 ? Array.from(fileInput.files) : [];
+
+    const filePromises = files.map(file => {
+        return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = function() {
-                reviewData.photoAlbum.push(reader.result);
-                if (reviewData.photoAlbum.length === fileInput.files.length) {
-                    addReview(reviewData);
-                    // Reset the file input field (optional)
-                    fileInput.value = "";
-
-                }
+                reviewData.images.push(reader.result);
+                resolve();
             };
+            reader.onerror = reject;
             reader.readAsDataURL(file);
-            
         });
-    } else {
+    });
+
+    Promise.all(filePromises)
+    .then(() => {
+        const pathArray = window.location.pathname.split('/');
+        const establishmentId = pathArray[pathArray.length - 1];
+
+        return fetch(`http://localhost:3000/establishments/${establishmentId}/submit`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData),
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
         addReview(reviewData);
-        // Reset the file input field (optional)
-        console.log("No files present");
         fileInput.value = "";
-    }
-
-    fileInput.value = "";
-    reviewForm.reset();
-
-    updatePageNumbers();
-    
-  }
+        reviewForm.reset();
+        updatePageNumbers();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
  
 

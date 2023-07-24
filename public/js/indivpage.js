@@ -524,52 +524,58 @@ document.getElementById("reviewForm").addEventListener("submit", function(event)
 function submitReview() {
     const reviewForm = document.getElementById("reviewForm");
   
-    const profileName = document.querySelector(".profile-name a").textContent;
     const rating = Array.from(reviewForm.querySelectorAll(".reviewer-rating-star")).filter(star => star.classList.contains("reviewer-rating-selected")).length;
     const reviewTitle = reviewForm.querySelector("#reviewTitle").value;
     const reviewContent = reviewForm.querySelector("#reviewContent").value;
-    const postDate = getCurrentDate();
 
     const fileInput = document.getElementById("reviewPhoto");
 
     const reviewData = {
-      profileName,
-      rating,
-      reviewTitle,
-      reviewContent,
-      postDate,
-      photoAlbum: [],
+        rating: rating,
+        title: reviewTitle,
+        body: reviewContent,
+        images: [],
     };
-  
-    if (fileInput.files && fileInput.files.length > 0) {
-        // Process each selected file (image)
-        Array.from(fileInput.files).forEach(file => {
+
+    const files = fileInput.files && fileInput.files.length > 0 ? Array.from(fileInput.files) : [];
+
+    const filePromises = files.map(file => {
+        return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = function() {
-                reviewData.photoAlbum.push(reader.result);
-                if (reviewData.photoAlbum.length === fileInput.files.length) {
-                    addReview(reviewData);
-                    // Reset the file input field (optional)
-                    fileInput.value = "";
-
-                }
+                reviewData.images.push(reader.result);
+                resolve();
             };
+            reader.onerror = reject;
             reader.readAsDataURL(file);
-            
         });
-    } else {
+    });
+
+    Promise.all(filePromises)
+    .then(() => {
+        const pathArray = window.location.pathname.split('/');
+        const establishmentId = pathArray[pathArray.length - 1];
+
+        return fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData),
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
         addReview(reviewData);
-        // Reset the file input field (optional)
-        console.log("No files present");
         fileInput.value = "";
-    }
-
-    fileInput.value = "";
-    reviewForm.reset();
-
-    updatePageNumbers();
-    
-  }
+        reviewForm.reset();
+        updatePageNumbers();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
  
 
@@ -583,27 +589,45 @@ function editReview(e) {
     var newTitle = document.getElementById('editReviewTitle').value;
   
     if (newReview.trim() && newTitle.trim() !== '') {
-      // Update the feedback of the activeFeedback element
-      activeReview.textContent = newReview;
-      activeTitle.textContent = newTitle;
+        // Update the feedback of the activeFeedback element
+        activeReview.textContent = newReview;
+        activeTitle.textContent = newTitle;
   
-      // Dismiss the modal
-      var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
-      editReviewModal.hide();
+        // Dismiss the modal
+        var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
+        editReviewModal.hide();
+
+        const reviewData = {
+            title: newTitle,
+            body: newReview
+        };
+
+        // Send the update to the server
+        fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => console.error('Error:', error));
+
     } else {
-      alert("Review title and content can't be empty");
+        alert("Review title and content can't be empty");
     }
-  }
+}
+
+// Attach submit event to feedback edit form
+document.getElementById('reviewEditForm').addEventListener('submit', editReview);
   
-  // Attach submit event to feedback edit form
-  document.getElementById('reviewEditForm').addEventListener('submit', editReview);
-  
-  // Reset the textarea when the modal hides
-  document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
+// Reset the textarea when the modal hides
+document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
     document.getElementById('editReviewContent').value = '';
-  });
-  
- 
+});
+
+
 // Initialize activeFeedback variable
 let activeReview;
 let activeTitle;
@@ -623,24 +647,41 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
 
 // Function to handle editing feedback
 function editReview(e) {
-  // Prevent form from submitting normally
-  e.preventDefault();
+    // Prevent form from submitting normally
+    e.preventDefault();
 
-  // Get new feedback from textarea
-  var newReview = document.getElementById('editReviewContent').value;
-  var newTitle = document.getElementById('editReviewTitle').value;
+    // Get new feedback from textarea
+    var newReview = document.getElementById('editReviewContent').value;
+    var newTitle = document.getElementById('editReviewTitle').value;
 
-  if (newReview.trim() && newTitle.trim() !== '') {
-    // Update the feedback of the activeFeedback element
-    activeReview.textContent = newReview;
-    activeTitle.textContent = newTitle;
+    if (newReview.trim() !== '' && newTitle.trim() !== '') {
+        // Update the feedback of the activeFeedback element
+        activeReview.textContent = newReview;
+        activeTitle.textContent = newTitle;
 
-    // Dismiss the modal
-    var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
-    editReviewModal.hide();
-  } else {
-    alert("Review title and content can't be empty");
-  }
+        // Dismiss the modal
+        var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
+        editReviewModal.hide();
+
+        const reviewData = {
+            title: newTitle,
+            body: newReview
+        };
+    
+        // Send the update to the server
+        fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => console.error('Error:', error));
+    } else {
+        alert("Review title and content can't be empty");
+    }
 }
 
 // Attach submit event to feedback edit form
@@ -648,8 +689,9 @@ document.getElementById('reviewEditForm').addEventListener('submit', editReview)
 
 // Reset the textarea when the modal hides
 document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
-  document.getElementById('editReviewContent').value = '';
+    document.getElementById('editReviewContent').value = '';
 });
+
 
 
 // Attach click event to the reviews container to handle delete buttons

@@ -104,35 +104,40 @@ async function main () {
         const sampleEstablishments = [
           { 
             name: "Manila Ocean Park",
-            images: ["/images/mocp1.png", "/images/mocp2.png", "/images/mocp3.png"],
+            password: "password1",
+            images: ["./images/mocp1.png", "./images/mocp2.png", "./images/mocp3.png"],
             category: "Oceanarium",
             description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
             location: "Manila"
           },
           { 
             name: "Balesin Island Club",
-            images: ["/images/bic1.png", "/images/bic2.png", "/images/bic3.png"],
+            password: "password2",
+            images: ["./images/bic1.png", "./images/bic2.png", "./images/bic3.png"],
             category: "Private beach resort",
             description: "Balesin Island Club is a secluded paradise spanning 500 hectares, located in the Lamon Bay of Quezon Province. This private island sanctuary boasts breathtaking landscapes inspired by some of the world's most sought-after destinations, allowing guests to experience the allure of various international locales without ever leaving the Philippines. Each distinct village on the island offers a unique ambiance, architecture, and cuisine, creating a truly immersive and unforgettable experience.",
             location: "Quezon"
           },
           { 
             name: "Masungi Georeserve",
-            images: ["/images/mg1.png", "/images/mg2.png", "/images/mg3.png"],
+            password: "password3",
+            images: ["./images/mg1.png", "./images/mg2.png", "./images/mg3.png"],
             category: "Geological park",
             description: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal, just a short distance from Manila. It showcases a mesmerizing blend of breathtaking rock formations, lush forests, and diverse wildlife. The georeserve is renowned for its sustainable tourism practices, aiming to preserve and protect its delicate ecosystem while providing visitors with an unforgettable adventure.",
             location: "Rizal"
           },
           { 
             name: "Baguio Country Club",
-            images: ["/images/bcc1.png", "/images/bcc2.png", "/images/bcc3.png"],
+            password: "password4",
+            images: ["./images/bcc1.png", "./images/bcc2.png", "./images/bcc3.png"],
             category: "Retreat & historical landmark",
             description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
             location: "Baguio"
           },
           { 
             name: "Manila Hotel",
-            images: ["/images/13.png", "/images/14.png", "/images/15.png"],
+            password: "password5",
+            images: ["./images/13.png", "./images/14.png", "./images/15.png"],
             category: "Private hotel",
             description: "The Manila Hotel stands as a testament to the city's history and grandeur. Its majestic architecture and exquisite interiors reflect a bygone era, transporting guests to a time of opulence and refinement. Situated in the vibrant district of Ermita, the hotel boasts stunning views of Manila Bay and is conveniently located near key attractions, making it an ideal choice for both leisure and business travelers.",
             location: "Manila"
@@ -165,7 +170,8 @@ async function main () {
             establishment: establishmentIds[0],
             rating: 5,
             title: "Excellent Service",
-            body: "The service was outstanding and the staff was very friendly and helpful. The food was delicious, and the atmosphere was great. Definitely will come again!"
+            body: "The service was outstanding and the staff was very friendly and helpful. The food was delicious, and the atmosphere was great. Definitely will come again!",
+            images: ["./images/sample_review_1/1.png", "./images/sample_review_1/2.png", "./images/sample_review_1/3.png"]
           },
           {
             user: userIds[1],
@@ -200,7 +206,8 @@ async function main () {
             establishment: establishmentIds[1],
             rating: 5,
             title: "An Unforgettable Experience",
-            body: "From the moment we walked through the doors, the staff was exceptionally welcoming and friendly. They made us feel right at home. The food was absolutely exquisite - every dish was a masterful work of culinary art. Furthermore, the ambiance of the place was warm and charming, adding to an already wonderful experience. This place definitely exceeded my expectations and I am eager to return."
+            body: "From the moment we walked through the doors, the staff was exceptionally welcoming and friendly. They made us feel right at home. The food was absolutely exquisite - every dish was a masterful work of culinary art. Furthermore, the ambiance of the place was warm and charming, adding to an already wonderful experience. This place definitely exceeded my expectations and I am eager to return.",
+            images: ["./images/sample_review_1/bccreview1.png", "./images/sample_review_1/bccreview2.png", "./images/sample_review_1/bccreview3.png"]
           },
           {
             user: userIds[1],
@@ -214,7 +221,8 @@ async function main () {
             establishment: establishmentIds[1],
             rating: 5,
             title: "Exceptional Service and Atmosphere",
-            body: "We had a lovely time at this establishment. The service was some of the best we've experienced in a long time. Our server was incredibly attentive without being intrusive, and had a great knowledge of the menu, which was greatly appreciated. The atmosphere was relaxing and the decor was tasteful and unique. Food was excellent and I would highly recommend this place to anyone."
+            body: "We had a lovely time at this establishment. The service was some of the best we've experienced in a long time. Our server was incredibly attentive without being intrusive, and had a great knowledge of the menu, which was greatly appreciated. The atmosphere was relaxing and the decor was tasteful and unique. Food was excellent and I would highly recommend this place to anyone.",
+            images: ["./images/sample_review_1/balesinreview1.png", "./images/sample_review_1/balesinreview2.png", "./images/sample_review_1/balesinreview3.png"]
           },
           {
             user: userIds[3],
