@@ -12,7 +12,7 @@ import router from "./src/routes/index.js";
 import cors from 'cors';
 // DB modules
 import { connectToMongo } from "./src/models/conn.js";
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import UserController from './src/controllers/user.controller.js';
 import userRouter from './src/routes/user.router.js';
 // Importing Mongoose schemas
