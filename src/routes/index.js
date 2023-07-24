@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
+import multer from 'multer';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -9,8 +10,9 @@ const authenticateUser = (req, res, next) => {
     // If not authenticated, redirect to login page or handle accordingly
     next();
 };
+router.post('/signup', UserController.createUser);
+router.post('/login', UserController.loginUser);  
 
-router.post('/login', UserController.loginUser);
 
 router.get('/', (req, res) => {
     // Assuming you have a variable to store the authentication status
@@ -48,7 +50,7 @@ router.get('/establishment', (req, res) => {
       mainTemplate = 'establishmentLogged'; 
     } else {
         mainLayout = 'establishment';
-        mainTemplate = 'establishments';
+        mainTemplate = 'establishmentLogged';
     }
   
     // Render the appropriate Handlebars template with the chosen layout

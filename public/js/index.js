@@ -38,6 +38,34 @@ $(document).ready(function() {
       }
   });
 
+
+  $('#registerForm').on('submit', function (event) {
+    event.preventDefault();
+
+    // Get form input values
+    const username = $('#registerUsername').val();
+    const password = $('#registerPassword').val();
+
+    // Create the request data object
+    const requestData = {
+        username: username,
+        password: password
+    };
+
+    // Make the AJAX request
+    $.ajax({
+        type: 'POST',
+        url: '/signup',
+        data: JSON.stringify(requestData),
+        contentType: 'application/json', // Set the content type to JSON
+        success: function (response) {
+          window.location.href = '/loggedInMain';
+        },
+        error: function (error) {
+            console.error('Error registering user:', error.responseText);
+        },
+    });
+});
   window.addEventListener("load", function (e) {
     const username = document.querySelector("#loginUsername");
     const password = document.querySelector("#loginPassword");
@@ -82,4 +110,5 @@ $(document).ready(function() {
         // Redirect the user to the index page when the logout button is clicked
        window.location.href = '/';
     });
+
 });

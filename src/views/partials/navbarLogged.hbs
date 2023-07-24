@@ -26,11 +26,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/loggedInMain#map">MAP</a>
                 </li>
-                <li class="nav-item2 ms-3">
-                    <a class="nav-link" href="/profile"> 
-                        <i class="fas fa-user-circle"></i> 
-                    </a>
-                </li>
+                <div class="profile-dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> <!-- Font Awesome profile icon -->
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="userDropdownButton" id="userDropdownList">
+                    <!-- Users will be added here dynamically -->
+                </ul>
+                </div>
                 <li class="nav-item2 ms-3">
                     <button type="button" class="btn btn-primary" id="logout" data-bs-toggle="modal">LOGOUT</button>
                 </li>

@@ -89,15 +89,37 @@ async function main () {
       }
     }
 
+    
     async function fetchUserIds() {
       try {
-        const ids = await User.find({}, '_id');
-        console.log('Successfully fetched list of sample users.')
-        return ids;
-      } catch(err) {
-        console.error('Error fetching list of sample users: ', err);
+        const users = await User.find({}, '_id');
+        const userIds = users.map((user) => user._id.toString());
+        console.log(userIds);
+        console.log('Successfully fetched list of user IDs.');
+        return userIds;
+      } catch (err) {
+        console.error('Error fetching list of user IDs: ', err);
+        return [];
       }
     }
+
+    async function fetchUsernames() {
+      try {
+        const users = await User.find({}, 'username');
+        const usernames = users.map((user) => user.username);
+        console.log(usernames);
+        console.log('Successfully fetched list of usernames.');
+        return usernames;
+      } catch (err) {
+        console.error('Error fetching list of usernames: ', err);
+        return [];
+      }
+    }
+
+    app.get('/users', (req, res) => {
+      const users = fetchUsernames(); // Call your function to get the list of users
+      res.json({ users: users }); // Assuming users is an array of user objects
+    });
 
     async function insertSampleEstablishments() {
       try {
@@ -301,13 +323,13 @@ async function main () {
     await insertSampleEstablishments();
 
     const userIds = await fetchUserIds();
+    const usernames = await fetchUsernames();
     const establishmentIds = await fetchEstablishmentIds();
 
     await insertSampleReviews(userIds, establishmentIds);
     const reviewIds = await fetchReviewIds();
     await insertSampleReplies(reviewIds);
-
-
+    
 
 }
 
