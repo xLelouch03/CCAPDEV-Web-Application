@@ -15,7 +15,7 @@ import cors from 'cors';
 import { connectToMongo } from "./src/models/conn.js";
 import bcrypt from "bcrypt";
 import UserController from './src/controllers/user.controller.js';
-
+import userRouter from './src/routes/user.router.js';
 // Importing Mongoose schemas
 import mongoose from 'mongoose';
 import User from './src/models/user.model.js';
@@ -42,6 +42,7 @@ async function main () {
     app.use(express.json());
     app.use(cors());
     app.use(router);
+    app.use(userRouter);  
 
     app.listen(process.env.SERVER_PORT, () => {
       console.log("Express app now listening...");
@@ -297,6 +298,8 @@ async function main () {
     await insertSampleReviews(userIds, establishmentIds);
     const reviewIds = await fetchReviewIds();
     await insertSampleReplies(reviewIds);
+
+
 
 }
 

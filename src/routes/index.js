@@ -10,6 +10,8 @@ const authenticateUser = (req, res, next) => {
     next();
 };
 
+router.post('/login', UserController.loginUser);
+
 router.get('/', (req, res) => {
     // Assuming you have a variable to store the authentication status
     const isAuthenticated = req.user ? true : false;
@@ -33,9 +35,6 @@ router.get('/', (req, res) => {
       // ...
     });
 });
-
-router.post('/login', UserController.loginUser);
-
 
 router.get('/establishment', (req, res) => {
     // Render the Handlebars template for the establishment page without specifying a layout

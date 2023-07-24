@@ -1,18 +1,43 @@
 import express from 'express';
 import UserController from '../controllers/user.controller.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
 // Create new user
-router.post('/', UserController.createUser);
+userRouter.post('/signup', UserController.createUser);
 
 // Get user details
-router.get('/:username', UserController.getUser);
+userRouter.get('/:username', UserController.getUser);
 
 // Update user information
-router.put('/:username', UserController.updateUser);
+userRouter.put('/:username', UserController.updateUser);
 
 // Delete a user
-router.delete('/:username', UserController.deleteUser);
+userRouter.delete('/:username', UserController.deleteUser);
 
-export default router;
+userRouter.post('/login', async (req,res)=>{
+    console.log("POST request received for /login");
+    try{
+        const user = await User.findOne({username: req.body.username});
+        if(!user){
+            res.status(404).json("User not found.");
+            return;
+        }
+
+        const isMatch = comparePasswords(req.body.password, user.password)
+        if(!isMatch){
+            res.status(400).json({message: "Incorrect password."});
+            return;
+        }
+        // req.session.user=user;
+        console.log('password match')
+        //Respond with the user
+        res.sendStatus(200);
+    }catch(err){
+        res.status(500).json(err);
+        return;
+    }
+});
+  
+
+export default userRouter;
