@@ -27,6 +27,9 @@ const establishmentSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true
+  },
+  rating: {
+    type: mongoose.Schema.Types.Decimal128
   }
 });
 

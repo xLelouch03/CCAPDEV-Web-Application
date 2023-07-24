@@ -11,6 +11,10 @@ const reviewSchema = new mongoose.Schema({
     ref: 'Establishment',
     required: true,
   },
+  reply: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Reply'
+  },
   rating: {
     type: Number,
     required: true,

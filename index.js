@@ -127,7 +127,8 @@ async function main () {
             images: ["./images/mocp1.png", "./images/mocp2.png", "./images/mocp3.png"],
             category: "Oceanarium",
             description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
-            location: "Manila"
+            location: "Manila",
+            rating: 3.0
           },
           { 
             name: "Balesin Island Club",
@@ -135,7 +136,8 @@ async function main () {
             images: ["./images/bic1.png", "./images/bic2.png", "./images/bic3.png"],
             category: "Private beach resort",
             description: "Balesin Island Club is a secluded paradise spanning 500 hectares, located in the Lamon Bay of Quezon Province. This private island sanctuary boasts breathtaking landscapes inspired by some of the world's most sought-after destinations, allowing guests to experience the allure of various international locales without ever leaving the Philippines. Each distinct village on the island offers a unique ambiance, architecture, and cuisine, creating a truly immersive and unforgettable experience.",
-            location: "Quezon"
+            location: "Quezon",
+            rating: 4.6
           },
           { 
             name: "Masungi Georeserve",

@@ -1,4 +1,5 @@
 import Review from '../models/review.model.js';
+import ReplyController from './reply.controller.js';
 
 const ReviewController = {
     // Create a new review
@@ -13,15 +14,14 @@ const ReviewController = {
         }
     },
 
-    // Get all reviews of an establishment
-    getReviews: async (req, res) => {
-        const { establishment } = req.params;
+    // Get all reviews of an establishment and populate their reply attribute
+    getReviews: async (id) => {
         try {
-            const reviews = await Review.find({ establishment });
-            if (!reviews.length) return res.status(404).send({ message: `No matching reviews found for establishment ${establishment}` });
-            res.send(review);
+            const reviews = await Review.find({ establishment: id }).populate('reply');
+            if (!reviews.length) throw new Error(`No matching reviews found for establishment ${id}`);
+            return reviews;
         } catch (err) {
-            res.status(500).send({ message: err.message });
+            throw err;
         }
     },
 
@@ -58,6 +58,27 @@ const ReviewController = {
             res.send({ message: "Review deleted successfully" });
         } catch (err) {
             res.status(500).send({ message: err.message });
+        }
+    },
+
+    // Assign replies to each review
+    assignReplies: async () => {
+        try {
+            const reviews = await Review.find({}); // Get all reviews
+
+            // Loop through the reviews
+            for (let i = 0; i < reviews.length; i++) {
+                // Use getReply() to find the reply associated with the review
+                const reply = await ReplyController.getReply(reviews[i]._id);
+                
+                // If a reply is found, assign it to the review
+                if (reply) {
+                    reviews[i].reply = reply._id;
+                    await reviews[i].save();
+                }
+            }
+        } catch (err) {
+            throw err;
         }
     }
 };
