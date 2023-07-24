@@ -45,13 +45,22 @@ $(document).ready(function() {
     // Get form input values
     const username = $('#registerUsername').val();
     const password = $('#registerPassword').val();
-
+    const role = $('#role').val(); 
+    const profileDescription = $('#description3').val();
     // Create the request data object
     const requestData = {
         username: username,
-        password: password
+        password: password,
+        role: role,
+        profileDescription: profileDescription
     };
 
+    // Add additional fields based on the role
+    if (role === 'owner') {
+        requestData.establishmentPhotos = $('#establishmentPhotos').val();
+    } else {
+        requestData.avatar = $('#avatar').val();
+    }
     // Make the AJAX request
     $.ajax({
         type: 'POST',

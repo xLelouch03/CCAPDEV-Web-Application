@@ -4,7 +4,7 @@ const UserController = {
     createUser: async (req, res) => {
         try {
           const { username, password, role, avatar, profileDescription, establishmentPhotos } = req.body;
-          console.log("Received signup request:", { username, password });
+          console.log("Received signup request:", { username, password, profileDescription });
       
           if (!username || !password) {
             return res.status(400).json({ message: "Please provide both username and password." });
@@ -35,6 +35,7 @@ const UserController = {
           res.status(500).json({ message: 'Internal server error. Please try again later.' });
         }
       },
+      
 
 
     // Get a user by their username

@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   profileDescription: {
     type: String,
-    default: 'Hello there!'
+    default: ""
   },
   establishmentPhotos: {
     type: [String], // Array of strings to store multiple image URLs
