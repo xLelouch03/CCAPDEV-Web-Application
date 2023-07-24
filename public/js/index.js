@@ -56,11 +56,17 @@ $(document).ready(function() {
     };
 
     // Add additional fields based on the role
-    if (role === 'owner') {
-        requestData.establishmentPhotos = $('#establishmentPhotos').val();
-    } else {
-        requestData.avatar = $('#avatar').val();
-    }
+  if (role === 'owner') {
+    // Extract the file name from the establishmentPhotos input field
+    const establishmentPhotosInput = $('#establishmentPhotos')[0];
+    const establishmentPhotosFileName = establishmentPhotosInput.files[0].name;
+    requestData.establishmentPhotos = `static/images/${establishmentPhotosFileName}`;
+  } else {
+    // Extract the file name from the avatar input field
+    const avatarInput = $('#avatar')[0];
+    const avatarFileName = avatarInput.files[0].name;
+    requestData.avatar = `static/images/${avatarFileName}`;
+  }
     // Make the AJAX request
     $.ajax({
         type: 'POST',
@@ -169,7 +175,6 @@ $(document).ready(function() {
       }
     }
 
-    // Function to fetch user data from the server based on userId
     async function fetchUserData(userId) {
       try {
         const response = await fetch(`/api/user/${userId}`);
@@ -183,17 +188,46 @@ $(document).ready(function() {
       }
     }
 
-    // Get the userId from the query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
-
+    console.log('userId:', userId);
+    
     // Fetch the user data based on the userId
     fetchUserData(userId)
       .then((userData) => {
-        // Assuming you are using Handlebars to render the profile template
-        const profileTemplate = Handlebars.compile(/* Your Handlebars template */);
-        const profileHtml = profileTemplate(userData);
-        $('#profile-container').html(profileHtml); // Replace 'profile-container' with the ID of the container where you want to render the profile template
+        console.log('userData:', userData);
+    
+        // Create a Handlebars template (replace with your actual template)
+        const templateSource = `
+          <div class="profile-container2">
+              <img src="${userData.avatar}" alt="Profile Picture" class="profile-picture2">
+              <h4 class="name">${userData.username}</h4>
+              <h6 class="description">${userData.profileDescription}</h6>
+              <!-- Add more HTML elements to display user data as needed -->
+              <ul class="nav flex-column nav-pills mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        `;
+    
+        // Compile the Handlebars template
+        const template = Handlebars.compile(templateSource);
+    
+        // Render the template with the userData and place it in the 'profile-container2' element
+        const profileHtml = template(userData);
+        $('.profile-container2').html(profileHtml);
       })
       .catch((error) => {
         console.error('Error fetching user data:', error);

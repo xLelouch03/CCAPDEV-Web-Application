@@ -126,6 +126,21 @@ router.get('/profile', (req, res) => {
     });
 });
 
+// GET route to render the profile page
+router.get('/profile/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const userData = usersData.find(user => user._id === userId);
+
+  if (!userData) {
+    // User not found, handle error
+    res.status(404).send('User not found');
+    return;
+  }
+
+  // Render the 'profile' view with the userData
+  res.render('profile', { userData });
+});
+
 router.get('/searchresult', (req, res) => {
   // Render the Handlebars template for the establishment page without specifying a layout
   const isAuthenticated = req.user ? true : false;
