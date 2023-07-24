@@ -34,9 +34,6 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/login', UserController.loginUser);
-
-
 router.get('/establishment', (req, res) => {
     // Render the Handlebars template for the establishment page without specifying a layout
     const isAuthenticated = req.user ? true : false;

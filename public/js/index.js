@@ -38,64 +38,44 @@ $(document).ready(function() {
       }
   });
 
-  $('#loginBtn').click(function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-  
-    var username = $('#loginUsername').val();
-    var password = $('#loginPassword').val();
-  
-    if (!username || !password) {
-      alert('Please enter a valid username and password.');
-      return;
-    }
-  
-    $.ajax({
-      type: "POST",
-      url: "/login", // Your login route URL
-      data: { username: username, password: password }, // Make sure both username and password are provided
-      success: function(response) {
-        // Handle successful login
-        console.log("Login successful:", response);
-        // Redirect the user to the logged-in main page
-        window.location.href = '/loggedInMain';
-      },
-      error: function(error) {
-        // Handle login error
-        console.error("Login failed:", error.responseJSON.message);
-        alert("Login failed. Please check your username and password.");
+  window.addEventListener("load", function (e) {
+    const username = document.querySelector("#loginUsername");
+    const password = document.querySelector("#loginPassword");
+    const login = document.querySelector("#loginBtn");
+
+    login.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const myObj = {
+        username: username.value,
+        password: password.value,
+      };
+
+      const jString = JSON.stringify(myObj);
+
+      try {
+        const response = await fetch("/login", {
+          method: 'POST',
+          body: jString,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.status === 200) {
+          // Login successful, redirect to the logged-in main page
+          window.location.href = '/loggedInMain';
+        } else {
+          const data = await response.json(); // Parse the response body as JSON
+          const message = data.message; // Access the "message" property
+          alert("Login failed. " + message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("An error occurred during login. Please try again later.");
       }
     });
-  });  
-
-    // Sign up button click event
-    $('#signUpBtn').click(function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-    
-        var username = $('#registerUsername').val();
-        var password = $('#registerPassword').val();
-    
-        if (username && password) {
-          // Make a POST request to the server to register the user
-          $.ajax({
-            url: '/signup',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ username: username, password: password }),
-            success: function(response) {
-              console.log(response);
-              alert('Registration successful');
-              $('#registerModal').modal('hide');
-              $('#loginModal').modal('show');
-            },
-            error: function(xhr, status, error) {
-              console.error(xhr.responseText);
-              alert('Failed to register user. Please try again.');
-            },
-          });
-        } else {
-          alert('Please fill in all required fields.');
-        }
-      });
+});
 
     $('#logout').click(function() {
         // Redirect the user to the index page when the logout button is clicked

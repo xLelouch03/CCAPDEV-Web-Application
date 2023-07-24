@@ -10,13 +10,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default:'User'
+  },
   avatar: {
     type: String, // You can store the URL of the image
     default: '../../images/default-avatar' // Replace this with the URL of your default avatar image
   },
   profileDescription: {
     type: String,
-    default: '',
+    default: 'Hello there!'
+  },
+  establishmentPhotos: {
+    type: [String], // Array of strings to store multiple image URLs
+    default: []
   }
 });
 
