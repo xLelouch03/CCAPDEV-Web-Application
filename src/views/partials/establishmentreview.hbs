@@ -31,12 +31,31 @@
                     <img class="photo-album-photo" src="{{review-photo1}}">
                     <img class="photo-album-photo" src="{{review-photo2}}">
                 </div>
-                <div class="helpful-container">
-                    <span class="helpful-icon" data-count={{helpfulFeedback}}></span>
-                    <span class="helpful-text">Helpful <span class="helpful-count">{{helpfulFeedback}}</span></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="unhelpful-icon" data-count={{helpfulFeedback}}></span>
-                    <span class="helpful-text">Unhelpful <span class="unhelpful-count">{{unhelpfulFeedback}}</span></span>
-                </div>
+                <div class="userbuttons-container">
+                                <div class="helpful-container">
+                                <span class="helpful-icon"></span>
+                                <span class="helpful-text">Helpful 999</span>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span class="unhelpful-icon"></span>
+                                <span class="helpful-text">Unhelpful 0</span>
+                                </div>
+        
+                                <div class="userreview-buttons-container">
+        
+                                    <div class="edit-button-container">
+                                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+        
+                                    <div class="delete-button-container" data-bs-toggle="modal">
+                                        <button class="delete-button">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+        
+                                </div>
+        
+                            </div>
         </div>
     </div>

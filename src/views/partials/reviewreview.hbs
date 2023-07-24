@@ -1,17 +1,34 @@
 <div class="feedback-positioner">
-    <div class="feedback-container">
-        <div class="profile-container">
-            <img class="profile-picture" src="{{review-pfp}}">
-            <div class="post-details-container">
-                <span class="profile-name"><a href="./ownerprofile1.html">{{review-user}}</a></span>
-                <span class="post-date">{{review-date}}</span>
-            </div>
-        </div>
-        <span class="review-content">
-            {{review-content}}
-        </span>
-    </div>
-</div>
+                    <div class="feedback-container">
+                        <div class="profile-container">
+                            <img class="profile-picture" src="../images/bcc1.jpg">
+                            <div class="post-details-container">
+                                <span class="profile-name">{{feedback-user}}</span>
+                                <span class="post-date">{{feedback-date}}</span>
+                            </div>
+                        </div>
+                        <span class="feedback-content">
+                            {{feedback-content}}
+                        </span>
+
+                        <div class="feedback-buttons-container">
+
+                        <div class="edit-button-container">
+                            <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editFeedbackModal">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <div class="delete-button-container" data-bs-toggle="modal">
+                            <button class="delete-button">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        </div>
+
+                    </div>
+                </div>
 
 <div class="pages-container">
     <button class="page-previous-button">&lt;</button>
