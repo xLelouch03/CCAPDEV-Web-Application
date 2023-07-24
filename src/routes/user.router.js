@@ -21,6 +21,7 @@ userRouter.delete('/:username', UserController.deleteUser);
 userRouter.post('/login', UserController.loginUser);
 
 
+
 userRouter.get('/profile/:userId', async (req, res) => {
     const userId = req.params.userId;
     
@@ -36,6 +37,5 @@ userRouter.get('/profile/:userId', async (req, res) => {
     }
       
 });
-  
 
 export default userRouter;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
-import multer from 'multer';
+import User from '../models/user.model.js';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -13,6 +13,44 @@ const authenticateUser = (req, res, next) => {
 router.post('/signup', UserController.createUser);
 router.post('/login', UserController.loginUser);  
 
+router.get('/users', async (req, res) => {
+  try {
+    // Fetch all users from the 'users' collection
+    const users = await User.find({}, 'username'); // Return only the 'username' field
+    res.json({ users: users }); // Respond with the users data as JSON
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.get('/api/user/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    // Fetch the user from the 'users' collection based on the provided user ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user); // Respond with the user data as JSON
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route to fetch reviews by user ID
+router.get('/api/reviews/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    // Fetch the reviews associated with the provided user ID
+    const reviews = await Review.find({ user: userId });
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 router.get('/', (req, res) => {
     // Assuming you have a variable to store the authentication status
