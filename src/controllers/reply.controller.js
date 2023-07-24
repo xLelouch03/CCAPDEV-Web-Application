@@ -15,9 +15,12 @@ const ReplyController = {
 
     // Get a reply by its id
     getReply: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
+        const { review } = req.body;
+
+        const filter = { establishment, review }
         try {
-            const reply = await Reply.findById(id);
+            const reply = await Reply.findOne(filter);
             if (!reply) return res.status(404).send({ message: "Reply not found" });
             res.send(reply);
         } catch (err) {
@@ -27,9 +30,14 @@ const ReplyController = {
 
     // Update a reply by its id
     updateReply: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
+        const { review } = req.body;
+        const { body } = req.body;
+
+        const filter = { establishment, review };
+        const update = { $set: { body } };
         try {
-            const reply = await Reply.findByIdAndUpdate(id, req.body, { new: true });
+            const reply = await Reply.findOneAndUpdate(filter, update, { new: true });
             if (!reply) return res.status(404).send({ message: "Reply not found" });
             res.send(reply);
         } catch (err) {
@@ -39,9 +47,12 @@ const ReplyController = {
 
     // Delete a reply by its id
     deleteReply: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
+        const { review } = req.body;
+
+        const filter = { establishment, review };
         try {
-            const reply = await Reply.findByIdAndDelete(id);
+            const reply = await Reply.findOneAndDelete(filter);
             if (!reply) return res.status(404).send({ message: "Reply not found" });
             res.send(reply);
         } catch (err) {

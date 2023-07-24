@@ -13,37 +13,49 @@ const ReviewController = {
         }
     },
 
-    // Get a review by its id
-    getReview: async (req, res) => {
-        const { id } = req.params;
+    // Get all reviews of an establishment
+    getReviews: async (req, res) => {
+        const { establishment } = req.params;
         try {
-            const review = await Review.findById(id);
-            if (!review) return res.status(404).send({ message: "Review not found" });
+            const reviews = await Review.find({ establishment });
+            if (!reviews.length) return res.status(404).send({ message: `No matching reviews found for establishment ${establishment}` });
             res.send(review);
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
     },
 
-    // Update a review by its id
+    // Update a review by its associated user and establishment
     updateReview: async (req, res) => {
-        const { id } = req.params;
+        const { user } = req.params;
+        const { establishment } = req.params;
+        const { title } = req.body;
+        const { rating } = req.body;
+        const { body } = req.body;
+
+        const filter = { user, establishment };
+        const update = { $set: { title, rating, body } };
+
         try {
-            const review = await Review.findByIdAndUpdate(id, req.body, { new: true });
-            if (!review) return res.status(404).send({ message: "Review not found" });
+            const review = await Review.updateOne(filter, update);
+            if (review.nModified == 0) return res.status(404).send({ message: "Review not found or not updated" });
             res.send(review);
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
     },
 
-    // Delete a review by its id
+    // Delete a review by its associated user and establishment
     deleteReview: async (req, res) => {
-        const { id } = req.params;
+        const { user } = req.params;
+        const { establishment } = req.params;
+
+        const query = { user, establishment };
+    
         try {
-            const review = await Review.findByIdAndDelete(id);
-            if (!review) return res.status(404).send({ message: "Review not found" });
-            res.send(review);
+            const result = await Review.findOneAndDelete(query);
+            if (!result) return res.status(404).send({ message: "Review not found" });
+            res.send({ message: "Review deleted successfully" });
         } catch (err) {
             res.status(500).send({ message: err.message });
         }

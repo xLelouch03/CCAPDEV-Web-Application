@@ -3,18 +3,26 @@ import mongoose from 'mongoose';
 const establishmentSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  avatar: {
+    type: String,
+    default: '../../images/default-avatar'
   },
   images: [{
     type: String,
   }],
   category: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   location: {
     type: String,

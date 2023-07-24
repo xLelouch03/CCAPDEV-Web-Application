@@ -13,13 +13,24 @@ const EstablishmentController = {
         }
     },
 
+    // Get all establishments
+    getEstablishments: async (req, res) => {
+        try {
+            const establishments = await Establishment.find({});
+            if (!establishments) return res.status(404).send({ message: "No establishments found" });
+            res.send(establishments);
+        } catch(err) {
+            res.status(500).send({ message: err.message });
+        }
+    },
+
     // Get an establishment by its id
     getEstablishment: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
         try {
-            const establishment = await Establishment.findById(id).populate('reviews');
-            if (!establishment) return res.status(404).send({ message: "Establishment not found" });
-            res.send(establishment);
+            const match = await Establishment.find({ establishment });
+            if (!match) return res.status(404).send({ message: "Establishment not found" });
+            res.send(match);
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
@@ -27,11 +38,20 @@ const EstablishmentController = {
 
     // Update an establishment by its id
     updateEstablishment: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
+        const { name } = req.body;
+        const { password } = req.body;
+        const { avatar } = req.body;
+        const { images } = req.body;
+        const { category } = req.body;
+        const { description } = req.body;
+        const { location } = req.body;
+
+        const update = { $set: { name, password, avatar, images, category, description, location } };
         try {
-            const establishment = await Establishment.findByIdAndUpdate(id, req.body, { new: true });
-            if (!establishment) return res.status(404).send({ message: "Establishment not found" });
-            res.send(establishment);
+            const match = await Establishment.findByIdAndUpdate(establishment, update, { new: true });
+            if (!match) return res.status(404).send({ message: "Establishment not found" });
+            res.send(match);
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
@@ -39,11 +59,11 @@ const EstablishmentController = {
 
     // Delete an establishment by its id
     deleteEstablishment: async (req, res) => {
-        const { id } = req.params;
+        const { establishment } = req.params;
         try {
-            const establishment = await Establishment.findByIdAndDelete(id);
-            if (!establishment) return res.status(404).send({ message: "Establishment not found" });
-            res.send(establishment);
+            const match = await Establishment.findByIdAndDelete(establishment);
+            if (!match) return res.status(404).send({ message: "Establishment not found" });
+            res.send(match);
         } catch (err) {
             res.status(500).send({ message: err.message });
         }
