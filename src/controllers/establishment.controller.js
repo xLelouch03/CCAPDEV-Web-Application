@@ -14,25 +14,24 @@ const EstablishmentController = {
     },
 
     // Get all establishments
-    getEstablishments: async (req, res) => {
+    getEstablishments: async () => {
         try {
             const establishments = await Establishment.find({});
-            if (!establishments) return res.status(404).send({ message: "No establishments found" });
-            res.send(establishments);
-        } catch(err) {
-            res.status(500).send({ message: err.message });
+            if (!establishments.length) throw new Error("No establishments found");
+            return establishments;
+        } catch (err) {
+            throw err;
         }
     },
 
     // Get an establishment by its id
-    getEstablishment: async (req, res) => {
-        const { establishment } = req.params;
+    getEstablishment: async (id) => {
         try {
-            const match = await Establishment.find({ establishment });
-            if (!match) return res.status(404).send({ message: "Establishment not found" });
-            res.send(match);
+            const establishment = await Establishment.findById(id);
+            if (!establishment) throw new Error("Establishment not found");
+            return establishment;
         } catch (err) {
-            res.status(500).send({ message: err.message });
+            throw err;
         }
     },
 
