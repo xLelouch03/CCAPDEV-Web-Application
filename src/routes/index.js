@@ -18,6 +18,7 @@ router.post('/signup', UserController.createUser);
 router.post('/signup-owner', EstablishmentController.createEstablishment);
 router.post('/login', UserController.loginUser);  
 //router.put('/api/users/:username', UserController.updateUser);
+router.put('/api/update-establishment/:establishmentId', EstablishmentController.updateEstablishment);
 router.put('/api/update-user/:username', UserController.updateUser);
 router.post('/login-owner', EstablishmentController.loginEstablishment);
 
