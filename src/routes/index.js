@@ -4,6 +4,7 @@ import EstablishmentController from '../controllers/establishment.controller.js'
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
 import Establishment from '../models/establishment.model.js';
+
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -47,7 +48,7 @@ router.get('/api/user/:userId', async (req, res) => {
 
 router.get('/establishments', async (req, res) => {
   try {
-    // Fetch all users from the 'users' collection
+    // Fetch all establishments from the 'establishments' collection
     const establishments = await Establishment.find({}, 'name'); // Return only the 'username' field
     res.json({ establishments: establishments }); // Respond with the users data as JSON
   } catch (error) {
@@ -60,7 +61,7 @@ router.get('/establishments', async (req, res) => {
 router.get('/api/establishments/:establishmentId', async (req, res) => {
   try {
     const establishmentId = req.params.establishmentId;
-    // Fetch the user from the 'users' collection based on the provided user ID
+    // Fetch the establishment from the 'establishments' collection based on the provided user ID
     const establishment = await Establishment.findById(establishmentId);
     if (!establishment) {
       return res.status(404).json({ error: 'Establishment not found' });
@@ -204,13 +205,9 @@ router.get('/profile', (req, res) => {
     // Determine which layout and template to use based on authentication status
     let mainLayout, mainTemplate;
   
-    if (isAuthenticated) {
-      mainLayout = 'profile';
-      mainTemplate = 'profilesLogged'; 
-    } else {
         mainLayout = 'profile';
         mainTemplate = 'profilesLogged';
-    }
+    
   
     // Render the appropriate Handlebars template with the chosen layout
     res.render(mainTemplate, {
@@ -220,6 +217,62 @@ router.get('/profile', (req, res) => {
       // Other data that the template might need
       // ...
     });
+});
+
+router.get('/profileLogged', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+      mainLayout = 'profile';
+      mainTemplate = 'profilesLogged';
+  
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Profile Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
+router.get('/profile', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+      mainLayout = 'profile';
+      mainTemplate = 'profiles';
+  
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Profile Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
+router.get('/profileLogged/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const userData = usersData.find(user => user._id === userId);
+
+  if (!userData) {
+    // User not found, handle error
+    res.status(404).send('User not found');
+    return;
+  }
+
+  // Render the 'profile' view with the userData
+  res.render('profile', { userData });
 });
 
 // GET route to render the profile page

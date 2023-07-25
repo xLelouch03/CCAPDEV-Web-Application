@@ -17,7 +17,6 @@ const ReplyController = {
     getReply: async (reviewId) => {
         try {
             const reply = await Reply.findOne({ review: reviewId }); // Look for the reply with the review id
-            if (!reply) throw new Error("Reply not found");
             return reply;
         } catch (err) {
             throw err;
