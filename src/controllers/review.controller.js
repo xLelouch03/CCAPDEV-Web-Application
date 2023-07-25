@@ -15,15 +15,28 @@ const ReviewController = {
     },
 
     // Get all reviews of an establishment and populate their reply attribute
-    getReviews: async (id) => {
+    getReviews: async (id, sortBy = 'date') => {
         try {
-            const reviews = await Review.find({ establishment: id }).populate(['reply', 'user']);
+            let sortQuery;
+            switch (sortBy) {
+                case 'likes':
+                    sortQuery = { likes: -1 }; // Descending order
+                    break;
+                case 'date':
+                    sortQuery = { datePosted: -1 }; // Descending order
+                    break;
+                default:
+                    sortQuery = {};
+            }
+            
+            const reviews = await Review.find({ establishment: id }).sort(sortQuery).populate(['reply', 'user']);
             if (!reviews.length) console.log(`No matching reviews found for establishment ${id}`);
             return reviews;
         } catch (err) {
             throw err;
         }
     },
+
 
     // Get all reviews of a user and populate their reply attribute
     getReviewsOfUser: async (id) => {
