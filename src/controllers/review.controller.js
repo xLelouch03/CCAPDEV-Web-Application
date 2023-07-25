@@ -11,7 +11,7 @@ const ReviewController = {
             await review.save();
             console.log("New review created:");
             console.log(review);
-            return 1;
+            return review;
         } catch (err) {
             console.error(err);
             throw err;
@@ -61,9 +61,9 @@ const ReviewController = {
         const update = { $set: { title, body, lastEdited } };
 
         try {
-            const status = await Review.updateOne(filter, update);
+            const status = await Review.updateMany(filter, update);
             if(status.nModified != 1) console.log("Review remains unchanged");
-            return status.ok;
+            return status;
         } catch (err) {
             console.error(err);
             throw err;
@@ -71,18 +71,17 @@ const ReviewController = {
     },
 
     // Delete a review by its associated user and establishment
-    deleteReview: async (req, res) => {
-        const { user } = req.params;
-        const { establishment } = req.params;
-
-        const query = { user, establishment };
+    deleteReview: async (establishment) => {
+        const user = await UserController.getRandomUserId();
+        const query = { establishment };
     
         try {
-            const result = await Review.findOneAndDelete(query);
-            if (!result) return res.status(404).send({ message: "Review not found" });
-            res.send({ message: "Review deleted successfully" });
+            const status = await Review.deleteMany(query);
+            if (status.acknowledged == "true") console.log("Review deleted");
+            return status;
         } catch (err) {
-            res.status(500).send({ message: err.message });
+            console.error(err);
+            throw err;
         }
     },
 
