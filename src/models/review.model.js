@@ -50,6 +50,10 @@ const reviewSchema = new mongoose.Schema({
   },
 });
 
+
+reviewSchema.index({ title: 'text', body: 'text' });
+
+
 const Review = mongoose.model('Review', reviewSchema);
 
 export default Review;
