@@ -46,15 +46,15 @@
 
         if(selectedCategory == 'review') {
             // adjust the URL for 'review'
-            searchURL = '/barsearchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else if(selectedCategory == 'destination') {
             // adjust the URL for 'destination'
-            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else {
             // default URL for other categories
-            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         }
 
         window.location.href = searchURL;
