@@ -47,41 +47,41 @@
                                 <div class="review-positioner">
                                     <div class="review-container">
                                         <div class="profile-container">
-                                            <img class="profile-picture" src="{{review-pfp}}">
+                                            <img class="profile-picture" src="{{this.user.avatar}}">
                                             <div class="post-details-container">
-                                                <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
-                                                <span class="post-date">Last edited: {{review-date}}</span>
+                                                <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{this.user.username}}</a></span>
+                                                <span class="post-date">Last edited: {{this.datePosted}}</span>
                                             </div>
                                         </div>
                                         <div class="review-rating-container">
                                             <!-- Render the review rating stars based on the 'rating' value -->
-                                            {{#each (range rating)}}
+                                            {{#range 1 this.rating 1}}
                                                 <i class="fa fa-star review-star-icon"></i>
-                                            {{/each}}
+                                            {{/range}}
                                         </div>
                                         <span class="review-title">
-                                            {{review.title}}
+                                            {{this.title}}
                                         </span>
                                         <span class="review-content">
-                                            {{review.body}}
+                                            {{this.body}}
                                             <span class="untruncate-button">Read more</span>
                                         </span>
                                         <span class="review-content untruncated-review">
-                                            {{review.body}}
+                                            {{this.body}}
                                             <span class="truncate-button">Read less</span>
                                         </span>
                                         <div class="photo-album">
-                                            {{#each review.images}}
-                                                <img class="photo-album-photo" src="{{this}}">
+                                            {{#each this.images}}
+                                            <img class="photo-album-photo" src="{{this}}">
                                             {{/each}}
                                         </div>
                                         <div class="userbuttons-container">
                                             <div class="helpful-container">
                                                 <span class="helpful-icon"></span>
-                                                <span class="helpful-text">Helpful {{review.helpfulFeedback}}</span>
+                                                <span class="helpful-text">Helpful {{this.likes}}</span>
                                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                 <span class="unhelpful-icon"></span>
-                                                <span class="helpful-text">Unhelpful {{review.unhelpfulFeedback}}</span>
+                                                <span class="helpful-text">Unhelpful {{this.dislikes}}</span>
                                             </div>
                                             <div class="userreview-buttons-container">
                                                 <div class="edit-button-container">

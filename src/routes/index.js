@@ -263,24 +263,35 @@ router.get('/profile', (req, res) => {
   });
 });
 
-router.get('/profileLogged/:userId', (req, res) => {
+router.get('/profileLogged/:userId', async (req, res) => {
   const userId = req.params.userId;
   const userData = usersData.find(user => user._id === userId);
+  const results = (await ReviewController.getReviewsOffUser(userId)).map(doc => doc.toObject());
+  console.log(results);
+
 
   if (!userData) {
     // User not found, handle error
     res.status(404).send('User not found');
     return;
   }
+  const mainLayout = 'profile';
+  const mainTemplate = 'profilesLogged';
 
-  // Render the 'profile' view with the userData
-  res.render('profile', { userData });
+  // Render the 'profilesLogged' view with the userData and reviews
+  res.render(mainTemplate, { 
+    layout: mainLayout,
+    userData,
+    reviews: results.map(doc => doc.toObject())
+  });
 });
 
 // GET route to render the profile page
-router.get('/profile/:userId', (req, res) => {
+router.get('/profile/:userId', async (req, res) => {
   const userId = req.params.userId;
   const userData = usersData.find(user => user._id === userId);
+  const results  = (await ReviewController.getReviewsOffUser(userId)).map(doc => doc.toObject());
+  console.log(results);
 
   if (!userData) {
     // User not found, handle error
@@ -288,14 +299,21 @@ router.get('/profile/:userId', (req, res) => {
     return;
   }
 
-  // Render the 'profile' view with the userData
-  res.render('profile', { userData });
+  const mainLayout = 'profile';
+  const mainTemplate = 'profiles';
+
+  // Render the 'profilesLogged' view with the userData and reviews
+  res.render(mainTemplate, { 
+    layout: mainLayout,
+    userData,
+    reviews: results.map(doc => doc.toObject())
+  });
 });
 
 router.get('/searchresult', async (req, res) => {
   try {
-      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
-      console.log(establishments);
+    const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+    console.log(establishments);
 
       // Define Handlebars template and layout here
       const mainLayout = 'searchresult';
@@ -328,7 +346,8 @@ router.get('/searchresultLogged', async (req, res) => {
   }
 });
 
-router.get('/barsearchresult', async (req, res) => {
+
+router.get('/searchresultreview', async (req, res) => {
   const category = req.query.category;
   const query = req.query.q;
 
@@ -342,9 +361,6 @@ router.get('/barsearchresult', async (req, res) => {
   let results;
   let mainLayout;
   let mainTemplate;
-
-  mainLayout = 'searchresult';
-  mainTemplate = 'searchresults';
 
   try {
     switch (category) {
@@ -368,80 +384,9 @@ router.get('/barsearchresult', async (req, res) => {
           currentCategory: category, // the category from your server-side code
           currentQuery: query // the query from your server-side code
         });
+        console.log(results)
         break;
-      
-      default:
-        return res.status(400).send('Invalid category');
-    }
 
-    
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-});
-
-router.get('/barsearchresultLogged', async (req, res) => {
-  const category = req.query.category;
-  const query = req.query.q;
-
-  let sortBy;
-  if(req.query.sortby && req.query.sortby === 'rating') {
-    sortBy = { 'rating': -1 };
-  } else {
-    sortBy = { 'name': 1 };
-  }
-
-  let results;
-  let mainLayout;
-  let mainTemplate;
-  try {
-    switch (category) {
-      case 'destination':
-        mainLayout = 'searchresult';
-        mainTemplate = 'searchresultsLogged';
-        if (query) { // if a search term exists
-          results = await Establishment.find({
-            $text: {
-              $search: query
-            }
-          }).sort(sortBy);
-        } else { // if no search term, return all
-          results = await Establishment.find().sort(sortBy);
-        }
-        res.render(mainTemplate, {
-          layout: mainLayout,
-          searchTerm: query,
-          resultCount: results.length,
-          establishments: results.map(doc => doc.toObject()),
-          currentCategory: category, // the category from your server-side code
-          currentQuery: query // the query from your server-side code
-        });
-        break;
-      default:
-        return res.status(400).send('Invalid category');
-    }
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-});
-
-router.get('/searchresultreview', async (req, res) => {
-  const category = req.query.category;
-  const query = req.query.q;
-
-  let sortBy;
-  if(req.query.sortby && req.query.sortby === 'rating') {
-    sortBy = { 'rating': -1 };
-  } else {
-    sortBy = { 'name': 1 };
-  }
-
-  let results;
-  let mainLayout;
-  let mainTemplate;
-
-  try {
-    switch (category) {
       case 'review':
         mainLayout = 'searchresult';
         mainTemplate = 'searchresultsreviews';
@@ -491,6 +436,28 @@ router.get('/searchresultreviewLogged', async (req, res) => {
 
   try {
     switch (category) {
+      case 'destination':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsLogged';
+        if (query) { // if a search term exists
+          results = await Establishment.find({
+            $text: {
+              $search: query
+            }
+          }).sort(sortBy);
+        } else { // if no search term, return all
+          results = await Establishment.find().sort(sortBy);
+        }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          establishments: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
+        console.log(results)
+        break;
       case 'review':
         mainLayout = 'searchresult';
         mainTemplate = 'searchresultsreviewsLogged';
