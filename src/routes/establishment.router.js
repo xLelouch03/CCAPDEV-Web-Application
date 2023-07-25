@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Create new establishment
 router.post('/create-establishment', EstablishmentController.createEstablishment);
+router.post('/login-owner', EstablishmentController.loginEstablishment);
 
 // Retrieve establishment details and reviews for indivpage
 router.get('/establishment/:id', async (req, res) => {

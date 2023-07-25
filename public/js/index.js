@@ -119,25 +119,32 @@ $('#registerForm').on('submit', function (event) {
     },
   });
 });
+
   window.addEventListener("load", function (e) {
-    const username = document.querySelector("#loginUsername");
-    const password = document.querySelector("#loginPassword");
-    const login = document.querySelector("#loginBtn");
+      const username = document.querySelector("#loginUsername");
+      const password = document.querySelector("#loginPassword");
+      const role = document.querySelector("#loginRole"); // Add role select element
+      const login = document.querySelector("#loginBtn");
 
-    login?.addEventListener("click", async (e) => {
-      e.preventDefault();
+      login?.addEventListener("click", async (e) => {
+        e.preventDefault();
 
-      const myObj = {
-        username: username.value,
-        password: password.value,
-      };
+        const loginData = {
+          username: username.value,
+          password: password.value,
+          role: role.value // Get the selected role value
+        };
 
-      const jString = JSON.stringify(myObj);
+        try {
+          let loginRoute = "/login"; // Default login route for users
 
-      try {
-        const response = await fetch("/login", {
+        if (loginData.role === "owner") {
+          loginRoute = "/login-owner"; // Use login-owner route for owners
+        }
+
+        const response = await fetch(loginRoute, {
           method: 'POST',
-          body: jString,
+          body: JSON.stringify(loginData),
           headers: {
             'Content-Type': 'application/json',
           },
