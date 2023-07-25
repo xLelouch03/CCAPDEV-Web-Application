@@ -98,24 +98,28 @@ const EstablishmentController = {
         }
     },
 
-    // Update an establishment by its id
+    // Update an establishment's name, username, avatar, short description, and description
     updateEstablishment: async (req, res) => {
-        const { establishment } = req.params;
-        const { name } = req.body;
-        const { password } = req.body;
-        const { avatar } = req.body;
-        const { images } = req.body;
-        const { category } = req.body;
-        const { description } = req.body;
-        const { location } = req.body;
-
-        const update = { $set: { name, password, avatar, images, category, description, location } };
+        const { establishmentId } = req.params;
+        const { newName, newUsername, avatar, shortDescription, description } = req.body;
+        console.log("Received update request:", { establishmentId, newName, newUsername, avatar, shortDescription, description });
+    
         try {
-            const match = await Establishment.findByIdAndUpdate(establishment, update, { new: true });
-            if (!match) return res.status(404).send({ message: "Establishment not found" });
-            res.send(match);
+        // Find the establishment in the database and update its information
+        const establishment = await Establishment.findOneAndUpdate(
+            { _id: establishmentId },
+            { name: newName, username: newUsername, avatar, shortDescription, description },
+            { new: true }
+        );
+    
+        if (!establishment) {
+            return res.status(404).send({ message: "Establishment not found" });
+        }
+    
+        // Optionally, you can send a success message in the response
+        res.send({ message: "Establishment information updated successfully", establishment });
         } catch (err) {
-            res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
         }
     },
 

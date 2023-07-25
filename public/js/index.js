@@ -313,6 +313,25 @@ $('#registerForm').on('submit', function (event) {
     console.log('userId:', userId);
     console.log('establishmentId:', establishmentId);
     
+    // Function to hide the establishment fields
+    function hideEstablishmentFields() {
+      const establishmentFields = document.getElementById('establishmentFields');
+      establishmentFields.style.display = 'none';
+    }
+
+    // Function to show the establishment fields
+    function showEstablishmentFields() {
+        const establishmentFields = document.getElementById('establishmentFields');
+        establishmentFields.style.display = 'block';
+    }
+
+    // Check if either userId or establishmentId is present
+    if (establishmentId) {
+        showEstablishmentFields();
+    } else {
+        hideEstablishmentFields();
+    }
+
     // Fetch the user data based on the userId
     const fetchUserDataPromise = fetchUserData(userId)
     .catch((error) => {
@@ -448,6 +467,84 @@ $('#updateForm').on('submit', async function (event) {
   const userName = $('#userName').val();
   const avatar = $('#avatar').val(); 
   const userDescription = $('#userDescription').val();
+  const establishmentName = $('#establishmentName').val();
+  const establishmentShortDescription = $('#establishmentShortDescription').val();
+  const establishmentDescription = $('#establishmentDescription').val();
+
+  // Create the updated data object to be sent to the server
+  const updatedData = {
+      avatar: avatar,
+      newUsername: userName, // Updated key name to match the backend
+      profileDescription: userDescription,
+      establishmentData: {
+          name: establishmentName,
+          shortDescription: establishmentShortDescription,
+          description: establishmentDescription
+      }
+  };
+
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+    const establishmentId = urlParams.get('establishmentId');
+      // Check if it's an establishment update
+      if (establishmentId) {
+          // Send the update request to the backend endpoint with the correct establishmentId
+          const response = await fetch(`/api/update-establishment/${establishmentId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(updatedData.establishmentData),
+          });
+
+          if (!response.ok) {
+              throw new Error(`Error updating establishment details (Status: ${response.status})`);
+          }
+
+          const responseData = await response.json();
+          console.log(responseData.message); // Log the success message from the backend
+
+          // Display success message
+          $('#updateSuccessMessage').show();
+          location.reload();
+      } else {
+          // Send the update request to the backend endpoint with the correct userId
+          const response = await fetch(`/api/update-user/${userId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(updatedData),
+          });
+
+          if (!response.ok) {
+              throw new Error(`Error updating user details (Status: ${response.status})`);
+          }
+
+          const responseData = await response.json();
+          console.log(responseData.message); // Log the success message from the backend
+
+          // Display success message and update profileData with the updated details
+          $('#updateSuccessMessage').show();
+          location.reload();
+          profileData = responseData.user; // Update the frontend data with the updated data
+      }
+  } catch (error) {
+      console.error('Error updating user or establishment details:', error);
+      // Handle error if needed
+  }
+});
+
+
+// Event handler for form submission
+/*$('#updateForm').on('submit', async function (event) {
+  event.preventDefault();
+
+  // Get updated form input values
+  const userName = $('#userName').val();
+  const avatar = $('#avatar').val(); 
+  const userDescription = $('#userDescription').val();
 
   // Create the updated data object to be sent to the server
   const updatedData = {
@@ -489,7 +586,7 @@ $('#updateForm').on('submit', async function (event) {
     console.error('Error updating user details:', error);
     // Handle error if needed
   }
-});
+});*/
 
 // Function to create an HTML review element using Handlebars template
 function createReviewElement(review) {
