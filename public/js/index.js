@@ -183,6 +183,16 @@ $('#registerForm').on('submit', function (event) {
     });
   }
 
+  function updateEstablishmentDropdownOptions(establishments) {
+    const establishmentDropdownList = $("#establishmentDropdownList");
+    establishmentDropdownList.empty();
+  
+    establishments.forEach((establishment) => {
+      const establishmentOption = $(`<li class="dropdown-item establishment-option" data-establishment-id="${establishment._id}">${establishment.name}</li>`);
+      establishmentDropdownList.append(establishmentOption);
+    });
+  }
+
   // Fetch usernames from the server
   async function fetchUsernames() {
     try {
@@ -198,6 +208,20 @@ $('#registerForm').on('submit', function (event) {
     }
   }
 
+  async function fetchEstablishmentNames() {
+    try {
+      const response = await fetch('/establishments'); // Make a GET request to your /establishments endpoint
+      if (!response.ok) {
+        throw new Error(`Error fetching establishment names (Status: ${response.status})`);
+      }
+      const data = await response.json();
+      return data.establishments; // Assuming the response contains the 'establishments' array with establishment names
+    } catch (error) {
+      console.error('Error fetching establishment names:', error);
+      return []; // Return an empty array or handle the error accordingly
+    }
+  }
+
   // Fetch usernames and update the profile dropdown when the page loads
   fetchUsernames()
     .then((users) => {
@@ -207,18 +231,15 @@ $('#registerForm').on('submit', function (event) {
       console.error("Error fetching usernames:", error);
       // Handle error if needed
     });
-    async function fetchUserDataFromServer(userId) {
-      try {
-        const response = await fetch(`/api/user/${userId}`);
-        if (!response.ok) {
-          throw new Error(`Error fetching user data (Status: ${response.status})`);
-        }
-        return response.json();
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        throw error; // Re-throw the error to handle it in the event handler
-      }
-    }
+
+  fetchEstablishmentNames()
+    .then((establishments) => {
+      updateEstablishmentDropdownOptions(establishments);
+    })
+    .catch((error) => {
+      console.error("Error fetching establishment names:", error);
+      // Handle error if needed
+    });
 
     async function fetchUserData(userId) {
       try {
@@ -233,9 +254,65 @@ $('#registerForm').on('submit', function (event) {
       }
     }
 
+    async function fetchEstablishmentData(establishmentId) {
+      try {
+        const response = await fetch(`/api/establishments/${establishmentId}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching establishment data (Status: ${response.status})`);
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Error fetching establishment data:', error);
+        throw error;
+      }
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
+    const establishmentId = urlParams.get('establishmentId');
     console.log('userId:', userId);
+    console.log('establishmentId:', establishmentId);
+    
+    fetchEstablishmentData(establishmentId)
+    .then((establishmentData) => {
+      console.log('establishmentData:', establishmentData);
+
+      // Create a Handlebars template (replace with your actual template)
+      const templateSource2 = `
+        <div class="profile-container2">
+          <img src="${establishmentData.avatar}" alt="Establishment Avatar" class="profile-picture2">
+          <h4 class="name">${establishmentData.name}</h4>
+          <h6 class="description">${establishmentData.shortDescription}</h6>
+          <!-- Add more HTML elements to display establishment data as needed -->
+          <ul class="nav flex-column nav-pills mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#juanderlast-points">Juanderlast Points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#promo-codes">Promo Codes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#reviews">Reviews</a>
+                    </li>
+                </ul>
+          </div>
+        </div>
+      `;
+
+      // Compile the Handlebars template
+      const template2 = Handlebars.compile(templateSource2);
+
+      // Render the template with the establishmentData and place it in the 'profile-container2' element
+      const establishmentHtml = template2(establishmentData);
+      $('.profile-container2').html(establishmentHtml);
+    })
+    .catch((error) => {
+      console.error('Error fetching establishment data:', error);
+      // Handle error if needed
+    });
     
     // Fetch the user data based on the userId
     fetchUserData(userId)
@@ -286,6 +363,13 @@ $('#registerForm').on('submit', function (event) {
       // Redirect to the profile page with the selected user ID
       window.location.href = `/profile?userId=${userId}`;
     });
+
+    const establishmentDropdownList = $("#establishmentDropdownList");
+    establishmentDropdownList.on("click", ".establishment-option", function () {
+    const establishmentId = $(this).data("establishment-id");
+    window.location.href = `/profile?establishmentId=${establishmentId}`;
+
+  }); 
 });
 
 async function updateUserDetails(username, updatedData) {

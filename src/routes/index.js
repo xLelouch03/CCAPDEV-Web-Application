@@ -45,6 +45,33 @@ router.get('/api/user/:userId', async (req, res) => {
   }
 });
 
+router.get('/establishments', async (req, res) => {
+  try {
+    // Fetch all users from the 'users' collection
+    const establishments = await Establishment.find({}, 'name'); // Return only the 'username' field
+    res.json({ establishments: establishments }); // Respond with the users data as JSON
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route to fetch establishment data by ID
+router.get('/api/establishments/:establishmentId', async (req, res) => {
+  try {
+    const establishmentId = req.params.establishmentId;
+    // Fetch the user from the 'users' collection based on the provided user ID
+    const establishment = await Establishment.findById(establishmentId);
+    if (!establishment) {
+      return res.status(404).json({ error: 'Establishment not found' });
+    }
+    res.json(establishment);
+  } catch (error) {
+    console.error('Error fetching establishment data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Route to fetch reviews by user ID
 router.get('/api/reviews/:userId', async (req, res) => {
   try {

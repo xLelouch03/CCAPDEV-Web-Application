@@ -15,7 +15,7 @@ const establishmentSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: '../../images/default-avatar'
+    default: 'static/images/default-avatar.jpg"'
   },
   images: [{
     type: String,
@@ -23,6 +23,10 @@ const establishmentSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true
+  },
+  shortDescription: {
+    type: String,
+    rquired: true
   },
   description: {
     type: String,
