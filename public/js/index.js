@@ -1,20 +1,18 @@
-//import { connectToMongo, getDb } from "./src/db/conn.js";
-
 $(document).ready(function() {
     // Switch to register form
     $('#registerLink').click(function() {
       $('#loginModal').modal('hide');
       $('#registerModal').modal('show');
-      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
-      $('.modal-backdrop').remove(); // Remove the modal backdrop
+      $('body').removeClass('modal-open'); 
+      $('.modal-backdrop').remove(); 
     });
 
     // Switch to login form
     $('#loginLink').click(function() {
       $('#registerModal').modal('hide');
       $('#loginModal').modal('show');
-      $('body').removeClass('modal-open'); // Remove the 'modal-open' class from the body
-      $('.modal-backdrop').remove(); // Remove the modal backdrop
+      $('body').removeClass('modal-open'); 
+      $('.modal-backdrop').remove(); 
     });
 
 
@@ -28,8 +26,6 @@ $(document).ready(function() {
         $(this).find('input').val('');
     });
 
-    // Show/hide the image upload field based on the selected role
-    // Event listener for role select element
     $('#role').on('change', function () {
       const selectedRole = $(this).val();
       const ownerOnlyFields = $('.owner-only');
@@ -47,7 +43,7 @@ $(document).ready(function() {
     });
 
     $("#reviewsTabLink").on("click", function() {
-      // Get the user ID and establishment ID from your URL (similar to how you're doing it for other tabs)
+      // Get the user ID and establishment ID from your URL
       const urlParams = new URLSearchParams(window.location.search);
       const userId = urlParams.get('userId');
       const establishmentId = urlParams.get('establishmentId');
@@ -84,15 +80,15 @@ $('#registerForm').on('submit', function (event) {
     const establishmentPhotosFileName = establishmentPhotosInput.files[0].name;
     requestData.establishmentPhotos = `static/images/${establishmentPhotosFileName}`;
 
-    // Call the function to handle image upload and create a copy in the 'static/images' folder
+    
     handleImageUpload(establishmentPhotosInput, establishmentPhotosFileName);
   } else {
-    // Extract the file name from the avatar input field
+    
     const avatarInput = $('#avatar')[0];
     const avatarFileName = avatarInput.files[0].name;
     requestData.avatar = `static/images/${avatarFileName}`;
 
-    // Call the function to handle image upload and create a copy in the 'static/images' folder
+   
     handleImageUpload(avatarInput, avatarFileName);
   }
   
@@ -104,7 +100,7 @@ $('#registerForm').on('submit', function (event) {
     type: 'POST',
     url: signupRoute,
     data: JSON.stringify(requestData),
-    contentType: 'application/json', // Set the content type to JSON
+    contentType: 'application/json', 
     success: function (response) {
       window.location.href = '/loggedInMain';
     },
@@ -117,7 +113,7 @@ $('#registerForm').on('submit', function (event) {
   window.addEventListener("load", function (e) {
       const username = document.querySelector("#loginUsername");
       const password = document.querySelector("#loginPassword");
-      const role = document.querySelector("#loginRole"); // Add role select element
+      const role = document.querySelector("#loginRole");
       const login = document.querySelector("#loginBtn");
 
       login?.addEventListener("click", async (e) => {
@@ -126,14 +122,14 @@ $('#registerForm').on('submit', function (event) {
         const loginData = {
           username: username.value,
           password: password.value,
-          role: role.value // Get the selected role value
+          role: role.value 
         };
 
         try {
-          let loginRoute = "/login"; // Default login route for users
+          let loginRoute = "/login";
 
         if (loginData.role === "owner") {
-          loginRoute = "/login-owner"; // Use login-owner route for owners
+          loginRoute = "/login-owner"; 
         }
 
         const response = await fetch(loginRoute, {
@@ -148,8 +144,8 @@ $('#registerForm').on('submit', function (event) {
           // Login successful, redirect to the logged-in main page
           window.location.href = '/loggedInMain';
         } else {
-          const data = await response.json(); // Parse the response body as JSON
-          const message = data.message; // Access the "message" property
+          const data = await response.json(); 
+          const message = data.message;
           alert("Login failed. " + message);
         }
       } catch (err) {
@@ -161,7 +157,6 @@ $('#registerForm').on('submit', function (event) {
   
   
     $('#logout').click(function() {
-        // Redirect the user to the index page when the logout button is clicked
        window.location.href = '/';
     });
 
@@ -190,15 +185,15 @@ $('#registerForm').on('submit', function (event) {
   // Fetch usernames from the server
   async function fetchUsernames() {
     try {
-      const response = await fetch('/users'); // Make a GET request to your /users endpoint
+      const response = await fetch('/users'); 
       if (!response.ok) {
         throw new Error(`Error fetching usernames (Status: ${response.status})`);
       }
       const data = await response.json();
-      return data.users; // Assuming the response contains the 'users' array with usernames
+      return data.users; 
     } catch (error) {
       console.error('Error fetching usernames:', error);
-      return []; // Return an empty array or handle the error accordingly
+      return []; 
     }
   }
 
@@ -209,102 +204,102 @@ $('#registerForm').on('submit', function (event) {
         throw new Error(`Error fetching establishment names (Status: ${response.status})`);
       }
       const data = await response.json();
-      return data.establishments; // Assuming the response contains the 'establishments' array with establishment names
+      return data.establishments; 
     } catch (error) {
       console.error('Error fetching establishment names:', error);
-      return []; // Return an empty array or handle the error accordingly
+      return []; 
     }
   }
 
   // Fetch usernames and update the profile dropdown when the page loads
   fetchUsernames()
-    .then((users) => {
-      updateProfileDropdownOptions(users);
-    })
-    .catch((error) => {
-      console.error("Error fetching usernames:", error);
-      // Handle error if needed
-    });
+      .then((users) => {
+        updateProfileDropdownOptions(users);
+      })
+      .catch((error) => {
+        console.error("Error fetching usernames:", error);
+        
+      });
 
   fetchEstablishmentNames()
-    .then((establishments) => {
-      updateEstablishmentDropdownOptions(establishments);
-    })
-    .catch((error) => {
-      console.error("Error fetching establishment names:", error);
-      // Handle error if needed
-    });
+      .then((establishments) => {
+        updateEstablishmentDropdownOptions(establishments);
+      })
+      .catch((error) => {
+        console.error("Error fetching establishment names:", error);
+        
+      });
 
     async function fetchUserData(userId) {
-      try {
-        const response = await fetch(`/api/user/${userId}`);
-        if (!response.ok) {
-          throw new Error(`Error fetching user data (Status: ${response.status})`);
+        try {
+            const response = await fetch(`/api/user/${userId}`);
+            if (!response.ok) {
+              throw new Error(`Error fetching user data (Status: ${response.status})`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            throw error;
         }
-        return response.json();
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        throw error;
-      }
     }
 
     async function fetchEstablishmentData(establishmentId) {
-      try {
-        const response = await fetch(`/api/establishments/${establishmentId}`);
-        if (!response.ok) {
-          throw new Error(`Error fetching establishment data (Status: ${response.status})`);
+        try {
+            const response = await fetch(`/api/establishments/${establishmentId}`);
+            if (!response.ok) {
+              throw new Error(`Error fetching establishment data (Status: ${response.status})`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching establishment data:', error);
+            throw error;
         }
-        return response.json();
-      } catch (error) {
-        console.error('Error fetching establishment data:', error);
-        throw error;
-      }
     }
 
     async function fetchReviews(userId, establishmentId) {
       try {
-        let response;
-        if (userId) {
-          // Fetch reviews for the selected user
-          response = await fetch(`/api/reviews/${userId}`);
-        } else if (establishmentId) {
-          // Fetch reviews for the selected establishment
-          response = await fetch(`/api/reviews/establishment/${establishmentId}`);
-        } else {
-          // No valid user or establishment ID, return early
-          return;
+          let response;
+          if (userId) {
+              // Fetch reviews for the selected user
+              response = await fetch(`/api/reviews/${userId}`);
+          } else if (establishmentId) {
+              // Fetch reviews for the selected establishment
+              response = await fetch(`/api/reviews/establishment/${establishmentId}`);
+          } else {
+              // No valid user or establishment ID, return early
+              return;
+          }
+      
+          if (!response.ok) {
+              throw new Error(`Error fetching reviews (Status: ${response.status})`);
+          }
+      
+          const data = await response.json();
+          console.log('Fetched data:', data); // Add this log to see the entire data object
+          return data.reviews; // Assuming the response contains the 'reviews' array
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            return []; 
         }
-    
-        if (!response.ok) {
-          throw new Error(`Error fetching reviews (Status: ${response.status})`);
-        }
-    
-        const data = await response.json();
-        console.log('Fetched data:', data); // Add this log to see the entire data object
-        return data.reviews; // Assuming the response contains the 'reviews' array
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-        return []; // Return an empty array or handle the error accordingly
-      }
     }
 
     async function updateReviewsTab(userId, establishmentId) {
-      try {
-        const reviews = await fetchReviews(userId, establishmentId);
-        console.log(reviews);
-        const reviewsContainer = $(".reviews-container");
-        reviewsContainer.empty();
-    
-        if (reviews && Array.isArray(reviews)) {
-          reviews.forEach((review) => {
-            const reviewHtml = createReviewElement(review);
-            reviewsContainer.append(reviewHtml);
-          });
+        try {
+            const reviews = await fetchReviews(userId, establishmentId);
+            console.log(reviews);
+            const reviewsContainer = $(".reviews-container");
+            reviewsContainer.empty();
+      
+            if (reviews && Array.isArray(reviews)) {
+                reviews.forEach((review) => {
+                  const reviewHtml = createReviewElement(review);
+                  reviewsContainer.append(reviewHtml);
+                });
+            }
+        } catch (error) {
+            console.error('Error updating reviews tab:', error);
+          
         }
-      } catch (error) {
-        console.error('Error updating reviews tab:', error);
-        // Handle error if needed
-      }
     }
       
     const urlParams = new URLSearchParams(window.location.search);
@@ -313,19 +308,18 @@ $('#registerForm').on('submit', function (event) {
     console.log('userId:', userId);
     console.log('establishmentId:', establishmentId);
     
-    // Function to hide the establishment fields
+    
     function hideEstablishmentFields() {
-      const establishmentFields = document.getElementById('establishmentFields');
-      establishmentFields.style.display = 'none';
+        const establishmentFields = document.getElementById('establishmentFields');
+        establishmentFields.style.display = 'none';
     }
 
-    // Function to show the establishment fields
+    
     function showEstablishmentFields() {
         const establishmentFields = document.getElementById('establishmentFields');
         establishmentFields.style.display = 'block';
     }
 
-    // Check if either userId or establishmentId is present
     if (establishmentId) {
         showEstablishmentFields();
     } else {
@@ -336,34 +330,28 @@ $('#registerForm').on('submit', function (event) {
     const fetchUserDataPromise = fetchUserData(userId)
     .catch((error) => {
       console.error('Error fetching user data:', error);
-      return {}; // Return an empty object if there's an error to prevent any issues with the next fetch request
+      return {}; 
     });
 
     // Fetch the establishment data based on the establishmentId
     const fetchEstablishmentDataPromise = fetchEstablishmentData(establishmentId)
     .catch((error) => {
       console.error('Error fetching establishment data:', error);
-      return {}; // Return an empty object if there's an error to prevent any issues with the next fetch request
+      return {}; 
     });
 
-    // Use Promise.all to wait for both fetch requests to complete
+    
     Promise.all([fetchUserDataPromise, fetchEstablishmentDataPromise])
-    .then(([userData, establishmentData]) => {
-      // Render user data and establishment data here if needed
-
-      // Call the updateReviewsTab function with the retrieved data
-      updateReviewsTab(userData._id, establishmentData._id);
+      .then(([userData, establishmentData]) => {
+        updateReviewsTab(userData._id, establishmentData._id);
     })
     .catch((error) => {
-      console.error('Error fetching data:', error);
-      // Handle error if needed
+        console.error('Error fetching data:', error);
     });
 
     fetchEstablishmentData(establishmentId)
     .then((establishmentData) => {
       console.log('establishmentData:', establishmentData);
-
-      // Create a Handlebars template (replace with your actual template)
       const templateSource2 = `
         <div class="profile-container2">
           <img src="${establishmentData.avatar}" alt="Establishment Avatar" class="profile-picture2">
@@ -441,7 +429,7 @@ $('#registerForm').on('submit', function (event) {
         console.error('Error fetching user data:', error);
         // Handle error if needed
       });
-   
+
     const userDropdownList = $("#userDropdownList");
     userDropdownList.on("click", ".user-option", function () {
       const userId = $(this).data("user-id");
