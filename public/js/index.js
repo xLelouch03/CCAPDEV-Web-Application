@@ -509,63 +509,14 @@ $('#updateForm').on('submit', async function (event) {
       $('#updateSuccessMessage').show();
       //location.reload();
       profileData = responseData.user; // Update the frontend data with the updated data
+      location.reload();
   } catch (error) {
       console.error('Error updating user or establishment details:', error);
-      // Handle error if needed
+      
   }
 });
 
 
-// Event handler for form submission
-/*$('#updateForm').on('submit', async function (event) {
-  event.preventDefault();
-
-  // Get updated form input values
-  const userName = $('#userName').val();
-  const avatar = $('#avatar').val(); 
-  const userDescription = $('#userDescription').val();
-
-  // Create the updated data object to be sent to the server
-  const updatedData = {
-    avatar: avatar,
-    newUsername: userName, // Updated key name to match the backend
-    profileDescription: userDescription,
-  };
-
-  try {
-    // Get the userId from the URL query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId');
-    if (!userId) {
-      console.error('userId not found in URL');
-      return;
-    }
-
-    // Send the update request to the backend endpoint with the correct userId
-    const response = await fetch(`/api/update-user/${userId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedData),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error updating user details (Status: ${response.status})`);
-    }
-
-    const responseData = await response.json();
-    console.log(responseData.message); // Log the success message from the backend
-
-    // Display success message and update profileData with the updated details
-    $('#updateSuccessMessage').show();
-    location.reload();
-    profileData = responseData.user; // Update the frontend data with the updated data
-  } catch (error) {
-    console.error('Error updating user details:', error);
-    // Handle error if needed
-  }
-});*/
 
 // Function to create an HTML review element using Handlebars template
 function createReviewElement(review) {
