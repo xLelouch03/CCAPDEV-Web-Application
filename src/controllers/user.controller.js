@@ -4,7 +4,7 @@ const UserController = {
     createUser: async (req, res) => {
         try {
           const { username, password, role, avatar, profileDescription, establishmentPhotos } = req.body;
-          console.log("Received signup request:", { username, password, profileDescription });
+          console.log("Received signup request:", { username, password, profileDescription, avatar });
       
           if (!username || !password) {
             return res.status(400).json({ message: "Please provide both username and password." });
@@ -47,6 +47,16 @@ const UserController = {
             res.send(user);
         } catch (err) {
             res.status(500).send({ message: err.message });
+        }
+    },
+
+    getRandomUserId: async () => {
+        try {
+            const user = await User.findOne({});
+            if (!user) console.log('No users available');
+            return user._id;
+        } catch (err) {
+            throw err
         }
     },
 
