@@ -8,41 +8,56 @@ import express from 'express';
 import exphbs from 'express-handlebars';
 
 // Routes modules
-import router from "./src/routes/index.js";
+import router from './src/routes/index.js';
+import userRouter from './src/routes/user.router.js';
 import establishmentRouter from './src/routes/establishment.router.js';
 import cors from 'cors';
 
 // DB modules
 import { connectToMongo } from "./src/models/conn.js";
-// import bcrypt from "bcrypt";
-import UserController from './src/controllers/user.controller.js';
-import userRouter from './src/routes/user.router.js';
+
 // Importing Mongoose schemas
 import mongoose from 'mongoose';
 import User from './src/models/user.model.js';
 import Establishment from './src/models/establishment.model.js';
 import Review from './src/models/review.model.js';
 import Reply from './src/models/reply.model.js';
+
 async function main () {
     const __dirname = dirname(fileURLToPath(import.meta.url)); // directory URL
     const app = express();
+    const hbs = exphbs.create({
+      extname: 'hbs',
+      helpers: {
+        range: function(from, to, incr, options) {
+          let data = {};
+          if (options && options.data) {
+            data = Object.create(options.data);
+          }
+          let out = '';
+          for (var i = from; i <= to; i += incr) {
+            data.index = i;
+            out += options.fn(this, {data: data});
+          }
+          return out;
+        },        
+      },
+    });
+
     app.use("/static", express.static(__dirname + "/public"));
-    // Set handlebars as the express app's default view engine
-    app.engine("hbs", exphbs.engine({
-        extname: 'hbs'
-    }));
+    app.engine("hbs", hbs.engine); // Set handlebars as the express app's default view engine
     app.set("view engine", "hbs");
-    // directory for views folder
-    app.set("views", "./src/views");
-    // View cache to false
+    app.set("views", "./src/views"); // Directory for views folder
     app.set("view cache", false);
 
     // from this point onwards, we are going to receive json format data
     app.use(express.json());
     app.use(cors());
+
+    // Use routers
+    app.use(establishmentRouter);
     app.use(router);
     app.use(userRouter);
-    app.use(establishmentRouter);
 
     app.listen(process.env.SERVER_PORT, () => {
       console.log("Express app now listening...");

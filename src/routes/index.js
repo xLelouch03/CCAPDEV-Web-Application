@@ -4,6 +4,7 @@ import EstablishmentController from '../controllers/establishment.controller.js'
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
 import Establishment from '../models/establishment.model.js';
+
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -47,7 +48,7 @@ router.get('/api/user/:userId', async (req, res) => {
 
 router.get('/establishments', async (req, res) => {
   try {
-    // Fetch all users from the 'users' collection
+    // Fetch all establishments from the 'establishments' collection
     const establishments = await Establishment.find({}, 'name'); // Return only the 'username' field
     res.json({ establishments: establishments }); // Respond with the users data as JSON
   } catch (error) {
@@ -60,7 +61,7 @@ router.get('/establishments', async (req, res) => {
 router.get('/api/establishments/:establishmentId', async (req, res) => {
   try {
     const establishmentId = req.params.establishmentId;
-    // Fetch the user from the 'users' collection based on the provided user ID
+    // Fetch the establishment from the 'establishments' collection based on the provided user ID
     const establishment = await Establishment.findById(establishmentId);
     if (!establishment) {
       return res.status(404).json({ error: 'Establishment not found' });
@@ -110,31 +111,6 @@ router.get('/', async (req, res) => {
       title: "Juanderlast Main Page",
       user: req.user,
       establishments: establishments // Pass retrieved data to Handlebars
-    });
-});
-
-router.get('/establishment', (req, res) => {
-    // Render the Handlebars template for the establishment page without specifying a layout
-    const isAuthenticated = req.user ? true : false;
-  
-    // Determine which layout and template to use based on authentication status
-    let mainLayout, mainTemplate;
-  
-    if (isAuthenticated) {
-      mainLayout = 'establishment';
-      mainTemplate = 'establishmentLogged'; 
-    } else {
-        mainLayout = 'establishment';
-        mainTemplate = 'establishmentLogged';
-    }
-  
-    // Render the appropriate Handlebars template with the chosen layout
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      title: "Juanderlast Establishment Page",
-      user: req.user,
-      // Other data that the template might need
-      // ...
     });
 });
 
