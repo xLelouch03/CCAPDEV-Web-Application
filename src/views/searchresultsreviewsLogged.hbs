@@ -1,0 +1,60 @@
+{{>navbarLogged}}
+    <div class="ctr">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Results for "{{searchTerm}}"</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{resultCount}} results found</h3>
+                    </div>
+                </div>
+    
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="input-group mb-3">
+                    <div class="dropdown rating">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button" id="sortByRating">Rating</button>
+                        <button class="dropdown-item" type="button" id="sortByName">Name</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        {{#each establishments}}
+        <div class="destination-slide"> 
+        <a href="/establishmentLogged/{{this._id}}">
+            <img src="{{this.images.[0]}}" class="img-slider">
+            <div class="image-text">
+                <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
+                <p class="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{this.rating}} overall ratings </p>
+            </div>
+        </a>
+        </div>
+        {{/each}}
+    </div>
+
+    
+<script>
+
+
+window.onload = function() {
+   document.getElementById('sortByRating').addEventListener('click', function() {
+      window.location.href = `/searchresultLogged?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=rating`;
+   });
+
+   document.getElementById('sortByName').addEventListener('click', function() {
+      window.location.href = `/searchresultLogged?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=name`;
+   });
+}
+
+</script>
