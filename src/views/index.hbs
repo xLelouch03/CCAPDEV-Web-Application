@@ -46,15 +46,15 @@
 
         if(selectedCategory == 'review') {
             // adjust the URL for 'review'
-            searchURL = '/searchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/barsearchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else if(selectedCategory == 'destination') {
             // adjust the URL for 'destination'
-            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else {
             // default URL for other categories
-            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         }
 
         window.location.href = searchURL;
@@ -167,7 +167,6 @@
 
         </div>
 
-        
             <div class="ctr"> 
                 <a href="/searchresult"><div class="btn-see">   See More </div></a> 
         </div>
