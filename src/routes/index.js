@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
+import EstablishmentController from '../controllers/establishment.controller.js';
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
 const router = Router();
@@ -143,31 +144,24 @@ router.get('/profile/:userId', (req, res) => {
   res.render('profile', { userData });
 });
 
-router.get('/searchresult', (req, res) => {
-  // Render the Handlebars template for the establishment page without specifying a layout
-  const isAuthenticated = req.user ? true : false;
+// Retrieve existing establishments and render searchresults
+router.get('/searchresult', async (req, res) => {
+  try {
+      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+      console.log(establishments);
 
-  // Determine which layout and template to use based on authentication status
-  let mainLayout, mainTemplate;
+      // Define Handlebars template and layout here
+      const mainLayout = 'searchresult';
+      const mainTemplate = 'searchresults';
 
-  if (isAuthenticated) {
-    mainLayout = 'searchresult';
-    mainTemplate = 'searchresultsLogged'; 
-  } else {
-      mainLayout = 'searchresult';
-      mainTemplate = 'searchresults';
+      res.render(mainTemplate, {
+          layout: mainLayout,
+          establishments: establishments
+      });
+  } catch (err) {
+      res.status(500).send({ message: err.message });
   }
-
-  // Render the appropriate Handlebars template with the chosen layout
-  res.render(mainTemplate, {
-    layout: mainLayout,
-    title: "Search Results",
-    user: req.user,
-    // Other data that the template might need
-    // ...
-  });
 });
-
 
 router.get("/logout", (req,res) => {
     res.redirect("/");

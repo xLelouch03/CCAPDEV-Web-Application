@@ -25,6 +25,16 @@ const userSchema = new mongoose.Schema({
   establishmentPhotos: {
     type: [String], // Array of strings to store multiple image URLs
     default: []
+  },
+  likes: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Review',
+    default: []
+  },
+  dislikes: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Review',
+    default: []
   }
 });
 

@@ -29,9 +29,10 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  images: [{
-    type: String
-  }],
+  images: {
+    type: [String],
+    default: []
+  },
   datePosted: {
     type: Date,
     default: Date.now,
@@ -39,11 +40,11 @@ const reviewSchema = new mongoose.Schema({
   lastEdited: {
     type: Date,
   },
-  helpfulFeedback: {
+  likes: {
     type: Number,
     default: 0,
   },
-  unhelpfulFeedback: {
+  dislikes: {
     type: Number,
     default: 0,
   },

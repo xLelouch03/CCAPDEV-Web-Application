@@ -17,9 +17,10 @@ const establishmentSchema = new mongoose.Schema({
     type: String,
     default: '../../images/default-avatar'
   },
-  images: [{
-    type: String,
-  }],
+  images: {
+    type: [String],
+    default: []
+  },
   category: {
     type: String,
     required: true

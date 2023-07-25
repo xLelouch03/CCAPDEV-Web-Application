@@ -94,7 +94,7 @@
                 <i class="fa fa-star average-star-icon"></i>
                 <i class="fa fa-star average-star-icon"></i>
         </div>
-        <span class="review-count">{{review/count}} reviews</span> <!--WIP-->
+        <span class="review-count">{{review.count}} reviews</span> <!--WIP-->
     </div>
     <div class="options-container">
         <button class="review-filter" id="all" onclick="showAllReviews()">All</button>
@@ -117,7 +117,7 @@
                 <img class="profile-picture" src="{{review.user.avatar}}">
                 <div class="post-details-container">
                     <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review.user.username}}</a></span>
-                    <span class="post-date">Last edited: {{review-datePosted}}</span>
+                    <span class="post-date">Last edited: {{review.datePosted}}</span>
                 </div>
             </div>
             <div class="review-rating-container">
@@ -145,10 +145,10 @@
             <div class="userbuttons-container">
                 <div class="helpful-container">
                     <span class="helpful-icon"></span>
-                    <span class="helpful-text">Helpful {{review.helpfulFeedback}}</span>
+                    <span class="helpful-text">Helpful {{review.likes}}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="unhelpful-icon"></span>
-                    <span class="helpful-text">Unhelpful {{review.unhelpfulFeedback}}</span>
+                    <span class="helpful-text">Unhelpful {{review.dislikes}}</span>
                 </div>
                 <div class="userreview-buttons-container">
                     <div class="edit-button-container">

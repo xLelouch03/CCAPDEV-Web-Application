@@ -26,31 +26,13 @@ router.get('/establishment/:id', async (req, res) => {
         }
 
         // Define Handlebars template and layout here
-        const mainLayout = 'main';
-        const mainTemplate = 'establishment';
+        const mainLayout = 'establishment';
+        const mainTemplate = 'establishmentLogged';
 
         res.render(mainTemplate, {
             layout: mainLayout,
             establishment: establishment,
             reviews: reviews
-        });
-    } catch (err) {
-        res.status(500).send({ message: err.message });
-    }
-});
-
-// Retrieve existing establishments for searchresults page
-router.get('/searchresults', async (req, res) => {
-    try {
-        const establishments = await EstablishmentController.getEstablishments();
-
-        // Define Handlebars template and layout here
-        const mainLayout = 'searchresult';
-        const mainTemplate = 'searchresults';
-
-        res.render(mainTemplate, {
-            layout: mainLayout,
-            establishments: establishments
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
