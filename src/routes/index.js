@@ -72,18 +72,36 @@ router.get('/api/establishments/:establishmentId', async (req, res) => {
   }
 });
 
-// Route to fetch reviews by user ID
+// Route to fetch establishment data by ID
 router.get('/api/reviews/:userId', async (req, res) => {
   try {
     const userId = req.params.userId;
+    console.log('Received request for reviews with user ID:', userId);
+
     // Fetch the reviews associated with the provided user ID
     const reviews = await Review.find({ user: userId });
+    console.log('Fetched reviews:', reviews);
+
     res.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// Route to fetch reviews by user ID
+/*router.get('/api/reviews/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("Reviews request received: ", userId);
+    // Fetch the reviews associated with the provided user ID
+    const review = await Review.find({ user: userId });
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});*/
 
 router.get('/', async (req, res) => {
     // Retrieve data from DB
