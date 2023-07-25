@@ -18,6 +18,7 @@ router.get('/establishment/:establishmentId', async (req, res) => {
             console.log("Establishment not found");
             return res.status(404).send({ message: "Establishment not found" });
         }
+        console.log(establishment);
   
         // Assign replies
         await ReviewController.assignReplies();
@@ -26,6 +27,7 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         if (!reviews) {
             console.log("No matching reviews for establishment found");
         }
+        console.log(reviews);
   
         // Define Handlebars template and layout here
         const mainLayout = 'establishment';
