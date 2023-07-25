@@ -71,11 +71,11 @@ async function main () {
     async function insertSampleUsers() {
       try {
         const sampleUsers = [
-          { username: 'David', password: 'password1' },
-          { username: 'Yna', password: 'password2' },
-          { username: 'Martin', password: 'password3' },
-          { username: 'Kieffer', password: 'password4' },
-          { username: 'Timothy', password: 'password5' },
+          { username: 'David', password: 'password1', profileDescription: 'Hello there!' },
+          { username: 'Yna', password: 'password2', profileDescription: 'Hello there!'  },
+          { username: 'Martin', password: 'password3', profileDescription: 'Hello there!' },
+          { username: 'Kieffer', password: 'password4', profileDescription: 'Hello there!' },
+          { username: 'Timothy', password: 'password5', profileDescription: 'Hello there!' },
         ];
     
         // Insert the sample users into the 'users' collection
@@ -123,6 +123,7 @@ async function main () {
         const sampleEstablishments = [
           { 
             name: "Manila Ocean Park",
+            username: "manilaoceanpark",
             password: "password1",
             images: ["./images/mocp1.png", "./images/mocp2.png", "./images/mocp3.png"],
             category: "Oceanarium",
@@ -132,6 +133,7 @@ async function main () {
           },
           { 
             name: "Balesin Island Club",
+            username: "balesinislandclub",
             password: "password2",
             images: ["./images/bic1.png", "./images/bic2.png", "./images/bic3.png"],
             category: "Private beach resort",
@@ -141,6 +143,7 @@ async function main () {
           },
           { 
             name: "Masungi Georeserve",
+            username: "masungigeoreserve",
             password: "password3",
             images: ["./images/mg1.png", "./images/mg2.png", "./images/mg3.png"],
             category: "Geological park",
@@ -149,6 +152,7 @@ async function main () {
           },
           { 
             name: "Baguio Country Club",
+            username: "baguiocountryclub",
             password: "password4",
             images: ["./images/bcc1.png", "./images/bcc2.png", "./images/bcc3.png"],
             category: "Retreat & historical landmark",
@@ -157,6 +161,7 @@ async function main () {
           },
           { 
             name: "Manila Hotel",
+            username: "manilahotel",
             password: "password5",
             images: ["./images/13.png", "./images/14.png", "./images/15.png"],
             category: "Private hotel",

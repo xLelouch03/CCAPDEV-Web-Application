@@ -39,33 +39,53 @@ $(document).ready(function() {
   });
 
 
-  $('#registerForm').on('submit', function (event) {
-    event.preventDefault();
+  // Function to handle image file upload and create a copy in the 'static/images' folder
+function handleImageUpload(imageInput, fileName) {
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const imgData = event.target.result;
+    // Create an anchor element with the image data and download it to save the image
+    const a = document.createElement('a');
+    a.href = imgData;
+    a.download = fileName;
+    a.click();
+  };
+  reader.readAsDataURL(imageInput.files[0]);
+}
 
-    // Get form input values
-    const username = $('#registerUsername').val();
-    const password = $('#registerPassword').val();
-    const role = $('#role').val(); 
-    const profileDescription = $('#description3').val();
-    // Create the request data object
-    const requestData = {
-        username: username,
-        password: password,
-        role: role,
-        profileDescription: profileDescription
-    };
+$('#registerForm').on('submit', function (event) {
+  event.preventDefault();
 
-    // Add additional fields based on the role
+  // Get form input values
+  const username = $('#registerUsername').val();
+  const password = $('#registerPassword').val();
+  const role = $('#role').val(); 
+  const profileDescription = $('#description3').val();
+  // Create the request data object
+  const requestData = {
+    username: username,
+    password: password,
+    role: role,
+    profileDescription: profileDescription
+  };
+
+  // Add additional fields based on the role
   if (role === 'owner') {
     // Extract the file name from the establishmentPhotos input field
     const establishmentPhotosInput = $('#establishmentPhotos')[0];
     const establishmentPhotosFileName = establishmentPhotosInput.files[0].name;
     requestData.establishmentPhotos = `static/images/${establishmentPhotosFileName}`;
+
+    // Call the function to handle image upload and create a copy in the 'static/images' folder
+    handleImageUpload(establishmentPhotosInput, establishmentPhotosFileName);
   } else {
     // Extract the file name from the avatar input field
     const avatarInput = $('#avatar')[0];
     const avatarFileName = avatarInput.files[0].name;
     requestData.avatar = `static/images/${avatarFileName}`;
+
+    // Call the function to handle image upload and create a copy in the 'static/images' folder
+    handleImageUpload(avatarInput, avatarFileName);
   }
     // Make the AJAX request
     $.ajax({
@@ -241,4 +261,54 @@ $(document).ready(function() {
       // Redirect to the profile page with the selected user ID
       window.location.href = `/profile?userId=${userId}`;
     });
+});
+
+async function updateUserDetails(username, updatedData) {
+  try {
+    const response = await fetch(`/api/users/${username}`, { // Replace :username with the actual username value
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error updating user details (Status: ${response.status})`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error updating user details:', error);
+    throw error;
+  }
+}
+
+// Event handler for form submission
+$('#updateForm').on('submit', async function (event) {
+  event.preventDefault();
+
+  // Get updated form input values
+  const username = $('#userName').val();
+  const avatar = $('#profilePicture').val(); // Replace with the actual way to get the file value
+  const profileDescription = $('#userDescription').val();
+
+  // Create the updated data object to be sent to the server
+  const updatedData = {
+    newUsername: username,
+    avatar: avatar,
+    profileDescription: profileDescription,
+  };
+
+  try {
+    // Update the user's details on the server
+    const updatedUser = await updateUserDetails(username, updatedData);
+
+    // Display success message and update profileData with the updated details
+    $('#updateSuccessMessage').show();
+    profileData = updatedUser;
+  } catch (error) {
+    console.error('Error updating user details:', error);
+    // Handle error if needed
+  }
 });

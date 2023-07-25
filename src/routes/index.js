@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
 import User from '../models/user.model.js';
+import Review from '../models/review.model.js';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -12,6 +13,7 @@ const authenticateUser = (req, res, next) => {
 };
 router.post('/signup', UserController.createUser);
 router.post('/login', UserController.loginUser);  
+router.put('/api/users/:username', UserController.updateUser);
 
 router.get('/users', async (req, res) => {
   try {
@@ -180,7 +182,6 @@ router.get("/loggedInMain", (req,res) => {
         title: "Juanderlast Main Page"
     });
 });
-
 
 router.use((req,res) => {
     res.render("error", {
