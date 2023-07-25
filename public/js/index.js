@@ -459,6 +459,18 @@ $('#registerForm').on('submit', function (event) {
   updateReviewsTab(userId, establishmentId);
 });
 
+$(document).on("click", ".user-option", function () {
+  const userId = $(this).data("user-id");
+
+  // Redirect to the profile page with the selected user ID
+  window.location.href = `/profileLogged?userId=${userId}`;
+});
+
+$(document).on("click", ".establishment-option", function () {
+  const establishmentId = $(this).data("establishment-id");
+  window.location.href = `/profile?establishmentId=${establishmentId}`;
+});
+
 // Event handler for form submission
 $('#updateForm').on('submit', async function (event) {
   event.preventDefault();
