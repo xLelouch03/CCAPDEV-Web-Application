@@ -5,10 +5,11 @@
             <div class="row">
                 {{#each establishment.images}}
                 {{#if @first}}
+                <div class="col-md-8 gallery-item">
                     <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img1" style="height: 100%;">
+                </div>
                 {{/if}}
                 {{/each}}
-                </div>
                 <div class="col-md-4">
                     <div class="right-column">
                         <div class="row no-gutters">
