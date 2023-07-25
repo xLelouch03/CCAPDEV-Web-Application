@@ -61,28 +61,28 @@ const UserController = {
     },
 
     // Update a user's username, avatar, and profile description
-updateUser: async (req, res) => {
-    const { username } = req.params;
-    const { newUsername, avatar, profileDescription } = req.body;
-    console.log("Received update request:", { newUsername, avatar, profileDescription });
-    try {
+    updateUser: async (req, res) => {
+        const { username } = req.params;
+        const { newUsername, avatar, profileDescription } = req.body;
+        console.log("Received update request:", { username, newUsername, avatar, profileDescription });
+        try {
         // Find the user in the database and update their information
         const user = await User.findOneAndUpdate(
-            { username: username },
-            { newUsername, avatar, profileDescription },
+            { _id: username },
+            { username: newUsername, avatar, profileDescription },
             { new: true }
         );
-
+    
         if (!user) {
             return res.status(404).send({ message: "User not found" });
         }
-
+    
         // Optionally, you can send a success message in the response
         res.send({ message: "User information updated successfully", user });
-    } catch (err) {
+        } catch (err) {
         res.status(500).send({ message: err.message });
-    }
-},
+        }
+    },
 
     // Delete a user by their username
     deleteUser: async (req, res) => {
