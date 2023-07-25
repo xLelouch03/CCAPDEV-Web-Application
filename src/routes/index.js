@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
+import EstablishmentController from '../controllers/establishment.controller.js';
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
+import Establishment from '../models/establishment.model.js';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -12,6 +14,7 @@ const authenticateUser = (req, res, next) => {
     next();
 };
 router.post('/signup', UserController.createUser);
+router.post('/signup-owner', EstablishmentController.createEstablishment);
 router.post('/login', UserController.loginUser);  
 router.put('/api/users/:username', UserController.updateUser);
 

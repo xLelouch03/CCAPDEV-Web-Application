@@ -29,14 +29,22 @@ $(document).ready(function() {
     });
 
     // Show/hide the image upload field based on the selected role
+    // Event listener for role select element
     $('#role').on('change', function () {
       const selectedRole = $(this).val();
+      const ownerOnlyFields = $('.owner-only');
+
+      // Hide all owner-only fields
+      ownerOnlyFields.hide();
+
+      // If role is "owner," show the owner-only fields; otherwise, show the user fields
       if (selectedRole === 'owner') {
-          $('.owner-only').show();
+        ownerOnlyFields.show();
+        $('#description3').hide();
       } else {
-          $('.owner-only').hide();
+        $('#description3').show();
       }
-  });
+    });
 
 
   // Function to handle image file upload and create a copy in the 'static/images' folder
@@ -57,10 +65,11 @@ $('#registerForm').on('submit', function (event) {
   event.preventDefault();
 
   // Get form input values
+  const role = $('#role').val();
   const username = $('#registerUsername').val();
   const password = $('#registerPassword').val();
-  const role = $('#role').val(); 
   const profileDescription = $('#description3').val();
+
   // Create the request data object
   const requestData = {
     username: username,
@@ -71,6 +80,11 @@ $('#registerForm').on('submit', function (event) {
 
   // Add additional fields based on the role
   if (role === 'owner') {
+    requestData.name = $('#establishmentName').val();
+    requestData.description = $('#description').val();
+    requestData.category = $('#category').val();
+    requestData.location = $('#location').val();
+
     // Extract the file name from the establishmentPhotos input field
     const establishmentPhotosInput = $('#establishmentPhotos')[0];
     const establishmentPhotosFileName = establishmentPhotosInput.files[0].name;
@@ -87,19 +101,23 @@ $('#registerForm').on('submit', function (event) {
     // Call the function to handle image upload and create a copy in the 'static/images' folder
     handleImageUpload(avatarInput, avatarFileName);
   }
-    // Make the AJAX request
-    $.ajax({
-        type: 'POST',
-        url: '/signup',
-        data: JSON.stringify(requestData),
-        contentType: 'application/json', // Set the content type to JSON
-        success: function (response) {
-          window.location.href = '/loggedInMain';
-        },
-        error: function (error) {
-            console.error('Error registering user:', error.responseText);
-        },
-    });
+  
+  // Determine the correct route based on the role
+  const signupRoute = role === 'owner' ? '/signup-owner' : '/signup';
+
+  // Make the AJAX request
+  $.ajax({
+    type: 'POST',
+    url: signupRoute,
+    data: JSON.stringify(requestData),
+    contentType: 'application/json', // Set the content type to JSON
+    success: function (response) {
+      window.location.href = '/loggedInMain';
+    },
+    error: function (error) {
+      console.error('Error registering user:', error.responseText);
+    },
+  });
 });
   window.addEventListener("load", function (e) {
     const username = document.querySelector("#loginUsername");
