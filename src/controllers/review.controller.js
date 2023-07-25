@@ -17,7 +17,7 @@ const ReviewController = {
     // Get all reviews of an establishment and populate their reply attribute
     getReviews: async (id) => {
         try {
-            const reviews = await Review.find({ establishment: id }).populate('reply');
+            const reviews = await Review.find({ establishment: id }).populate(['reply', 'user']);
             if (!reviews.length) throw new Error(`No matching reviews found for establishment ${id}`);
             return reviews;
         } catch (err) {
