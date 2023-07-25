@@ -89,11 +89,35 @@ async function main () {
     async function insertSampleUsers() {
       try {
         const sampleUsers = [
-          { username: 'David', password: 'password1', profileDescription: 'Hello there!' },
-          { username: 'Yna', password: 'password2', profileDescription: 'Hello there!'  },
-          { username: 'Martin', password: 'password3', profileDescription: 'Hello there!' },
-          { username: 'Kieffer', password: 'password4', profileDescription: 'Hello there!' },
-          { username: 'Timothy', password: 'password5', profileDescription: 'Hello there!' },
+          {
+            username: 'David',
+            password: 'password1',
+            profileDescription: 'Hello there!'
+          },
+          {
+            username: 'Yna',
+            password: 'password2',
+            profileDescription: 'Hello there!',
+            avatar: '/static/images/yna.jpg'
+          },
+          {
+            username: 'Martin',
+            password: 'password3',
+            profileDescription: 'Hello there!',
+            avatar: '/static/images/martin.jpg'
+          },
+          {
+            username: 'Kieffer',
+            password: 'password4',
+            profileDescription: 'Hello there!',
+            avatar: '/static/images/kieffer.jpg'
+          },
+          {
+            username: 'Timothy',
+            password: 'password5',
+            profileDescription: 'Hello there!',
+            avatar: '/static/images/tim.jpg'
+          }
         ];
     
         // Insert the sample users into the 'users' collection
@@ -223,35 +247,45 @@ async function main () {
             rating: 5,
             title: "Excellent Service",
             body: "The service was outstanding and the staff was very friendly and helpful. The food was delicious, and the atmosphere was great. Definitely will come again!",
-            images: ["/static/images/sample_review_1/1.png", "/static/images/sample_review_1/2.png", "/static/images/sample_review_1/3.png"]
+            images: ["/static/images/sample_review_1/1.png", "/static/images/sample_review_1/2.png", "/static/images/sample_review_1/3.png"],
+            likes: 24,
+            dislikes: 2
           },
           {
             user: userIds[1],
             establishment: establishmentIds[0],
             rating: 4,
             title: "Great Atmosphere",
-            body: "The atmosphere is very cozy and inviting. The staff was friendly and the food was great. A little bit pricey, but worth it for the experience."
+            body: "The atmosphere is very cozy and inviting. The staff was friendly and the food was great. A little bit pricey, but worth it for the experience.",
+            likes: 18,
+            dislikes: 1
           },
           {
             user: userIds[2],
             establishment: establishmentIds[0],
             rating: 3,
             title: "Average Experience",
-            body: "The place was decent. The food was average and the staff was okay. Nothing particularly stood out but it was a fair experience overall."
+            body: "The place was decent. The food was average and the staff was okay. Nothing particularly stood out but it was a fair experience overall.",
+            likes: 33,
+            dislikes: 4
           },
           {
             user: userIds[3],
             establishment: establishmentIds[0],
             rating: 2,
             title: "Not the best",
-            body: "The service was a bit slow and the food was mediocre. Might give it another try but it was a letdown on the first visit."
+            body: "The service was a bit slow and the food was mediocre. Might give it another try but it was a letdown on the first visit.",
+            likes: 13,
+            dislikes: 10
           },
           {
             user: userIds[4],
             establishment: establishmentIds[0],
             rating: 1,
             title: "Very Disappointing",
-            body: "The service was poor and the food was not up to the mark. I was disappointed with the overall experience and I don't think I will be visiting again."
+            body: "The service was poor and the food was not up to the mark. I was disappointed with the overall experience and I don't think I will be visiting again.",
+            likes: 9,
+            dislikes: 18
           },
           {
             user: userIds[0],

@@ -555,10 +555,7 @@ function submitReview() {
 
     Promise.all(filePromises)
     .then(() => {
-        const pathArray = window.location.pathname.split('/');
-        const establishmentId = pathArray[pathArray.length - 1];
-
-        return fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
+        return fetch(`${window.location.pathname}/review`, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
@@ -579,7 +576,15 @@ function submitReview() {
     });
 }
 
- 
+// Fetch the form by its ID
+const reviewForm = document.getElementById("reviewForm");
+
+// Attach a 'submit' event listener to the add review form
+reviewForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    submitReview();
+});
+
 
 // Function to handle editing feedback
 function editReview(e) {

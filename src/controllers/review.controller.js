@@ -25,6 +25,17 @@ const ReviewController = {
         }
     },
 
+    // Get all reviews of a user and populate their reply attribute
+    getReviewsOfUser: async (id) => {
+        try {
+            const reviews = await Review.find({ user: id }).populate(['reply', 'user']);
+            if (!reviews.length) console.log(`No matching reviews found for user ${id}`);
+            return reviews;
+        } catch (err) {
+            throw err;
+        }
+    },
+
     // Update a review by its associated user and establishment
     updateReview: async (req, res) => {
         const { user } = req.params;

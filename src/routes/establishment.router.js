@@ -77,6 +77,7 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         res.status(500).send({ message: err.message });
     }
   });
+
 router.get('/profile/:establishmentId', async (req, res) => {
     const establishmentId = req.params.establishmentId;
     
@@ -94,27 +95,27 @@ router.get('/profile/:establishmentId', async (req, res) => {
 });
 
 // Update establishment details
-router.put('/establishments/:establishment', EstablishmentController.updateEstablishment);
+router.put('/establishmentLogged/:establishment', EstablishmentController.updateEstablishment);
 
 // Delete an establishment
-router.delete('/establishments/:establishment', EstablishmentController.deleteEstablishment);
+router.delete('/establishmentLogged/:establishment', EstablishmentController.deleteEstablishment);
 
 // Create new review
-router.post('/establishments/:establishment/review', ReviewController.createReview);
+router.post('/establishmentLogged/:establishment/review', ReviewController.createReview);
 
 // Update review details
-router.put('/establishments/:establishment/review', ReviewController.updateReview);
+router.put('/establishmentLogged/:establishment/review', ReviewController.updateReview);
 
 // Delete a review
-router.delete('/establishments/:establishment/review', ReviewController.deleteReview);
+router.delete('/establishmentLogged/:establishment/review', ReviewController.deleteReview);
 
 // Create new reply
-router.post('/establishments/:establishment/reply', ReplyController.createReply);
+router.post('/establishment/:establishment/reply', ReplyController.createReply);
 
 // Update reply details
-router.put('/establishments/:establishment/reply', ReplyController.updateReply);
+router.put('/establishment/:establishment/reply', ReplyController.updateReply);
 
 // Delete a reply
-router.delete('/establishments/:establishment/reply', ReplyController.deleteReply);
+router.delete('/establishment/:establishment/reply', ReplyController.deleteReply);
 
 export default router;
