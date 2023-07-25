@@ -5,7 +5,7 @@
             <div class="row">
                 {{#each establishment.images}}
                 {{#if @first}}
-                    <img src="{{establishment.avatar}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                    <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img1" style="height: 100%;">
                 {{/if}}
                 {{/each}}
                 </div>
@@ -56,15 +56,9 @@
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                         {{#each establishment.images}}
-                        {{#if @first}}
                         <div class="carousel-item active">
                             <img src="{{this}}" class="d-block mx-auto" alt="Image {{@index}}">
                         </div>
-                        {{else}}
-                        <div class="carousel-item">
-                            <img src="{{this}}" class="d-block mx-auto" alt="Image {{@index}}">
-                        </div>
-                            {{/if}}
                         {{/each}}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
