@@ -268,7 +268,7 @@ h3 {
   
   .destination-slide {
     display: inline-block;
-    margin: 0px 10px;
+    margin: 20px 10px;
     border: 1px solid gray;
     border-radius: 20px;
     cursor: pointer;

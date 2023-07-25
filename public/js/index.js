@@ -428,8 +428,9 @@ $('#registerForm').on('submit', function (event) {
       const userId = $(this).data("user-id");
     
       // Redirect to the profile page with the selected user ID
-      window.location.href = `/profile?userId=${userId}`;
+      window.location.href = `/profileLogged?userId=${userId}`;
     });
+
 
     const establishmentDropdownList = $("#establishmentDropdownList");
     establishmentDropdownList.on("click", ".establishment-option", function () {

@@ -10,35 +10,39 @@ router.post('/create-establishment', EstablishmentController.createEstablishment
 router.post('/login-owner', EstablishmentController.loginEstablishment);
 
 // Retrieve establishment details and reviews for indivpage
-router.get('/establishment/:id', async (req, res) => {
+router.get('/establishment/:establishmentId', async (req, res) => {
     try {
-        const establishmentId = req.params.id;
-        const establishment = await EstablishmentController.getEstablishment(establishmentId);
+        const establishmentId = req.params.establishmentId;
+        const establishment = (await EstablishmentController.getEstablishment(establishmentId)).toObject();
         if (!establishment) {
+            console.log("Establishment not found");
             return res.status(404).send({ message: "Establishment not found" });
         }
-
+        console.log(establishment);
+  
         // Assign replies
         await ReviewController.assignReplies();
-
-        const reviews = await ReviewController.getReviews(establishmentId);
+  
+        const reviews = (await ReviewController.getReviews(establishmentId)).map(doc => doc.toObject());
         if (!reviews) {
-            return res.status(404).send({ message: "No matching reviews found" });
+            console.log("No matching reviews for establishment found");
         }
-
+        console.log(reviews);
+  
         // Define Handlebars template and layout here
         const mainLayout = 'establishment';
         const mainTemplate = 'establishmentLogged';
-
+  
         res.render(mainTemplate, {
             layout: mainLayout,
             establishment: establishment,
             reviews: reviews
         });
     } catch (err) {
+        console.log(err);
         res.status(500).send({ message: err.message });
     }
-});
+  });
 
 router.get('/profile/:establishmentId', async (req, res) => {
     const establishmentId = req.params.establishmentId;
