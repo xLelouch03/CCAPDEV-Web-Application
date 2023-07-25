@@ -268,6 +268,7 @@ router.get('/profileLogged/:userId', async (req, res) => {
   const userData = usersData.find(user => user._id === userId);
   const results = (await ReviewController.getReviewsOffUser(userId)).map(doc => doc.toObject());
   console.log(results);
+  console.log(userData);
 
 
   if (!userData) {
@@ -290,8 +291,10 @@ router.get('/profileLogged/:userId', async (req, res) => {
 router.get('/profile/:userId', async (req, res) => {
   const userId = req.params.userId;
   const userData = usersData.find(user => user._id === userId);
-  const results  = (await ReviewController.getReviewsOffUser(userId)).map(doc => doc.toObject());
+  const results  = (await ReviewController.getReviewsOffUser(userId));
   console.log(results);
+  console.log(userData);
+
 
   if (!userData) {
     // User not found, handle error
