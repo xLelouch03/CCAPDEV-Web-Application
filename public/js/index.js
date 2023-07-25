@@ -46,6 +46,14 @@ $(document).ready(function() {
       }
     });
 
+    $("#reviewsTabLink").on("click", function() {
+      // Get the user ID and establishment ID from your URL (similar to how you're doing it for other tabs)
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('userId');
+      const establishmentId = urlParams.get('establishmentId');
+
+      updateReviewsTab(userId, establishmentId);
+    });
 
   // Function to handle image file upload and create a copy in the 'static/images' folder
 function handleImageUpload(imageInput, fileName) {
@@ -267,12 +275,85 @@ $('#registerForm').on('submit', function (event) {
       }
     }
 
+    async function fetchReviews(userId, establishmentId) {
+      try {
+        let response;
+        if (userId) {
+          // Fetch reviews for the selected user
+          response = await fetch(`/api/reviews/${userId}`);
+        } else if (establishmentId) {
+          // Fetch reviews for the selected establishment
+          response = await fetch(`/api/reviews/establishment/${establishmentId}`);
+        } else {
+          // No valid user or establishment ID, return early
+          return;
+        }
+    
+        if (!response.ok) {
+          throw new Error(`Error fetching reviews (Status: ${response.status})`);
+        }
+    
+        const data = await response.json();
+        console.log('Fetched data:', data); // Add this log to see the entire data object
+        return data.reviews; // Assuming the response contains the 'reviews' array
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        return []; // Return an empty array or handle the error accordingly
+      }
+    }
+
+    async function updateReviewsTab(userId, establishmentId) {
+      try {
+        const reviews = await fetchReviews(userId, establishmentId);
+        console.log(reviews);
+        const reviewsContainer = $(".reviews-container");
+        reviewsContainer.empty();
+    
+        if (reviews && Array.isArray(reviews)) {
+          reviews.forEach((review) => {
+            const reviewHtml = createReviewElement(review);
+            reviewsContainer.append(reviewHtml);
+          });
+        }
+      } catch (error) {
+        console.error('Error updating reviews tab:', error);
+        // Handle error if needed
+      }
+    }
+      
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
     const establishmentId = urlParams.get('establishmentId');
     console.log('userId:', userId);
     console.log('establishmentId:', establishmentId);
     
+    // Fetch the user data based on the userId
+    const fetchUserDataPromise = fetchUserData(userId)
+    .catch((error) => {
+      console.error('Error fetching user data:', error);
+      return {}; // Return an empty object if there's an error to prevent any issues with the next fetch request
+    });
+
+    // Fetch the establishment data based on the establishmentId
+    const fetchEstablishmentDataPromise = fetchEstablishmentData(establishmentId)
+    .catch((error) => {
+      console.error('Error fetching establishment data:', error);
+      return {}; // Return an empty object if there's an error to prevent any issues with the next fetch request
+    });
+
+    // Use Promise.all to wait for both fetch requests to complete
+    Promise.all([fetchUserDataPromise, fetchEstablishmentDataPromise])
+    .then(([userData, establishmentData]) => {
+      // Render user data and establishment data here if needed
+
+      // Call the updateReviewsTab function with the retrieved data
+      updateReviewsTab(userData._id, establishmentData._id);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      // Handle error if needed
+    });
+
     fetchEstablishmentData(establishmentId)
     .then((establishmentData) => {
       console.log('establishmentData:', establishmentData);
@@ -361,15 +442,16 @@ $('#registerForm').on('submit', function (event) {
       const userId = $(this).data("user-id");
     
       // Redirect to the profile page with the selected user ID
-      window.location.href = `/profile?userId=${userId}`;
+      window.location.href = `/profileLogged?userId=${userId}`;
     });
+
 
     const establishmentDropdownList = $("#establishmentDropdownList");
     establishmentDropdownList.on("click", ".establishment-option", function () {
     const establishmentId = $(this).data("establishment-id");
     window.location.href = `/profile?establishmentId=${establishmentId}`;
-
-  }); 
+  });
+  updateReviewsTab(userId, establishmentId);
 });
 
 async function updateUserDetails(username, updatedData) {
@@ -421,3 +503,93 @@ $('#updateForm').on('submit', async function (event) {
     // Handle error if needed
   }
 });
+
+// Function to create an HTML review element using Handlebars template
+function createReviewElement(review) {
+  // Define the Handlebars template as a multi-line string
+  const reviewTemplate = `
+  <div class="col-lg-9 right-container">
+  <div class="content-container">
+      <div class="tab-content">
+          <div id="juanderlast-points" class="tab-pane fade show active">
+              <h1>Juanderlast Points</h1>
+              <div>
+                  Currently, you have no Juanderlast Points!
+              </div>
+          </div>
+          <div id="promo-codes" class="tab-pane fade">
+              <h1>Promo Codes</h1>
+              <div>
+                  No promo codes at the moment. Watch out for it!
+              </div>
+          </div>
+          <div id="reviews" class="tab-pane fade">
+              <h1>Reviews</h1>
+              <div class="reviews-container">
+                  <!-- Review containers will be added here -->
+                  {{#each reviews}}
+                      <div class="review-positioner">
+                          <div class="review-container">
+                              <div class="profile-container">
+                                  <img class="profile-picture" src="{{review-pfp}}">
+                                  <div class="post-details-container">
+                                      <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review-user}}</a></span>
+                                      <span class="post-date">Last edited: {{review-date}}</span>
+                                  </div>
+                              </div>
+                              <div class="review-rating-container">
+                                  <!-- Render the review rating stars based on the 'rating' value -->
+                                  {{#each (range rating)}}
+                                      <i class="fa fa-star review-star-icon"></i>
+                                  {{/each}}
+                              </div>
+                              <span class="review-title">
+                                  {{review.title}}
+                              </span>
+                              <span class="review-content">
+                                  {{review.body}}
+                                  <span class="untruncate-button">Read more</span>
+                              </span>
+                              <span class="review-content untruncated-review">
+                                  {{review.body}}
+                                  <span class="truncate-button">Read less</span>
+                              </span>
+                              <div class="photo-album">
+                                  {{#each review.images}}
+                                      <img class="photo-album-photo" src="{{this}}">
+                                  {{/each}}
+                              </div>
+                              <div class="userbuttons-container">
+                                  <div class="helpful-container">
+                                      <span class="helpful-icon"></span>
+                                      <span class="helpful-text">Helpful {{review.helpfulFeedback}}</span>
+                                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                      <span class="unhelpful-icon"></span>
+                                      <span class="helpful-text">Unhelpful {{review.unhelpfulFeedback}}</span>
+                                  </div>
+                                  <div class="userreview-buttons-container">
+                                      <div class="edit-button-container">
+                                          <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                          </button>
+                                      </div>
+                                      <div class="delete-button-container" data-bs-toggle="modal">
+                                          <button class="delete-button">
+                                              <i class="fa fa-trash" aria-hidden="true"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  {{/each}}
+              </div>
+          </div>
+      </div>
+  `;
+
+  // Compile the Handlebars template
+  const template = Handlebars.compile(reviewTemplate);
+  const reviewHtml = template(review);
+  return reviewHtml;
+}

@@ -73,18 +73,36 @@ router.get('/api/establishments/:establishmentId', async (req, res) => {
   }
 });
 
-// Route to fetch reviews by user ID
+// Route to fetch establishment data by ID
 router.get('/api/reviews/:userId', async (req, res) => {
   try {
     const userId = req.params.userId;
+    console.log('Received request for reviews with user ID:', userId);
+
     // Fetch the reviews associated with the provided user ID
     const reviews = await Review.find({ user: userId });
+    console.log('Fetched reviews:', reviews);
+
     res.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// Route to fetch reviews by user ID
+/*router.get('/api/reviews/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("Reviews request received: ", userId);
+    // Fetch the reviews associated with the provided user ID
+    const review = await Review.find({ user: userId });
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});*/
 
 router.get('/', async (req, res) => {
     // Retrieve data from DB
@@ -114,6 +132,72 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/loggedInMain', async (req, res) => {
+  // Retrieve data from DB
+  const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+  console.log(establishments);
+
+  // Assuming you have a variable to store the authentication status
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+
+  let mainLayout, mainTemplate;
+    mainLayout = 'main';
+    mainTemplate = 'loggedInMain'; // Replace 'reviews' with the appropriate template for the logged-in page
+
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Main Page",
+    user: req.user,
+    establishments: establishments // Pass retrieved data to Handlebars
+  });
+});
+
+router.get('/establishmentLogged', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+    mainLayout = 'establishment';
+    mainTemplate = 'establishmentLogged'; 
+
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Establishment Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
+router.get('/establishment', (req, res) => {
+    // Render the Handlebars template for the establishment page without specifying a layout
+    const isAuthenticated = req.user ? true : false;
+  
+    // Determine which layout and template to use based on authentication status
+    let mainLayout, mainTemplate;
+  
+      mainLayout = 'establishment';
+      mainTemplate = 'establishments'; 
+    
+  
+    // Render the appropriate Handlebars template with the chosen layout
+    res.render(mainTemplate, {
+      layout: mainLayout,
+      title: "Juanderlast Establishment Page",
+      user: req.user,
+      // Other data that the template might need
+      // ...
+    });
+});
+
 router.get('/profile', (req, res) => {
     // Render the Handlebars template for the establishment page without specifying a layout
     const isAuthenticated = req.user ? true : false;
@@ -121,13 +205,9 @@ router.get('/profile', (req, res) => {
     // Determine which layout and template to use based on authentication status
     let mainLayout, mainTemplate;
   
-    if (isAuthenticated) {
-      mainLayout = 'profile';
-      mainTemplate = 'profilesLogged'; 
-    } else {
         mainLayout = 'profile';
         mainTemplate = 'profilesLogged';
-    }
+    
   
     // Render the appropriate Handlebars template with the chosen layout
     res.render(mainTemplate, {
@@ -137,6 +217,62 @@ router.get('/profile', (req, res) => {
       // Other data that the template might need
       // ...
     });
+});
+
+router.get('/profileLogged', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+      mainLayout = 'profile';
+      mainTemplate = 'profilesLogged';
+  
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Profile Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
+router.get('/profile', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+      mainLayout = 'profile';
+      mainTemplate = 'profiles';
+  
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Profile Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
+router.get('/profileLogged/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const userData = usersData.find(user => user._id === userId);
+
+  if (!userData) {
+    // User not found, handle error
+    res.status(404).send('User not found');
+    return;
+  }
+
+  // Render the 'profile' view with the userData
+  res.render('profile', { userData });
 });
 
 // GET route to render the profile page
@@ -164,6 +300,26 @@ router.get('/searchresult', async (req, res) => {
       // Define Handlebars template and layout here
       const mainLayout = 'searchresult';
       const mainTemplate = 'searchresults';
+
+      res.render(mainTemplate, {
+          layout: mainLayout,
+          establishments: establishments
+      });
+  } catch (err) {
+      res.status(500).send({ message: err.message });
+  }
+});
+
+// Retrieve existing establishments and render searchresults
+router.get('/searchresultLogged', async (req, res) => {
+  try {
+      // Retrieve data from DB
+      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+      console.log(establishments);
+
+      // Define Handlebars template and layout here
+      const mainLayout = 'searchresult';
+      const mainTemplate = 'searchresultsLogged';
 
       res.render(mainTemplate, {
           layout: mainLayout,

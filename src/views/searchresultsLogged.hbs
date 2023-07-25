@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3>332 results found</h3>
+                <h3>5 results found</h3>
             </div>
         </div>
         <div class="row align-items-center">
@@ -32,55 +32,15 @@
     </div>
 
     <div class="slide-container">
-
-        <div class="destination-slide">
-            <a href="/establishment"> 
-            <img src="./images/balesin.png" class="img-slider">
+        {{#each establishments}}
+        <div class="destination-slide"> 
+        <a href="/establishmentLogged/{{this._id}}">
+            <img src="{{this.images.[0]}}" class="img-slider">
             <div class="image-text">
-                <p> Private beach resort · Quezon</p> <h4> Balesin </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            </div>
-            </a>
-        </div>
-        
-        <div class="destination-slide">
-            <a href="/establishment"> 
-            <img src="./images/masungi.png" class="img-slider">
-            <div class="image-text">
-                <p> Geological park · Rizal</p> <h4> Masungi Georeserve </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            </div>
-            </a>
-        </div>
-        
-        <div class="destination-slide">
-            <a href="/establishment">
-            <img src="./images/ocean park.png" class="img-slider">
-            <div class="image-text">
-                <p> Oceanarium · Manila</p> <h4> Manila Ocean Park </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            </div>
-            </a>
-        </div>
-        
-        <div class="destination-slide">
-            <a href="/establishment">
-            <img src="./images/baguio country club.png" class="img-slider">
-            <div class="image-text">
-                <p> Retreat & historical landmark  · Baguio</p> <h4> Baguio Country Club </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
-            
-            </div></a>
-        </div>
-        
-        
-        <div class="destination-slide">
-            <a href="/establishment">
-            <img src="./images/manila hotel.png" class="img-slider">
-            <div class="image-text">
-                <p> Private hotel · Manila</p> <h4> Manila Hotel</h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> 4.8 overall ratings </p>
+                <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
+                <p class="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{this.rating}} overall ratings </p>
             </div>
         </a>
         </div>
+        {{/each}}
     </div>
