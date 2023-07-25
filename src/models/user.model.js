@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String, // You can store the URL of the image
-    default: 'static/images/default-avatar.jpg' 
+    default: '/static/images/default-avatar.jpg' 
   },
   profileDescription: {
     type: String,

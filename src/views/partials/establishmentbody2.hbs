@@ -1,32 +1,34 @@
 <div id="section1">
     <div class="s1-container">
         <span id="page-header">{{establishment.name}}</span>
-        <div class="container">
-            <div class="row">
-                {{#each establishment.images}}
-                {{#if @first}}
-                    <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img{{@index}}" style="height: 100%;">
-                {{/if}}
-                {{/each}}
-                </div>
-                <div class="col-md-4">
-                    <div class="right-column">
-                        <div class="row no-gutters">
-                            {{#each establishment.images}}
-                                {{#unless @first}}
-                                    <div class="col-12 gallery-item" style="height: 50%;">
-                                        <img src="{{this}}" alt="Image {{@index}}" class="img-fluid img{{@index}}" style="height: 100%;">
-                                        {{#if @last}}
-                                            <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
-                                        {{/if}}
-                                    </div>
+                <div class="container">
+                    <div class="row">
+                    {{#each establishment.images}}
+                    {{#if @first}}
+                    <div class="col-md-8 gallery-item">
+                        <img src="{{this}}" alt="Image 1" class="img-fluid img1" style="height: 100%;">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    <div class="col-md-4">
+                        <div class="right-column">
+                            <div class="row no-gutters">
+                                {{#each establishment.images}}
+                                {{#unless @first}}                                
+                                <div class="col-12 gallery-item" style="height: 50%;">
+                                    <img src="{{this}}" alt="Image 2" class="img-fluid img2" style="height: 100%;">
+                                    {{#if @last}}
+                                    <a href="#" class="btn btn-primary view-gallery-button custom" data-bs-toggle="modal" data-bs-target="#galleryModal" style="box-shadow: none;" >View Gallery</a>
+                                    {{/if}}
+                                </div>
                                 {{/unless}}
-                            {{/each}}
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    </div>
 
     <div id="textbox1">
         <p>
@@ -108,41 +110,41 @@
     <div class="review-positioner">
         <div class="review-container">
             <div class="profile-container">
-                <img class="profile-picture" src="{{review.user.avatar}}">
+                <img class="profile-picture" src="{{this.user.avatar}}">
                 <div class="post-details-container">
-                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{review.user.username}}</a></span>
-                    <span class="post-date">Last edited: {{review.datePosted}}</span>
+                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{this.user.username}}</a></span>
+                    <span class="post-date">Last edited: {{this.datePosted}}</span>
                 </div>
             </div>
             <div class="review-rating-container">
                 <!-- Render the review rating stars based on the 'rating' value -->
-                {{#each (range rating)}}
+                {{#range 1 this.rating 1}}
                     <i class="fa fa-star review-star-icon"></i>
-                {{/each}}
+                {{/range}}
             </div>
             <span class="review-title">
-                {{review.title}}
+                {{this.title}}
             </span>
             <span class="review-content">
-                {{review.body}}
+                {{this.body}}
                 <span class="untruncate-button">Read more</span>
             </span>
             <span class="review-content untruncated-review">
-                {{review.body}}
+                {{this.body}}
                 <span class="truncate-button">Read less</span>
             </span>
             <div class="photo-album">
-                {{#each review.images}}
+                {{#each this.images}}
                 <img class="photo-album-photo" src="{{this}}">
                 {{/each}}
             </div>
             <div class="userbuttons-container">
                 <div class="helpful-container">
                     <span class="helpful-icon"></span>
-                    <span class="helpful-text">Helpful {{review.likes}}</span>
+                    <span class="helpful-text">Helpful {{this.likes}}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="unhelpful-icon"></span>
-                    <span class="helpful-text">Unhelpful {{review.dislikes}}</span>
+                    <span class="helpful-text">Unhelpful {{this.dislikes}}</span>
                 </div>
                 <div class="userreview-buttons-container">
                     <div class="edit-button-container">
