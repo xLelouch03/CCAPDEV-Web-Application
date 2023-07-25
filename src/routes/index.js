@@ -333,21 +333,42 @@ router.get('/searchresult', async (req, res) => {
 
 // Retrieve existing establishments and render searchresults
 router.get('/searchresultLogged', async (req, res) => {
+
+  const category = req.query.category;
+  const query = req.query.q;
+
+  let results;
   try {
-      // Retrieve data from DB
-      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
-      console.log(establishments);
+    switch (category) {
+      case 'destination':
+        results = await Establishment.find({
+          $text: {
+            $search: query
+          }
+        });
+        break;
+      case 'review':
+        results = await Review.find({
+          $text: {
+            $search: query
+          }
+        });
+        break;
+      default:
+        return res.status(400).send('Invalid category');
+    }
 
-      // Define Handlebars template and layout here
-      const mainLayout = 'searchresult';
-      const mainTemplate = 'searchresultsLogged';
+    const mainLayout = 'searchresult';
+    const mainTemplate = 'searchresultsLogged';
 
-      res.render(mainTemplate, {
-          layout: mainLayout,
-          establishments: establishments
-      });
+    res.render(mainTemplate, {
+      layout: mainLayout,
+      searchTerm: query,
+      resultCount: results.length,
+      establishments: results.map(doc => doc.toObject())
+    });
   } catch (err) {
-      res.status(500).send({ message: err.message });
+    res.status(500).send({ message: err.message });
   }
 });
 

@@ -1,28 +1,26 @@
 {{>navbarLogged}}
     <div class="ctr">
-        <div class="row">
-            <div class="col-12">
-                <h2>Results for "relaxing destination"</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <h3>5 results found</h3>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Results for "{{searchTerm}}"</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{resultCount}} results found</h3>
+                    </div>
+                </div>
+    
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="dropdownMenu2">Sort by:</label>
-                    </div>
                     <div class="dropdown rating">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Helpful
+                        Sort by
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Helpful</button>
-                        <button class="dropdown-item" type="button">Recently added</button>
+                        <button class="dropdown-item" type="button">Rating</button>
+                        <button class="dropdown-item" type="button">Name</button>
                         </div>
                     </div>
                 </div>

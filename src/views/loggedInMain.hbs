@@ -37,16 +37,15 @@
 
 <script>
     function handleSearch() {
+
     var categorySelect = document.querySelector('.search-category');
     var selectedCategory = categorySelect.value;
     var searchInput = document.querySelector('.search-input').value;
+
+    var searchURL = '/searchresultLogged?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
     
-    if (selectedCategory === 'destination') {
-        window.location.href = '/searchresultLogged';
-    } else if (selectedCategory === 'review') {
-        // Redirect to the review search results page
-        window.location.href = '/searchresultLogged';
-    }
+    window.location.href = searchURL;
+    
     }
 </script>
 
