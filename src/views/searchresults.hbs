@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3>332 results found</h3>
+                <h3>5 results found</h3>
             </div>
         </div>
         <div class="row align-items-center">
@@ -33,18 +33,16 @@
 
     <div class="slide-container">
 
-
-        {{#each destination}}
+        {{#each establishments}}
         <div class="destination-slide"> 
-        <a href="/establishment">
-            <img src="{{destination-image}}" class="img-slider">
+        <a href="/establishment/{{this._id}}">
+            <img src="{{this.images.[0]}}" class="img-slider">
             <div class="image-text">
-                <p> {{destination-info}}</p> <h4> {{destination-name}} </h4>
-                <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{destination-rating}} overall ratings </p>
+                <p> {{this.category}} </p> <h4> {{this.name}} </h4>
+                <p class="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{this.rating}} overall ratings </p>
             </div>
         </a>
         </div>
         {{/each}}
-        
         
     </div>

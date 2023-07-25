@@ -27,8 +27,8 @@ router.get('/establishment/:id', async (req, res) => {
         }
 
         // Define Handlebars template and layout here
-        const mainLayout = 'main';
-        const mainTemplate = 'establishment';
+        const mainLayout = 'establishment';
+        const mainTemplate = 'establishmentLogged';
 
         res.render(mainTemplate, {
             layout: mainLayout,
@@ -40,22 +40,20 @@ router.get('/establishment/:id', async (req, res) => {
     }
 });
 
-// Retrieve existing establishments for searchresults page
-router.get('/searchresults', async (req, res) => {
+router.get('/profile/:establishmentId', async (req, res) => {
+    const establishmentId = req.params.establishmentId;
+    
     try {
-        const establishments = await EstablishmentController.getEstablishments();
-
-        // Define Handlebars template and layout here
-        const mainLayout = 'searchresult';
-        const mainTemplate = 'searchresults';
-
-        res.render(mainTemplate, {
-            layout: mainLayout,
-            establishments: establishments
-        });
-    } catch (err) {
-        res.status(500).send({ message: err.message });
+        // Fetch user data from MongoDB collection using Mongoose
+        const establishmentData = await User.findById(establishmentId);
+    
+        // Render the Handlebars template and pass the fetched data as context
+        res.render('template', { establishmentData });
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).send('Error fetching user data');
     }
+      
 });
 
 // Update establishment details

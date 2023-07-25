@@ -9,6 +9,7 @@ import exphbs from 'express-handlebars';
 
 // Routes modules
 import router from "./src/routes/index.js";
+import establishmentRouter from './src/routes/establishment.router.js';
 import cors from 'cors';
 
 // DB modules
@@ -40,7 +41,9 @@ async function main () {
     app.use(express.json());
     app.use(cors());
     app.use(router);
-    app.use(userRouter);  
+    app.use(userRouter);
+    app.use(establishmentRouter);
+
     app.listen(process.env.SERVER_PORT, () => {
       console.log("Express app now listening...");
       connectToMongo((err) => {
@@ -125,8 +128,9 @@ async function main () {
             name: "Manila Ocean Park",
             username: "manilaoceanpark",
             password: "password1",
-            images: ["./images/mocp1.png", "./images/mocp2.png", "./images/mocp3.png"],
-            category: "Oceanarium",
+            images: ["/static/images/mocp1.png", "/static/images/mocp2.png", "/static/images/mocp3.png"],
+            category: "Nature",
+            shortDescription: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila",
             description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
             location: "Manila",
             rating: 3.0
@@ -135,8 +139,9 @@ async function main () {
             name: "Balesin Island Club",
             username: "balesinislandclub",
             password: "password2",
-            images: ["./images/bic1.png", "./images/bic2.png", "./images/bic3.png"],
-            category: "Private beach resort",
+            images: ["/static/images/bic1.png", "/static/images/bic2.png", "/static/images/bic3.png"],
+            category: "Beach",
+            shortDescription: "Balesin Island Club is a secluded paradise spanning 500 hectares",
             description: "Balesin Island Club is a secluded paradise spanning 500 hectares, located in the Lamon Bay of Quezon Province. This private island sanctuary boasts breathtaking landscapes inspired by some of the world's most sought-after destinations, allowing guests to experience the allure of various international locales without ever leaving the Philippines. Each distinct village on the island offers a unique ambiance, architecture, and cuisine, creating a truly immersive and unforgettable experience.",
             location: "Quezon",
             rating: 4.6
@@ -145,28 +150,34 @@ async function main () {
             name: "Masungi Georeserve",
             username: "masungigeoreserve",
             password: "password3",
-            images: ["./images/mg1.png", "./images/mg2.png", "./images/mg3.png"],
-            category: "Geological park",
+            images: ["/static/images/mg1.png", "/static/images/mg2.png", "/static/images/mg3.png"],
+            category: "Cultural Site",
+            shortDescription: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal",
             description: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal, just a short distance from Manila. It showcases a mesmerizing blend of breathtaking rock formations, lush forests, and diverse wildlife. The georeserve is renowned for its sustainable tourism practices, aiming to preserve and protect its delicate ecosystem while providing visitors with an unforgettable adventure.",
-            location: "Rizal"
+            location: "Rizal",
+            rating: 0.0
           },
           { 
             name: "Baguio Country Club",
             username: "baguiocountryclub",
             password: "password4",
-            images: ["./images/bcc1.png", "./images/bcc2.png", "./images/bcc3.png"],
-            category: "Retreat & historical landmark",
-            description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
-            location: "Baguio"
+            images: ["/static/images/bcc1.png", "/static/images/bcc2.png", "/static/images/bcc3.png"],
+            category: "Retreat",
+            shortDescription: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts.",
+            description: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts. Established in 1905, this historic club stands as a testament to Baguio's colonial past and has since become a symbol of refined hospitality in the city. Surrounded by lush pine trees and overlooking a picturesque golf course, the club offers a perfect blend of natural beauty, leisure activities, and world-class amenities.",
+            location: "Baguio",
+            rating: 0.0
           },
           { 
             name: "Manila Hotel",
             username: "manilahotel",
             password: "password5",
-            images: ["./images/13.png", "./images/14.png", "./images/15.png"],
-            category: "Private hotel",
+            images: ["/static/images/13.png", "/static/images/14.png", "/static/images/15.png"],
+            category: "Hotel",
+            shortDescription: "The Manila Hotel stands as a testament to the city's history and grandeur.",
             description: "The Manila Hotel stands as a testament to the city's history and grandeur. Its majestic architecture and exquisite interiors reflect a bygone era, transporting guests to a time of opulence and refinement. Situated in the vibrant district of Ermita, the hotel boasts stunning views of Manila Bay and is conveniently located near key attractions, making it an ideal choice for both leisure and business travelers.",
-            location: "Manila"
+            location: "Manila",
+            rating: 0.0
           }
         ];
 
@@ -197,7 +208,7 @@ async function main () {
             rating: 5,
             title: "Excellent Service",
             body: "The service was outstanding and the staff was very friendly and helpful. The food was delicious, and the atmosphere was great. Definitely will come again!",
-            images: ["./images/sample_review_1/1.png", "./images/sample_review_1/2.png", "./images/sample_review_1/3.png"]
+            images: ["/static/images/sample_review_1/1.png", "/static/images/sample_review_1/2.png", "/static/images/sample_review_1/3.png"]
           },
           {
             user: userIds[1],
@@ -233,7 +244,7 @@ async function main () {
             rating: 5,
             title: "An Unforgettable Experience",
             body: "From the moment we walked through the doors, the staff was exceptionally welcoming and friendly. They made us feel right at home. The food was absolutely exquisite - every dish was a masterful work of culinary art. Furthermore, the ambiance of the place was warm and charming, adding to an already wonderful experience. This place definitely exceeded my expectations and I am eager to return.",
-            images: ["./images/sample_review_1/bccreview1.png", "./images/sample_review_1/bccreview2.png", "./images/sample_review_1/bccreview3.png"]
+            images: ["/static/images/sample_review_1/bccreview1.png", "/static/images/sample_review_1/bccreview2.png", "/static/images/sample_review_1/bccreview3.png"]
           },
           {
             user: userIds[1],
@@ -248,7 +259,7 @@ async function main () {
             rating: 5,
             title: "Exceptional Service and Atmosphere",
             body: "We had a lovely time at this establishment. The service was some of the best we've experienced in a long time. Our server was incredibly attentive without being intrusive, and had a great knowledge of the menu, which was greatly appreciated. The atmosphere was relaxing and the decor was tasteful and unique. Food was excellent and I would highly recommend this place to anyone.",
-            images: ["./images/sample_review_1/balesinreview1.png", "./images/sample_review_1/balesinreview2.png", "./images/sample_review_1/balesinreview3.png"]
+            images: ["/static/images/sample_review_1/balesinreview1.png", "/static/images/sample_review_1/balesinreview2.png", "/static/images/sample_review_1/balesinreview3.png"]
           },
           {
             user: userIds[3],
