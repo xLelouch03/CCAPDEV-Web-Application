@@ -30,17 +30,62 @@
     </div>
 
     <div class="slide-container">
-        {{#each establishments}}
-        <div class="destination-slide"> 
-        <a href="/establishmentLogged/{{this._id}}">
-            <img src="{{this.images.[0]}}" class="img-slider">
-            <div class="image-text">
-                <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
-                <p class="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{this.rating}} overall ratings </p>
+        {{#each reviews}}
+    <div class="review-positioner">
+        <div class="review-container">
+            <div class="profile-container">
+                <img class="profile-picture" src="{{this.user.avatar}}">
+                <div class="post-details-container">
+                    <span class="profile-name"><a href="./profile1.html" style="color: black; text-decoration: none;">{{this.user.username}}</a></span>
+                    <span class="post-date">Last edited: {{this.datePosted}}</span>
+                </div>
             </div>
-        </a>
+            <div class="review-rating-container">
+                <!-- Render the review rating stars based on the 'rating' value -->
+                {{#range 1 this.rating 1}}
+                    <i class="fa fa-star review-star-icon"></i>
+                {{/range}}
+            </div>
+            <span class="review-title">
+                {{this.title}}
+            </span>
+            <span class="review-content">
+                {{this.body}}
+                <span class="untruncate-button">Read more</span>
+            </span>
+            <span class="review-content untruncated-review">
+                {{this.body}}
+                <span class="truncate-button">Read less</span>
+            </span>
+            <div class="photo-album">
+                {{#each this.images}}
+                <img class="photo-album-photo" src="{{this}}">
+                {{/each}}
+            </div>
+            <div class="userbuttons-container">
+                <div class="helpful-container">
+                    <span class="helpful-icon"></span>
+                    <span class="helpful-text">Helpful {{this.likes}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="unhelpful-icon"></span>
+                    <span class="helpful-text">Unhelpful {{this.dislikes}}</span>
+                </div>
+                <div class="userreview-buttons-container">
+                    <div class="edit-button-container">
+                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="delete-button-container" data-bs-toggle="modal">
+                        <button class="delete-button">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        {{/each}}
+    </div>
+{{/each}}
     </div>
 
     

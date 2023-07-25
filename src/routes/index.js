@@ -297,17 +297,21 @@ router.get('/searchresult', async (req, res) => {
   const query = req.query.q;
 
   let sortBy;
-    if(req.query.sortby && req.query.sortby === 'rating') {
-      sortBy = { 'rating': -1 };
-    } else {
-      sortBy = { 'name': 1 };
-    }
-
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
 
   let results;
+  let mainLayout;
+  let mainTemplate;
+
   try {
     switch (category) {
       case 'destination':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresults';
         if (query) { // if a search term exists
           results = await Establishment.find({
             $text: {
@@ -317,8 +321,18 @@ router.get('/searchresult', async (req, res) => {
         } else { // if no search term, return all
           results = await Establishment.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          establishments: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
         break;
       case 'review':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsreviews';
         if (query) { // if a search term exists
           results = await Review.find({
             $text: {
@@ -328,45 +342,46 @@ router.get('/searchresult', async (req, res) => {
         } else { // if no search term, return all
           results = await Review.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          reviews: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
+        console.log(results)
         break;
       default:
         return res.status(400).send('Invalid category');
     }
 
-    const mainLayout = 'searchresult';
-    const mainTemplate = 'searchresults';
-
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      searchTerm: query,
-      resultCount: results.length,
-      establishments: results.map(doc => doc.toObject()),
-      currentCategory: category, // the category from your server-side code
-      currentQuery: query // the query from your server-side code
-    });
+    
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 });
-
-
 
 router.get('/searchresultLogged', async (req, res) => {
   const category = req.query.category;
   const query = req.query.q;
 
   let sortBy;
-    if(req.query.sortby && req.query.sortby === 'rating') {
-      sortBy = { 'rating': -1 };
-    } else {
-      sortBy = { 'name': 1 };
-    }
-
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
 
   let results;
+  let mainLayout;
+  let mainTemplate;
+
   try {
     switch (category) {
       case 'destination':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsLogged';
         if (query) { // if a search term exists
           results = await Establishment.find({
             $text: {
@@ -376,8 +391,18 @@ router.get('/searchresultLogged', async (req, res) => {
         } else { // if no search term, return all
           results = await Establishment.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          establishments: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
         break;
       case 'review':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsreviewsLogged';
         if (query) { // if a search term exists
           results = await Review.find({
             $text: {
@@ -387,22 +412,18 @@ router.get('/searchresultLogged', async (req, res) => {
         } else { // if no search term, return all
           results = await Review.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          reviews: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
         break;
       default:
         return res.status(400).send('Invalid category');
     }
-
-    const mainLayout = 'searchresult';
-    const mainTemplate = 'searchresultsLogged';
-
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      searchTerm: query,
-      resultCount: results.length,
-      establishments: results.map(doc => doc.toObject()),
-      currentCategory: category, // the category from your server-side code
-      currentQuery: query // the query from your server-side code
-    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
