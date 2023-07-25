@@ -50,6 +50,16 @@ const UserController = {
         }
     },
 
+    getRandomUserId: async () => {
+        try {
+            const user = await User.findOne({});
+            if (!user) console.log('No users available');
+            return user._id;
+        } catch (err) {
+            throw err
+        }
+    },
+
     getAllUsernames: async (req, res) => {
         try {
           const users = await User.find({}, 'username'); // Fetch all users and return only the 'username' field
