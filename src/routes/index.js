@@ -430,6 +430,7 @@ router.get('/searchresultreviewLogged', async (req, res) => {
     sortBy = { 'name': 1 };
   }
 
+  let data;
   let results;
   let mainLayout;
   let mainTemplate;
@@ -462,13 +463,17 @@ router.get('/searchresultreviewLogged', async (req, res) => {
         mainLayout = 'searchresult';
         mainTemplate = 'searchresultsreviewsLogged';
         if (query) { // if a search term exists
-          results = await Review.find({
+          data = await Review.find({
             $text: {
               $search: query
             }
-          }).sort(sortBy);
+          }).populate(['reply', 'user']);
+          console.log(data);
+          results = data.sort(sortBy);
         } else { // if no search term, return all
-          results = await Review.find().sort(sortBy);
+          data = await Review.find().populate(['reply', 'user']);
+          console.log(data);
+          results = data.sort(sortBy);
         }
         res.render(mainTemplate, {
           layout: mainLayout,

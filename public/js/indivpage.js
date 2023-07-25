@@ -514,6 +514,7 @@ profileContainer.appendChild(postDetailsContainer);
     reviewsContainer.appendChild(reviewContainer);
 }
 
+/*
 document.getElementById("reviewForm").addEventListener("submit", function(event) {
     event.preventDefault();
     submitReview();
@@ -521,7 +522,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(event)
     var bootstrapModal = bootstrap.Modal.getInstance(modal);
     bootstrapModal.hide();
 });
-
+*/
 
 function submitReview() {
     const reviewForm = document.getElementById("reviewForm");
@@ -570,6 +571,7 @@ function submitReview() {
         fileInput.value = "";
         reviewForm.reset();
         updatePageNumbers();
+        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -587,15 +589,14 @@ reviewForm.addEventListener('submit', function(event) {
 
 
 // Function to handle editing feedback
-function editReview(e) {
-    // Prevent form from submitting normally
-    e.preventDefault();
-  
+function editReview() {
+
     // Get new feedback from textarea
     var newReview = document.getElementById('editReviewContent').value;
     var newTitle = document.getElementById('editReviewTitle').value;
   
-    if (newReview.trim() && newTitle.trim() !== '') {
+    /*
+    if (newReview.trim() !== '' && newTitle.trim() !== '') {
         // Update the feedback of the activeFeedback element
         activeReview.textContent = newReview;
         activeTitle.textContent = newTitle;
@@ -603,34 +604,48 @@ function editReview(e) {
         // Dismiss the modal
         var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
         editReviewModal.hide();
+    */
 
         const reviewData = {
             title: newTitle,
-            body: newReview
+            body: newReview,
+            lastEdited: new Date()
         };
 
         // Send the update to the server
-        fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
-            method: 'PUT',
+        fetch(`${window.location.pathname}/review`, {
+            method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reviewData)
+            body: JSON.stringify(reviewData),
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            location.reload();
+        })
         .catch((error) => console.error('Error:', error));
 
+    /*
     } else {
         alert("Review title and content can't be empty");
     }
+    */
 }
 
 // Attach submit event to feedback edit form
-document.getElementById('reviewEditForm').addEventListener('submit', editReview);
+const reviewEditForm = document.getElementById('reviewEditForm');
+
+// Attach a 'submit' event listener to the edit review form
+reviewEditForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    editReview();
+});
   
 // Reset the textarea when the modal hides
 document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('editReviewTitle').value = '';
     document.getElementById('editReviewContent').value = '';
 });
 
@@ -649,57 +664,6 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
       document.getElementById('editReviewTitle').value = activeTitle.textContent;
     }
   });
-  
-
-
-// Function to handle editing feedback
-function editReview(e) {
-    // Prevent form from submitting normally
-    e.preventDefault();
-
-    // Get new feedback from textarea
-    var newReview = document.getElementById('editReviewContent').value;
-    var newTitle = document.getElementById('editReviewTitle').value;
-
-    if (newReview.trim() !== '' && newTitle.trim() !== '') {
-        // Update the feedback of the activeFeedback element
-        activeReview.textContent = newReview;
-        activeTitle.textContent = newTitle;
-
-        // Dismiss the modal
-        var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
-        editReviewModal.hide();
-
-        const reviewData = {
-            title: newTitle,
-            body: newReview
-        };
-    
-        // Send the update to the server
-        fetch(`http://localhost:3000/establishments/${establishmentId}/review`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reviewData)
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch((error) => console.error('Error:', error));
-    } else {
-        alert("Review title and content can't be empty");
-    }
-}
-
-// Attach submit event to feedback edit form
-document.getElementById('reviewEditForm').addEventListener('submit', editReview);
-
-// Reset the textarea when the modal hides
-document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
-    document.getElementById('editReviewContent').value = '';
-});
-
-
 
 // Attach click event to the reviews container to handle delete buttons
 document.querySelector(".reviews-cont").addEventListener('click', function(event) {
@@ -717,4 +681,3 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
     reviewContainer.remove();
     }
   });
-  

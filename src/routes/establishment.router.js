@@ -105,10 +105,6 @@ router.post('/establishmentLogged/:establishment/review', async (req, res) => {
     const { establishment } = req.params;
     const { rating, title, body } = req.body;
 
-    console.log(establishment);
-    console.log(rating);
-    console.log(title);
-    console.log(body);
     try {
         const status = await ReviewController.createReview(establishment, rating, title, body);
         if(status != 1) console.log("Review creation failed!");
@@ -118,7 +114,22 @@ router.post('/establishmentLogged/:establishment/review', async (req, res) => {
 });
 
 // Update review details
-router.put('/establishmentLogged/:establishment/review', ReviewController.updateReview);
+router.put('/establishmentLogged/:establishment/review', async (req, res) => {
+    const { establishment } = req.params;
+    const { title, body, lastEdited } = req.body;
+
+    console.log(establishment);
+    console.log(title);
+    console.log(body);
+    console.log(lastEdited);
+
+    try {
+        const status = await ReviewController.updateReview(establishment, title, body, lastEdited);
+        if(status != 1) console.log("Review update failed!");
+    } catch(err) {
+        res.status(500).send({ message: err.message });
+    }
+});
 
 // Delete a review
 router.delete('/establishmentLogged/:establishment/review', ReviewController.deleteReview);

@@ -41,22 +41,19 @@ const ReviewController = {
     },
 
     // Update a review by its associated user and establishment
-    updateReview: async (req, res) => {
-        const { user } = req.params;
-        const { establishment } = req.params;
-        const { title } = req.body;
-        const { rating } = req.body;
-        const { body } = req.body;
+    updateReview: async (establishment, title, body, lastEdited) => {
+        const user = await UserController.getRandomUserId();
 
         const filter = { user, establishment };
-        const update = { $set: { title, rating, body } };
+        const update = { $set: { title, body, lastEdited } };
 
         try {
-            const review = await Review.updateOne(filter, update);
-            if (review.nModified == 0) return res.status(404).send({ message: "Review not found or not updated" });
-            res.send(review);
+            const status = await Review.updateOne(filter, update);
+            if(status.nModified != 1) console.log("Review remains unchanged");
+            return status.ok;
         } catch (err) {
-            res.status(500).send({ message: err.message });
+            console.error(err);
+            throw err;
         }
     },
 
