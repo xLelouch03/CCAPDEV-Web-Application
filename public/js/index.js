@@ -55,20 +55,6 @@ $(document).ready(function() {
       updateReviewsTab(userId, establishmentId);
     });
 
-  // Function to handle image file upload and create a copy in the 'static/images' folder
-function handleImageUpload(imageInput, fileName) {
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    const imgData = event.target.result;
-    // Create an anchor element with the image data and download it to save the image
-    const a = document.createElement('a');
-    a.href = imgData;
-    a.download = fileName;
-    a.click();
-  };
-  reader.readAsDataURL(imageInput.files[0]);
-}
-
 $('#registerForm').on('submit', function (event) {
   event.preventDefault();
 
@@ -454,9 +440,33 @@ $('#registerForm').on('submit', function (event) {
   updateReviewsTab(userId, establishmentId);
 });
 
-async function updateUserDetails(username, updatedData) {
+// Event handler for form submission
+$('#updateForm').on('submit', async function (event) {
+  event.preventDefault();
+
+  // Get updated form input values
+  const userName = $('#userName').val();
+  const avatar = $('#avatar').val(); 
+  const userDescription = $('#userDescription').val();
+
+  // Create the updated data object to be sent to the server
+  const updatedData = {
+    avatar: avatar,
+    newUsername: userName, // Updated key name to match the backend
+    profileDescription: userDescription,
+  };
+
   try {
-    const response = await fetch(`/api/users/${username}`, { // Replace :username with the actual username value
+    // Get the userId from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+    if (!userId) {
+      console.error('userId not found in URL');
+      return;
+    }
+
+    // Send the update request to the backend endpoint with the correct userId
+    const response = await fetch(`/api/update-user/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -468,36 +478,13 @@ async function updateUserDetails(username, updatedData) {
       throw new Error(`Error updating user details (Status: ${response.status})`);
     }
 
-    return response.json();
-  } catch (error) {
-    console.error('Error updating user details:', error);
-    throw error;
-  }
-}
-
-// Event handler for form submission
-$('#updateForm').on('submit', async function (event) {
-  event.preventDefault();
-
-  // Get updated form input values
-  const username = $('#userName').val();
-  const avatar = $('#profilePicture').val(); // Replace with the actual way to get the file value
-  const profileDescription = $('#userDescription').val();
-
-  // Create the updated data object to be sent to the server
-  const updatedData = {
-    newUsername: username,
-    avatar: avatar,
-    profileDescription: profileDescription,
-  };
-
-  try {
-    // Update the user's details on the server
-    const updatedUser = await updateUserDetails(username, updatedData);
+    const responseData = await response.json();
+    console.log(responseData.message); // Log the success message from the backend
 
     // Display success message and update profileData with the updated details
     $('#updateSuccessMessage').show();
-    profileData = updatedUser;
+    location.reload();
+    profileData = responseData.user; // Update the frontend data with the updated data
   } catch (error) {
     console.error('Error updating user details:', error);
     // Handle error if needed
@@ -592,4 +579,18 @@ function createReviewElement(review) {
   const template = Handlebars.compile(reviewTemplate);
   const reviewHtml = template(review);
   return reviewHtml;
+}
+
+// Function to handle image file upload and create a copy in the 'static/images' folder
+function handleImageUpload(imageInput, fileName) {
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const imgData = event.target.result;
+    // Create an anchor element with the image data and download it to save the image
+    const a = document.createElement('a');
+    a.href = imgData;
+    a.download = fileName;
+    a.click();
+  };
+  reader.readAsDataURL(imageInput.files[0]);
 }
