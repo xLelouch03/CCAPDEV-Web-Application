@@ -19,8 +19,8 @@
                         Sort by
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Rating</button>
-                        <button class="dropdown-item" type="button">Name</button>
+                        <button class="dropdown-item" type="button" id="sortByRating">Rating</button>
+                        <button class="dropdown-item" type="button" id="sortByName">Name</button>
                         </div>
                     </div>
                 </div>
@@ -43,3 +43,19 @@
         {{/each}}
         
     </div>
+
+<script>
+
+
+window.onload = function() {
+   document.getElementById('sortByRating').addEventListener('click', function() {
+      window.location.href = `/searchresult?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=rating`;
+   });
+
+   document.getElementById('sortByName').addEventListener('click', function() {
+      window.location.href = `/searchresult?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=name`;
+   });
+}
+
+</script>
+
