@@ -309,17 +309,19 @@ function updateCount(countElement, increment) {
 
 /* REVIEW MODAL */
 
-const arrStars = document.querySelectorAll(".reviewer-rating-star");
-arrStars.forEach((star, index1) => {
-    star.addEventListener("click", () => {
-        arrStars.forEach((star, index2) => {
-            if(index1 >= index2) {
-                star.classList.add("reviewer-rating-selected");
-                star.classList.remove("reviewer-rating-unselected");
-            } else {
-                star.classList.remove("reviewer-rating-selected");
-                star.classList.add("reviewer-rating-unselected");
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    const arrStars = document.querySelectorAll(".reviewer-rating-star");
+    arrStars.forEach((star, index1) => {
+        star.addEventListener("click", () => {
+            arrStars.forEach((star, index2) => {
+                if(index1 >= index2) {
+                    star.classList.add("reviewer-rating-selected");
+                    star.classList.remove("reviewer-rating-unselected");
+                } else {
+                    star.classList.remove("reviewer-rating-selected");
+                    star.classList.add("reviewer-rating-unselected");
+                }
+            });
         });
     });
 });
