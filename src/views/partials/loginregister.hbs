@@ -10,6 +10,13 @@
                     Ready to <span ="text-color-custom" id="juander">juan</span>der?
                 </h5>
                 <div class="form-group mb-3">
+                <label for="loginRole" class="form-label">Login as:</label>
+                <select class="form-control" id="loginRole">
+                    <option value="user">User</option>
+                    <option value="owner">Owner</option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
                     <input type="text" class="form-control custom-input" id="loginUsername" placeholder="Username">
                 </div>
                 <div class="form-group mb-3">
@@ -49,6 +56,13 @@
                 </h5>
                 <form id="registerForm">
                     <div class="form-group mb-3">
+                        <label for="role" class="form-label">Register as:</label>
+                        <select class="form-control" id="role">
+                            <option value="user">User</option>
+                            <option value="owner">Owner</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                         <input type="text" class="form-control custom-input" id="registerUsername" placeholder="Username" required>
                     </div>
                     <div class="form-group mb-3">
@@ -57,12 +71,22 @@
                     <div class="form-group mb-3">
                         <input type="text" class="form-control custom-input" id="description3" placeholder="Description">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="role" class="form-label">Register as:</label>
-                        <select class="form-control" id="role">
-                            <option value="user">User</option>
-                            <option value="owner">Owner</option>
+                    <div class="form-group mb-3 owner-only" style="display: none;">
+                        <input type="text" class="form-control custom-input" id="establishmentName" placeholder="Establishment Name">
+                    </div>
+                    <div class="form-group mb-3 owner-only" style="display: none;">
+                        <input type="text" class="form-control custom-input" id="description" placeholder="Establishment Description">
+                    </div>
+                    <div class="form-group mb-3 owner-only" style="display: none;">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-control" id="category">
+                            <option value="Beach">Beach</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Cultural Sites">Cultural Sites</option>
                         </select>
+                    </div>
+                    <div class="form-group mb-3 owner-only" style="display: none;">
+                        <input type="text" class="form-control custom-input" id="location" placeholder="Location">
                     </div>
                     <div class="form-group mb-3">
                         <label for="avatar" class="form-label">Upload your Avatar</label>
@@ -76,7 +100,7 @@
                     <div class="modal-footer d-flex justify-content-center">
                         <div>
                             <button type="submit" class="btn btn-primary btn-block w-75" style="background-color: #ff8a00;" id="signUpBtn">SIGN UP</button>
-                            <p class="mt-2 mb-0">Have an account already? <a href="#loginModal" id="loginLink" style="color: #ff8a00;">Sign in</a>.</p>
+                            <p class="mt-2 mb-0">Have an account already? <a href="#loginModal" id="loginLink" style="color: #ff8a00;"><br>Sign in</a>.</p>
                         </div>
                     </div>
                 </form>

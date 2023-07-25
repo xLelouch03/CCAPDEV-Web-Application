@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Create new establishment
 router.post('/create-establishment', EstablishmentController.createEstablishment);
+router.post('/login-owner', EstablishmentController.loginEstablishment);
 
 // Retrieve establishment details and reviews for indivpage
 router.get('/establishment/:id', async (req, res) => {
@@ -37,6 +38,22 @@ router.get('/establishment/:id', async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
+});
+
+router.get('/profile/:establishmentId', async (req, res) => {
+    const establishmentId = req.params.establishmentId;
+    
+    try {
+        // Fetch user data from MongoDB collection using Mongoose
+        const establishmentData = await User.findById(establishmentId);
+    
+        // Render the Handlebars template and pass the fetched data as context
+        res.render('template', { establishmentData });
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        res.status(500).send('Error fetching user data');
+    }
+      
 });
 
 // Update establishment details

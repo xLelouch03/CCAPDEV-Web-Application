@@ -3,6 +3,7 @@ import UserController from '../controllers/user.controller.js';
 import EstablishmentController from '../controllers/establishment.controller.js';
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
+import Establishment from '../models/establishment.model.js';
 const router = Router();
 
 const authenticateUser = (req, res, next) => {
@@ -13,8 +14,10 @@ const authenticateUser = (req, res, next) => {
     next();
 };
 router.post('/signup', UserController.createUser);
+router.post('/signup-owner', EstablishmentController.createEstablishment);
 router.post('/login', UserController.loginUser);  
 router.put('/api/users/:username', UserController.updateUser);
+router.post('/login-owner', EstablishmentController.loginEstablishment);
 
 router.get('/users', async (req, res) => {
   try {
@@ -39,6 +42,33 @@ router.get('/api/user/:userId', async (req, res) => {
   } catch (error) {
     console.error('Error fetching user data:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.get('/establishments', async (req, res) => {
+  try {
+    // Fetch all users from the 'users' collection
+    const establishments = await Establishment.find({}, 'name'); // Return only the 'username' field
+    res.json({ establishments: establishments }); // Respond with the users data as JSON
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route to fetch establishment data by ID
+router.get('/api/establishments/:establishmentId', async (req, res) => {
+  try {
+    const establishmentId = req.params.establishmentId;
+    // Fetch the user from the 'users' collection based on the provided user ID
+    const establishment = await Establishment.findById(establishmentId);
+    if (!establishment) {
+      return res.status(404).json({ error: 'Establishment not found' });
+    }
+    res.json(establishment);
+  } catch (error) {
+    console.error('Error fetching establishment data:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
