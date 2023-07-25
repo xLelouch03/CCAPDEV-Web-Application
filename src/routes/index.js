@@ -200,27 +200,6 @@ router.get('/establishment', (req, res) => {
     });
 });
 
-router.get('/profile', (req, res) => {
-    // Render the Handlebars template for the establishment page without specifying a layout
-    const isAuthenticated = req.user ? true : false;
-  
-    // Determine which layout and template to use based on authentication status
-    let mainLayout, mainTemplate;
-  
-        mainLayout = 'profile';
-        mainTemplate = 'profilesLogged';
-    
-  
-    // Render the appropriate Handlebars template with the chosen layout
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      title: "Juanderlast Profile Page",
-      user: req.user,
-      // Other data that the template might need
-      // ...
-    });
-});
-
 router.get('/profileLogged', (req, res) => {
   // Render the Handlebars template for the establishment page without specifying a layout
   const isAuthenticated = req.user ? true : false;
