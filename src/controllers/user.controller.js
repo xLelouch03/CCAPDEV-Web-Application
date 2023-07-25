@@ -4,7 +4,7 @@ const UserController = {
     createUser: async (req, res) => {
         try {
           const { username, password, role, avatar, profileDescription, establishmentPhotos } = req.body;
-          console.log("Received signup request:", { username, password, profileDescription });
+          console.log("Received signup request:", { username, password, profileDescription, avatar });
       
           if (!username || !password) {
             return res.status(400).json({ message: "Please provide both username and password." });

@@ -13,6 +13,7 @@ router.post('/login-owner', EstablishmentController.loginEstablishment);
 router.get('/establishment/:establishmentId', async (req, res) => {
     try {
         const establishmentId = req.params.establishmentId;
+        const sortBy = req.query.sortBy;
         const establishment = (await EstablishmentController.getEstablishment(establishmentId)).toObject();
         if (!establishment) {
             console.log("Establishment not found");
@@ -23,7 +24,7 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         // Assign replies
         await ReviewController.assignReplies();
   
-        const reviews = (await ReviewController.getReviews(establishmentId)).map(doc => doc.toObject());
+        const reviews = (await ReviewController.getReviews(establishmentId, sortBy)).map(doc => doc.toObject());
         if (!reviews) {
             console.log("No matching reviews for establishment found");
         }
@@ -42,11 +43,13 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         console.log(err);
         res.status(500).send({ message: err.message });
     }
-  });
+});
+
 
   router.get('/establishmentLogged/:establishmentId', async (req, res) => {
     try {
         const establishmentId = req.params.establishmentId;
+        const sortBy = req.query.sortBy;
         const establishment = (await EstablishmentController.getEstablishment(establishmentId)).toObject();
         if (!establishment) {
             console.log("Establishment not found");
@@ -57,7 +60,7 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         // Assign replies
         await ReviewController.assignReplies();
   
-        const reviews = (await ReviewController.getReviews(establishmentId)).map(doc => doc.toObject());
+        const reviews = (await ReviewController.getReviews(establishmentId, sortBy)).map(doc => doc.toObject());
         if (!reviews) {
             console.log("No matching reviews for establishment found");
         }

@@ -101,14 +101,14 @@ const EstablishmentController = {
     // Update an establishment's name, username, avatar, short description, and description
     updateEstablishment: async (req, res) => {
         const { establishmentId } = req.params;
-        const { newName, newUsername, avatar, shortDescription, description } = req.body;
-        console.log("Received update request:", { establishmentId, newName, newUsername, avatar, shortDescription, description });
+        const { name, newUsername, avatar, shortDescription, description } = req.body;
+        console.log("Received update request:", { establishmentId, name, newUsername, avatar, shortDescription, description });
     
         try {
         // Find the establishment in the database and update its information
         const establishment = await Establishment.findOneAndUpdate(
             { _id: establishmentId },
-            { name: newName, username: newUsername, avatar, shortDescription, description },
+            { name, username: newUsername, avatar, shortDescription, description },
             { new: true }
         );
     
