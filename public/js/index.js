@@ -456,7 +456,7 @@ $(document).on("click", ".user-option", function () {
 
 $(document).on("click", ".establishment-option", function () {
   const establishmentId = $(this).data("establishment-id");
-  window.location.href = `/profile?establishmentId=${establishmentId}`;
+  window.location.href = `/profileLogged?establishmentId=${establishmentId}`;
 });
 
 // Event handler for form submission
