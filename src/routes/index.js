@@ -113,6 +113,51 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/loggedInMain', async (req, res) => {
+  // Retrieve data from DB
+  const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+  console.log(establishments);
+
+  // Assuming you have a variable to store the authentication status
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+
+  let mainLayout, mainTemplate;
+    mainLayout = 'main';
+    mainTemplate = 'loggedInMain'; // Replace 'reviews' with the appropriate template for the logged-in page
+
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Main Page",
+    user: req.user,
+    establishments: establishments // Pass retrieved data to Handlebars
+  });
+});
+
+router.get('/establishmentLogged', (req, res) => {
+  // Render the Handlebars template for the establishment page without specifying a layout
+  const isAuthenticated = req.user ? true : false;
+
+  // Determine which layout and template to use based on authentication status
+  let mainLayout, mainTemplate;
+
+    mainLayout = 'establishment';
+    mainTemplate = 'establishmentLogged'; 
+
+
+  // Render the appropriate Handlebars template with the chosen layout
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "Juanderlast Establishment Page",
+    user: req.user,
+    // Other data that the template might need
+    // ...
+  });
+});
+
 router.get('/establishment', (req, res) => {
     // Render the Handlebars template for the establishment page without specifying a layout
     const isAuthenticated = req.user ? true : false;
@@ -120,13 +165,9 @@ router.get('/establishment', (req, res) => {
     // Determine which layout and template to use based on authentication status
     let mainLayout, mainTemplate;
   
-    if (isAuthenticated) {
       mainLayout = 'establishment';
-      mainTemplate = 'establishmentLogged'; 
-    } else {
-        mainLayout = 'establishment';
-        mainTemplate = 'establishmentLogged';
-    }
+      mainTemplate = 'establishments'; 
+    
   
     // Render the appropriate Handlebars template with the chosen layout
     res.render(mainTemplate, {
@@ -188,6 +229,26 @@ router.get('/searchresult', async (req, res) => {
       // Define Handlebars template and layout here
       const mainLayout = 'searchresult';
       const mainTemplate = 'searchresults';
+
+      res.render(mainTemplate, {
+          layout: mainLayout,
+          establishments: establishments
+      });
+  } catch (err) {
+      res.status(500).send({ message: err.message });
+  }
+});
+
+// Retrieve existing establishments and render searchresults
+router.get('/searchresultLogged', async (req, res) => {
+  try {
+      // Retrieve data from DB
+      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+      console.log(establishments);
+
+      // Define Handlebars template and layout here
+      const mainLayout = 'searchresult';
+      const mainTemplate = 'searchresultsLogged';
 
       res.render(mainTemplate, {
           layout: mainLayout,
