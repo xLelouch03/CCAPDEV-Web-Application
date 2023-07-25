@@ -18,7 +18,7 @@ userRouter.delete('/:username', UserController.deleteUser);
 
 userRouter.post('/login', UserController.loginUser);
 
-
+//userRouter.put('/api/update-user/:username', UserController.updateUser);
 
 userRouter.get('/profile/:userId', async (req, res) => {
     const userId = req.params.userId;
