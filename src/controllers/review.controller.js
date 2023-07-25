@@ -1,16 +1,20 @@
 import Review from '../models/review.model.js';
 import ReplyController from './reply.controller.js';
+import UserController from './user.controller.js';
 
 const ReviewController = {
     // Create a new review
-    createReview: async (req, res) => {
-        const { user, establishment, rating, title, body } = req.body;
+    createReview: async (establishment, rating, title, body) => {
+        const user = await UserController.getRandomUserId();
         try {
             const review = new Review({ user, establishment, rating, title, body });
             await review.save();
-            res.status(201).send(review);
+            console.log("New review created:");
+            console.log(review);
+            return 1;
         } catch (err) {
-            res.status(500).send({ message: err.message });
+            console.error(err);
+            throw err;
         }
     },
 
