@@ -109,8 +109,13 @@ router.post('/establishmentLogged/:establishment/review', async (req, res) => {
     const { rating, title, body } = req.body;
 
     try {
-        const status = await ReviewController.createReview(establishment, rating, title, body);
-        if(status != 1) console.log("Review creation failed!");
+        const result = await ReviewController.createReview(establishment, rating, title, body);
+        if(result === 1) {
+            res.status(200).json({ message: "Review created successfully" });
+        } else {
+            console.log("Review creation failed");
+            res.status(400).json({ message: "Review creation failed" });
+        }
     } catch(err) {
         res.status(500).send({ message: err.message });
     }
@@ -127,15 +132,34 @@ router.put('/establishmentLogged/:establishment/review', async (req, res) => {
     console.log(lastEdited);
 
     try {
-        const status = await ReviewController.updateReview(establishment, title, body, lastEdited);
-        if(status != 1) console.log("Review update failed!");
+        const result = await ReviewController.updateReview(establishment, title, body, lastEdited);
+        if(result.nModified > 0) {
+            res.status(200).json({ message: "Review update successful", result });
+        } else {
+            console.log("Review update failed");
+            res.status(400).json({ message: "Review update failed", result });
+        }
     } catch(err) {
         res.status(500).send({ message: err.message });
     }
 });
 
 // Delete a review
-router.delete('/establishmentLogged/:establishment/review', ReviewController.deleteReview);
+router.delete('/establishmentLogged/:establishment/review', async (req, res) => {
+    const { establishment } = req.params;
+
+    try {
+        const result = await ReviewController.deleteReview(establishment);
+        if(result.deletedCount > 0) {
+            res.status(200).json({ message: "Review deletion successful", result });
+        } else {
+            console.log("Review deletion failed");
+            res.status(400).json({ message: "Review deletion failed", result });
+        }
+    } catch(err) {
+        res.status(500).send({ message: err.message });
+    }
+});
 
 // Create new reply
 router.post('/establishment/:establishment/reply', ReplyController.createReply);

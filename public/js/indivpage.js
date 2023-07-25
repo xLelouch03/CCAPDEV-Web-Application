@@ -595,6 +595,21 @@ reviewEditForm.addEventListener('submit', function(event) {
     event.preventDefault();
     editReview();
 });
+
+function deleteReview() {
+    fetch(`${window.location.pathname}/review`, {
+        method: 'DELETE', 
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        location.reload();
+    })
+    .catch((error) => console.error('Error:', error));
+}
   
 // Reset the textarea when the modal hides
 document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
@@ -634,3 +649,7 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
     reviewContainer.remove();
     }
   });
+
+document.querySelector(".delete-button").addEventListener('click', function(event) {
+    deleteReview();
+})
