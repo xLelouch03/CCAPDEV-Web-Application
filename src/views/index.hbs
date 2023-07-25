@@ -38,16 +38,29 @@
 <script>
     function handleSearch() {
 
-    var categorySelect = document.querySelector('.search-category');
-    var selectedCategory = categorySelect.value;
-    var searchInput = document.querySelector('.search-input').value;
+        var categorySelect = document.querySelector('.search-category');
+        var selectedCategory = categorySelect.value;
+        var searchInput = document.querySelector('.search-input').value;
 
-    var searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
-    
-    window.location.href = searchURL;
-    
+        var searchURL = '';
+
+        if(selectedCategory == 'review') {
+            // adjust the URL for 'review'
+            searchURL = '/barsearchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+        } 
+        else if(selectedCategory == 'destination') {
+            // adjust the URL for 'destination'
+            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+        } 
+        else {
+            // default URL for other categories
+            searchURL = '/barsearchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+        }
+
+        window.location.href = searchURL;
     }
 </script>
+
 
 <style>
         .pic {
@@ -154,7 +167,6 @@
 
         </div>
 
-        
             <div class="ctr"> 
                 <a href="/searchresult"><div class="btn-see">   See More </div></a> 
         </div>

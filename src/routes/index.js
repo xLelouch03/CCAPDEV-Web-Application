@@ -18,6 +18,7 @@ router.post('/signup', UserController.createUser);
 router.post('/signup-owner', EstablishmentController.createEstablishment);
 router.post('/login', UserController.loginUser);  
 //router.put('/api/users/:username', UserController.updateUser);
+router.put('/api/update-establishment/:establishmentId', EstablishmentController.updateEstablishment);
 router.put('/api/update-user/:username', UserController.updateUser);
 router.post('/login-owner', EstablishmentController.loginEstablishment);
 
@@ -291,23 +292,65 @@ router.get('/profile/:userId', (req, res) => {
   res.render('profile', { userData });
 });
 
-
 router.get('/searchresult', async (req, res) => {
+  try {
+      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+      console.log(establishments);
+
+      // Define Handlebars template and layout here
+      const mainLayout = 'searchresult';
+      const mainTemplate = 'searchresults';
+
+      res.render(mainTemplate, {
+          layout: mainLayout,
+          establishments: establishments
+      });
+  } catch (err) {
+      res.status(500).send({ message: err.message });
+  }
+});
+
+router.get('/searchresultLogged', async (req, res) => {
+  try {
+      const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+      console.log(establishments);
+
+      // Define Handlebars template and layout here
+      const mainLayout = 'searchresult';
+      const mainTemplate = 'searchresultsLogged';
+
+      res.render(mainTemplate, {
+          layout: mainLayout,
+          establishments: establishments
+      });
+  } catch (err) {
+      res.status(500).send({ message: err.message });
+  }
+});
+
+router.get('/barsearchresult', async (req, res) => {
   const category = req.query.category;
   const query = req.query.q;
 
   let sortBy;
-    if(req.query.sortby && req.query.sortby === 'rating') {
-      sortBy = { 'rating': -1 };
-    } else {
-      sortBy = { 'name': 1 };
-    }
-
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
 
   let results;
+  let mainLayout;
+  let mainTemplate;
+
+  mainLayout = 'searchresult';
+  mainTemplate = 'searchresults';
+
   try {
     switch (category) {
       case 'destination':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresults';
         if (query) { // if a search term exists
           results = await Establishment.find({
             $text: {
@@ -317,56 +360,45 @@ router.get('/searchresult', async (req, res) => {
         } else { // if no search term, return all
           results = await Establishment.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          establishments: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
         break;
-      case 'review':
-        if (query) { // if a search term exists
-          results = await Review.find({
-            $text: {
-              $search: query
-            }
-          }).sort(sortBy);
-        } else { // if no search term, return all
-          results = await Review.find().sort(sortBy);
-        }
-        break;
+      
       default:
         return res.status(400).send('Invalid category');
     }
 
-    const mainLayout = 'searchresult';
-    const mainTemplate = 'searchresults';
-
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      searchTerm: query,
-      resultCount: results.length,
-      establishments: results.map(doc => doc.toObject()),
-      currentCategory: category, // the category from your server-side code
-      currentQuery: query // the query from your server-side code
-    });
+    
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 });
 
-
-
-router.get('/searchresultLogged', async (req, res) => {
+router.get('/barsearchresultLogged', async (req, res) => {
   const category = req.query.category;
   const query = req.query.q;
 
   let sortBy;
-    if(req.query.sortby && req.query.sortby === 'rating') {
-      sortBy = { 'rating': -1 };
-    } else {
-      sortBy = { 'name': 1 };
-    }
-
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
 
   let results;
+  let mainLayout;
+  let mainTemplate;
   try {
     switch (category) {
       case 'destination':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsLogged';
         if (query) { // if a search term exists
           results = await Establishment.find({
             $text: {
@@ -376,8 +408,43 @@ router.get('/searchresultLogged', async (req, res) => {
         } else { // if no search term, return all
           results = await Establishment.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          establishments: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
         break;
+      default:
+        return res.status(400).send('Invalid category');
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+});
+
+router.get('/searchresultreview', async (req, res) => {
+  const category = req.query.category;
+  const query = req.query.q;
+
+  let sortBy;
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
+
+  let results;
+  let mainLayout;
+  let mainTemplate;
+
+  try {
+    switch (category) {
       case 'review':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsreviews';
         if (query) { // if a search term exists
           results = await Review.find({
             $text: {
@@ -387,22 +454,67 @@ router.get('/searchresultLogged', async (req, res) => {
         } else { // if no search term, return all
           results = await Review.find().sort(sortBy);
         }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          reviews: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
+        console.log(results)
         break;
       default:
         return res.status(400).send('Invalid category');
     }
 
-    const mainLayout = 'searchresult';
-    const mainTemplate = 'searchresultsLogged';
+    
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+});
 
-    res.render(mainTemplate, {
-      layout: mainLayout,
-      searchTerm: query,
-      resultCount: results.length,
-      establishments: results.map(doc => doc.toObject()),
-      currentCategory: category, // the category from your server-side code
-      currentQuery: query // the query from your server-side code
-    });
+router.get('/searchresultreviewLogged', async (req, res) => {
+  const category = req.query.category;
+  const query = req.query.q;
+
+  let sortBy;
+  if(req.query.sortby && req.query.sortby === 'rating') {
+    sortBy = { 'rating': -1 };
+  } else {
+    sortBy = { 'name': 1 };
+  }
+
+  let results;
+  let mainLayout;
+  let mainTemplate;
+
+  try {
+    switch (category) {
+      case 'review':
+        mainLayout = 'searchresult';
+        mainTemplate = 'searchresultsreviewsLogged';
+        if (query) { // if a search term exists
+          results = await Review.find({
+            $text: {
+              $search: query
+            }
+          }).sort(sortBy);
+        } else { // if no search term, return all
+          results = await Review.find().sort(sortBy);
+        }
+        res.render(mainTemplate, {
+          layout: mainLayout,
+          searchTerm: query,
+          resultCount: results.length,
+          reviews: results.map(doc => doc.toObject()),
+          currentCategory: category, // the category from your server-side code
+          currentQuery: query // the query from your server-side code
+        });
+        break;
+      default:
+        return res.status(400).send('Invalid category');
+    }
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
