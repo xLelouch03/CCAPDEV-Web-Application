@@ -42,6 +42,7 @@ async function main () {
     app.use(cors());
     app.use(router);
     app.use(userRouter);
+    app.use('/api', userRouter);
     app.use(establishmentRouter);
 
     app.listen(process.env.SERVER_PORT, () => {
