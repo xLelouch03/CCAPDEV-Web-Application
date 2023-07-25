@@ -42,6 +42,8 @@ const establishmentSchema = new mongoose.Schema({
   }
 });
 
+establishmentSchema.index({ name: 'text'});
+
 const Establishment = mongoose.model('Establishment', establishmentSchema);
 
 export default Establishment;
