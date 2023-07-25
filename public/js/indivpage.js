@@ -289,6 +289,7 @@ function getCurrentDate() {
     return currentDate;
 }
 
+/*
 function addReview(reviewData) {
     // review container div
     const reviewContainer = document.createElement("div");
@@ -467,7 +468,6 @@ profileContainer.appendChild(postDetailsContainer);
     reviewsContainer.appendChild(reviewContainer);
 }
 
-/*
 document.getElementById("reviewForm").addEventListener("submit", function(event) {
     event.preventDefault();
     submitReview();
@@ -520,7 +520,6 @@ function submitReview() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        addReview(reviewData);
         fileInput.value = "";
         reviewForm.reset();
         updatePageNumbers();
@@ -650,6 +649,12 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
     }
   });
 
-document.querySelector(".delete-button").addEventListener('click', function(event) {
-    deleteReview();
-})
+// Delete buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach((deleteButton) => {
+        deleteButton.addEventListener('click', () => {
+            deleteReview();
+        });
+    });
+});

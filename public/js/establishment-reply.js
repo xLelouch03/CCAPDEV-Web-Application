@@ -6,7 +6,7 @@ function getCurrentDate() {
     return currentDate;
 }
 
-
+/*
 document.addEventListener('DOMContentLoaded', (event) => {
   // The DOM is fully loaded, we can add event listeners now.
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
   });
 });
-
+*/
 
 function addFeedback(feedbackData, reviewContainer) {
   const feedbackContainer = document.createElement("div");

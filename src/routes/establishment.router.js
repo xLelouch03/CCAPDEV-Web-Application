@@ -110,12 +110,7 @@ router.post('/establishmentLogged/:establishment/review', async (req, res) => {
 
     try {
         const result = await ReviewController.createReview(establishment, rating, title, body);
-        if(result === 1) {
-            res.status(200).json({ message: "Review created successfully" });
-        } else {
-            console.log("Review creation failed");
-            res.status(400).json({ message: "Review creation failed" });
-        }
+        res.json(result);
     } catch(err) {
         res.status(500).send({ message: err.message });
     }
