@@ -141,13 +141,13 @@
         <h2> Popular Destinations </h2>
 
         <div class="owl-carousel owl-theme">
-            {{#each destination}}
+            {{#each establishments}}
             <div class="destination-slide"> 
             <a href="/establishment">
-                <img src="{{destination-image}}" class="img-slider">
+                <img src="{{this.images.[0]}}" class="img-slider">
                 <div class="image-text">
-                    <p> {{destination-info}}</p> <h4> {{destination-name}} </h4>
-                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{destination-rating}} overall ratings </p>
+                    <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
+                    <p class ="oratings"> <i class="fa fa-star" aria-hidden="true"> </i> {{this.rating}} overall ratings </p>
                 </div>
             </a>
             </div>

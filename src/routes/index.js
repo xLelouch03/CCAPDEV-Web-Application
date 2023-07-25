@@ -85,7 +85,11 @@ router.get('/api/reviews/:userId', async (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    // Retrieve data from DB
+    const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
+    console.log(establishments);
+
     // Assuming you have a variable to store the authentication status
     const isAuthenticated = req.user ? true : false;
   
@@ -99,13 +103,13 @@ router.get('/', (req, res) => {
       mainLayout = 'main';
       mainTemplate = 'index';
     }
+
     // Render the appropriate Handlebars template with the chosen layout
     res.render(mainTemplate, {
       layout: mainLayout,
       title: "Juanderlast Main Page",
       user: req.user,
-      // Other data that the template might need
-      // ...
+      establishments: establishments // Pass retrieved data to Handlebars
     });
 });
 
@@ -177,6 +181,7 @@ router.get('/profile/:userId', (req, res) => {
 // Retrieve existing establishments and render searchresults
 router.get('/searchresult', async (req, res) => {
   try {
+      // Retrieve data from DB
       const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
       console.log(establishments);
 
