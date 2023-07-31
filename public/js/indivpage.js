@@ -245,20 +245,11 @@ function updateCount(countElement, value) {
   countElement.textContent = currentValue + value;
 }
 
-
-
-
 function updateCount(countElement, increment) {
   let count = parseInt(countElement.textContent);
   count += increment;
   countElement.textContent = count;
 }
-
-
-
-
-
-
 
 /* REVIEW MODAL */
 
@@ -279,8 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
 function getCurrentDate() {
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -288,194 +277,6 @@ function getCurrentDate() {
     
     return currentDate;
 }
-
-/*
-function addReview(reviewData) {
-    // review container div
-    const reviewContainer = document.createElement("div");
-    reviewContainer.classList.add("review-container");
-
-    // profile container div
-    const profileContainer = document.createElement("div");
-    profileContainer.classList.add("profile-container");
-
-    // profile picture img
-    const profilePictureImg = document.createElement("img");
-    profilePictureImg.classList.add("profile-picture");
-    profilePictureImg.src = reviewData.profilePictureSrc;
-    profileContainer.appendChild(profilePictureImg);
-
-    // post details container div
-const postDetailsContainer = document.createElement("div");
-postDetailsContainer.classList.add("post-details-container");
-
-// profile name span
-const profileNameSpan = document.createElement("span");
-profileNameSpan.classList.add("profile-name");
-
-// profile name link
-const profileNameLink = document.createElement("a");
-profileNameLink.href = reviewData.profileLink;
-profileNameLink.style.color = "black";
-profileNameLink.style.textDecoration = "none";
-profileNameLink.textContent = reviewData.profileName;
-
-// Add the link to the profileNameSpan
-profileNameSpan.appendChild(profileNameLink);
-
-// Add profileNameSpan to the postDetailsContainer
-postDetailsContainer.appendChild(profileNameSpan);
-
-// postDateSpan
-const postDateSpan = document.createElement("span");
-postDateSpan.classList.add("post-date");
-postDateSpan.textContent = reviewData.postDate;
-
-// Add postDateSpan to the postDetailsContainer
-postDetailsContainer.appendChild(postDateSpan);
-
-// Add postDetailsContainer to the review container
-profileContainer.appendChild(postDetailsContainer);
-
-
-    // Adding profileContainer to the reviewContainer
-    reviewContainer.appendChild(profileContainer);
-
-    // review rating container div
-    const reviewRatingContainer = document.createElement("div");
-    reviewRatingContainer.classList.add("review-rating-container");
-
-    // star icons based on the rating value
-    for (let i = 0; i < reviewData.rating; i++) {
-      const starIcon = document.createElement("i");
-      starIcon.classList.add("fa", "fa-star", "review-star-icon");
-      reviewRatingContainer.appendChild(starIcon);
-    }
-
-    // rating description
-    const ratingDescription = document.createElement("span");
-    ratingDescription.classList.add("rating-description");
-    ratingDescription.textContent = reviewData.ratingDescription;
-    reviewRatingContainer.appendChild(ratingDescription);
-
-    // review rating container to the review container
-    reviewContainer.appendChild(reviewRatingContainer);
-
-    // review title span
-    const reviewTitleSpan = document.createElement("span");
-    reviewTitleSpan.classList.add("review-title");
-    reviewTitleSpan.textContent = reviewData.reviewTitle;
-
-    // review title span to the review container
-    reviewContainer.appendChild(reviewTitleSpan);
-
-    // review title span
-    const reviewContentSpan = document.createElement("span");
-    reviewContentSpan.classList.add("review-content");
-    reviewContentSpan.textContent = reviewData.reviewContent;
-
-    // review title span to the review container
-    reviewContainer.appendChild(reviewContentSpan);
-    
-    // photo album container div
-    const photoAlbumContainer = document.createElement("div");
-    photoAlbumContainer.classList.add("photo-album");
-
-    // Add images from the reviewData.photoAlbum array (assuming it contains image URLs)
-    for (const imageUrl of reviewData.photoAlbum) {
-        const imageElement = document.createElement("img");
-        imageElement.classList.add("photo-album-photo");
-        imageElement.src = imageUrl;
-        photoAlbumContainer.appendChild(imageElement);
-    }
-
-    // append photo album to the review container
-    reviewContainer.appendChild(photoAlbumContainer);
-
-    // userbuttons-container
-    const userButtonsContainer = document.createElement("div");
-    userButtonsContainer.classList.add("userbuttons-container");
-
-    // helpful container div
-    const helpfulContainer = document.createElement("div");
-    helpfulContainer.classList.add("helpful-container");
-
-    // helpful icon span
-    const helpfulIcon = document.createElement("span");
-    helpfulIcon.classList.add("helpful-icon");
-    helpfulContainer.appendChild(helpfulIcon);
-
-    // helpful text span
-    const helpfulText = document.createElement("span");
-    helpfulText.classList.add("helpful-text");
-    helpfulText.textContent = `Helpful ${reviewData.helpfulCount}`;
-    helpfulContainer.appendChild(helpfulText);
-
-    // Add some space between helpful and unhelpful elements
-    helpfulContainer.appendChild(document.createTextNode("\u00A0\u00A0\u00A0\u00A0\u00A0"));
-
-    // unhelpful icon span
-    const unhelpfulIcon = document.createElement("span");
-    unhelpfulIcon.classList.add("unhelpful-icon");
-    helpfulContainer.appendChild(unhelpfulIcon);
-
-    // unhelpful text span
-    const unhelpfulText = document.createElement("span");
-    unhelpfulText.classList.add("helpful-text");
-    unhelpfulText.textContent = `Unhelpful ${reviewData.unhelpfulCount}`;
-    helpfulContainer.appendChild(unhelpfulText);
-
-    // helpful container to the review container
-    userButtonsContainer.appendChild(helpfulContainer);
-
-    // userreview-buttons-container
-    const userReviewButtonsContainer = document.createElement("div");
-    userReviewButtonsContainer.classList.add("userreview-buttons-container");
-
-    // edit-button-container
-    const editButtonContainer = document.createElement("div");
-    editButtonContainer.classList.add("edit-button-container");
-
-    // edit button
-    const editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
-    editButton.dataset.bsToggle = "modal";
-    editButton.dataset.bsTarget = "#editReviewModal";
-    editButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
-
-    editButtonContainer.appendChild(editButton);
-
-    userReviewButtonsContainer.appendChild(editButtonContainer);
-
-    // delete-button-container
-    const deleteButtonContainer = document.createElement("div");
-    deleteButtonContainer.classList.add("delete-button-container");
-
-    // delete button
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
-    deleteButtonContainer.appendChild(deleteButton);
-
-    userReviewButtonsContainer.appendChild(deleteButtonContainer);
-
-    userButtonsContainer.appendChild(userReviewButtonsContainer);
-
-    reviewContainer.appendChild(userButtonsContainer);
-
-    // review container to the all reviews container
-    const reviewsContainer = document.getElementsByClassName("reviews-cont")[0];
-    reviewsContainer.appendChild(reviewContainer);
-}
-
-document.getElementById("reviewForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    submitReview();
-    var modal = document.getElementById('reviewModal');
-    var bootstrapModal = bootstrap.Modal.getInstance(modal);
-    bootstrapModal.hide();
-});
-*/
 
 function submitReview() {
     const reviewForm = document.getElementById("reviewForm");
@@ -520,9 +321,6 @@ function submitReview() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        fileInput.value = "";
-        reviewForm.reset();
-        updatePageNumbers();
         location.reload();
     })
     .catch((error) => {
@@ -530,10 +328,8 @@ function submitReview() {
     });
 }
 
-// Fetch the form by its ID
-const reviewForm = document.getElementById("reviewForm");
-
 // Attach a 'submit' event listener to the add review form
+const reviewForm = document.getElementById("reviewForm");
 reviewForm.addEventListener('submit', function(event) {
     event.preventDefault();
     submitReview();
@@ -543,20 +339,9 @@ reviewForm.addEventListener('submit', function(event) {
 // Function to handle editing feedback
 function editReview() {
 
-    // Get new feedback from textarea
+    // Get values from form
     var newReview = document.getElementById('editReviewContent').value;
     var newTitle = document.getElementById('editReviewTitle').value;
-  
-    /*
-    if (newReview.trim() !== '' && newTitle.trim() !== '') {
-        // Update the feedback of the activeFeedback element
-        activeReview.textContent = newReview;
-        activeTitle.textContent = newTitle;
-  
-        // Dismiss the modal
-        var editReviewModal = bootstrap.Modal.getInstance(document.querySelector('#editReviewModal'));
-        editReviewModal.hide();
-    */
 
         const reviewData = {
             title: newTitle,
@@ -578,23 +363,16 @@ function editReview() {
             location.reload();
         })
         .catch((error) => console.error('Error:', error));
-
-    /*
-    } else {
-        alert("Review title and content can't be empty");
-    }
-    */
 }
 
-// Attach submit event to feedback edit form
-const reviewEditForm = document.getElementById('reviewEditForm');
-
 // Attach a 'submit' event listener to the edit review form
+const reviewEditForm = document.getElementById('reviewEditForm');
 reviewEditForm.addEventListener('submit', function(event) {
     event.preventDefault();
     editReview();
 });
 
+// Called when a delete button is clicked
 function deleteReview() {
     fetch(`${window.location.pathname}/review`, {
         method: 'DELETE', 
@@ -609,13 +387,24 @@ function deleteReview() {
     })
     .catch((error) => console.error('Error:', error));
 }
-  
-// Reset the textarea when the modal hides
+
+// Attach a 'submit' event listener to the delete review confirmation form
+const reviewDeleteForm = document.getElementById('reviewDeleteForm');
+reviewDeleteForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    deleteReview();
+});
+
+// Reset the text fields when the pop-up modals hide
 document.getElementById('editReviewModal').addEventListener('hidden.bs.modal', function () {
     document.getElementById('editReviewTitle').value = '';
     document.getElementById('editReviewContent').value = '';
 });
 
+document.getElementById('reviewModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('reviewTitle').value = '';
+    document.getElementById('reviewContent').value = '';
+});
 
 // Initialize activeFeedback variable
 let activeReview;
@@ -630,31 +419,4 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
       document.getElementById('editReviewContent').value = activeReview.textContent;
       document.getElementById('editReviewTitle').value = activeTitle.textContent;
     }
-  });
-
-// Attach click event to the reviews container to handle delete buttons
-document.querySelector(".reviews-cont").addEventListener('click', function(event) {
-    // Check whether the clicked element is a delete button
-    if (event.target.closest('.delete-button')) {
-      // Find the closest review-container to the button that was clicked
-      const reviewContainer = event.target.closest('.review-container');
-      // Check if the next sibling is a feedback-positioner
-    const nextElement = reviewContainer.nextElementSibling;
-    if (nextElement && nextElement.classList.contains('feedback-positioner')) {
-        nextElement.remove();
-    }
-
-    // Remove the review-container element from the DOM
-    reviewContainer.remove();
-    }
-  });
-
-// Delete buttons
-document.addEventListener('DOMContentLoaded', () => {
-    const deleteButtons = document.querySelectorAll('.delete-button');
-    deleteButtons.forEach((deleteButton) => {
-        deleteButton.addEventListener('click', () => {
-            deleteReview();
-        });
-    });
 });

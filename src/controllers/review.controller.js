@@ -73,11 +73,11 @@ const ReviewController = {
     // Delete a review by its associated user and establishment
     deleteReview: async (establishment) => {
         const user = await UserController.getRandomUserId();
-        const query = { establishment };
+        const query = { user, establishment };
     
         try {
             const status = await Review.deleteMany(query);
-            if (status.acknowledged == "true") console.log("Review deleted");
+            if (status.acknowledged == "true") console.log("Reviews associated with user deleted");
             return status;
         } catch (err) {
             console.error(err);
