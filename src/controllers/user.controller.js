@@ -1,3 +1,6 @@
+import passport from 'passport';
+import bcrypt from 'bcrypt';
+
 import User from '../models/user.model.js';
 
 const UserController = {
@@ -13,13 +16,16 @@ const UserController = {
             // Check if the user already exists
             const userExist = await User.findOne({ username: username });
             if (userExist) {
-                return res.status(409).json({ message: "Username already exists." });
+                return res.status(409).json({ message: "Username already exists. Please choose another one." });
             }
         
+            // Hash the password before saving it
+            const hashedPassword = await bcrypt.hash(password, 10);
+
             // Create a new User object based on the received data
             const newUser = new User({
                 username,
-                password,
+                password: hashedPassword,
                 role,
                 avatar,
                 profileDescription,
@@ -28,11 +34,11 @@ const UserController = {
         
             // Save the new user to the database
             const result = await newUser.save();
-            console.log("User registered successfully:", result);
+            console.log("User registered successfully: ", result);
             res.status(200).json({ message: "User registration successful." });
         } catch (err) {
-            console.error('Error registering user:', err);
-            res.status(500).json({ message: 'Internal server error. Please try again later.' });
+            console.error("Error registering user: ", err);
+            res.status(500).json({ message: "An error occurred while registering the user." });
         }
     },
 
@@ -49,10 +55,22 @@ const UserController = {
     },
 
     // Return a user with matching username
+    // Used for authentication
     getUserByUsername: async (username) => {
         const query = { username };
         try {
             const user = await User.findOne(query);
+            return user;
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // Return a user with matching Object ID
+    // Used for authentication
+    getUserById: async (id) => {
+        try {
+            const user = await User.findById(id);
             return user;
         } catch (err) {
             throw err;

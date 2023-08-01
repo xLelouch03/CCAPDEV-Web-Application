@@ -65,12 +65,15 @@ async function main () {
   app.use(cors());
 
   // User sessions and auth
+  initializePassport(passport);
   app.use(flash());
   app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // Use routers
   app.use(establishmentRouter);
@@ -103,7 +106,6 @@ async function main () {
   await insertSampleEstablishments();
 
   const userIds = await fetchUserIds();
-  const usernames = await fetchUsernames();
   const establishmentIds = await fetchEstablishmentIds();
 
   await insertSampleReviews(userIds, establishmentIds);
@@ -124,33 +126,46 @@ async function dropDatabase() {
 
 async function insertSampleUsers() {
   try {
+    // Hashing the passwords
+    const davidPass = 'password1';
+    const ynaPass = 'password2';
+    const martinPass = 'password3';
+    const kiefferPass = 'password4';
+    const timothyPass = 'password5';
+
+    const davidHashedPass = await bcrypt.hash(davidPass, 10);
+    const ynaHashedPass = await bcrypt.hash(ynaPass, 10);
+    const martinHashedPass = await bcrypt.hash(martinPass, 10);
+    const kiefferHashedPass = await bcrypt.hash(kiefferPass, 10);
+    const timothyHashedPass = await bcrypt.hash(timothyPass, 10);
+
     const sampleUsers = [
       {
         username: 'David',
-        password: 'password1',
+        password: davidHashedPass,
         profileDescription: 'Hello there!'
       },
       {
         username: 'Yna',
-        password: 'password2',
+        password: ynaHashedPass,
         profileDescription: 'Hello there!',
         avatar: '/static/images/yna.jpg'
       },
       {
         username: 'Martin',
-        password: 'password3',
+        password: martinHashedPass,
         profileDescription: 'Hello there!',
         avatar: '/static/images/martin.jpg'
       },
       {
         username: 'Kieffer',
-        password: 'password4',
+        password: kiefferHashedPass,
         profileDescription: 'Hello there!',
         avatar: '/static/images/kieffer.jpg'
       },
       {
         username: 'Timothy',
-        password: 'password5',
+        password: timothyHashedPass,
         profileDescription: 'Hello there!',
         avatar: '/static/images/tim.jpg'
       }

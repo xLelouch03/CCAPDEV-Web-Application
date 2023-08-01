@@ -1,3 +1,6 @@
+import passport from 'passport';
+import bcrypt from 'bcrypt';
+
 import Establishment from '../models/establishment.model.js';
 
 const EstablishmentController = {
@@ -12,16 +15,19 @@ const EstablishmentController = {
                 return res.status(400).json({ message: "Please provide all required fields." });
             }
         
-            // Check if the user already exists
-            const userExist = await Establishment.findOne({ username: username });
-            if (userExist) {
-                return res.status(409).json({ message: "Username already exists." });
+            // Check if the establishment already exists
+            const establishmentExist = await Establishment.findOne({ username: username });
+            if (establishmentExist) {
+                return res.status(409).json({ message: "Username already exists. Please choose another one." });
             }
         
+            // Hash the password
+            const hashedPassword = await bcrypt.hash(password, 10);
+    
             // Create a new Establishment object based on the received data
             const newEstablishment = new Establishment({
                 username,
-                password,
+                password: hashedPassword,
                 role,
                 avatar,
                 description,
@@ -33,11 +39,11 @@ const EstablishmentController = {
         
             // Save the new establishment to the database
             const result = await newEstablishment.save();
-            console.log("Establishment registered successfully:", result);
+            console.log("Establishment registered successfully: ", result);
             res.status(200).json({ message: "Establishment registration successful." });
         } catch (err) {
-            console.error('Error registering establishment:', err);
-            res.status(500).json({ message: 'Internal server error. Please try again later.' });
+            console.error("Error registering establishment: ", err);
+            res.status(500).json({ message: "An error occurred while registering the establishment." });
         }
     },
 
@@ -81,14 +87,36 @@ const EstablishmentController = {
         }
     },
 
-    // Get an establishment by its id
+    // Return an establishment with matching ID
     getEstablishment: async (id) => {
         try {
             const establishment = await Establishment.findById(id);
             if (!establishment) {
                 console.log("Establishment with specified ID cannot be found");
-                return null;
             }
+            return establishment;
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // Return establishment with matching username
+    // Used for authentication
+    getEstablishmentByUsername: async (username) => {
+        const query = { username };
+        try {
+            const establishment = await Establishment.findOne(query);
+            return establishment;
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // Return establishment with matching ID
+    // Used for authentication
+    getEstablishmentById: async (id) => {
+        try {
+            const establishment = await Establishment.findById(id);
             return establishment;
         } catch (err) {
             throw err;

@@ -11,12 +11,13 @@ const authenticateUser = (req, res, next) => {
   
     next();
 };
+
 router.post('/signup', UserController.createUser);
 router.post('/signup-owner', EstablishmentController.createEstablishment);
-router.post('/login', UserController.loginUser);  
+router.post('/login', UserController.loginUser);
+router.post('/login-owner', EstablishmentController.loginEstablishment);
 router.put('/api/update-establishment/:establishmentId', EstablishmentController.updateEstablishment);
 router.put('/api/update-user/:username', UserController.updateUser);
-router.post('/login-owner', EstablishmentController.loginEstablishment);
 
 router.get('/users', async (req, res) => {
   try {
