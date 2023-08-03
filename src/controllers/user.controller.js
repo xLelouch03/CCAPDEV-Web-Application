@@ -135,37 +135,25 @@ const UserController = {
         }
     },
 
-        
-    // Login user with plain text password
-    loginUser: async (req, res) => {
-        try {
-            const { username, password } = req.body;
-            console.log("Received login request:", { username, password });
-
-        if (!username || !password) {
-            return res.status(400).send({ message: "Please provide both username and password." });
-        }
-
-        // Check if the request data is being received correctly
-        console.log("Received login request:", { username, password });
-
-        const user = await User.findOne({ username });
-
-        if (!user) {
-            return res.status(404).send({ message: "User not found" });
-        }
-
-        // Ensure the password is compared correctly (consider using a secure hashing method)
-        // For the sake of demonstration, we'll compare plaintext passwords (not recommended for production)
-        if (user.password !== password) {
-            return res.status(401).send({ message: "Invalid password" });
-        }
-
-        res.send({ message: "Login successful", user });
-        } catch (err) {
-        res.status(500).send({ message: err.message });
-        }
-    },
+    // Login user
+    loginUser: async (req, res, next) => {
+        passport.authenticate('local', (err, user, info) => {
+            if (err) {
+                console.error('Error logging in user: ', err);
+                return next(err);
+            }
+            if (!user) {
+                return res.status(400).json({ message: info.message });
+            }
+            req.logIn(user, function(err) {
+                if (err) {
+                    console.error('Error logging in user: ', err);
+                    return next(err);
+                }
+                return res.status(200).json({ message: "Login successful", user });
+            });
+        })(req, res, next);
+    }
 };
 
 export default UserController;

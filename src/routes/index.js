@@ -7,15 +7,6 @@ import Establishment from '../models/establishment.model.js';
 
 const router = Router();
 
-const authenticateUser = (req, res, next) => {
-  
-    next();
-};
-
-router.post('/signup', UserController.createUser);
-router.post('/signup-owner', EstablishmentController.createEstablishment);
-router.post('/login', UserController.loginUser);
-router.post('/login-owner', EstablishmentController.loginEstablishment);
 router.put('/api/update-establishment/:establishmentId', EstablishmentController.updateEstablishment);
 router.put('/api/update-user/:username', UserController.updateUser);
 
@@ -107,12 +98,10 @@ router.get('/', async (req, res) => {
     // Retrieve data from DB
     const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
     console.log(establishments);
-
     
-    const isAuthenticated = req.user ? true : false;
     let mainLayout, mainTemplate;
   
-    if (isAuthenticated) {
+    if (req.isAuthenticated()) {
       mainLayout = 'main';
       mainTemplate = 'loggedInMain'; 
     } else {
@@ -128,46 +117,7 @@ router.get('/', async (req, res) => {
     });
 });
 
-router.get('/loggedInMain', async (req, res) => {
-  // Retrieve data from DB
-  const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
-  console.log(establishments);
-
-  const isAuthenticated = req.user ? true : false;
-
-
-  let mainLayout, mainTemplate;
-    mainLayout = 'main';
-    mainTemplate = 'loggedInMain'; 
-
-
-  res.render(mainTemplate, {
-    layout: mainLayout,
-    title: "Juanderlast Main Page",
-    user: req.user,
-    establishments: establishments 
-  });
-});
-
-router.get('/establishmentLogged', (req, res) => {
-  const isAuthenticated = req.user ? true : false;
-
-  let mainLayout, mainTemplate;
-
-    mainLayout = 'establishment';
-    mainTemplate = 'establishmentLogged'; 
-
-
-  res.render(mainTemplate, {
-    layout: mainLayout,
-    title: "Juanderlast Establishment Page",
-    user: req.user
-  });
-});
-
 router.get('/establishment', (req, res) => {
-    const isAuthenticated = req.user ? true : false;
-  
     let mainLayout, mainTemplate;
   
       mainLayout = 'establishment';
@@ -181,56 +131,20 @@ router.get('/establishment', (req, res) => {
     });
 });
 
-router.get('/profileLogged', (req, res) => {
-  const isAuthenticated = req.user ? true : false;
-
-  let mainLayout, mainTemplate;
-
-      mainLayout = 'profile';
-      mainTemplate = 'profilesLogged';
-  
-
-  res.render(mainTemplate, {
-    layout: mainLayout,
-    title: "Juanderlast Profile Page",
-    user: req.user
-  });
-});
-
 router.get('/profile', (req, res) => {
-
   let mainLayout, mainTemplate;
-
-      mainLayout = 'profile';
-      mainTemplate = 'profiles';
+  if(req.isAuthenticated()) {
+    mainLayout = 'profile';
+    mainTemplate = 'profilesLogged';
+  } else {
+    mainLayout = 'profile';
+    mainTemplate = 'profiles';
+  }
   
   res.render(mainTemplate, {
     layout: mainLayout,
     title: "Juanderlast Profile Page",
     user: req.user,
-  });
-});
-
-router.get('/profileLogged/:userId', async (req, res) => {
-  const userId = req.params.userId;
-  const userData = usersData.find(user => user._id === userId);
-  const results = (await ReviewController.getReviewsOffUser(userId)).map(doc => doc.toObject());
-  console.log(results);
-  console.log(userData);
-
-
-  if (!userData) {
-    // User not found, handle error
-    res.status(404).send('User not found');
-    return;
-  }
-  const mainLayout = 'profile';
-  const mainTemplate = 'profilesLogged';
-
-  res.render(mainTemplate, { 
-    layout: mainLayout,
-    userData,
-    reviews: results.map(doc => doc.toObject())
   });
 });
 
@@ -242,15 +156,20 @@ router.get('/profile/:userId', async (req, res) => {
   console.log(results);
   console.log(userData);
 
-
   if (!userData) {
     // User not found, handle error
     res.status(404).send('User not found');
     return;
   }
 
-  const mainLayout = 'profile';
-  const mainTemplate = 'profiles';
+  let mainLayout, mainTemplate;
+  if(req.isAuthenticated()) {
+    mainLayout = 'profile';
+    mainTemplate = 'profilesLogged';
+  } else {
+    mainLayout = 'profile';
+    mainTemplate = 'profiles';
+  }
 
   // Render the 'profilesLogged' view with the userData and reviews
   res.render(mainTemplate, { 
@@ -259,7 +178,6 @@ router.get('/profile/:userId', async (req, res) => {
     reviews: results.map(doc => doc.toObject())
   });
 });
-
 
 router.get('/searchresult', async (req, res) => {
   const category = req.query.category;
@@ -279,8 +197,14 @@ router.get('/searchresult', async (req, res) => {
   try {
     switch (category) {
       case 'destination':
-        mainLayout = 'searchresult';
-        mainTemplate = 'searchresults';
+        if(req.isAuthenticated()) {
+          mainLayout = 'searchresult';
+          mainTemplate = 'searchresultsLogged';
+        } else {
+          mainLayout = 'searchresult';
+          mainTemplate = 'searchresults';
+        }
+
         if (query) { // if a search term exists
           results = await Establishment.find({
             $text: {
@@ -290,6 +214,7 @@ router.get('/searchresult', async (req, res) => {
         } else { // if no search term, return all
           results = await Establishment.find().sort(sortBy);
         }
+
         res.render(mainTemplate, {
           layout: mainLayout,
           searchTerm: query,
@@ -301,56 +226,6 @@ router.get('/searchresult', async (req, res) => {
         console.log(results)
         break;
 
-      default:
-        return res.status(400).send('Invalid category');
-    }
-
-    
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-});
-
-router.get('/searchresultLogged', async (req, res) => {
-  const category = req.query.category;
-  const query = req.query.q;
-
-  let sortBy;
-  if(req.query.sortby && req.query.sortby === 'rating') {
-    sortBy = { 'rating': -1 };
-  } else {
-    sortBy = { 'name': 1 };
-  }
-
-  let results;
-  let mainLayout;
-  let mainTemplate;
-
-  try {
-    switch (category) {
-      case 'destination':
-        mainLayout = 'searchresult';
-        mainTemplate = 'searchresultsLogged';
-        if (query) { // if a search term exists
-          results = await Establishment.find({
-            $text: {
-              $search: query
-            }
-          }).sort(sortBy);
-        } else { // if no search term, return all
-          results = await Establishment.find().sort(sortBy);
-        }
-        res.render(mainTemplate, {
-          layout: mainLayout,
-          searchTerm: query,
-          resultCount: results.length,
-          establishments: results.map(doc => doc.toObject()),
-          currentCategory: category, // the category from your server-side code
-          currentQuery: query // the query from your server-side code
-        });
-        console.log(results)
-        break;
-      
       default:
         return res.status(400).send('Invalid category');
     }
@@ -377,71 +252,26 @@ router.get('/searchresultreview', async (req, res) => {
   try {
     switch (category) {
       case 'review':
-        mainLayout = 'searchresult';
-        mainTemplate = 'searchresultsreviews';
+        if(req.isAuthenticated()) {
+          mainLayout = 'searchresult';
+          mainTemplate = 'searchresultsreviewsLogged';
+        } else {
+          mainLayout = 'searchresult';
+          mainTemplate = 'searchresultsreviews';
+        }
+
         if (query) { // if a search term exists
           results = await Review.find({
             $text: {
               $search: query
             }
-          }).sort(sortBy);
+          }).populate(['reply', 'user']).sort(sortBy);
+          console.log(results);
         } else { // if no search term, return all
-          results = await Review.find().sort(sortBy);
+          results = await Review.find().populate(['reply', 'user']).sort(sortBy);
+          console.log(results);
         }
-        res.render(mainTemplate, {
-          layout: mainLayout,
-          searchTerm: query,
-          resultCount: results.length,
-          reviews: results.map(doc => doc.toObject()),
-          currentCategory: category, // the category from your server-side code
-          currentQuery: query // the query from your server-side code
-        });
-        console.log(results)
-        break;
-      default:
-        return res.status(400).send('Invalid category');
-    }
 
-    
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-});
-
-router.get('/searchresultreviewLogged', async (req, res) => {
-  const category = req.query.category;
-  const query = req.query.q;
-
-  let sortBy;
-  if(req.query.sortby && req.query.sortby === 'rating') {
-    sortBy = { 'rating': -1 };
-  } else {
-    sortBy = { 'name': 1 };
-  }
-
-  let data;
-  let results;
-  let mainLayout;
-  let mainTemplate;
-
-  try {
-    switch (category) {
-      case 'review':
-        mainLayout = 'searchresult';
-        mainTemplate = 'searchresultsreviewsLogged';
-        if (query) { // if a search term exists
-          data = await Review.find({
-            $text: {
-              $search: query
-            }
-          }).populate(['reply', 'user']);
-          console.log(data);
-          results = data.sort(sortBy);
-        } else { // if no search term, return all
-          data = await Review.find().populate(['reply', 'user']);
-          console.log(data);
-          results = data.sort(sortBy);
-        }
         res.render(mainTemplate, {
           layout: mainLayout,
           searchTerm: query,
@@ -451,6 +281,7 @@ router.get('/searchresultreviewLogged', async (req, res) => {
           currentQuery: query // the query from your server-side code
         });
         break;
+
       default:
         return res.status(400).send('Invalid category');
     }
@@ -459,24 +290,22 @@ router.get('/searchresultreviewLogged', async (req, res) => {
   }
 });
 
-router.get("/logout", (req,res) => {
+router.get("/home", (req, res) => {
     res.redirect("/");
 });
 
-router.get("/home", (req,res) => {
-    res.redirect("/");
+router.get('/logout', (req, res) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 });
 
-router.get("/loggedInMain", (req,res) => {
-    res.render("loggedInMain", {
-        title: "Juanderlast Main Page"
-    });
+router.use((req, res) => {
+  res.render("error", {
+      layout:'main',
+      title: "Page not found."
+  });
 });
 
-router.use((req,res) => {
-    res.render("error", {
-        layout:'main',
-        title: "Page not found."
-    });
-})
 export default router;

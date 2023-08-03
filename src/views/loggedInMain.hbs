@@ -46,15 +46,15 @@
 
         if(selectedCategory == 'review') {
             // adjust the URL for 'review'
-            searchURL = '/searchresultreviewLogged?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresultreview?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else if(selectedCategory == 'destination') {
             // adjust the URL for 'destination'
-            searchURL = '/searchresultLogged?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         } 
         else {
             // default URL for other categories
-            searchURL = '/searchresultLogged?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
+            searchURL = '/searchresult?category=' + selectedCategory + '&q=' + encodeURIComponent(searchInput);
         }
 
         window.location.href = searchURL;
@@ -154,7 +154,7 @@
         <div class="owl-carousel owl-theme">
             {{#each establishments}}
             <div class="destination-slide"> 
-            <a href="/establishmentLogged/{{this._id}}">
+            <a href="/establishment/{{this._id}}">
                 <img src="{{this.images.[0]}}" class="img-slider">
                 <div class="image-text">
                     <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
@@ -167,7 +167,7 @@
         </div>
         
             <div class="ctr"> 
-                <a href="/searchresultLogged?category=destination&q="><div class="btn-see">   See More </div></a> 
+                <a href="/searchresult?category=destination&q="><div class="btn-see">   See More </div></a> 
         </div>
 
     </div> 

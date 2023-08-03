@@ -7,15 +7,21 @@ import EstablishmentController from './src/controllers/establishment.controller.
 const LocalStrategy = PassportLocal.Strategy;
 
 export function initialize(passport) {
-    const authenticateUser = async (type, username, password, done) => {
+    const authenticateUser = async (req, username, password, done) => {
+
+        // Extract role from request body
+        const role = req.body.role;
+
+        console.log("Received login request:", role, username, password);
 
         // Verify existence of user from username
-        if (type == "user") {
-            const user = await UserController.getUserByUsername(username);
+        let user;
+        if (role == "user") {
+            user = await UserController.getUserByUsername(username);
             if(user == null) {
                 return done(null, false, { message: "No user with that username" });
             }
-        } else if (type == "owner") {
+        } else if (role == "establishment") {
             const user = await EstablishmentController.getEstablishmentByUsername(username);
             if(user == null) {
                 return done(null, false, { message: "No establishment with that username" });
@@ -36,7 +42,7 @@ export function initialize(passport) {
         }
     }
 
-    passport.use(new LocalStrategy(authenticateUser));
+    passport.use(new LocalStrategy({ passReqToCallback: true }, authenticateUser));
     passport.serializeUser((user, done) => {
         done(null, user._id);
     });

@@ -31,8 +31,8 @@
 
     <div class="slide-container">
         {{#each establishments}}
-        <div class="destination-slide"> 
-        <a href="/establishmentLogged/{{this._id}}">
+        <div class="destination-slide">
+        <a href="/establishment/{{this._id}}">
             <img src="{{this.images.[0]}}" class="img-slider">
             <div class="image-text">
                 <p> {{this.category}} · {{this.location}} </p> <h4> {{this.name}} </h4>
@@ -49,11 +49,11 @@
 
 window.onload = function() {
    document.getElementById('sortByRating').addEventListener('click', function() {
-      window.location.href = `/searchresultLogged?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=rating`;
+      window.location.href = `/searchresult?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=rating`;
    });
 
    document.getElementById('sortByName').addEventListener('click', function() {
-      window.location.href = `/searchresultLogged?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=name`;
+      window.location.href = `/searchresult?category=${encodeURIComponent('{{{currentCategory}}}')}&q=${encodeURIComponent('{{{currentQuery}}}')}&sortby=name`;
    });
 }
 

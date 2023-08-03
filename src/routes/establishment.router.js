@@ -5,9 +5,9 @@ import ReplyController from '../controllers/reply.controller.js';
 
 const router = express.Router();
 
-// Create new establishment
-router.post('/create-establishment', EstablishmentController.createEstablishment);
-router.post('/login-owner', EstablishmentController.loginEstablishment);
+// Account-related
+router.post('/register-establishment', EstablishmentController.createEstablishment);
+router.post('/login-establishment', EstablishmentController.loginEstablishment);
 
 // Retrieve establishment details and reviews for indivpage
 router.get('/establishment/:establishmentId', async (req, res) => {
@@ -31,8 +31,14 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         console.log(reviews);
   
         // Define Handlebars template and layout here
-        const mainLayout = 'establishment';
-        const mainTemplate = 'establishments';
+        let mainLayout, mainTemplate;
+        if(req.isAuthenticated()) {
+            mainLayout = 'establishment';
+            mainTemplate = 'establishmentLogged';
+        } else {
+            mainLayout = 'establishment';
+            mainTemplate = 'establishments';
+        }
   
         res.render(mainTemplate, {
             layout: mainLayout,
@@ -44,42 +50,6 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         res.status(500).send({ message: err.message });
     }
 });
-
-
-  router.get('/establishmentLogged/:establishmentId', async (req, res) => {
-    try {
-        const establishmentId = req.params.establishmentId;
-        const sortBy = req.query.sortBy;
-        const establishment = (await EstablishmentController.getEstablishment(establishmentId)).toObject();
-        if (!establishment) {
-            console.log("Establishment not found");
-            return res.status(404).send({ message: "Establishment not found" });
-        }
-        console.log(establishment);
-  
-        // Assign replies
-        await ReviewController.assignReplies();
-  
-        const reviews = (await ReviewController.getReviews(establishmentId, sortBy)).map(doc => doc.toObject());
-        if (!reviews) {
-            console.log("No matching reviews for establishment found");
-        }
-        console.log(reviews);
-  
-        // Define Handlebars template and layout here
-        const mainLayout = 'establishment';
-        const mainTemplate = 'establishmentLogged';
-  
-        res.render(mainTemplate, {
-            layout: mainLayout,
-            establishment: establishment,
-            reviews: reviews
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send({ message: err.message });
-    }
-  });
 
 router.get('/profile/:establishmentId', async (req, res) => {
     const establishmentId = req.params.establishmentId;

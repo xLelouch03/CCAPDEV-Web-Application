@@ -48,29 +48,23 @@ const EstablishmentController = {
     },
 
     // Login establishment with plain text password
-    loginEstablishment: async (req, res) => {
-        try {
-            const { username, password } = req.body;
-
-            // Check if the request data is being received correctly
-            console.log("Received login request:", { username, password });
-
-            const establishment = await Establishment.findOne({ username });
-
+    loginEstablishment: async (req, res, next) => {
+        passport.authenticate('local', (err, establishment, info) => {
+            if (err) {
+                console.error('Error logging in establishment: ', err);
+                return next(err);
+            }
             if (!establishment) {
-                return res.status(404).send({ message: "Establishment not found" });
+                return res.status(400).json({ message: info.message });
             }
-
-            // Ensure the password is compared correctly (consider using a secure hashing method)
-            // For the sake of demonstration, we'll compare plaintext passwords (not recommended for production)
-            if (establishment.password !== password) {
-                return res.status(401).send({ message: "Invalid password" });
-            }
-
-            res.send({ message: "Login successful", establishment });
-        } catch (err) {
-            res.status(500).send({ message: err.message });
-        }
+            req.logIn(establishment, function(err) {
+                if (err) {
+                    console.error('Error logging in establishment: ', err);
+                    return next(err);
+                }
+                return res.status(200).json({ message: "Login successful", establishment });
+            });
+        })(req, res, next);
     },
     
     // Get all establishments

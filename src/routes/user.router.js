@@ -5,18 +5,17 @@ import User from '../models/user.model.js';
 
 const userRouter = express.Router();
 const upload = multer({ dest: 'static/images' });
-// Create new user
-userRouter.post('/signup', UserController.createUser);
+
+// Account-related
+userRouter.post('/register-user', UserController.createUser);
+userRouter.post('/login-user', UserController.loginUser);
 
 // Get user details
-userRouter.get('/:username', UserController.getUser);
+// userRouter.get('/:username', UserController.getUser);
 userRouter.get('/users', UserController.getAllUsernames);
 
-
 // Delete a user
-userRouter.delete('/:username', UserController.deleteUser);
-
-userRouter.post('/login', UserController.loginUser);
+// userRouter.delete('/:username', UserController.deleteUser);
 
 //userRouter.put('/api/update-user/:username', UserController.updateUser);
 

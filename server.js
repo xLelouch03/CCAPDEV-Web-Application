@@ -77,8 +77,8 @@ async function main () {
 
   // Use routers
   app.use(establishmentRouter);
-  app.use(router);
   app.use(userRouter);
+  app.use(router);
 
   app.listen(process.env.SERVER_PORT, () => {
     console.log("Express app now listening...");
@@ -178,7 +178,6 @@ async function insertSampleUsers() {
       console.error('Error inserting sample users: ', err);
   }
 }
-
 
 async function fetchUserIds() {
   try {
@@ -339,7 +338,7 @@ async function insertSampleReviews(userIds, establishmentIds) {
         rating: 5,
         title: "An Unforgettable Experience",
         body: "From the moment we walked through the doors, the staff was exceptionally welcoming and friendly. They made us feel right at home. The food was absolutely exquisite - every dish was a masterful work of culinary art. Furthermore, the ambiance of the place was warm and charming, adding to an already wonderful experience. This place definitely exceeded my expectations and I am eager to return.",
-        images: ["/static/images/sample_review_1/bccreview1.png", "/static/images/sample_review_1/bccreview2.png", "/static/images/sample_review_1/bccreview3.png"]
+        images: ["/static/images/sample_review_1/bccreview1.jpg", "/static/images/sample_review_1/bccreview2.jpg", "/static/images/sample_review_1/bccreview3.jpg"]
       },
       {
         user: userIds[1],
@@ -354,7 +353,7 @@ async function insertSampleReviews(userIds, establishmentIds) {
         rating: 5,
         title: "Exceptional Service and Atmosphere",
         body: "We had a lovely time at this establishment. The service was some of the best we've experienced in a long time. Our server was incredibly attentive without being intrusive, and had a great knowledge of the menu, which was greatly appreciated. The atmosphere was relaxing and the decor was tasteful and unique. Food was excellent and I would highly recommend this place to anyone.",
-        images: ["/static/images/sample_review_1/balesinreview1.png", "/static/images/sample_review_1/balesinreview2.png", "/static/images/sample_review_1/balesinreview3.png"]
+        images: ["/static/images/sample_review_1/balesinreview1.jpg", "/static/images/sample_review_1/balesinreview2.jpg", "/static/images/sample_review_1/balesinreview3.jpg"]
       },
       {
         user: userIds[3],
