@@ -19,16 +19,12 @@ router.get('/establishment/:establishmentId', async (req, res) => {
             console.log("Establishment not found");
             return res.status(404).send({ message: "Establishment not found" });
         }
-        console.log(establishment);
   
-        // Assign replies
         await ReviewController.assignReplies();
-  
         const reviews = (await ReviewController.getReviews(establishmentId, sortBy)).map(doc => doc.toObject());
         if (!reviews) {
             console.log("No matching reviews for establishment found");
         }
-        console.log(reviews);
   
         // Define Handlebars template and layout here
         let mainLayout, mainTemplate;
@@ -74,12 +70,17 @@ router.put('/establishmentLogged/:establishment', EstablishmentController.update
 router.delete('/establishmentLogged/:establishment', EstablishmentController.deleteEstablishment);
 
 // Create new review
-router.post('/establishmentLogged/:establishment/review', async (req, res) => {
+router.post('/establishment/:establishment/review', async (req, res) => {
+    const user = req.user._id;
     const { establishment } = req.params;
     const { rating, title, body } = req.body;
-
     try {
-        const result = await ReviewController.createReview(establishment, rating, title, body);
+        const existingReview = await ReviewController.findReview(user, establishment);
+        if (existingReview) {
+            console.log("User already has a review for establishment");
+            return res.status(409).send({ message: "You already have an existing review for this establishment." });
+        }
+        const result = await ReviewController.createReview(user, establishment, rating, title, body);
         res.json(result);
     } catch(err) {
         res.status(500).send({ message: err.message });
@@ -87,18 +88,18 @@ router.post('/establishmentLogged/:establishment/review', async (req, res) => {
 });
 
 // Update review details
-router.put('/establishmentLogged/:establishment/review', async (req, res) => {
+router.put('/establishment/:establishment/review', async (req, res) => {
+    const user = req.user._id;
     const { establishment } = req.params;
-    const { title, body, lastEdited } = req.body;
-
-    console.log(establishment);
-    console.log(title);
-    console.log(body);
-    console.log(lastEdited);
-
+    const { title, body } = req.body;
     try {
-        const result = await ReviewController.updateReview(establishment, title, body, lastEdited);
-        if(result.nModified > 0) {
+        const existingReview = await ReviewController.findReview(user, establishment);
+        if (!existingReview) {
+            console.log("User does not have a review for establishment");
+            return res.status(404).send({ message: "You do not have an existing review for this establishment." });
+        }
+        const result = await ReviewController.updateReview(user, establishment, title, body);
+        if(result.modifiedCount > 0) {
             res.status(200).json({ message: "Review update successful", result });
         } else {
             console.log("Review update failed");
@@ -110,11 +111,18 @@ router.put('/establishmentLogged/:establishment/review', async (req, res) => {
 });
 
 // Delete a review
-router.delete('/establishmentLogged/:establishment/review', async (req, res) => {
+router.delete('/establishment/:establishment/review', async (req, res) => {
+    const user = req.user._id;
     const { establishment } = req.params;
-
+    
     try {
-        const result = await ReviewController.deleteReview(establishment);
+        const existingReview = await ReviewController.findReview(user, establishment);
+        if (!existingReview) {
+            console.log("User does not have a review for establishment");
+            return res.status(404).send({ message: "You do not have an existing review for this establishment." });
+        }
+        
+        const result = await ReviewController.deleteReview(user, establishment);
         if(result.deletedCount > 0) {
             res.status(200).json({ message: "Review deletion successful", result });
         } else {

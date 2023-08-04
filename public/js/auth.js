@@ -143,8 +143,8 @@ $(document).ready(function() {
                 });
 
                 if (response.status === 200) {
-                    // Login successful, redirect to the logged-in main page
-                    window.location.href = '/';
+                    // Login successful, reload the page
+                    this.location.reload();
                 } else {
                     const data = await response.json(); 
                     const message = data.message;

@@ -97,10 +97,8 @@ router.get('/api/reviews/:userId', async (req, res) => {
 router.get('/', async (req, res) => {
     // Retrieve data from DB
     const establishments = (await EstablishmentController.getEstablishments()).map(doc => doc.toObject());
-    console.log(establishments);
     
     let mainLayout, mainTemplate;
-  
     if (req.isAuthenticated()) {
       mainLayout = 'main';
       mainTemplate = 'loggedInMain'; 
@@ -297,7 +295,7 @@ router.get("/home", (req, res) => {
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/');
+    res.redirect('back');
   });
 });
 

@@ -1,22 +1,7 @@
 import Review from '../models/review.model.js';
 import ReplyController from './reply.controller.js';
-import UserController from './user.controller.js';
 
 const ReviewController = {
-    // Create a new review
-    createReview: async (establishment, rating, title, body) => {
-        const user = await UserController.getRandomUserId();
-        try {
-            const review = new Review({ user, establishment, rating, title, body });
-            await review.save();
-            console.log("New review created:");
-            console.log(review);
-            return review;
-        } catch (err) {
-            console.error(err);
-            throw err;
-        }
-    },
 
     // Get all reviews of an establishment and populate their reply attribute
     getReviews: async (id, sortBy = 'date') => {
@@ -32,7 +17,6 @@ const ReviewController = {
                 default:
                     sortQuery = {};
             }
-            
             const reviews = await Review.find({ establishment: id }).sort(sortQuery).populate(['reply', 'user']);
             if (!reviews.length) console.log(`No matching reviews found for establishment ${id}`);
             return reviews;
@@ -41,8 +25,7 @@ const ReviewController = {
         }
     },
 
-
-    // Get all reviews of a user and populate their reply attribute
+    // Get all reviews of a user and populate their attributes
     getReviewsOfUser: async (id) => {
         try {
             const reviews = await Review.find({ user: id }).populate(['reply', 'user']);
@@ -53,16 +36,42 @@ const ReviewController = {
         }
     },
 
-    // Update a review by its associated user and establishment
-    updateReview: async (establishment, title, body, lastEdited) => {
-        const user = await UserController.getRandomUserId();
-
-        const filter = { user, establishment };
-        const update = { $set: { title, body, lastEdited } };
-
+    // Find a review given an establishment and a user
+    findReview: async (user, establishment) => {
         try {
-            const status = await Review.updateMany(filter, update);
-            if(status.nModified != 1) console.log("Review remains unchanged");
+            const query = { user, establishment };
+            const match = await Review.findOne(query);
+            return match || null;
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // Create a new review
+    createReview: async (user, establishment, rating, title, body) => {
+        try {
+            const review = new Review({ user, establishment, rating, title, body });
+            await review.save();
+            console.log("New review created:");
+            console.log(review);
+            return review;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    },
+
+    // Update a review by its associated user and establishment
+    updateReview: async (user, establishment, title, body) => {
+        const filter = { user, establishment };
+        const update = { $set: { title, body, lastEdited: new Date() } };
+        try {
+            const status = await Review.updateOne(filter, update);
+            if (status.matchedCount === 0) {
+                console.log("No review matched for the given user and establishment");
+            } else if (status.modifiedCount === 0) {
+                console.log("Review remains unchanged");
+            }
             return status;
         } catch (err) {
             console.error(err);
@@ -71,13 +80,11 @@ const ReviewController = {
     },
 
     // Delete a review by its associated user and establishment
-    deleteReview: async (establishment) => {
-        const user = await UserController.getRandomUserId();
+    deleteReview: async (user, establishment) => {
         const query = { user, establishment };
-    
         try {
             const status = await Review.deleteMany(query);
-            if (status.acknowledged == "true") console.log("Reviews associated with user deleted");
+            if (status.acknowledged) console.log("Reviews associated with user deleted");
             return status;
         } catch (err) {
             console.error(err);

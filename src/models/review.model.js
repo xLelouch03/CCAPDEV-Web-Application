@@ -4,12 +4,12 @@ const reviewSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: true
   },
   establishment: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Establishment',
-    required: true,
+    required: true
   },
   reply: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,15 +19,15 @@ const reviewSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 1,
-    max: 5,
+    max: 5
   },
   title: {
     type: String,
-    required: true,
+    required: true
   },
   body: {
     type: String,
-    required: true,
+    required: true
   },
   images: {
     type: [String],
@@ -35,24 +35,23 @@ const reviewSchema = new mongoose.Schema({
   },
   datePosted: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
   lastEdited: {
     type: Date,
+    default: Date.now
   },
   likes: {
     type: Number,
-    default: 0,
+    default: 0
   },
   dislikes: {
     type: Number,
-    default: 0,
-  },
+    default: 0
+  }
 });
 
-
 reviewSchema.index({ title: 'text', body: 'text' });
-
 
 const Review = mongoose.model('Review', reviewSchema);
 

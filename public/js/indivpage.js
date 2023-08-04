@@ -335,7 +335,6 @@ reviewForm.addEventListener('submit', function(event) {
     submitReview();
 });
 
-
 // Function to handle editing feedback
 function editReview() {
 
@@ -343,26 +342,25 @@ function editReview() {
     var newReview = document.getElementById('editReviewContent').value;
     var newTitle = document.getElementById('editReviewTitle').value;
 
-        const reviewData = {
-            title: newTitle,
-            body: newReview,
-            lastEdited: new Date()
-        };
+    const reviewData = {
+        title: newTitle,
+        body: newReview,
+    };
 
-        // Send the update to the server
-        fetch(`${window.location.pathname}/review`, {
-            method: 'PUT', 
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reviewData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            location.reload();
-        })
-        .catch((error) => console.error('Error:', error));
+    // Send the update to the server
+    fetch(`${window.location.pathname}/review`, {
+        method: 'PUT', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        location.reload();
+    })
+    .catch((error) => console.error('Error:', error));
 }
 
 // Attach a 'submit' event listener to the edit review form

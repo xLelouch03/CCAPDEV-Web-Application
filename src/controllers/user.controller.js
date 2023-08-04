@@ -77,17 +77,6 @@ const UserController = {
         }
     },
 
-    // Temporary function to get random user
-    getRandomUserId: async () => {
-        try {
-            const user = await User.findOne({});
-            if (!user) console.log('No users available');
-            return user._id;
-        } catch (err) {
-            throw err
-        }
-    },
-
     // Get all usernames
     getAllUsernames: async (req, res) => {
         try {

@@ -111,6 +111,12 @@ async function main () {
   await insertSampleReviews(userIds, establishmentIds);
   const reviewIds = await fetchReviewIds();
   await insertSampleReplies(reviewIds, establishmentIds);
+
+  console.log("");
+  console.log("--------------------------------");
+  console.log("Finished inserting sample data!");
+  console.log("You may now load the webpage.");
+  console.log("--------------------------------");
 }
 
 async function dropDatabase() {
