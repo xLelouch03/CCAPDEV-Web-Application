@@ -41,6 +41,8 @@ $(document).ready(function() {
             $('#description3').show();
         }
     });
+
+    /*
     const establishmentFieldsContainer = document.getElementById('establishmentFields');
 
     // Get a reference to the "Update User Info" link
@@ -75,6 +77,7 @@ $(document).ready(function() {
 
         updateReviewsTab(userId, establishmentId);
     });
+    */
 
     $('#registerForm').on('submit', function (event) {
         event.preventDefault();
