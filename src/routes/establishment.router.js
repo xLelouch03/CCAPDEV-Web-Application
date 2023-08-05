@@ -9,6 +9,49 @@ const router = express.Router();
 router.post('/register-establishment', EstablishmentController.createEstablishment);
 router.post('/login-establishment', EstablishmentController.loginEstablishment);
 
+// Get establishment profile
+router.get('/profile/establishment/:id', async (req, res) => {
+    const { id } = req.params;
+    const profileRaw = await EstablishmentController.getEstablishmentById(id);
+    if (!profileRaw) {
+        console.log('Profile not found');
+        return res.status(404).send('Profile not found');
+    }
+    const profile = profileRaw.toObject();
+
+    await ReviewController.assignReplies();
+    const reviews = (await ReviewController.getReviews(id)).map(doc => doc.toObject());
+    if (!reviews) {
+        console.log("No matching reviews for establishment found");
+    }
+
+    let user, mainLayout, mainTemplate;
+    if ((req.isAuthenticated()) && (req.user._id == id)) {
+        user = req.user.toObject();
+        mainLayout = 'profile';
+        mainTemplate = 'estprofileOwned';
+    } else if ((req.isAuthenticated()) && (req.user._id != id)) {
+        user = req.user.toObject();
+        mainLayout = 'profile';
+        mainTemplate = 'estprofileLogged';
+    } else {
+        mainLayout = 'profile';
+        mainTemplate = 'estprofile';
+    }
+
+    // Render the 'profilesLogged' view with the userData and reviews
+    res.render(mainTemplate, { 
+        layout: mainLayout,
+        title: `${profile.username}'s Profile`,
+        profile: profile,
+        user: user,
+        reviews: reviews
+    });
+});
+
+// Update establishment profile
+router.put('/profile/establishment/:id', EstablishmentController.updateEstablishment);
+
 // Retrieve establishment details and reviews for indivpage
 router.get('/establishment/:establishmentId', async (req, res) => {
     try {
@@ -48,29 +91,6 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         res.status(500).send({ message: err.message });
     }
 });
-
-/*
-router.get('/profile/establishment/:establishmentId', async (req, res) => {
-    const establishmentId = req.params.establishmentId;
-    
-    try {
-        // Fetch user data from MongoDB collection using Mongoose
-        const establishmentData = await User.findById(establishmentId);
-    
-        // Render the Handlebars template and pass the fetched data as context
-        res.render('template', { establishmentData });
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        res.status(500).send('Error fetching user data');
-    }
-});
-*/
-
-// Update establishment details
-router.put('/establishmentLogged/:establishment', EstablishmentController.updateEstablishment);
-
-// Delete an establishment
-router.delete('/establishmentLogged/:establishment', EstablishmentController.deleteEstablishment);
 
 // Create new review
 router.post('/establishment/:establishment/review', async (req, res) => {

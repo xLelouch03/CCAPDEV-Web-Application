@@ -21,13 +21,13 @@ router.get('/users', UserController.getAllUsernames);
 
 router.get('/profile/user/:id', async (req, res) => {
     const { id } = req.params;
-    const profile = (await UserController.getUserById(id)).toObject();
-    const reviews  = (await ReviewController.getReviewsOfUser(id)).map(doc => doc.toObject());
-
-    if (!profile) {
+    const profileRaw = await UserController.getUserById(id);
+    if (!profileRaw) {
         console.log('Profile not found');
         return res.status(404).send('Profile not found');
     }
+    const profile = profileRaw.toObject();
+    const reviews  = (await ReviewController.getReviewsOfUser(id)).map(doc => doc.toObject());
 
     let user, mainLayout, mainTemplate;
     if ((req.isAuthenticated()) && (req.user._id == id)) {

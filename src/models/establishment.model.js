@@ -13,9 +13,13 @@ const establishmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    default: 'Establishment'
+  },
   avatar: {
     type: String,
-    default: 'static/images/default-avatar.jpg"'
+    default: '/static/images/default-avatar.jpg'
   },
   images: {
     type: [String],
@@ -25,7 +29,7 @@ const establishmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  shortDescription: {
+  profileDescription: {
     type: String,
     rquired: true
   },

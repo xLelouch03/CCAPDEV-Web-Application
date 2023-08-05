@@ -22,7 +22,7 @@ export function initialize(passport) {
                 return done(null, false, { message: "No user with that username" });
             }
         } else if (role == "establishment") {
-            const user = await EstablishmentController.getEstablishmentByUsername(username);
+            user = await EstablishmentController.getEstablishmentByUsername(username);
             if(user == null) {
                 return done(null, false, { message: "No establishment with that username" });
             }
@@ -43,18 +43,26 @@ export function initialize(passport) {
     }
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, authenticateUser));
+    
     passport.serializeUser((user, done) => {
         done(null, user._id);
     });
-    passport.deserializeUser((id, done) => {
-        if(UserController.getUserById(id)) {
-            UserController.getUserById(id)
-            .then(user => done(null, user))
-            .catch(err => done(err));
-        } else if(EstablishmentController.getEstablishmentById(id)) {
-            EstablishmentController.getEstablishmentById(id)
-            .then(establishment => done(null, establishment))
-            .catch(err => done(err));
+
+    passport.deserializeUser(async (id, done) => {
+        try {
+            let user = await UserController.getUserById(id);
+            if(user) {
+                return done(null, user);
+            } else {
+                let establishment = await EstablishmentController.getEstablishmentById(id);
+                if(establishment) {
+                    return done(null, establishment);
+                } else {
+                    throw new Error("No user or establishment found with that ID");
+                }
+            }
+        } catch (err) {
+            return done(err);
         }
-    });
+    });    
 }

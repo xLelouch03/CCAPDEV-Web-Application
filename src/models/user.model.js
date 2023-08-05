@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default:'User'
+    default: 'User'
   },
   avatar: {
     type: String, // You can store the URL of the image

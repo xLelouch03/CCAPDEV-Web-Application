@@ -119,26 +119,20 @@ const EstablishmentController = {
 
     // Update an establishment's name, username, avatar, short description, and description
     updateEstablishment: async (req, res) => {
-        const { establishmentId } = req.params;
-        const { name, newUsername, avatar, shortDescription, description } = req.body;
-        console.log("Received update request:", { establishmentId, name, newUsername, avatar, shortDescription, description });
+        const { username, avatar, profileDescription, name, location, category, description } = req.body;
+        console.log("Received update request:", { username, avatar, profileDescription, name, location, category, description });
     
+        const filter = { _id: req.user._id };
+        const update = { username, avatar, profileDescription, name, location, category, description };
         try {
-        // Find the establishment in the database and update its information
-        const establishment = await Establishment.findOneAndUpdate(
-            { _id: establishmentId },
-            { name, username: newUsername, avatar, shortDescription, description },
-            { new: true }
-        );
-    
-        if (!establishment) {
-            return res.status(404).send({ message: "Establishment not found" });
-        }
-    
-        // Optionally, you can send a success message in the response
-        res.send({ message: "Establishment information updated successfully", establishment });
+            // Find the establishment in the database and update its information
+            const result = await Establishment.findOneAndUpdate(filter, update, { new: true });
+            if (!result) {
+                return res.status(404).send({ message: "Establishment to be updated not found" });
+            }
+            res.send({ message: "Establishment updated successfully" });
         } catch (err) {
-        res.status(500).send({ message: err.message });
+            res.status(500).send({ message: err.message });
         }
     },
 

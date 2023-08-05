@@ -9,9 +9,6 @@
                 
                 <ul class="nav flex-column nav-pills mt-3">
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" id="reviewsTabLink" data-bs-toggle="pill" href="#reviews">Reviews</a>
                     </li>
                 </ul>
@@ -82,26 +79,6 @@
                                 </div>
                             {{/each}}
                         </div>
-                    </div>
-
-                    <div id="update-user-info" class="tab-pane fade">
-                        <h1>Update User Info</h1>
-                        <form id="user-update-form" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="avatar" class="form-label">Account Avatar</label>
-                                <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
-                            </div>
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Account Username</label>
-                                <input type="text" class="form-control" id="userName" placeholder="Enter your new username" value="{{profile.username}}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="profileDescription" class="form-label">Account Description</label>
-                                <textarea class="form-control" id="userDescription" placeholder="Enter your profile description">{{profile.profileDescription}}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="save">Save</button>
-                        </form>
-                        <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">Account updated successfully!</div>
                     </div>
                 </div>
             </div>

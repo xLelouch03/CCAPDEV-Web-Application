@@ -196,11 +196,29 @@ router.get('/searchresultreview', async (req, res) => {
   }
 });
 
-router.get("/home", (req, res) => {
-    res.redirect("/");
+router.get("/profile/redirect/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await UserController.getUserById(id);
+    if (user) {
+      return res.redirect(`/profile/user/${id}`);
+    }
+    const establishment = await EstablishmentController.getEstablishmentById(id);
+    if (establishment) {
+      return res.redirect(`/profile/establishment/${id}`);
+    }
+    return res.status(404).send({ message: "Specified ID does not exist in either users or establishments" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send({ message: "Internal server error" });
+  }
 });
 
-router.get('/logout', (req, res) => {
+router.get("/home", (req, res) => {
+  res.redirect("/");
+});
+
+router.get("/logout", (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('back');

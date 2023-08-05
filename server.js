@@ -208,14 +208,28 @@ async function fetchUsernames() {
 
 async function insertSampleEstablishments() {
   try {
+    // Hashing the passwords
+    const mcoPass = 'password1';
+    const bicPass = 'password2';
+    const mgPass = 'password3';
+    const bccPass = 'password4';
+    const mhPass = 'password5';
+
+    const mcoHashedPass = await bcrypt.hash(mcoPass, 10);
+    const bicHashedPass = await bcrypt.hash(bicPass, 10);
+    const mgHashedPass = await bcrypt.hash(mgPass, 10);
+    const bccHashedPass = await bcrypt.hash(bccPass, 10);
+    const mhHashedPass = await bcrypt.hash(mhPass, 10);
+
     const sampleEstablishments = [
       { 
         name: "Manila Ocean Park",
         username: "manilaoceanpark",
-        password: "password1",
+        password: mcoHashedPass,
+        avatar: "/static/images/mocp1.png",
         images: ["/static/images/mocp1.png", "/static/images/mocp2.png", "/static/images/mocp3.png"],
         category: "Nature",
-        shortDescription: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila",
+        shortDescription: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila.",
         description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
         location: "Manila",
         rating: 3.0
@@ -223,10 +237,11 @@ async function insertSampleEstablishments() {
       { 
         name: "Balesin Island Club",
         username: "balesinislandclub",
-        password: "password2",
+        password: bicHashedPass,
+        avatar: "/static/images/bic1.png",
         images: ["/static/images/bic1.png", "/static/images/bic2.png", "/static/images/bic3.png"],
         category: "Beach",
-        shortDescription: "Balesin Island Club is a secluded paradise spanning 500 hectares",
+        shortDescription: "Balesin Island Club is a secluded paradise spanning 500 hectares.",
         description: "Balesin Island Club is a secluded paradise spanning 500 hectares, located in the Lamon Bay of Quezon Province. This private island sanctuary boasts breathtaking landscapes inspired by some of the world's most sought-after destinations, allowing guests to experience the allure of various international locales without ever leaving the Philippines. Each distinct village on the island offers a unique ambiance, architecture, and cuisine, creating a truly immersive and unforgettable experience.",
         location: "Quezon",
         rating: 4.6
@@ -234,10 +249,11 @@ async function insertSampleEstablishments() {
       { 
         name: "Masungi Georeserve",
         username: "masungigeoreserve",
-        password: "password3",
+        password: mgHashedPass,
+        avatar: "/static/images/mg1.png",
         images: ["/static/images/mg1.png", "/static/images/mg2.png", "/static/images/mg3.png"],
         category: "Cultural Site",
-        shortDescription: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal",
+        shortDescription: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal.",
         description: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal, just a short distance from Manila. It showcases a mesmerizing blend of breathtaking rock formations, lush forests, and diverse wildlife. The georeserve is renowned for its sustainable tourism practices, aiming to preserve and protect its delicate ecosystem while providing visitors with an unforgettable adventure.",
         location: "Rizal",
         rating: 0.0
@@ -245,7 +261,8 @@ async function insertSampleEstablishments() {
       { 
         name: "Baguio Country Club",
         username: "baguiocountryclub",
-        password: "password4",
+        password: bccHashedPass,
+        avatar: "/static/images/bcc1.png",
         images: ["/static/images/bcc1.png", "/static/images/bcc2.png", "/static/images/bcc3.png"],
         category: "Retreat",
         shortDescription: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts.",
@@ -256,7 +273,8 @@ async function insertSampleEstablishments() {
       { 
         name: "Manila Hotel",
         username: "manilahotel",
-        password: "password5",
+        password: mhHashedPass,
+        avatar: "/static/images/13.png",
         images: ["/static/images/13.png", "/static/images/14.png", "/static/images/15.png"],
         category: "Hotel",
         shortDescription: "The Manila Hotel stands as a testament to the city's history and grandeur.",

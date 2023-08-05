@@ -9,7 +9,7 @@
                 
                 <ul class="nav flex-column nav-pills mt-3">
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="pill" href="#update-user-info">Update User Info</a>
+                        <a class="nav-link" data-bs-toggle="pill" href="#update-establishment-info">Update Establishment Info</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="reviewsTabLink" data-bs-toggle="pill" href="#reviews">Reviews</a>
@@ -84,9 +84,9 @@
                         </div>
                     </div>
 
-                    <div id="update-user-info" class="tab-pane fade">
-                        <h1>Update User Info</h1>
-                        <form id="user-update-form" enctype="multipart/form-data">
+                    <div id="update-establishment-info" class="tab-pane fade">
+                        <h1>Update Establishment Info</h1>
+                        <form id="establishment-update-form" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="avatar" class="form-label">Account Avatar</label>
                                 <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
@@ -98,6 +98,25 @@
                             <div class="mb-3">
                                 <label for="profileDescription" class="form-label">Account Description</label>
                                 <textarea class="form-control" id="userDescription" placeholder="Enter your profile description">{{profile.profileDescription}}</textarea>
+                            </div>
+                            <!-- Establishment fields -->
+                            <div id="establishmentFields">
+                                <div class="mb-3">
+                                    <label for="establishmentName" class="form-label">Establishment Name</label>
+                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment display name">{{profile.name}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="establishmentLocation" class="form-label">Establishment Location</label>
+                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment location">{{profile.location}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="establishmentCategory" class="form-label">Establishment Category</label>
+                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment category">{{profile.category}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="establishmentDescription" class="form-label">Establishment Description</label>
+                                    <textarea class="form-control" id="establishmentDescription" placeholder="Enter description to be displayed on page">{{profile.description}}</textarea>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary" id="save">Save</button>
                         </form>
