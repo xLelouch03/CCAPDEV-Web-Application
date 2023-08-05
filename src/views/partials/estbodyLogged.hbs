@@ -1,3 +1,5 @@
+
+
 <div id="section1">
     <div class="s1-container">
         <span id="page-header">{{establishment.name}}</span>
@@ -147,6 +149,7 @@
                     <span class="unhelpful-icon"></span>
                     <span class="helpful-text">Unhelpful {{this.dislikes}}</span>
                 </div>
+                {{#if (equals this.user._id ../user._id)}}
                 <div class="userreview-buttons-container">
                     <div class="edit-button-container">
                         <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editReviewModal">
@@ -159,8 +162,25 @@
                         </button>
                     </div>
                 </div>
+                {{/if}}
             </div>
         </div>
+        {{#if this.reply}}
+            <div class="feedback-positioner">
+            <div class="feedback-container">
+            <div class="profile-container">
+                <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
+                <div class="post-details-container">
+                    <span class="profile-name">{{this.reply.establishment.name}}</span>
+                    <span class="post-date">{{this.reply.datePosted}}</span>
+                </div>
+            </div>
+            <span class="feedback-content">
+                {{this.reply.body}}
+            </span>
+            </div>
+            </div>
+        {{/if}}
     </div>
 {{/each}}
 

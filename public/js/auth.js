@@ -41,7 +41,32 @@ $(document).ready(function() {
             $('#description3').show();
         }
     });
+    const establishmentFieldsContainer = document.getElementById('establishmentFields');
 
+    // Get a reference to the "Update User Info" link
+    const updateUserLink = document.getElementById('update-user-info-link');
+
+    // Function to check if it's a user profile based on the URL pathname
+    function isUserProfile() {
+        const url = window.location.pathname;
+        return url.includes('/profile/user/');
+    }
+
+    // Function to toggle the visibility of the establishment fields based on the user type
+    function toggleEstablishmentFieldsVisibility() {
+        if (isUserProfile()) {
+            establishmentFieldsContainer.style.display = 'none'; // Hide the establishment fields
+        } else {
+            establishmentFieldsContainer.style.display = 'block'; // Show the establishment fields
+        }
+    }
+
+    // Call the function initially to set the correct visibility on page load
+    toggleEstablishmentFieldsVisibility();
+
+    // Add a click event listener to the "Update User Info" link
+    updateUserLink.addEventListener('click', toggleEstablishmentFieldsVisibility);
+    
     $("#reviewsTabLink").on("click", function() {
         // Get the user ID and establishment ID from your URL
         const urlParams = new URLSearchParams(window.location.search);

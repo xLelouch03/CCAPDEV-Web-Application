@@ -51,6 +51,10 @@ async function main () {
         }
         return out;
       },
+      equals: function(a, b) {
+        console.log('Comparing: ', a, b, a.toString() === b.toString()); // Log the values
+        return a.toString() === b.toString();
+      },
     },
   });
 
