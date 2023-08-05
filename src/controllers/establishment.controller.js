@@ -1,5 +1,5 @@
 import passport from 'passport';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import Establishment from '../models/establishment.model.js';
 

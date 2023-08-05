@@ -1,5 +1,5 @@
 import PassportLocal from 'passport-local';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import UserController from './src/controllers/user.controller.js';
 import EstablishmentController from './src/controllers/establishment.controller.js';

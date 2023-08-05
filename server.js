@@ -24,7 +24,7 @@ import Review from './src/models/review.model.js';
 import Reply from './src/models/reply.model.js';
 
 // User sessions and auth modules
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { initialize as initializePassport } from './passport-config.js';
 import flash from 'express-flash';
