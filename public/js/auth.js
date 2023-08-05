@@ -130,7 +130,7 @@ $(document).ready(function() {
 
             try {
                 let loginRoute = "/login-user";
-                if (loginData.role === "establishment") {
+                if (loginData.role === "Establishment") {
                     loginRoute = "/login-establishment";
                 }
 
