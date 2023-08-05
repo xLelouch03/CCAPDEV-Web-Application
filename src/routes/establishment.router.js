@@ -27,19 +27,21 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         }
   
         // Define Handlebars template and layout here
-        let mainLayout, mainTemplate;
+        let user, mainLayout, mainTemplate;
         if(req.isAuthenticated()) {
+            user = req.user.toObject();
             mainLayout = 'establishment';
             mainTemplate = 'establishmentLogged';
         } else {
             mainLayout = 'establishment';
-            mainTemplate = 'establishments';
+            mainTemplate = 'establishment';
         }
   
         res.render(mainTemplate, {
             layout: mainLayout,
             establishment: establishment,
-            reviews: reviews
+            reviews: reviews,
+            user: user
         });
     } catch (err) {
         console.log(err);
@@ -47,7 +49,8 @@ router.get('/establishment/:establishmentId', async (req, res) => {
     }
 });
 
-router.get('/profile/:establishmentId', async (req, res) => {
+/*
+router.get('/profile/establishment/:establishmentId', async (req, res) => {
     const establishmentId = req.params.establishmentId;
     
     try {
@@ -60,8 +63,8 @@ router.get('/profile/:establishmentId', async (req, res) => {
         console.error('Error fetching user data:', error);
         res.status(500).send('Error fetching user data');
     }
-      
 });
+*/
 
 // Update establishment details
 router.put('/establishmentLogged/:establishment', EstablishmentController.updateEstablishment);

@@ -55,7 +55,6 @@ const UserController = {
     },
 
     // Return a user with matching username
-    // Used for authentication
     getUserByUsername: async (username) => {
         const query = { username };
         try {
@@ -67,7 +66,6 @@ const UserController = {
     },
 
     // Return a user with matching Object ID
-    // Used for authentication
     getUserById: async (id) => {
         try {
             const user = await User.findById(id);

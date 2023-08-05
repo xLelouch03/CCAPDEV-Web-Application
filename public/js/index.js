@@ -1,3 +1,5 @@
+/*
+
 $(document).ready(function() {
 
   // Update the profile dropdown options with fetched usernames
@@ -274,7 +276,7 @@ $(document).ready(function() {
       const userId = $(this).data("user-id");
     
       // Redirect to the profile page with the selected user ID
-      window.location.href = `/profileLogged?userId=${userId}`;
+      window.location.href = `/profile?userId=${userId}`;
     });
 
 
@@ -290,12 +292,12 @@ $(document).on("click", ".user-option", function () {
   const userId = $(this).data("user-id");
 
   // Redirect to the profile page with the selected user ID
-  window.location.href = `/profileLogged?userId=${userId}`;
+  window.location.href = `/profile?userId=${userId}`;
 });
 
 $(document).on("click", ".establishment-option", function () {
   const establishmentId = $(this).data("establishment-id");
-  window.location.href = `/profileLogged?establishmentId=${establishmentId}`;
+  window.location.href = `/profile?establishmentId=${establishmentId}`;
 });
 
 // Event handler for form submission
@@ -446,3 +448,4 @@ function createReviewElement(review) {
   const reviewHtml = template(review);
   return reviewHtml;
 }
+*/

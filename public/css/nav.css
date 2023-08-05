@@ -1,7 +1,7 @@
 body {
-
     text-decoration: none;
 }
+
 .container-fluid {
     padding: 0px 20px;
 }
@@ -20,12 +20,11 @@ body {
     border: 2px solid gray;
 }
 
-
 .navbar-brand:hover {
     color:black !important;
 }
 
- .dropdown-item:hover {
+.dropdown-item:hover {
     color:#FF8A00 !important;
     background-color: transparent !important;
 }
@@ -40,8 +39,6 @@ body {
     border-radius: 16px;
 }
 
-
-
 .navbar-nav .nav-item  {
     list-style: none;
     font-size: 18px;
@@ -49,6 +46,10 @@ body {
 
 .nav-item2 {
     padding: 0px 10px;
+}
+
+.nav-item3 {
+    padding-left: 25px;
 }
 
 .nav-link:hover {
@@ -89,6 +90,14 @@ body {
     background-color: white;
     color: none;
     transition: 0.3s ;
+}
+
+.account-button {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
 }
 
 /* profile dropdown */

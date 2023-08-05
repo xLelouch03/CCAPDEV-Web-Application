@@ -96,11 +96,6 @@ async function main () {
     });
   });
 
-  app.get('/users', (req, res) => {
-    const users = fetchUsernames(); // Call your function to get the list of users
-    res.json({ users: users }); // Assuming users is an array of user objects
-  });
-
   // Inserting sample data to database
   await insertSampleUsers();
   await insertSampleEstablishments();

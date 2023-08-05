@@ -1,38 +1,56 @@
 import express from 'express';
 import UserController from '../controllers/user.controller.js';
+import ReviewController from '../controllers/review.controller.js';
 import multer from 'multer';
-import User from '../models/user.model.js';
 
-const userRouter = express.Router();
+const router = express.Router();
 const upload = multer({ dest: 'static/images' });
 
 // Account-related
-userRouter.post('/register-user', UserController.createUser);
-userRouter.post('/login-user', UserController.loginUser);
+router.post('/register-user', UserController.createUser);
+router.post('/login-user', UserController.loginUser);
 
 // Get user details
-// userRouter.get('/:username', UserController.getUser);
-userRouter.get('/users', UserController.getAllUsernames);
+// router.get('/:username', UserController.getUser);
+router.get('/users', UserController.getAllUsernames);
 
 // Delete a user
-// userRouter.delete('/:username', UserController.deleteUser);
+// router.delete('/:username', UserController.deleteUser);
 
-//userRouter.put('/api/update-user/:username', UserController.updateUser);
+// router.put('/api/update-user/:username', UserController.updateUser);
 
-userRouter.get('/profile/:userId', async (req, res) => {
-    const userId = req.params.userId;
-    
-    try {
-        // Fetch user data from MongoDB collection using Mongoose
-        const profileData = await User.findById(userId);
-    
-        // Render the Handlebars template and pass the fetched data as context
-        res.render('template', { profileData });
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        res.status(500).send('Error fetching user data');
+router.get('/profile/user/:id', async (req, res) => {
+    const { id } = req.params;
+    const profile = (await UserController.getUserById(id)).toObject();
+    const reviews  = (await ReviewController.getReviewsOfUser(id)).map(doc => doc.toObject());
+
+    if (!profile) {
+        console.log('Profile not found');
+        return res.status(404).send('Profile not found');
     }
-      
+
+    let user, mainLayout, mainTemplate;
+    if ((req.isAuthenticated()) && (req.user._id == id)) {
+        user = req.user.toObject();
+        mainLayout = 'profile';
+        mainTemplate = 'profileOwned';
+    } else if ((req.isAuthenticated()) && (req.user._id != id)) {
+        user = req.user.toObject();
+        mainLayout = 'profile';
+        mainTemplate = 'profileLogged';
+    } else {
+        mainLayout = 'profile';
+        mainTemplate = 'profile';
+    }
+
+    // Render the 'profilesLogged' view with the userData and reviews
+    res.render(mainTemplate, { 
+        layout: mainLayout,
+        title: `${profile.username}'s Profile`,
+        profile: profile,
+        user: user,
+        reviews: reviews
+    });
 });
 
-export default userRouter;
+export default router;
