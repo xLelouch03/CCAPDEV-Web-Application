@@ -148,18 +148,18 @@
                 </div>
             </div>
         </div>
-        {{#each replies}}
+        {{#if this.reply}}
             <div class="feedback-positioner">
-        <div class="feedback-container">
+            <div class="feedback-container">
             <div class="profile-container">
-                <img class="{{this.establishment.name}}" src="{{this.establishment.avatar}}">
+                <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
                 <div class="post-details-container">
-                    <span class="profile-name">{{this.establishment.name}}</span>
-                    <span class="post-date">{{this.datePosted}}</span>
+                    <span class="profile-name">{{this.reply.establishment.name}}</span>
+                    <span class="post-date">{{this.reply.datePosted}}</span>
                 </div>
             </div>
             <span class="feedback-content">
-                {{this.body}}
+                {{this.reply.body}}
             </span>
             <div class="feedback-buttons-container">
             <div class="edit-button-container">
@@ -167,16 +167,15 @@
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
             </div>
-
             <div class="delete-button-container" data-bs-toggle="modal">
                 <button class="delete-button">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </div>
             </div>
-        </div>
             </div>
-        {{/each}}
+            </div>
+        {{/if}}
     </div>
 {{/each}}
 
