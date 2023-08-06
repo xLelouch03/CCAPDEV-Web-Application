@@ -277,9 +277,9 @@ function fetchSortedReviews(sortBy) {
         })
         .catch(error => console.error('Error:', error));
 }
-
+</script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.review-container').forEach(function(container) {
         container.addEventListener('click', function(event) {
             const reviewId = this.getAttribute('data-review-id');
