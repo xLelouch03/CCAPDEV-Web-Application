@@ -359,6 +359,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.review-container').forEach(function(container) {
+        container.addEventListener('click', function(event) {
+            const reviewId = this.getAttribute('data-review-id');
+            
+            if (event.target.classList.contains('like-button')) {
+                // Handle like action
+                fetch(`/review/${reviewId}/like`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const likeCountElement = this.querySelector('.like-count');
+                    const dislikeCountElement = this.querySelector('.dislike-count');
+                    likeCountElement.textContent = 'Helpful ' + data.likes;
+                    dislikeCountElement.textContent = 'Unhelpful ' + data.dislikes;
+                })
+                .catch(error => console.error('Error:', error));
+                
+            } else if (event.target.classList.contains('dislike-button')) {
+                // Handle dislike action
+                fetch(`/review/${reviewId}/dislike`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const likeCountElement = this.querySelector('.like-count');
+                    const dislikeCountElement = this.querySelector('.dislike-count');
+                    likeCountElement.textContent = 'Helpful ' + data.likes;
+                    dislikeCountElement.textContent = 'Unhelpful ' + data.dislikes;
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    });
+});
 </script>
 
