@@ -34,6 +34,7 @@ $(document).ready(function() {
             const result = await response.json();
             console.log(result.message);
             $('#updateSuccessMessage').show();
+            location.reload();
         } catch (error) {
             console.error('Error updating establishment details:', error);
             $('#updateFailureMessage').show();
@@ -70,6 +71,7 @@ $(document).ready(function() {
             const result = await response.json();
             console.log(result.message);
             $('#updateSuccessMessage').show();
+            location.reload();
         } catch (error) {
             console.error('Error updating user details:', error);
             $('#updateFailureMessage').show();
