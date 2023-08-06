@@ -326,8 +326,8 @@ async function insertSampleReviews(userIds, establishmentIds) {
         user: userIds[1],
         establishment: establishmentIds[0],
         rating: 4,
-        title: "Great Atmosphere",
-        body: "The atmosphere is very cozy and inviting. The staff was friendly and the food was great. A little bit pricey, but worth it for the experience.",
+        title: "Immersive Underwater Adventure at Manila Ocean Park",
+        body: "Having recently visited Manila Ocean Park, I was pleasantly surprised by the immersive and educational experience the park offered. This oceanarium located at the heart of Manila is a haven for sea life enthusiasts. The Oceanarium, the park's main attraction, is a surreal spectacle. The walk-through tunnel with a 360-degree view is as close as you can get to the experience of being on the ocean floor. With diverse species of fish and marine creatures swimming overhead, it's a sight that leaves one in awe of the richness of marine biodiversity. The Trails to Antarctica section was another highlight. The Humboldt penguins are charming, and it's fascinating to observe them in their carefully simulated natural habitat. It's not every day you get to see penguins in Manila! Furthermore, the park's commitment to educating its visitors about marine conservation was commendable. The interactive exhibits and informational displays throughout the park provide valuable insights into the challenges facing our oceans today.",
         likes: 18,
         dislikes: 1
       },
@@ -362,8 +362,8 @@ async function insertSampleReviews(userIds, establishmentIds) {
         user: userIds[0],
         establishment: establishmentIds[1],
         rating: 5,
-        title: "An Unforgettable Experience",
-        body: "From the moment we walked through the doors, the staff was exceptionally welcoming and friendly. They made us feel right at home. The food was absolutely exquisite - every dish was a masterful work of culinary art. Furthermore, the ambiance of the place was warm and charming, adding to an already wonderful experience. This place definitely exceeded my expectations and I am eager to return.",
+        title: "An Unforgettable Gastronomic Adventure",
+        body: "From the moment I stepped through the doors, the experience was an absolute delight from start to finish. The establishment perfectly encapsulated an atmosphere that was both inviting and sophisticated, achieving an ambiance that was high-end without bordering on the pretentious. The warm, subdued lighting and elegantly arranged decor worked in harmony to create a welcoming environment that immediately put us at ease. As we were led to our seats, it became clear that a first-rate customer service experience was of utmost importance to the staff. We were attended to by a team of friendly and knowledgeable professionals who added an invaluable touch to our dining experience. Their familiarity with the menu was impressive, answering our queries effortlessly and offering recommendations tailored to our preferences. They not only helped us navigate through the vast array of dishes on the menu but also showcased a flair for matching our palate to the perfect wine from their extensive selection.",
         images: ["/static/images/sample_review_1/bccreview1.jpg", "/static/images/sample_review_1/bccreview2.jpg", "/static/images/sample_review_1/bccreview3.jpg"]
       },
       {
@@ -435,12 +435,12 @@ async function insertSampleReplies(reviewIds, establishmentIds) {
       },
       {
         review: reviewIds[6],
-        establishment: establishmentIds[0],
+        establishment: establishmentIds[1],
         body: "Come again next time!"
       },
       {
         review: reviewIds[7],
-        establishment: establishmentIds[0],
+        establishment: establishmentIds[1],
         body: "It was a pleasure serving you!"
       }
     ];
