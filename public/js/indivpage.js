@@ -418,3 +418,6 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
       document.getElementById('editReviewTitle').value = activeTitle.textContent;
     }
 });
+
+
+

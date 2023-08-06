@@ -7,6 +7,10 @@
 
 /* SECTION 1 */
 
+.hidden {
+    display: none;
+}
+
 .img1 {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
