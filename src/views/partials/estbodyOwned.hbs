@@ -102,7 +102,6 @@
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" id="most-recent">Most recent</a></li>
                 <li><a class="dropdown-item" id="top-reviews">Top reviews</a></li>
-                
             </ul>
         </div>
     </div>
@@ -146,31 +145,31 @@
         </div>
         {{#if this.reply}}
             <div class="feedback-positioner">
-            <div class="feedback-container">
-            <div class="profile-container">
-                <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
-                <div class="post-details-container">
-                    <span class="profile-name">{{this.reply.establishment.name}}</span>
-                    <span class="post-date">{{this.reply.datePosted}}</span>
+                <div class="feedback-container">
+                    <div class="profile-container">
+                        <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
+                        <div class="post-details-container">
+                            <span class="profile-name">{{this.reply.establishment.name}}</span>
+                            <span class="post-date">{{this.reply.datePosted}}</span>
+                        </div>
+                    </div>
+                    <span class="feedback-content">
+                        {{this.reply.body}}
+                    </span>
+                    {{#if (equals this.reply.establishment._id ../establishment._id)}}
+                        <div class="feedback-buttons-container">
+                            <div class="edit-button-container">
+                                <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editFeedbackModal">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="delete-button-container" data-bs-toggle="modal">
+                                <button class="delete-button">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
                 </div>
-            </div>
-            <span class="feedback-content">
-                {{this.reply.body}}
-            </span>
-            {{#if (equals this.reply.establishment._id ../establishment._id)}}
-            <div class="feedback-buttons-container">
-            <div class="edit-button-container">
-                <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editFeedbackModal">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="delete-button-container" data-bs-toggle="modal">
-                <button class="delete-button">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-            </div>
-            </div>
             </div>
         {{/if}}
     </div>

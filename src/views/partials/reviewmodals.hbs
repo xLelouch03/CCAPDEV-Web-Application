@@ -85,9 +85,10 @@
     </div>
 </div>
 
-
-<!-- WIP {{#if !(userHasReviewed)}} -->
-<div class="add-review-container">
-    <button class="add-review" data-bs-toggle="modal" data-bs-target="#reviewModal">Add Your Review</button>
-</div>
-  <!-- WIP {{/if}} -->
+{{#if userReview}}
+    <!-- Do not display add review button -->
+{{else}}
+    <div class="add-review-container">
+        <button class="add-review" data-bs-toggle="modal" data-bs-target="#reviewModal">Add Your Review</button>
+    </div>
+{{/if}}

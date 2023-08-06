@@ -5,6 +5,7 @@ $(document).ready(function() {
     });
 });
 
+
 /* REVIEW FILTERS */
 
 function showAllReviews() {
@@ -50,6 +51,7 @@ arrReviewFilters.forEach(reviewFilter => {
     });
 });
 
+
 /* TRUNCATE/UNTRUNCATE REVIEW */
 
 const arrUntruncateButtons = document.querySelectorAll(".untruncate-button");
@@ -68,38 +70,11 @@ arrTruncateButtons.forEach(truncateButton => {
     });
 });
 
-/*const arrPageButtons = document.querySelectorAll(".page-button");
-arrPageButtons.forEach((pageButton, index) => {
 
-    pageButton.addEventListener("click", () => {
-
-        const selectedPage = document.querySelector(".page-button-selected");
-        if(selectedPage) {
-            selectedPage.classList.add("page-button");
-            selectedPage.classList.remove("page-button-selected");
-        }
-
-        pageButton.classList.add("page-button-selected");
-        pageButton.classList.remove("page-button");
-
-        const reviewsPerPage = 2;
-        const start = index * reviewsPerPage;
-        const end = start + reviewsPerPage;
-
-        const arrReviews = document.querySelectorAll(".review-container");
-        arrReviews.forEach((review, reviewIndex) => {
-            if (reviewIndex >= start && reviewIndex < end) {
-                review.style.display = "flex";
-            } else {
-                review.style.display = "none";
-            }
-        });
-    });
-});*/
 /* PAGE BUTTONS */
 
 function updateReviewDisplay(start, end) {
-    const arrReviews = document.querySelectorAll(".review-container");
+    const arrReviews = document.querySelectorAll(".review-positioner");
     arrReviews.forEach((review, reviewIndex) => {
         if (reviewIndex >= start && reviewIndex < end) {
             review.style.display = "flex";
@@ -110,7 +85,7 @@ function updateReviewDisplay(start, end) {
 }
 
 function updatePageNumbers() {
-    const arrReviews = document.querySelectorAll(".review-container");
+    const arrReviews = document.querySelectorAll(".review-positioner");
     const reviewsPerPage = 2;
     const totalPages = Math.ceil(arrReviews.length / reviewsPerPage);
 
@@ -162,7 +137,6 @@ previousPageButton.addEventListener("click", () => {
         previousPage.classList.remove("page-button");
         previousPage.classList.add("page-button-selected");
 
-        const arrReviews = document.querySelectorAll(".review-container");
         const index = parseInt(previousPage.textContent) - 1;
         const reviewsPerPage = 2;
         const start = index * reviewsPerPage;
@@ -183,7 +157,6 @@ nextPageButton.addEventListener("click", () => {
         nextPage.classList.remove("page-button");
         nextPage.classList.add("page-button-selected");
 
-        const arrReviews = document.querySelectorAll(".review-container");
         const index = parseInt(nextPage.textContent) - 1;
         const reviewsPerPage = 2;
         const start = index * reviewsPerPage;
@@ -192,7 +165,6 @@ nextPageButton.addEventListener("click", () => {
         updateReviewDisplay(start, end);
     }
 });
-
 
 
 /* HELPFUL BUTTONS */
@@ -250,6 +222,7 @@ function updateCount(countElement, increment) {
   count += increment;
   countElement.textContent = count;
 }
+
 
 /* REVIEW MODAL */
 
@@ -418,6 +391,3 @@ document.querySelector(".reviews-cont").addEventListener('click', function(event
       document.getElementById('editReviewTitle').value = activeTitle.textContent;
     }
 });
-
-
-

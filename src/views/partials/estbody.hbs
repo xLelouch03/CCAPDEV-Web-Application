@@ -125,12 +125,9 @@
             <span class="review-title">
                 {{this.title}}
             </span>
-
-            
             <span class="review-content">
                 {{this.body}}
             </span>
-
             <div class="photo-album">
                 {{#each this.images}}
                 <img class="photo-album-photo" src="{{this}}">
@@ -148,18 +145,18 @@
         </div>
         {{#if this.reply}}
             <div class="feedback-positioner">
-            <div class="feedback-container">
-            <div class="profile-container">
-                <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
-                <div class="post-details-container">
-                    <span class="profile-name">{{this.reply.establishment.name}}</span>
-                    <span class="post-date">{{this.reply.datePosted}}</span>
+                <div class="feedback-container">
+                    <div class="profile-container">
+                        <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
+                        <div class="post-details-container">
+                            <span class="profile-name">{{this.reply.establishment.name}}</span>
+                            <span class="post-date">{{this.reply.datePosted}}</span>
+                        </div>
+                    </div>
+                    <span class="feedback-content">
+                        {{this.reply.body}}
+                    </span>
                 </div>
-            </div>
-            <span class="feedback-content">
-                {{this.reply.body}}
-            </span>
-            </div>
             </div>
         {{/if}}
     </div>

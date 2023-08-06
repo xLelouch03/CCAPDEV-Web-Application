@@ -378,6 +378,8 @@ margin-top: 30px;
 }
 
 .review-positioner {
+    display: flex;
+    flex-direction: column;
     width: 1295px;
 }
 

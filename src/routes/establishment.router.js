@@ -70,11 +70,12 @@ router.get('/establishment/:establishmentId', async (req, res) => {
         }
   
         // Define Handlebars template and layout here
-        let user, mainLayout, mainTemplate;
+        let user, mainLayout, mainTemplate, userReview;
         if(req.isAuthenticated()) {
             user = req.user.toObject();
             mainLayout = 'establishment';
             mainTemplate = 'establishmentLogged';
+            userReview = await ReviewController.findReview(user._id, establishmentId);
         } else {
             mainLayout = 'establishment';
             mainTemplate = 'establishment';
@@ -84,7 +85,8 @@ router.get('/establishment/:establishmentId', async (req, res) => {
             layout: mainLayout,
             establishment: establishment,
             reviews: reviews,
-            user: user
+            user: user,
+            userReview: userReview
         });
     } catch (err) {
         console.log(err);
