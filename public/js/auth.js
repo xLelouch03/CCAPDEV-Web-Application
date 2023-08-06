@@ -235,13 +235,13 @@ $('#update-form').on('submit', async function (event) {
         // If '/establishment/' is not found in the URL, the last segment will be the user ID
         userId = pathSegments[pathSegments.length - 1];
     }
-
     if (establishmentId) {
         updatedData.name = establishmentName;
         updatedData.location = establishmentLocation;
         updatedData.category = establishmentCategory;
         updatedData.description = establishmentDescription;
     }
+    console.log(updatedData.newUsername);
   
     try {
         // Send the update request to the backend endpoint with the correct establishmentId or userId
@@ -277,7 +277,7 @@ $('#update-form').on('submit', async function (event) {
         $('#updateSuccessMessage').show();
         //location.reload();
         profileData = responseData.user; // Update the frontend data with the updated data
-        //location.reload();
+        location.reload();
     } catch (error) {
         console.error('Error updating user or establishment details:', error);
     }
