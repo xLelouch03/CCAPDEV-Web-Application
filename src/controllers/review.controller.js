@@ -113,20 +113,57 @@ const ReviewController = {
         }
     },
 
-    incrementLike: async (reviewId) => {
+    incrementLike: async (reviewId, userId) => {
         try {
-            const review = await Review.findByIdAndUpdate(reviewId, { $inc: { likes: 1 } }, { new: true });
-            return review.likes;  // Return the updated like count
+            const review = await Review.findById(reviewId);
+            
+            // If the user has already liked this review
+            if (review.likesUsers.includes(userId)) {
+                return review.likes;
+            }
+    
+            // If the user has disliked this review before
+            if (review.dislikesUsers.includes(userId)) {
+                review.dislikes -= 1;
+                review.likes += 1;
+                review.dislikesUsers.pull(userId);
+                review.likesUsers.push(userId);
+            } else {
+                review.likes += 1;
+                review.likesUsers.push(userId);
+            }
+    
+            await review.save();
+    
+            return review.likes;
         } catch (err) {
             throw err;
         }
     },
-
-    // Increment dislike for a specific review
-    incrementDislike: async (reviewId) => {
+    
+    incrementDislike: async (reviewId, userId) => {
         try {
-            const review = await Review.findByIdAndUpdate(reviewId, { $inc: { dislikes: 1 } }, { new: true });
-            return review.dislikes;  // Return the updated dislike count
+            const review = await Review.findById(reviewId);
+    
+            // If the user has already disliked this review
+            if (review.dislikesUsers.includes(userId)) {
+                return review.dislikes;
+            }
+    
+            // If the user has liked this review before
+            if (review.likesUsers.includes(userId)) {
+                review.likes -= 1;
+                review.dislikes += 1;
+                review.likesUsers.pull(userId);
+                review.dislikesUsers.push(userId);
+            } else {
+                review.dislikes += 1;
+                review.dislikesUsers.push(userId);
+            }
+    
+            await review.save();
+    
+            return review.dislikes;
         } catch (err) {
             throw err;
         }
