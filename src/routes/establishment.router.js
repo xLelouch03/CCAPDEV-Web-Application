@@ -162,7 +162,7 @@ router.delete('/establishment/:establishment/review', async (req, res) => {
 router.post('/review/:reviewId/like', async (req, res) => {
     try {
         const likes = await ReviewController.incrementLike(req.params.reviewId);
-        res.send({ likes });
+        res.send({ likes: likes.likes, dislikes: likes.dislikes });
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
@@ -171,7 +171,7 @@ router.post('/review/:reviewId/like', async (req, res) => {
 router.post('/review/:reviewId/dislike', async (req, res) => {
     try {
         const dislikes = await ReviewController.incrementDislike(req.params.reviewId);
-        res.send({ dislikes });
+        res.send({ likes: dislikes.likes, dislikes: dislikes.dislikes });
     } catch (err) {
         res.status(500).send({ message: err.message });
     }

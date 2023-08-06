@@ -135,7 +135,7 @@ const ReviewController = {
     
             await review.save();
     
-            return review.likes;
+            return { likes: review.likes, dislikes: review.dislikes };
         } catch (err) {
             throw err;
         }
@@ -163,7 +163,7 @@ const ReviewController = {
     
             await review.save();
     
-            return review.dislikes;
+            return { likes: review.likes, dislikes: review.dislikes };
         } catch (err) {
             throw err;
         }
