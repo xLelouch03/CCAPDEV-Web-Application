@@ -7,9 +7,15 @@ RECATO DY, John Kieffer
 REJANO, Hans Martin 
 TAN, Timothy Joshua
 
+To access the deployed web application: go to the link below:
+https://ccapdevwebapp.onrender.com
+
+To access the web application locally:
 Download the repository as ZIP
 
 Extract the ZIP
+remove the "//" in server.js line 2 import "dotenv/config";
+on server.js line 90, add "SERVER_" before the PORT => app.listen(process.env.SERVER_PORT, () => {
 
 Open the root folder of the project and open the terminal with directory set to the root folder
 
