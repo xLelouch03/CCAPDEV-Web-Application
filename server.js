@@ -29,7 +29,7 @@ import passport from 'passport';
 import { initialize as initializePassport } from './passport-config.js';
 import flash from 'express-flash';
 import session from 'express-session';
-
+const sessionPeriodRemember = 1000 * 60 * 60 * 24 * 21; // 3 weeks in milliseconds
 // Run server
 main();
 
@@ -73,7 +73,10 @@ async function main () {
   app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      expires: null // Set the session cookie to be non-persistent
+  }
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -83,6 +86,7 @@ async function main () {
   app.use(userRouter);
   app.use(router);
 
+  //app.listen(process.env.SERVER_PORT, () => { DONT FORGET TO REMOVE THE COMMENT SA dotenv sa taas if ittest :)
   app.listen(process.env.SERVER_PORT, () => {
     console.log("Express app now listening...");
     connectToMongo((err) => {

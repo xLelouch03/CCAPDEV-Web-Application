@@ -11,9 +11,9 @@ export function initialize(passport) {
 
         // Extract role from request body
         const role = req.body.role;
-
-        console.log("Received login request:", role, username, password);
-
+        const rememberMe = req.body.rememberMe;
+        console.log("Received login request:", role, username, password, rememberMe);
+        
         // Verify existence of user from username
         let user;
         if (role == "user") {

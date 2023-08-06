@@ -48,6 +48,16 @@ const reviewSchema = new mongoose.Schema({
   dislikes: {
     type: Number,
     default: 0
+  },
+  likesUsers: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
+    default: []
+  },
+  dislikesUsers: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
+    default: []
   }
 });
 

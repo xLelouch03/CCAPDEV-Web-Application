@@ -12,6 +12,12 @@
   font-weight: 700;
 }
 
+.about-button{
+  color: #FF8A00;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
 .info {
   display: flex;
   justify-content: space-between;

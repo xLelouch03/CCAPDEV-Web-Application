@@ -128,3 +128,10 @@
     grid-column: 2;
 }
 
+.avatar-option-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 5px;
+    border-radius: 50%;
+  }
