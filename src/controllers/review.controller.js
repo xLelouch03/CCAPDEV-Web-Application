@@ -111,7 +111,28 @@ const ReviewController = {
         } catch (err) {
             throw err;
         }
+    },
+
+    incrementLike: async (reviewId) => {
+        try {
+            const review = await Review.findByIdAndUpdate(reviewId, { $inc: { likes: 1 } }, { new: true });
+            return review.likes;  // Return the updated like count
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    // Increment dislike for a specific review
+    incrementDislike: async (reviewId) => {
+        try {
+            const review = await Review.findByIdAndUpdate(reviewId, { $inc: { dislikes: 1 } }, { new: true });
+            return review.dislikes;  // Return the updated dislike count
+        } catch (err) {
+            throw err;
+        }
     }
 };
+
+
 
 export default ReviewController;
