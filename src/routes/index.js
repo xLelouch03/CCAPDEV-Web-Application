@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller.js';
+import ReviewController from '../controllers/review.controller.js';
 import EstablishmentController from '../controllers/establishment.controller.js';
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
@@ -167,6 +168,7 @@ router.get('/searchresultreview', async (req, res) => {
           mainTemplate = 'searchresultsreviews';
         }
 
+        await ReviewController.assignReplies();
         if (query) { // if a search term exists
           results = await Review.find({
             $text: {
@@ -174,7 +176,11 @@ router.get('/searchresultreview', async (req, res) => {
             }
           }).populate(['reply', 'user']).sort(sortBy);
         } else { // if no search term, return all
-          results = await Review.find().populate(['reply', 'user']).sort(sortBy);
+          results = await Review.find().populate([
+            { path: 'reply', populate: { path: 'establishment' } },
+            'user'
+          ])
+          .sort(sortBy);
         }
 
         res.render(mainTemplate, {
