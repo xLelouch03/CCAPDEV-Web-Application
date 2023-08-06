@@ -218,6 +218,24 @@ router.get("/home", (req, res) => {
   res.redirect("/");
 });
 
+router.get('/about', async (req, res) => {  
+  let user, mainLayout, mainTemplate;
+  if (req.isAuthenticated()) {
+    user = req.user.toObject();
+    mainLayout = 'establishment';
+    mainTemplate = 'aboutLogged';
+  } else {
+    mainLayout = 'establishment';
+    mainTemplate = 'about';
+  }
+
+  res.render(mainTemplate, {
+    layout: mainLayout,
+    title: "About Juanderlust",
+    user: user,
+    });
+});
+
 router.get("/logout", (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }

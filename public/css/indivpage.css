@@ -922,3 +922,16 @@ display: flex;
     background-color: transparent;
     transition: 0.3s ease-in-out;
 }
+
+#dependencies{
+    color: green;
+    width: 550px;
+}
+
+#third-party-libraries{
+    width:550px
+}
+
+.about-content{
+    font-size: 20px;
+}
