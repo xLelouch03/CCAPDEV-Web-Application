@@ -108,7 +108,7 @@
 
 {{#each reviews}}
     <div class="review-positioner">
-        <div class="review-container">
+        <div class="review-container" data-review-id="{{this._id}}">
             <div class="profile-container">
                 <img class="profile-picture" src="{{this.user.avatar}}">
                 <div class="post-details-container">
@@ -135,11 +135,11 @@
             </div>
             <div class="userbuttons-container">
                 <div class="helpful-container">
-                    <span class="helpful-icon"></span>
-                    <span class="helpful-text">Helpful {{this.likes}}</span>
+                    <span class="helpful-icon like-button"></span>
+                    <span class="helpful-text like-count">Helpful {{this.likes}}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="unhelpful-icon"></span>
-                    <span class="helpful-text">Unhelpful {{this.dislikes}}</span>
+                    <span class="unhelpful-icon dislike-button"></span>
+                    <span class="helpful-text dislike-count">Unhelpful {{this.dislikes}}</span>
                 </div>
                 {{#if (equals this.user._id ../user._id)}}
                 <div class="userreview-buttons-container">
@@ -319,6 +319,39 @@ document.addEventListener("DOMContentLoaded", function() {
             let truncatedText = originalText.split(/\s+/).slice(0, 50).join(' ') + '...';
             span.innerHTML = truncatedText + ' <span class="untruncate-button">Read more</span>';
         }
+    });
+});
+
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.review-container').forEach(function(container) {
+        container.addEventListener('click', function(event) {
+            const reviewId = this.getAttribute('data-review-id');
+            
+            if (event.target.classList.contains('like-button')) {
+                // Handle like action
+                fetch(`/review/${reviewId}/like`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const likeCountElement = this.querySelector('.like-count');
+                    likeCountElement.textContent = 'Helpful ' + data.likes;
+                })
+                .catch(error => console.error('Error:', error));
+                
+            } else if (event.target.classList.contains('dislike-button')) {
+                // Handle dislike action
+                fetch(`/review/${reviewId}/dislike`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const dislikeCountElement = this.querySelector('.dislike-count');
+                    dislikeCountElement.textContent = 'Unhelpful ' + data.dislikes;
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
     });
 });
 

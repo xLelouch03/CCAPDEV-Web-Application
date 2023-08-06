@@ -159,6 +159,25 @@ router.delete('/establishment/:establishment/review', async (req, res) => {
     }
 });
 
+router.post('/review/:reviewId/like', async (req, res) => {
+    try {
+        const likes = await ReviewController.incrementLike(req.params.reviewId);
+        res.send({ likes });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
+
+router.post('/review/:reviewId/dislike', async (req, res) => {
+    try {
+        const dislikes = await ReviewController.incrementDislike(req.params.reviewId);
+        res.send({ dislikes });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
+
+
 // Create new reply
 router.post('/establishment/:establishment/reply', ReplyController.createReply);
 
