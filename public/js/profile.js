@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 
     $('#update-establishment-info').on('submit', async function (event) {
         event.preventDefault();
@@ -42,4 +42,4 @@ $(document).ready(function() {
             
         }
     });
-});
+});*/

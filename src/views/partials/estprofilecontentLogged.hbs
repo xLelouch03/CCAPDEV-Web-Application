@@ -86,10 +86,10 @@
 
                     <div id="update-establishment-info" class="tab-pane fade">
                         <h1>Update Establishment Info</h1>
-                        <form id="establishment-update-form" enctype="multipart/form-data">
+                        <form id="update-form" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="avatar" class="form-label">Account Avatar</label>
-                                <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
+                                <input type="file" class="form-control" id="avatar2" name="avatar" accept="image/*">
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Account Username</label>
@@ -107,11 +107,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentLocation" class="form-label">Establishment Location</label>
-                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment location">{{profile.location}}</textarea>
+                                    <textarea class="form-control" id="establishmentLocation2" placeholder="Enter establishment location">{{profile.location}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentCategory" class="form-label">Establishment Category</label>
-                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment category">{{profile.category}}</textarea>
+                                    <textarea class="form-control" id="establishmentCategory2" placeholder="Enter establishment category">{{profile.category}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentDescription" class="form-label">Establishment Description</label>
