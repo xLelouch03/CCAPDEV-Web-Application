@@ -86,32 +86,32 @@
 
                     <div id="update-establishment-info" class="tab-pane fade">
                         <h1>Update Establishment Info</h1>
-                        <form id="update-form" enctype="multipart/form-data">
+                        <form id="establishment-update-form" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label for="avatar" class="form-label">Account Avatar</label>
-                                <input type="file" class="form-control" id="avatar2" name="avatar" accept="image/*">
+                                <label for="new-avatar" class="form-label">Account Avatar</label>
+                                <input type="file" class="form-control" id="new-avatar" name="new-avatar" accept="image/*">
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Account Username</label>
-                                <input type="text" class="form-control" id="userName" placeholder="Enter your new username" value="{{profile.username}}">
+                                <input type="text" class="form-control" id="username" placeholder="Enter your new username" value="{{profile.username}}">
                             </div>
                             <div class="mb-3">
                                 <label for="profileDescription" class="form-label">Account Description</label>
-                                <textarea class="form-control" id="userDescription" placeholder="Enter your profile description">{{profile.profileDescription}}</textarea>
+                                <textarea class="form-control" id="profileDescription" placeholder="Enter your profile description">{{profile.profileDescription}}</textarea>
                             </div>
                             <!-- Establishment fields -->
                             <div id="establishmentFields">
                                 <div class="mb-3">
-                                    <label for="establishmentName" class="form-label">Establishment Name</label>
-                                    <textarea class="form-control" id="establishmentName2" placeholder="Enter establishment display name">{{profile.name}}</textarea>
+                                    <label for="new-establishmentName" class="form-label">Establishment Name</label>
+                                    <textarea class="form-control" id="new-establishmentName" placeholder="Enter establishment display name">{{profile.name}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentLocation" class="form-label">Establishment Location</label>
-                                    <textarea class="form-control" id="establishmentLocation2" placeholder="Enter establishment location">{{profile.location}}</textarea>
+                                    <textarea class="form-control" id="establishmentLocation" placeholder="Enter establishment location">{{profile.location}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentCategory" class="form-label">Establishment Category</label>
-                                    <textarea class="form-control" id="establishmentCategory2" placeholder="Enter establishment category">{{profile.category}}</textarea>
+                                    <textarea class="form-control" id="establishmentCategory" placeholder="Enter establishment category">{{profile.category}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="establishmentDescription" class="form-label">Establishment Description</label>
@@ -121,10 +121,11 @@
                             <button type="submit" class="btn btn-primary" id="save">Save</button>
                         </form>
                         <div id="updateSuccessMessage" class="alert alert-success mt-3" style="display: none;">Account updated successfully!</div>
+                        <div id="updateFailureMessage" class="alert alert-danger mt-3" style="display: none;">Failed to update account!</div>
                     </div>
                 </div>
             </div>
-        </div>            
+        </div>
     </div>
 </div>
 </div>

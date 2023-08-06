@@ -233,7 +233,7 @@ async function insertSampleEstablishments() {
         avatar: "/static/images/mocp1.png",
         images: ["/static/images/mocp1.png", "/static/images/mocp2.png", "/static/images/mocp3.png"],
         category: "Nature",
-        shortDescription: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila.",
+        profileDescription: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila.",
         description: "Manila Ocean Park is a popular oceanarium and marine-themed park located in Manila, the capital city of the Philippines. It is one of the country's premier attractions, offering visitors an immersive and educational experience with various marine life and ecosystems.",
         location: "Manila",
         rating: 3.0
@@ -245,7 +245,7 @@ async function insertSampleEstablishments() {
         avatar: "/static/images/bic1.png",
         images: ["/static/images/bic1.png", "/static/images/bic2.png", "/static/images/bic3.png"],
         category: "Beach",
-        shortDescription: "Balesin Island Club is a secluded paradise spanning 500 hectares.",
+        profileDescription: "Balesin Island Club is a secluded paradise spanning 500 hectares.",
         description: "Balesin Island Club is a secluded paradise spanning 500 hectares, located in the Lamon Bay of Quezon Province. This private island sanctuary boasts breathtaking landscapes inspired by some of the world's most sought-after destinations, allowing guests to experience the allure of various international locales without ever leaving the Philippines. Each distinct village on the island offers a unique ambiance, architecture, and cuisine, creating a truly immersive and unforgettable experience.",
         location: "Quezon",
         rating: 4.6
@@ -257,7 +257,7 @@ async function insertSampleEstablishments() {
         avatar: "/static/images/mg1.png",
         images: ["/static/images/mg1.png", "/static/images/mg2.png", "/static/images/mg3.png"],
         category: "Cultural Site",
-        shortDescription: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal.",
+        profileDescription: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal.",
         description: "Masungi Georeserve is a 1,500-hectare conservation area located in the lush province of Rizal, just a short distance from Manila. It showcases a mesmerizing blend of breathtaking rock formations, lush forests, and diverse wildlife. The georeserve is renowned for its sustainable tourism practices, aiming to preserve and protect its delicate ecosystem while providing visitors with an unforgettable adventure.",
         location: "Rizal",
         rating: 0.0
@@ -269,7 +269,7 @@ async function insertSampleEstablishments() {
         avatar: "/static/images/bcc1.png",
         images: ["/static/images/bcc1.png", "/static/images/bcc2.png", "/static/images/bcc3.png"],
         category: "Retreat",
-        shortDescription: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts.",
+        profileDescription: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts.",
         description: "Baguio Country Club is a distinguished destination that combines the charm of a bygone era with modern comforts. Established in 1905, this historic club stands as a testament to Baguio's colonial past and has since become a symbol of refined hospitality in the city. Surrounded by lush pine trees and overlooking a picturesque golf course, the club offers a perfect blend of natural beauty, leisure activities, and world-class amenities.",
         location: "Baguio",
         rating: 0.0
@@ -281,7 +281,7 @@ async function insertSampleEstablishments() {
         avatar: "/static/images/13.png",
         images: ["/static/images/13.png", "/static/images/14.png", "/static/images/15.png"],
         category: "Hotel",
-        shortDescription: "The Manila Hotel stands as a testament to the city's history and grandeur.",
+        profileDescription: "The Manila Hotel stands as a testament to the city's history and grandeur.",
         description: "The Manila Hotel stands as a testament to the city's history and grandeur. Its majestic architecture and exquisite interiors reflect a bygone era, transporting guests to a time of opulence and refinement. Situated in the vibrant district of Ermita, the hotel boasts stunning views of Manila Bay and is conveniently located near key attractions, making it an ideal choice for both leisure and business travelers.",
         location: "Manila",
         rating: 0.0

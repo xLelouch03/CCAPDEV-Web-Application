@@ -17,8 +17,6 @@ router.get('/users', UserController.getAllUsernames);
 // Delete a user
 // router.delete('/:username', UserController.deleteUser);
 
-// router.put('/api/update-user/:username', UserController.updateUser);
-
 router.get('/profile/user/:id', async (req, res) => {
     const { id } = req.params;
     const profileRaw = await UserController.getUserById(id);
@@ -52,5 +50,7 @@ router.get('/profile/user/:id', async (req, res) => {
         reviews: reviews
     });
 });
+
+router.put('/profile/user/:id', UserController.updateUser);
 
 export default router;
