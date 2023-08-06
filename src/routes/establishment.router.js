@@ -71,7 +71,11 @@ router.get('/establishment/:establishmentId', async (req, res) => {
   
         // Define Handlebars template and layout here
         let user, mainLayout, mainTemplate, userReview;
-        if(req.isAuthenticated()) {
+        if (req.isAuthenticated() && (req.user._id == establishmentId)) {
+            user = req.user.toObject();
+            mainLayout = 'establishment';
+            mainTemplate = 'establishmentOwned';
+        } else if (req.isAuthenticated() && (req.user._id != establishmentId)) {
             user = req.user.toObject();
             mainLayout = 'establishment';
             mainTemplate = 'establishmentLogged';
@@ -177,14 +181,78 @@ router.post('/review/:reviewId/dislike', async (req, res) => {
     }
 });
 
-
 // Create new reply
-router.post('/establishment/:establishment/reply', ReplyController.createReply);
+router.post('/establishment/:establishmentId/reply', async (req, res) => {
+    const user = req.user._id;
+    const { establishmentId } = req.params;
+    const { reviewId, body } = req.body;
+    if (user == establishmentId) {
+        try {
+            const existingReply = await ReplyController.getReply(reviewId);
+            if (existingReply) {
+                console.log("This review already has a reply");
+                return res.status(409).send({ message: "You can only reply once for each review." });
+            }
+            const result = await ReplyController.createReply(reviewId, establishmentId, body);
+            res.json(result);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        }
+    } else {
+        res.status(403).send({ message: "You are not allowed to reply to reviews on another establishment page." });
+    }
+});
 
 // Update reply details
-router.put('/establishment/:establishment/reply', ReplyController.updateReply);
+router.put('/establishment/:establishmentId/reply', async (req, res) => {
+    const user = req.user._id;
+    const { establishmentId } = req.params;
+    const { replyId, body } = req.body;
+    if (user == establishmentId) {
+        try {
+            const reply = await ReplyController.getReplyById(replyId);
+            if (!reply) {
+                console.log("Cannot find the reply to be edited");
+                return res.status(404).send({ message: "Existing reply to be edited cannot be found." });
+            }
+            const result = await ReplyController.updateReply(replyId, body);
+            res.json(result);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        }
+    } else {
+        res.status(403).send({ message: "You are not allowed to reply to reviews on another establishment page." });
+    }
+});
 
 // Delete a reply
-router.delete('/establishment/:establishment/reply', ReplyController.deleteReply);
+router.delete('/establishment/:establishmentId/reply', async (req, res) => {
+    const user = req.user._id;
+    const { establishmentId } = req.params;
+    const { replyId } = req.body;
+    if (user == establishmentId) {
+        try {
+            const reply = await ReplyController.getReplyById(replyId);
+            if (!reply) {
+                console.log("Cannot find the reply to be deleted");
+                return res.status(404).send({ message: "Existing reply to be deleted cannot be found." });
+            }
+            const result = await ReplyController.deleteReply(replyId);
+            if (result) {
+                res.status(200).json({ message: "Reply deletion successful", result });
+            } else {
+                console.log("Reply deletion failed");
+                res.status(400).json({ message: "Reply deletion failed", result });
+            }
+        } catch (err) {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        }
+    } else {
+        res.status(403).send({ message: "You are not allowed to delete replies to reviews on another establishment page." });
+    }
+});
 
 export default router;

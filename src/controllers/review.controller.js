@@ -17,7 +17,12 @@ const ReviewController = {
                 default:
                     sortQuery = {};
             }
-            const reviews = await Review.find({ establishment: id }).sort(sortQuery).populate(['reply', 'user']);
+            const reviews = await Review.find({ establishment: id })
+                            .sort(sortQuery)
+                            .populate([
+                                { path: 'reply', populate: { path: 'establishment' } },
+                                'user'
+                            ]);
             if (!reviews.length) console.log(`No matching reviews found for establishment ${id}`);
             return reviews;
         } catch (err) {

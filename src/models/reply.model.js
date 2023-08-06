@@ -21,6 +21,7 @@ const replySchema = new mongoose.Schema({
   },
   lastEdited: {
     type: Date,
+    default: Date.now
   }
 });
 

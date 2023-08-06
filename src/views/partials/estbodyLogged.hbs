@@ -112,7 +112,7 @@
             <div class="profile-container">
                 <img class="profile-picture" src="{{this.user.avatar}}">
                 <div class="post-details-container">
-                    <span class="profile-name"><a href="/profile/user/{{this.user._id}}" style="color: black; text-decoration: none;">{{this.user.username}}</a></span>
+                    <span class="profile-name"><a href="/profile/redirect/{{this.user._id}}" style="color: black; text-decoration: none;">{{this.user.username}}</a></span>
                     <span class="post-date">Last edited: {{this.lastEdited}}</span>
                 </div>
             </div>
@@ -161,10 +161,10 @@
             <div class="feedback-positioner">
                 <div class="feedback-container">
                     <div class="profile-container">
-                        <img class="{{this.reply.establishment.name}}" src="{{this.reply.establishment.avatar}}">
+                        <img class="profile-picture" src="{{this.reply.establishment.avatar}}">
                         <div class="post-details-container">
-                            <span class="profile-name">{{this.reply.establishment.name}}</span>
-                            <span class="post-date">{{this.reply.datePosted}}</span>
+                            <span class="profile-name"><a href="/profile/redirect/{{this.reply.establishment._id}}" style="color: black; text-decoration: none;">{{this.reply.establishment.name}}</a></span>
+                            <span class="post-date">Last edited: {{this.reply.lastEdited}}</span>
                         </div>
                     </div>
                     <span class="feedback-content">
@@ -278,81 +278,33 @@ function fetchSortedReviews(sortBy) {
         .catch(error => console.error('Error:', error));
 }
 
-
-/* truncation */
-
-// Function to check if the text exceeds the word limit
-function exceedsWordLimit(text, limit) {
-    let words = text.split(/\s+/); // Split text into words based on spaces
-    return words.length > limit;
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Process each review
-    document.querySelectorAll(".review-content").forEach(function(span) {
-        let originalText = span.textContent.trim();
-
-        if (exceedsWordLimit(originalText, 50)) { // If text exceeds 50 words
-            let truncatedText = originalText.split(/\s+/).slice(0, 50).join(' ') + '...';
-            
-            // Set truncated text and append 'Read more' button
-            span.innerHTML = truncatedText + ' <span class="untruncate-button">Read more</span>';
-            
-            // Store original text as a data attribute for easy access
-            span.setAttribute('data-original-text', originalText);
-        }
-    });
-
-    // Using event delegation for the buttons
-    document.body.addEventListener("click", function(event) {
-        // Check if clicked element is 'Read more' button
-        if (event.target && event.target.className === "untruncate-button") {
-            let span = event.target.closest('.review-content');
-            let originalText = span.getAttribute('data-original-text');
-            span.innerHTML = originalText + ' <span class="truncate-button">Read less</span>';
-        }
-
-        // Check if clicked element is 'Read less' button
-        if (event.target && event.target.className === "truncate-button") {
-            let span = event.target.closest('.review-content');
-            let originalText = span.getAttribute('data-original-text');
-            let truncatedText = originalText.split(/\s+/).slice(0, 50).join(' ') + '...';
-            span.innerHTML = truncatedText + ' <span class="untruncate-button">Read more</span>';
-        }
-    });
-});
-
-</script>
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.review-container').forEach(function(container) {
-        container.addEventListener('click', function(event) {
-            const reviewId = this.getAttribute('data-review-id');
-            
-            if (event.target.classList.contains('like-button')) {
-                // Handle like action
-                fetch(`/review/${reviewId}/like`, { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    const likeCountElement = this.querySelector('.like-count');
-                    likeCountElement.textContent = 'Helpful ' + data.likes;
-                })
-                .catch(error => console.error('Error:', error));
+        document.querySelectorAll('.review-container').forEach(function(container) {
+            container.addEventListener('click', function(event) {
+                const reviewId = this.getAttribute('data-review-id');
                 
-            } else if (event.target.classList.contains('dislike-button')) {
-                // Handle dislike action
-                fetch(`/review/${reviewId}/dislike`, { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    const dislikeCountElement = this.querySelector('.dislike-count');
-                    dislikeCountElement.textContent = 'Unhelpful ' + data.dislikes;
-                })
-                .catch(error => console.error('Error:', error));
-            }
+                if (event.target.classList.contains('like-button')) {
+                    // Handle like action
+                    fetch(`/review/${reviewId}/like`, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        const likeCountElement = this.querySelector('.like-count');
+                        likeCountElement.textContent = 'Helpful ' + data.likes;
+                    })
+                    .catch(error => console.error('Error:', error));
+                    
+                } else if (event.target.classList.contains('dislike-button')) {
+                    // Handle dislike action
+                    fetch(`/review/${reviewId}/dislike`, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        const dislikeCountElement = this.querySelector('.dislike-count');
+                        dislikeCountElement.textContent = 'Unhelpful ' + data.dislikes;
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            });
         });
     });
-});
-
 </script>
