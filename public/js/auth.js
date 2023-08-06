@@ -164,6 +164,7 @@ $(document).ready(function() {
         const password = document.querySelector("#loginPassword");
         const role = document.querySelector("#loginRole");
         const login = document.querySelector("#loginBtn");
+        const rememberMe = document.querySelector("#loginRememberMe");
 
         login?.addEventListener("click", async (e) => {
             e.preventDefault();
@@ -171,7 +172,8 @@ $(document).ready(function() {
             const loginData = {
                 username: username.value,
                 password: password.value,
-                role: role.value
+                role: role.value,
+                rememberMe: rememberMe.checked
             };
 
             try {
