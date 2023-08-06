@@ -128,11 +128,6 @@
             </span>
             <span class="review-content">
                 {{this.body}}
-                <span class="untruncate-button">Read more</span>
-            </span>
-            <span class="review-content untruncated-review">
-                {{this.body}}
-                <span class="truncate-button">Read less</span>
             </span>
             <div class="photo-album">
                 {{#each this.images}}
@@ -286,3 +281,48 @@ function fetchSortedReviews(sortBy) {
 
 </script>
 -->
+
+<script>
+
+// Function to check if the text exceeds the word limit
+function exceedsWordLimit(text, limit) {
+    let words = text.split(/\s+/); // Split text into words based on spaces
+    return words.length > limit;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Process each review
+    document.querySelectorAll(".review-content").forEach(function(span) {
+        let originalText = span.textContent.trim();
+
+        if (exceedsWordLimit(originalText, 50)) { // If text exceeds 50 words
+            let truncatedText = originalText.split(/\s+/).slice(0, 50).join(' ') + '...';
+            
+            // Set truncated text and append 'Read more' button
+            span.innerHTML = truncatedText + ' <span class="untruncate-button">Read more</span>';
+            
+            // Store original text as a data attribute for easy access
+            span.setAttribute('data-original-text', originalText);
+        }
+    });
+
+    // Using event delegation for the buttons
+    document.body.addEventListener("click", function(event) {
+        // Check if clicked element is 'Read more' button
+        if (event.target && event.target.className === "untruncate-button") {
+            let span = event.target.closest('.review-content');
+            let originalText = span.getAttribute('data-original-text');
+            span.innerHTML = originalText + ' <span class="truncate-button">Read less</span>';
+        }
+
+        // Check if clicked element is 'Read less' button
+        if (event.target && event.target.className === "truncate-button") {
+            let span = event.target.closest('.review-content');
+            let originalText = span.getAttribute('data-original-text');
+            let truncatedText = originalText.split(/\s+/).slice(0, 50).join(' ') + '...';
+            span.innerHTML = truncatedText + ' <span class="untruncate-button">Read more</span>';
+        }
+    });
+});
+
+</script>
