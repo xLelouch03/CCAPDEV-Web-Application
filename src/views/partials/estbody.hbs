@@ -107,7 +107,7 @@
     </div>
 
 {{#each reviews}}
-    <div class="review-positioner">
+    <div class="review-positioner {{#if this.images}}{{else}}text-only-review{{/if}}">
         <div class="review-container">
             <div class="profile-container">
                 <img class="profile-picture" src="{{this.user.avatar}}">

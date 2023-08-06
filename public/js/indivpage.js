@@ -9,14 +9,14 @@ $(document).ready(function() {
 /* REVIEW FILTERS */
 
 function showAllReviews() {
-    const arrReviews = document.getElementsByClassName("review-container");
+    const arrReviews = document.getElementsByClassName("review-positioner");
     for(i = 0; i < arrReviews.length; i++) {
         arrReviews[i].style.display = "flex";
     }
 }
 
 function showPhotoReviews() {
-    const arrReviews = document.getElementsByClassName("review-container");
+    const arrReviews = document.getElementsByClassName("review-positioner");
     for(i = 0; i < arrReviews.length; i++) {
         arrReviews[i].style.display = "flex";
         if(arrReviews[i].classList.contains("text-only-review")) {
