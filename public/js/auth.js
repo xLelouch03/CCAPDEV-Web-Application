@@ -42,6 +42,59 @@ $(document).ready(function() {
         }
     });
 
+    // Manually populate the avatar dropdown
+    function populateAvatarDropdown() {
+        const avatarDropdown = $('#avatarDropdown');
+
+        // Specify the avatar image options manually
+        const avatarOptions = [
+            'avatar1.png',
+            'avatar2.png',
+            'avatar3.png',
+            'avatar4.png',
+            'avatar5.png',
+            'avatar6.png',
+            'avatar7.png',
+            'avatar8.png'
+        ];
+
+         // Clear existing options
+        avatarDropdown.empty();
+
+        avatarOptions.forEach((avatar) => {
+            const option = new Option('', `/static/avatars/${avatar}`);
+            option.dataset['icon'] = `/static/avatars/${avatar}`; // Store the image URL in the data-icon attribute
+            avatarDropdown.append(option);
+        });
+
+        // Initialize Select2
+        avatarDropdown.select2({
+            templateResult: formatAvatarOption, // Use a custom function to format the dropdown options
+            templateSelection: formatAvatarOption, // Use the same function for selected options
+        });
+
+        $('#new-avatar-dropdown').select2({
+            dropdownParent: $('#registerModal')
+        });
+    }
+
+    // Custom function to format the dropdown options
+    function formatAvatarOption(option) {
+        if (!option.id) {
+            return option.text;
+        }
+
+        // Use the data-icon attribute to display the image
+        const avatarUrl = $(option.element).data('icon');
+        if (!avatarUrl) {
+            return option.text;
+        }
+
+        const avatarImage = `<img src="${avatarUrl}" class="avatar-option-image" /> ${option.text}`;
+        return $(avatarImage);
+    }
+    populateAvatarDropdown();
+
     $('#registerForm').on('submit', function (event) {
         event.preventDefault();
         console.log("REGISTER CLICKED");
@@ -51,13 +104,15 @@ $(document).ready(function() {
         const username = $('#registerUsername').val();
         const password = $('#registerPassword').val();
         const profileDescription = $('#description3').val();
+        const selectedAvatar = $('#avatarDropdown').val();
 
         // Create the request data object
         const requestData = {
             username: username,
             password: password,
             role: role,
-            profileDescription: profileDescription
+            profileDescription: profileDescription,
+            avatar: selectedAvatar
         };
 
         // Add additional fields based on the role
@@ -151,6 +206,7 @@ $(document).ready(function() {
     $('#logout').click(function() {
         window.location.href = '/logout';
     });
+
 });
 
 // Function to handle image file upload and create a copy in the 'static/images' folder

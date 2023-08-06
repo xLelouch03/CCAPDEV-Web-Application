@@ -2,10 +2,18 @@ import express from 'express';
 import UserController from '../controllers/user.controller.js';
 import ReviewController from '../controllers/review.controller.js';
 import multer from 'multer';
-
+import path from 'path';
 const router = express.Router();
-const upload = multer({ dest: 'static/images' });
-
+/*const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '/static/images');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});*/
+//const upload = multer({storage: storage});
 // Account-related
 router.post('/register-user', UserController.createUser);
 router.post('/login-user', UserController.loginUser);
